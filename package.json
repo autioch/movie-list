@@ -1,0 +1,42 @@
+{
+  "name": "movie-list",
+  "version": "0.1.0",
+  "description": "Viewer for data collected with movie-collector",
+  "author": "autioch",
+  "license": "ISC",
+  "scripts": {
+    "build": "webpack --config tools/webpack.config.js --hide-modules",
+    "build:watch": "webpack --config tools/webpack.config.js --watch --hide-modules",
+    "build:production": "webpack --config tools/webpack.config.js -p --hide-modules",
+    "lint": "eslint ./src --quiet --ext .js & exit 0",
+    "lint:sass": "sass-lint -c .sass-lint.yml -v -q & exit 0"
+  },
+  "dependencies": {
+    "autoprefixer": "^6.5.3",
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-preset-es2015": "^6.18.0",
+    "clean-webpack-plugin": "^0.1.14",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.4",
+    "html-webpack-plugin": "^2.24.1",
+    "ignore-loader": "^0.1.2",
+    "jquery": "^3.1.1",
+    "json-loader": "^0.5.4",
+    "node-sass": "^4.0.0",
+    "postcss-loader": "^1.2.1",
+    "sass-loader": "^4.0.2",
+    "string-replace-webpack-plugin": "0.0.4",
+    "style-loader": "^0.13.1",
+    "underscore-template-loader": "^0.7.3",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.14.0",
+    "webpack-livereload-plugin": "^0.9.0",
+    "webpack-validator": "^2.2.12"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.0"
+  }
+}

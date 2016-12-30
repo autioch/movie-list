@@ -1,0 +1,22 @@
+.video__link {
+  background: transparent no-repeat center center;
+  height: 1rem;
+  padding: 0 .5rem;
+  background-size: contain;
+  opacity: .5;
+  transition: opacity 250ms;
+  
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.imdb_link {
+  background-image: url('imdb.png');
+  width: 2rem;
+}
+
+.filmweb_link {
+  background-image: url('filmweb.png');
+  width: 1rem;
+}

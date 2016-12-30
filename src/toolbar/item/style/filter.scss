@@ -1,0 +1,26 @@
+.m-toolbar-item__filter {
+  display: flex;
+  width: 100%;
+
+  &.is-active {
+    > .m-toolbar-item__filter-reset {
+      display: block;
+    }
+  }
+}
+
+.m-toolbar-item__filter-input {
+  box-sizing: border-box;
+  width: 100%;
+  outline: 0;
+  border: solid 1px #999;
+  padding: .25rem;
+
+  &:hover {
+    border-color: #06c;
+  }
+}
+
+.m-toolbar-item__filter-reset {
+  display: none;
+}
