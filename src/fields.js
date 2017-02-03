@@ -1,5 +1,5 @@
 module.exports = [{
-  key: 'name',
+  key: 'title',
   label: 'Title'
 }, {
   key: 'genre',
@@ -8,17 +8,14 @@ module.exports = [{
   key: 'plot',
   label: 'Plot'
 }, {
-  key: 'director',
-  label: 'Director'
+  key: 'year',
+  label: 'Year'
 }, {
   key: 'rated',
   label: 'Rated'
 }, {
   key: 'duration',
   label: 'Duration'
-}, {
-  key: 'year',
-  label: 'Year'
 }, {
   key: 'metascore',
   label: 'Metascore'

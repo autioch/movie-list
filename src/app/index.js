@@ -1,9 +1,9 @@
 const applyFilters = require('./utils/applyFilters');
 const applySorts = require('./utils/applySorts');
-const parseVideo = require('./utils/parseVideo');
+// const parseVideo = require('./utils/parseVideo');
 
 function App(videos, fields) {
-  const parsedVideos = videos.map(parseVideo);
+  const parsedVideos = videos;// .map(parseVideo);
 
   this._videos = parsedVideos;
   this.videos = parsedVideos.slice(0);

@@ -1,9 +1,9 @@
 <div class="m-list-item">
 <div class="m-list-item__content">
   <div class="video__header">
-    <span class="video__title"><%= video.name %></span>
-    <a class="video__link imdb_link" target="_blank" title="Search in OMDB" href="http://www.imdb.com/find?q=<%= video.name %>&s=tt&ttype=ft&ref_=fn_ft"></a>
-    <a class="video__link filmweb_link" target="_blank" title="Search in Filmweb" href="http://www.filmweb.pl/search/film?q=<%= video.name %>"></a>
+    <span class="video__title"><%= video.title %></span>
+    <a class="video__link imdb_link" target="_blank" title="Search in OMDB" href="http://www.imdb.com/find?q=<%= video.title %>&s=tt&ttype=ft&ref_=fn_ft"></a>
+    <a class="video__link filmweb_link" target="_blank" title="Search in Filmweb" href="http://www.filmweb.pl/search/film?q=<%= video.title %>"></a>
     <% if (video.errors.length){ %>
       <span class="video__errors" title="Info might be incorrect">
         <span class="video__errors-icon"></span>
@@ -17,8 +17,8 @@
     <% } %>
   </div>
   <div class="video__info">
-    <% if (video.genre){ %>
-      <%= video.genre %>,
+    <% if (video.genre.length){ %>
+      <%= video.genre.join(', ') %>,
     <% } %>
     <%= video.year %>,
     <%= video.duration %>min
