@@ -1,4 +1,5 @@
 <div class="m-list-item">
+  <div class="video__year"><%= video.year %></div>
   <div class="video__title"><%= video.title %></div>
   <div class="video__genre"><%= video.genre.join(', ') %></div>
   <div class="video__info">
@@ -16,7 +17,6 @@
       </span>
     <% } %>
   </div>
-  <div class="video__year"><%= video.year %></div>
   <div class="video__rated"><%= video.rated %></div>
   <div class="video__duration"><%= video.duration %></div>
   <div class="video__metascore"><%= video.metascore %></div>

@@ -2,9 +2,9 @@ const applySorts = require('./applySorts');
 const applyFilters = require('./applyFilters');
 const Field = require('./field');
 
-function App(videos, fieldNames) {
+function App(videos, fieldDefinitions) {
   this._videos = videos;
-  this.fields = fieldNames.map((fieldName) => new Field(fieldName));
+  this.fields = fieldDefinitions.map((fieldDefinition) => new Field(fieldDefinition));
   this.videos = videos.slice(0);
   this.callbacks = [];
 }

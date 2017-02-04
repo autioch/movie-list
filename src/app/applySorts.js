@@ -1,14 +1,14 @@
 function getSortableFields(fields) {
   fields.forEach((field) => {
-    field.firstSort = false;
+    field._firstSort = false;
   });
 
   const sortableFields = fields
     .filter((availableField) => availableField.hasSort())
-    .sort((field1, field2) => field2.sortTimestamp - field1.sortTimestamp);
+    .sort((field1, field2) => field2._sortTimestamp - field1._sortTimestamp);
 
   if (sortableFields.length > 0) {
-    sortableFields[0].firstSort = true;
+    sortableFields[0]._firstSort = true;
   }
 
   return sortableFields;

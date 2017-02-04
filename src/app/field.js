@@ -1,11 +1,17 @@
-const { ORDER, ORDER_INVERSION } = require('./config');
+const { ORDER, ORDER_INVERSION, TYPE, SIZE } = require('../config');
 
-function Field(key, value = '', order = ORDER.NONE) {
+function Field(definition) {
+  const { key, size = SIZE, type = TYPE.STRING, value = '', order = ORDER.NONE } = definition;
+
   this.key = key;
+  this.label = key.replace(/\.?([A-Z]+)/g, (x, y) => ` ${y}`);
+  this.label = this.label[0].toUpperCase() + this.label.slice(1);
+  this.type = type;
+  this.size = size;
   this.order = order;
   this.orderInverse = ORDER_INVERSION[this.order];
-  this.sortTimestamp = 0;
-  this.firstSort = false;
+  this._sortTimestamp = 0;
+  this._firstSort = false;
   this.setValue(value);
 }
 
@@ -19,7 +25,7 @@ Field.prototype = {
     this.orderInverse = ORDER.NONE;
   },
   makeSort() {
-    if (this.firstSort && (this.order === ORDER.ASC)) {
+    if (this._firstSort && (this.order === ORDER.ASC)) {
       return this.resetSort();
     }
     this.invertSort();
@@ -27,7 +33,7 @@ Field.prototype = {
   invertSort() {
     this.order = ORDER_INVERSION[this.order];
     this.orderInverse = ORDER_INVERSION[this.order];
-    this.sortTimestamp = performance.now();
+    this._sortTimestamp = performance.now();
   },
   hasValue() {
     return this.value.length > 0;

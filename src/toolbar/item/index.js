@@ -1,10 +1,10 @@
 const _ = require('lodash');
 const template = require('./template.tpl');
 const $ = require('jquery');
-const { ORDER_ICON } = require('../../app/config');
+const { ORDER_ICON } = require('../../config');
 
 const filterDelay = 500;
-const sortDelay = 500;
+const sortDelay = 250;
 
 require('./style');
 
@@ -23,8 +23,10 @@ Item.prototype = {
   render() {
     this.el.innerHTML = template({
       field: this.field,
-      icons: ORDER_ICON
+      icons: ORDER_ICON,
+      sizeMod: this.sizeMod
     });
+    this.el.style.width = `${this.field.size * this.sizeMod / window.innerWidth * 100}%`;
   },
   remove() {
     this.$el.off().remove();

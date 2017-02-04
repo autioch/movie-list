@@ -2,7 +2,7 @@ const App = require('./app');
 const ListView = require('./list');
 const ToolbarView = require('./toolbar');
 const HeaderView = require('./header');
-const { FIELDS } = require('./app/config');
+const { FIELDS } = require('./config');
 const $ = require('jquery');
 const videos = require('./data.json');
 

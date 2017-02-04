@@ -15,9 +15,13 @@ List.prototype = {
     this.renderItems();
   },
   renderItems() {
+    const sizeSum = this.app.fields.reduce((sum, field) => sum + field.size, 0);
+    const sizeMod = Math.floor((window.innerWidth / sizeSum));
+
     this.items = this.app.fields.map((field) => {
       const item = new Item(this.app, field);
 
+      item.sizeMod = sizeMod;
       item.render();
 
       return item;
