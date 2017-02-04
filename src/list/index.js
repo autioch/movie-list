@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const itemTemplate = require('./item/template.tpl');
-const renderDelay = 500;
+const renderDelay = 250;
 const $ = require('jquery');
 
 require('./item/style');
@@ -11,7 +11,7 @@ function List(app) {
   this.el = document.createElement('div');
   this.$el = $(this.el);
   this.el.className = 'm-list';
-  this.app.onChangedVideos.push(_.debounce(this.render.bind(this), renderDelay));
+  this.app.addCallback(_.debounce(this.render.bind(this), renderDelay));
 }
 
 List.prototype = {

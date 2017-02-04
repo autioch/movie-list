@@ -1,70 +1,25 @@
-const applyFilters = require('./utils/applyFilters');
-const applySorts = require('./utils/applySorts');
-// const parseVideo = require('./utils/parseVideo');
+const applySorts = require('./applySorts');
+const applyFilters = require('./applyFilters');
+const Field = require('./field');
 
-function App(videos, fields) {
-  const parsedVideos = videos;// .map(parseVideo);
-
-  this._videos = parsedVideos;
-  this.videos = parsedVideos.slice(0);
-  this.sorts = [];
-  this.filters = [];
-  this.fields = fields;
-  this.onChangedVideos = [];
+function App(videos, fieldNames) {
+  this._videos = videos;
+  this.fields = fieldNames.map((fieldName) => new Field(fieldName));
+  this.videos = videos.slice(0);
+  this.callbacks = [];
 }
 
 App.prototype = {
-  setSort(sortProperty) {
-    const currentSort = this.sorts.find((activeSort) => activeSort.property === sortProperty);
-
-    if (currentSort) {
-      currentSort.order *= -1;
-    } else {
-      this.sorts.push({
-        property: sortProperty,
-        order: 1
-      });
-    }
-    this.syncVisibleVideos();
+  constructor: App,
+  resetFilters() {
+    this.fields.forEach((field) => field.resetValue());
   },
-  resetSort(sortProperty) {
-    this.sorts = this.sorts.filter((activeSort) => activeSort.property !== sortProperty);
-    this.syncVisibleVideos();
+  setVideos() {
+    this.videos = applySorts(this.fields, applyFilters(this.fields, this._videos));
+    this.callbacks.forEach((callback) => callback());
   },
-  resetAllSorts() {
-    this.sorts = [];
-    this.syncVisibleVideos();
-  },
-  setFilter(filterProperty, filterText) {
-    if (!filterText) {
-      this.resetFilter(filterProperty);
-    }
-    let currentFilter = this.filters.find((activeFilter) => activeFilter.property === filterProperty);
-
-    if (!currentFilter) {
-      currentFilter = { property: filterProperty };
-      this.filters.push(currentFilter);
-    }
-
-    /* Simple fuzzy search */
-    currentFilter.value = new RegExp(filterText.split('').join('.?'), 'i');
-    this.syncVisibleVideos();
-  },
-  resetFilter(filterProperty) {
-    this.filters = this.filters.filter((activeFilter) => activeFilter.property !== filterProperty);
-    this.syncVisibleVideos();
-  },
-  resetAllFilters() {
-    this.sorts = [];
-    this.syncVisibleVideos();
-  },
-  syncVisibleVideos() {
-    const filteredVideos = applyFilters(this._videos, this.filters);
-    const sortedVideos = applySorts(filteredVideos, this.sorts);
-
-    this.videos = sortedVideos;
-
-    this.onChangedVideos.forEach((changedVideoCallback) => changedVideoCallback());
+  addCallback(callback) {
+    this.callbacks.push(callback);
   }
 };
 

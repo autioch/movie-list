@@ -1,39 +1,61 @@
-@import 'details';
 @import 'errors';
 @import 'links';
 
-
-.m-list-item {
-  box-sizing: border-box;
-  padding: .5rem;
+.m-list-item{
+  display: table;
   width: 100%;
-
-  @media (min-width: 1000px) {
-    width: 50%;
-  }
-
-  @media (min-width: 1500px) {
-    width: 33.33%;
-  }
-
-  @media (min-width: 2000px) {
-    width: 25%;
-  }
-}
-
-.m-list-item__content {
-  box-sizing: border-box;
-  background-color: #f1f1f1;
-  transition: background-color 200ms;
-  padding: .5em;
-  height: 100%;
-
+  background: #def;
+  
   &:hover {
-    background-color: #e1e1e1;
+    background: #abf;
+  }
+
+  >div {
+    display: table-cell;
   }
 }
 
-.video__header {
-  display: flex;
-  align-items: center;
+.video__imdb-votes {
+  width: 8rem;
+  text-align: right;
+}
+
+.video__imdb-rating {
+  width: 8rem;
+  text-align: right;
+}
+
+.video__metascore {
+  width: 8rem;
+  text-align: right;
+}
+
+.video__duration {
+  width: 8rem;
+  text-align: right;
+}
+
+.video__rated {
+  width: 8rem;
+  text-align: right;
+}
+
+.video__year {
+  width: 8rem;
+  text-align: right;
+}
+
+.video__info {
+  width: 6rem;
+  text-align: left;
+}
+
+.video__genre {
+  width: 20rem;
+  text-align: left;
+}
+
+.video__title {
+  width: 20rem;
+  text-align: left;
 }

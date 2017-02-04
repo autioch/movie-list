@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const template = require('./template.tpl');
 const $ = require('jquery');
+const { ORDER_ICON } = require('../../app/config');
 
 const filterDelay = 500;
 const sortDelay = 500;
@@ -20,18 +21,23 @@ function Item(app, field) {
 
 Item.prototype = {
   render() {
-    this.el.innerHTML = template({ field: this.field });
+    this.el.innerHTML = template({
+      field: this.field,
+      icons: ORDER_ICON
+    });
   },
   remove() {
     this.$el.off().remove();
   },
   syncFilter() {
-    const value = this.$el.find('.m-toolbar-item__filter-input').val();
-
-    this.app.setFilter(this.field.key, value);
+    this.field.setValue(this.$el.find('.m-toolbar-item__filter-input').val());
+    this.render();
+    this.app.setVideos();
   },
   syncSort() {
-    this.app.setSort(this.field.key);
+    this.field.makeSort();
+    this.render();
+    this.app.setVideos();
   }
 };
 

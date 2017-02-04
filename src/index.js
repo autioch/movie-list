@@ -2,19 +2,13 @@ const App = require('./app');
 const ListView = require('./list');
 const ToolbarView = require('./toolbar');
 const HeaderView = require('./header');
-const fields = require('./fields');
+const { FIELDS } = require('./app/config');
 const $ = require('jquery');
 const videos = require('./data.json');
 
 require('./style');
 
-// window
-//   .fetch('/data/videos.json')
-//   .then(function parse(response) {
-//     return response.json();
-//   })
-//   .then(function initialize(videos) {
-const app = new App(videos, fields);
+const app = new App(videos, FIELDS);
 const listView = new ListView(app);
 const toolbarView = new ToolbarView(app);
 const headerView = new HeaderView(app);
@@ -31,4 +25,3 @@ toolbarView.render();
 listView.render();
 
 listView.$el.css('margin-top', $(applicationBar).outerHeight());
-  // });

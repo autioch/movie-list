@@ -7,7 +7,7 @@ function List(app) {
   this.el = document.createElement('div');
   this.el.className = 'm-header';
   this.$el = $(this.el);
-  this.app.onChangedVideos.push(this.render.bind(this));
+  this.app.addCallback(this.render.bind(this));
 }
 
 List.prototype = {
