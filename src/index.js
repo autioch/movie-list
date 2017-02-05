@@ -1,27 +1,18 @@
 const App = require('./app');
-const ListView = require('./list');
-const ToolbarView = require('./toolbar');
-const HeaderView = require('./header');
-const { FIELDS } = require('./config');
-const $ = require('jquery');
 const videos = require('./data.json');
 
-require('./style');
+/* TODO move this. */
+videos.forEach((video) => {
+  if (video.imdbRating) {
+    video.imdbRating_view = video.imdbRating / 10;
+  }
+  if (video.imdbVotes) {
+    if (video.imdbVotes > 1000) {
+      video.imdbVotes_view = `${Math.round(video.imdbVotes / 1000) }K`;
+    } else {
+      video.imdbVotes_view = video.imdbVotes;
+    }
+  }
+});
 
-const app = new App(videos, FIELDS);
-const listView = new ListView(app);
-const toolbarView = new ToolbarView(app);
-const headerView = new HeaderView(app);
-
-document.body.appendChild(toolbarView.el);
-const applicationBar = document.querySelector('.application__bar');
-
-applicationBar.appendChild(headerView.el);
-applicationBar.appendChild(toolbarView.el);
-document.body.appendChild(listView.el);
-
-headerView.render();
-toolbarView.render();
-listView.render();
-
-listView.$el.css('margin-top', $(applicationBar).outerHeight());
+require('./view')(new App(videos, require('./fields')));

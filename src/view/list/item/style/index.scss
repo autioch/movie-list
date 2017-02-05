@@ -1,0 +1,19 @@
+@import 'description';
+@import 'summary';
+@import 'links';
+
+.item {
+  margin: .5rem;
+  background: #f8f8f8;
+  box-shadow: 0 0 .5rem #aaa;
+  padding: .75rem;
+  position: relative;
+  transition: box-shadow 250ms, background 250ms;
+  display: flex;
+  justify-content: space-between;
+
+  &:hover {
+    background: #eee;
+    box-shadow: 0 0 .5rem #888;
+  }
+}

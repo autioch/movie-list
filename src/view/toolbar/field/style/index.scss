@@ -1,0 +1,16 @@
+@import 'filter';
+@import 'sort';
+
+.field {
+  margin-top: .5rem;
+  padding: .5rem;
+  // padding-right: .5rem;
+  margin-left: -.5rem;
+  margin-right: -.5rem;
+  // transition: box-shadow 250ms, background 250ms;
+  //
+  &:hover {
+    background: #eee;
+  //   box-shadow: 0 0 .5rem #666;
+  }
+}

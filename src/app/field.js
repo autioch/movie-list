@@ -47,7 +47,7 @@ Field.prototype = {
     this.regex = new RegExp(value.split('').join('.?'), 'i');
   },
   test(item) {
-    return this.value.test(item[this.key]);
+    return this.regex.test(item[this.key]);
   }
 };
 

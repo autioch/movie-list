@@ -5,34 +5,6 @@ const ORDER = {
 };
 
 module.exports = {
-  FIELDS: [{
-    key: 'year',
-    size: 25
-  }, {
-    key: 'title',
-    size: 100
-  }, {
-    key: 'genre',
-    size: 100
-  }, {
-    key: 'plot',
-    size: 100
-  }, {
-    key: 'rated',
-    size: 25
-  }, {
-    key: 'duration',
-    size: 25
-  }, {
-    key: 'metascore',
-    size: 25
-  }, {
-    key: 'imdbRating',
-    size: 25
-  }, {
-    key: 'imdbVotes',
-    size: 50
-  }],
   ORDER,
   ORDER_INVERSION: {
     [ORDER.NONE]: ORDER.DESC,
@@ -49,5 +21,8 @@ module.exports = {
   TYPE: { STRING: 1 },
 
   /* Default size */
-  SIZE: 100
+  SIZE: 100,
+
+  /* Just 100 percent */
+  PERCENT: 100
 };

@@ -1,28 +1,28 @@
 module.exports = [{
+  key: 'year',
+  size: 25
+}, {
   key: 'title',
-  label: 'Title'
+  size: 100
 }, {
   key: 'genre',
-  label: 'Genre'
+  size: 100
 }, {
   key: 'plot',
-  label: 'Plot'
-}, {
-  key: 'year',
-  label: 'Year'
+  size: 100
 }, {
   key: 'rated',
-  label: 'Rated'
+  size: 25
 }, {
   key: 'duration',
-  label: 'Duration'
+  size: 25
 }, {
   key: 'metascore',
-  label: 'Metascore'
+  size: 25
 }, {
   key: 'imdbRating',
-  label: 'IMDB Rating'
+  size: 25
 }, {
   key: 'imdbVotes',
-  label: 'IMDB Votes'
+  size: 50
 }];

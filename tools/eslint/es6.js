@@ -1,20 +1,14 @@
 module.exports = {
-  env: {
-    es6: true
-  },
+  env: { es6: true },
   parserOptions: {
     ecmaVersion: 6,
     sourceType: 'module',
-    ecmaFeatures: {
-      experimentalObjectRestSpread: true
-    }
+    ecmaFeatures: { experimentalObjectRestSpread: true }
   },
   rules: {
 
     // require braces around arrow function bodies
-    'arrow-body-style': ['error', 'as-needed', {
-      requireReturnForObjectLiteral: false
-    }],
+    'arrow-body-style': ['error', 'as-needed', { requireReturnForObjectLiteral: false }],
 
     // require parentheses around arrow function arguments
     'arrow-parens': ['error', 'always'],
@@ -74,9 +68,7 @@ module.exports = {
     'object-shorthand': ['warn', 'always'],
 
     // require arrow functions or named functions as callbacks
-    'prefer-arrow-callback': ['warn', {
-      allowNamedFunctions: true
-    }],
+    'prefer-arrow-callback': ['warn', { allowNamedFunctions: true }],
 
     // require const declarations for variables that are never reassigned after declared
     'prefer-const': ['error'],
@@ -85,10 +77,10 @@ module.exports = {
     'prefer-numeric-literals': ['off'],
 
     // require rest parameters instead of arguments
-    'prefer-rest-params': ['error'],
+    'prefer-rest-params': ['off'],
 
     // require spread operators instead of .apply()
-    'prefer-spread': ['error'],
+    'prefer-spread': ['off'],
 
     // require template literals instead of string concatenation
     'prefer-template': ['warn'],
