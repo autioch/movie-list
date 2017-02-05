@@ -1,6 +1,5 @@
 const ListView = require('./list/view');
 const ToolbarView = require('./toolbar/view');
-// const $ = require('jquery');
 
 require('./style');
 

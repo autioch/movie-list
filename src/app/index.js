@@ -17,7 +17,7 @@ App.prototype = {
     this.fields.forEach((field) => field.resetValue());
   },
   setItems() {
-    this.items = applySorts(this.fields, applyFilters(this.fields, this._items));
+    this.items = applySorts(this.fields, applyFilters(this.fields, this._items.slice(0)));
     this.count = this.items.length;
     this.callbacks.forEach((callback) => callback());
   },

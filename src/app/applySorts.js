@@ -20,6 +20,10 @@ module.exports = function sortItems(availableFields, items) {
   let field;
   const fields = getSortableFields(availableFields);
 
+  if (!fields.length) {
+    return items;
+  }
+
   return items.sort((item1, item2) => {
     for (index = 0; index < fields.length; index++) {
       field = fields[index];

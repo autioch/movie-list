@@ -1,4 +1,4 @@
-const debounce = require('lodash').debounce;
+const debounce = require('lodash.debounce');
 
 const DEBOUNCE_EVENTS = ['keyup'];
 const DEBOUNCE_TIME = 500;
