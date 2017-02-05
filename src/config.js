@@ -24,5 +24,27 @@ module.exports = {
   SIZE: 100,
 
   /* Just 100 percent */
-  PERCENT: 100
+  PERCENT: 100,
+
+  /* Rounding  */
+  ROUND: 1000,
+
+  /* MPAA ratings */
+  RATINGS: {
+
+    /* General Audiences */
+    'G': 1,
+
+    /* Parental Guidance Suggested */
+    'PG': 2,
+
+    /* Parents Strongly Cautioned */
+    'PG-13': 3,
+
+    /* Restricted */
+    'R': 4,
+
+    /* Adults Only */
+    'NC-17': 5
+  }
 };

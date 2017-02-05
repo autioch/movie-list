@@ -1,6 +1,7 @@
 const BaseView = require('../base/view');
 const FieldView = require('./field/view');
 const HeaderView = require('./header/view');
+const LegendView = require('./legend/view');
 
 require('./style');
 
@@ -11,6 +12,7 @@ module.exports = BaseView.extend({
     this.app = app;
     this.subviews = [];
     this.headerView = new HeaderView(app);
+    this.legendView = new LegendView();
   },
 
   render() {
@@ -31,6 +33,8 @@ module.exports = BaseView.extend({
     while (fragment.childNodes.length > 0) {
       this.el.appendChild(fragment.childNodes[0]);
     }
+    this.legendView.render();
+    this.el.appendChild(this.legendView.el);
   },
   removeSubviews() {
     this.subviews.forEach((subview) => subview.remove());
@@ -39,5 +43,6 @@ module.exports = BaseView.extend({
   remove() {
     this.headerView.remove();
     this.removeSubviews();
+    this.legendView.remove();
   }
 });

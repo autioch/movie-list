@@ -1,4 +1,4 @@
-.item__link {
+.portal__link {
   background: transparent no-repeat center center;
   height: 1.2rem;
   padding: 0 .5rem;
@@ -12,13 +12,21 @@
   }
 }
 
-.imdb_link {
+.imdb__link {
   background-image: url('imdb.png');
   width: 2rem;
   margin-right: -.5rem;
 }
 
-.filmweb_link {
+.filmweb__link {
   background-image: url('filmweb.png');
   width: 1rem;
+}
+
+.item__imdb-rating {
+  margin-right: .25em;
+}
+
+.mpaa__link {
+  text-decoration: none;
 }

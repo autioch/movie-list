@@ -10,16 +10,23 @@
 </article>
 <aside class="item__summary">
   <span class="item__links">
-    <a class="item__link imdb_link" target="_blank" title="Search in IMDB" href="http://www.imdb.com/find?q=${video.title}&s=tt&ttype=ft&ref_=fn_ft"></a>
-    <a class="item__link filmweb_link" target="_blank" title="Search in Filmweb" href="http://www.filmweb.pl/search/film?q=${video.title}"></a>
+    <a class="portal__link imdb__link" target="_blank" title="Search in IMDB" href="http://www.imdb.com/find?q=${video.title}&s=tt&ttype=ft&ref_=fn_ft"></a>
+    <a class="portal__link filmweb__link" target="_blank" title="Search in Filmweb" href="http://www.filmweb.pl/search/film?q=${video.title}"></a>
   </span>
   <span class="item__year">${video.year}</span>
-  <% if (video.rated) { %><span class="item__rated">${video.rated} rated</span><% } %>
-  <% if (video.metascore) { %><span class="item__metascore">${video.metascore} metascore</span><% } %>
-  <% if (video.imdbRating_view && video.imdbVotes) { %>
-    <span class="item__imdb">
-      <span class="item__imdb-rating">${video.imdbRating_view} rating</span>
-      <span class="item__imdb-votes">(${video.imdbVotes_view} votes)</span>
+  <% if (video.rated) { %>
+    <span class="item__rated">
+      <a class="mpaa__link item__rated--<%= video.ratedLevel %>" target="_blank" title="Read about ratings"
+      href="https://en.wikipedia.org/wiki/Motion_Picture_Association_of_America#Film_rating_system">${video.rated} rated</a>
+    </span>
+  <% } %>
+  <% if (video.metascore) { %>
+    <span class="item__metascore item__rated--<%= video.metascoreLevel %>">${video.metascore} metascore</span>
+  <% } %>
+  <% if (video.imdbRating && video.imdbVotes) { %>
+    <span class="item__imdb item__rated--<%= video.imdbRatingLevel %>">
+      <span class="item__imdb-rating">${video.imdbRatingRounded} rating</span>
+      <span class="item__imdb-votes">(${video.imdbVotesRounded} votes)</span>
     </span>
   <% } %>
 </aside>
