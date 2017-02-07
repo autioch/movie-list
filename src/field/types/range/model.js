@@ -20,14 +20,14 @@ module.exports = AbstractModel.extend({
     return value >= this.fromValue && value <= this.toValue;
   },
   setFromValue(value) {
-    if (value === null) {
+    if (value === null || value === '') {
       this.fromValue = -Infinity;
     } else {
       this.fromValue = value;
     }
   },
   setToValue(value) {
-    if (value === null) {
+    if (value === null || value === '') {
       this.toValue = Infinity;
     } else {
       this.toValue = value;

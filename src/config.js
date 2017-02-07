@@ -6,7 +6,8 @@ const ORDER = {
 
 const TYPES = {
   TEXT: 1,
-  RANGE: 2
+  RANGE: 2,
+  DICTIONARY: 3
 };
 
 module.exports = {
@@ -26,7 +27,8 @@ module.exports = {
   TYPES,
   TYPE_NAMES: {
     [TYPES.TEXT]: 'Text',
-    [TYPES.RANGE]: 'Range'
+    [TYPES.RANGE]: 'Range',
+    [TYPES.DICTIONARY]: 'Dictionary'
   },
 
   /* Just 100 percent */

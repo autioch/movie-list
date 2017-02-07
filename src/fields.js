@@ -5,7 +5,7 @@ module.exports = [{
   type: TYPES.TEXT
 }, {
   key: 'genre',
-  type: TYPES.TEXT
+  type: TYPES.DICTIONARY
 }, {
   key: 'plot',
   type: TYPES.TEXT
@@ -14,7 +14,7 @@ module.exports = [{
   type: TYPES.RANGE
 }, {
   key: 'rated',
-  type: TYPES.TEXT
+  type: TYPES.DICTIONARY
 }, {
   key: 'duration',
   type: TYPES.RANGE

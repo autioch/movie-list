@@ -1,4 +1,5 @@
 const applySorts = require('./applySorts');
+const dictionary = require('./dictionary');
 const ItemTypes = require('item/types');
 const FieldTypes = require('field/types');
 const { TYPE_NAMES } = require('config');
@@ -37,6 +38,9 @@ App.prototype = {
   setItems(items) {
     this._items.forEach((item) => item.remove());
     this._items = items.map((item) => new ItemTypes.Movie.Model(item));
+
+    dictionary(this.fields, this._items);
+
     this._count = items.length;
     this.syncItems();
   },
