@@ -1,28 +1,30 @@
+const { TYPES } = require('./config');
+
 module.exports = [{
   key: 'year',
-  size: 25
+  type: TYPES.STRING
 }, {
   key: 'title',
-  size: 100
+  type: TYPES.STRING
 }, {
   key: 'genre',
-  size: 100
+  type: TYPES.STRING
 }, {
   key: 'plot',
-  size: 100
+  type: TYPES.STRING
 }, {
   key: 'rated',
-  size: 25
+  type: TYPES.STRING
 }, {
   key: 'duration',
-  size: 25
+  type: TYPES.STRING
 }, {
   key: 'metascore',
-  size: 25
+  type: TYPES.STRING
 }, {
   key: 'imdbRating',
-  size: 25
+  type: TYPES.STRING
 }, {
   key: 'imdbVotes',
-  size: 50
+  type: TYPES.STRING
 }];

@@ -18,10 +18,10 @@ module.exports = {
   },
 
   /* Field types */
-  TYPE: { STRING: 1 },
-
-  /* Default size */
-  SIZE: 100,
+  TYPES: {
+    STRING: 1,
+    NUMBER: 2
+  },
 
   /* Just 100 percent */
   PERCENT: 100,
