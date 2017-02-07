@@ -74,7 +74,7 @@ View.extend = function extend(childMethods) {
     };
   }
   ChildView.prototype = Object.assign({}, parentMethods, childMethods);
-  ChildView.prototype.events = Object.assign({}, ParentView.events, childMethods.events);
+  ChildView.prototype.events = Object.assign({}, parentMethods.events, childMethods.events);
   ChildView.prototype.contructor = ChildView;
 
   if (childMethods.remove) {

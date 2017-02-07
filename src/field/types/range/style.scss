@@ -1,0 +1,27 @@
+.field-range__from {
+  width: 3rem;
+  display: inline-block;
+}
+
+.field-range__to {
+  width: 3rem;
+  display: inline-block;
+  text-align: center;
+}
+
+.field-range__input {
+  width: calc(50% - 4rem);
+  margin: 0;
+  box-sizing: border-box;
+  padding: .1em .2em;
+  outline: none;
+  border: solid 1px #444;
+
+  &:hover {
+    border: solid 1px #00f;
+  }
+
+  &:focus {
+    border: solid 1px #00f;
+  }
+}

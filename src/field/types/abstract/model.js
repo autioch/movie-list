@@ -1,21 +1,21 @@
+const BaseModel = require('base/model');
 const { ORDER, ORDER_INVERSION, TYPES } = require('config');
 
-function Field(definition) {
-  const { key, type = TYPES.STRING, value = '', order = ORDER.NONE } = definition;
-
-  this.key = key;
-  this.label = key.replace(/\.?([A-Z]+)/g, (x, y) => ` ${y}`);
-  this.label = this.label[0].toUpperCase() + this.label.slice(1);
-  this.type = type;
-  this.order = order;
-  this.orderInverse = ORDER_INVERSION[this.order];
-  this._sortTimestamp = 0;
-  this._firstSort = false;
-  this.setValue(value);
-}
-
-Field.prototype = {
-  constructor: Field,
+module.exports = BaseModel.extend({
+  defaults() {
+    return {
+      key: '',
+      type: TYPES.TEXT,
+      order: ORDER.NONE
+    };
+  },
+  initialize() {
+    this.label = this.key.replace(/\.?([A-Z]+)/g, (x, y) => ` ${y}`);
+    this.label = this.label[0].toUpperCase() + this.label.slice(1);
+    this.orderInverse = ORDER_INVERSION[this.order];
+    this._sortTimestamp = 0;
+    this._firstSort = false;
+  },
   hasSort() {
     return this.order !== ORDER.NONE;
   },
@@ -35,19 +35,10 @@ Field.prototype = {
     this._sortTimestamp = performance.now();
   },
   hasValue() {
-    return this.value.length > 0;
+    return false;
   },
-  resetValue() {
-    this.value = '';
-    this.regex = new RegExp('', 'i');
-  },
-  setValue(value) {
-    this.value = value;
-    this.regex = new RegExp(value.split('').join('.?'), 'i');
-  },
-  test(item) {
-    return this.regex.test(item[this.key]);
+  resetValue() {},
+  test() {
+    return true;
   }
-};
-
-module.exports = Field;
+});

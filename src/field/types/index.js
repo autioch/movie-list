@@ -1,1 +1,5 @@
-module.exports = { Abstract: require('./abstract') };
+module.exports = {
+  Abstract: require('./abstract'),
+  Range: require('./range'),
+  Text: require('./text')
+};

@@ -1,11 +1,12 @@
 const applySorts = require('./applySorts');
-const FieldTypes = require('field/types');
 const ItemTypes = require('item/types');
+const FieldTypes = require('field/types');
+const { TYPE_NAMES } = require('config');
 
 /* Core class for holding items and fields. */
 function App(fields) {
   this.callbacks = [];
-  this.fields = fields.map((field) => new FieldTypes.Abstract.Model(field));
+  this.fields = fields.map((field) => new FieldTypes[TYPE_NAMES[field.type]].Model(field));
   this.items = [];
   this._items = [];
   this.count = 0;
@@ -35,7 +36,7 @@ App.prototype = {
   /* Sets new array of items and syncs matching items. */
   setItems(items) {
     this._items.forEach((item) => item.remove());
-    this._items = items.map((item) => new ItemTypes.Abstract.Model(item));
+    this._items = items.map((item) => new ItemTypes.Movie.Model(item));
     this._count = items.length;
     this.syncItems();
   },

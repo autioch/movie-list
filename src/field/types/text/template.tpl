@@ -3,7 +3,7 @@
   <span class="js-sort field__sort-text"><%= field.label %></span>
 </div>
 <div class="field__filter">
-  <input class="js-filter field__filter-input" type="text" value="<%= field.value %>" title="Filter by <%= field.label %>"/>
+  <input class="js-filter field-text__input" type="text" value="<%= field.value %>" title="Filter by <%= field.label %>"/>
   <span class="js-reset field__filter-reset">
     <svg class="js-reset" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77.2 77.2">
       <path class="js-reset" fill="#aaa" d="M63.7,1.6L38.6,26.7L13.5,1.6C10.2-1.7,7.3,0.7,4,4s-5.7,6.3-2.4,9.6l25.1,25.1L1.6,63.7

@@ -1,4 +1,5 @@
 const ListView = require('base/listView');
+const { TYPE_NAMES } = require('config');
 const Types = require('../types');
 
 require('./style');
@@ -14,6 +15,6 @@ module.exports = ListView.extend({
     return this.app.fields;
   },
   getSubview(field) {
-    return new Types.Abstract.View(this.app, field);
+    return new Types[TYPE_NAMES[field.type]].View(this.app, field);
   }
 });

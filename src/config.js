@@ -4,6 +4,11 @@ const ORDER = {
   ASC: -1
 };
 
+const TYPES = {
+  TEXT: 1,
+  RANGE: 2
+};
+
 module.exports = {
   ORDER,
   ORDER_INVERSION: {
@@ -18,9 +23,10 @@ module.exports = {
   },
 
   /* Field types */
-  TYPES: {
-    STRING: 1,
-    NUMBER: 2
+  TYPES,
+  TYPE_NAMES: {
+    [TYPES.TEXT]: 'Text',
+    [TYPES.RANGE]: 'Range'
   },
 
   /* Just 100 percent */

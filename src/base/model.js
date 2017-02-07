@@ -29,11 +29,17 @@ Model.extend = function extend(childMethods) {
     };
   }
 
-  ChildModel.prototype = Object.create(Object.assign({}, parentMethods, childMethods));
+  ChildModel.prototype = Object.assign({}, parentMethods, childMethods);
   ChildModel.prototype.contructor = ChildModel;
 
+  if (childMethods.defaults) {
+    ChildModel.prototype.defaults = function defaults() {
+      return Object.assign({}, parentMethods.defaults(), childMethods.defaults());
+    };
+  }
+
   if (childMethods.remove) {
-    ChildModel.prototype.remove = function() {
+    ChildModel.prototype.remove = function remove() {
       childMethods.remove.apply(this, arguments);
       parentMethods.remove.apply(this, arguments);
     };

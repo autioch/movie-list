@@ -1,14 +1,11 @@
 const BaseView = require('base/view');
 const { ORDER_ICON } = require('config');
-const template = require('./template.tpl');
 
 require('./style');
 
 module.exports = BaseView.extend({
-  template,
   className: 'field',
   events: {
-    'keyup filter': 'setFilter',
     'click sort': 'setSort',
     'click reset': 'resetFilter'
   },
@@ -26,15 +23,15 @@ module.exports = BaseView.extend({
     BaseView.prototype.render.apply(this, arguments);
     this.syncFilter();
   },
+  setSort() {
+    this.field.makeSort();
+    this.render();
+    this.app.syncItems();
+  },
   resetFilter() {
     this.field.resetValue();
     this.render();
     this.app.syncItems();
-  },
-  setFilter() {
-    this.field.setValue(this.find('filter').value);
-    this.app.syncItems();
-    this.syncFilter();
   },
   syncFilter() {
     if (this.field.hasValue()) {
@@ -42,10 +39,5 @@ module.exports = BaseView.extend({
     } else {
       this.el.classList.remove('is-filter-active');
     }
-  },
-  setSort() {
-    this.field.makeSort();
-    this.render();
-    this.app.syncItems();
   }
 });
