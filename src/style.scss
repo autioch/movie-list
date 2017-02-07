@@ -3,15 +3,19 @@ html {
   font: 12px Verdana;
 
   @media (min-width: 1000px) {
-    font-size: 15px;
+    font-size: 13px;
+  }
+
+  @media (min-width: 1300px) {
+    font-size: 14px;
   }
 
   @media (min-width: 1500px) {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   @media (min-width: 2000px) {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 

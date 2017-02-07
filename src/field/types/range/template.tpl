@@ -1,6 +1,6 @@
 <div class="js-sort field__sort" title="Sort by <%= field.label %>">
-  <span class="js-sort field__sort-icon is-<%= field.order %>"></span>
   <span class="js-sort field__sort-text"><%= field.label %></span>
+  <span class="js-sort field__sort-icon is-<%= field.order %>"></span>
 </div>
 <div class="field__filter">
   <span class="field-range__from">From</span>

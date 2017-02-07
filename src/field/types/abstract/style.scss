@@ -3,8 +3,13 @@
   padding: .5rem;
   margin-left: -.5rem;
   margin-right: -.5rem;
+
   &:hover {
     background: #eee;
+
+    .field__sort-icon {
+      opacity: 1;
+    }
   }
 }
 
@@ -47,14 +52,28 @@
   vertical-align: -.4em;
   height: 1.1em;
   width: 1.4rem;
+  opacity: 0;
+  margin-left: .5rem;
 
   &.is--1 {
+    opacity: 1;
+
     &::after {
       border-top-color: transparent;
+    }
+
+    &::before {
+      border-bottom-width: 1em;
     }
   }
 
   &.is-1 {
+    opacity: 1;
+
+    &::after {
+      border-top-width: 1em;
+    }
+
     &::before {
       border-bottom-color: transparent;
     }
@@ -68,7 +87,7 @@
     height: 0;
     border-left: .5em solid transparent;
     border-right: .5em solid transparent;
-    border-bottom: .5em solid #666;
+    border-bottom: .5em solid #999;
   }
 
   &::after {
@@ -79,6 +98,6 @@
     height: 0;
     border-left: .5em solid transparent;
     border-right: .5em solid transparent;
-    border-top: .5em solid #666;
+    border-top: .5em solid #999;
   }
 }
