@@ -1,4 +1,5 @@
 const AbstractModel = require('../abstract/model');
+const stat = require('./stat');
 
 module.exports = AbstractModel.extend({
   defaults() {
@@ -38,5 +39,8 @@ module.exports = AbstractModel.extend({
   },
   getToText() {
     return this.toValue === Infinity ? '' : this.toValue;
+  },
+  getStats(items) {
+    return stat(items.map((item) => item[this.key]));
   }
 });

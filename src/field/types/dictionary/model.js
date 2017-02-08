@@ -1,4 +1,5 @@
 const AbstractModel = require('../abstract/model');
+const stat = require('./stat');
 
 module.exports = AbstractModel.extend({
   initialize() {
@@ -39,5 +40,8 @@ module.exports = AbstractModel.extend({
   /* Registers callback for when list of options changes. */
   addCallback(callback) {
     this.callbacks.push(callback);
+  },
+  getStats(items) {
+    return stat(items.map((item) => item[this.key]));
   }
 });

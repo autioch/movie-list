@@ -26,18 +26,6 @@ body {
   padding: 0;
 }
 
-.sidebar {
-  padding: .5rem;
-  box-sizing: border-box;
-  position: fixed;
-  width: 22rem;
-  top: 0;
-  bottom: 0;
-  overflow: auto;
-  background: #f8f8f8;
-  box-shadow: 0 0 .5rem #aaa;
-}
-
 .header__title {
   font-size: 1.2rem;
   margin: 0;
@@ -47,4 +35,30 @@ body {
   font-size: 1rem;
   font-weight: normal;
   margin: 0;
+}
+
+.filters {
+  padding: .5rem;
+  box-sizing: border-box;
+  position: fixed;
+  width: 22rem;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: auto;
+  background: #f8f8f8;
+  box-shadow: 0 0 .5rem #aaa;
+}
+
+.stats {
+  padding: .5rem;
+  box-sizing: border-box;
+  position: fixed;
+  width: 22rem;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background: #f8f8f8;
+  box-shadow: 0 0 .5rem #aaa;
 }

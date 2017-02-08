@@ -40,5 +40,8 @@ module.exports = BaseModel.extend({
   resetValue() {},
   test() {
     return true;
+  },
+  getStats(items) {
+    return [];
   }
 });
