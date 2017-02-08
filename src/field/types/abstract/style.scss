@@ -3,9 +3,11 @@
   padding: .5rem;
   margin-left: -.5rem;
   margin-right: -.5rem;
+  background-color: transparent;
+  transition: background-color 150ms;
 
   &:hover {
-    background: #eee;
+    background-color: #eee;
 
     .field__sort-icon {
       opacity: 1;

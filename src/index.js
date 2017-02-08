@@ -15,6 +15,12 @@ const itemListView = new ItemListView(appInstance);
 const headerView = new HeaderView(appInstance);
 const legendView = new LegendView(appInstance);
 
+window.addEventListener('contextmenu', (ev) => {
+  ev.preventDefault();
+
+  return false;
+});
+
 itemListView.render();
 fieldListView.render();
 headerView.render();

@@ -1,5 +1,19 @@
 <article class="item__description">
-  <header class="item__title">${item.title}</header>
+  <header class="item__title">
+    ${item.title}
+    <% if (item.errors.length > 0){ %>
+      <span class="movie__error">
+        <span class="movie__error-icon">!</span>
+        <ul class="movie__error-list">
+          <li>Info might be incorrect. Check IMDB or Filmweb.</li>
+          <li>Reasons:</li>
+          <% item.errors.forEach(function(error){ %>
+            <li class="movie__error-item">${error.label}</li>
+          <% }) %>
+        </ul>
+      </span>
+    <% } %>
+  </header>
   <p class="item__plot">${item.plot}</p>
   <footer class="item__details">
     <% if (item.genre.length > 0) { %>
