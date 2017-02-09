@@ -32,11 +32,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
-
   &.is-rounded {
     &::after {
       content: 'K';
-      // color: #000;
       font-style: italic;
     }
   }

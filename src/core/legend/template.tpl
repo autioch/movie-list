@@ -1,6 +1,6 @@
 <div class="legend__hint">
-  <div class="legend__hint-item">BAD</div>
-  <div class="legend__hint-item">GOOD</div>
+  <span>BAD</span>
+  <span>GOOD</span>
 </div>
 <div class="legend__bar">
   <span class="legend__item rank__bg--1"></span>

@@ -1,5 +1,5 @@
-<article class="item__description">
-  <header class="item__title">
+<article class="movie__description">
+  <header class="movie__title">
     ${item.title}
     <% if (item.errors.length > 0){ %>
       <span class="movie__error">
@@ -14,33 +14,28 @@
       </span>
     <% } %>
   </header>
-  <p class="item__plot">${item.plot}</p>
-  <footer class="item__details">
+  <p class="movie__plot">${item.plot}</p>
+  <footer class="movie__details">
     <% if (item.genre.length > 0) { %>
-      <span class="item__genre">${item.genre.join(', ')}</span>
+      <span class="movie__genre">${item.genre.join(', ')}</span>
     <% } %>
-    <span class="item__duration">${item.duration}min</span>
+    <span>${item.duration}min</span>
   </footer>
 </article>
-<aside class="item__summary">
-  <span class="item__links">
+<aside class="movie__summary">
+  <span>
     <a class="portal__link imdb__link" target="_blank" title="Search in IMDB" href="http://www.imdb.com/find?q=${item.title}&s=tt&ttype=ft&ref_=fn_ft"></a>
     <a class="portal__link filmweb__link" target="_blank" title="Search in Filmweb" href="http://www.filmweb.pl/search/film?q=${item.title}"></a>
   </span>
-  <span class="item__year">${item.year}</span>
+  <span>${item.year}</span>
   <% if (item.rated) { %>
-    <span class="item__rated">
-      <a class="mpaa__link rank__text--<%= item.ratedLevel %>" target="_blank" title="Read about ratings"
+    <a class="rank__text--${item.ratedLevel} mpaa__link" target="_blank" title="Read about ratings"
       href="https://en.wikipedia.org/wiki/Motion_Picture_Association_of_America#Film_rating_system">${item.rated} rated</a>
-    </span>
   <% } %>
   <% if (item.metascore) { %>
-    <span class="item__metascore rank__text--<%= item.metascoreLevel %>">${item.metascore} metascore</span>
+    <span class="rank__text--${item.metascoreLevel}">${item.metascore} metascore</span>
   <% } %>
   <% if (item.imdbRating && item.imdbVotes) { %>
-    <span class="item__imdb rank__text--<%= item.imdbRatingLevel %>">
-      <span class="item__imdb-rating">${item.imdbRatingRounded} rating</span>
-      <span class="item__imdb-votes">(${item.imdbVotesRounded} votes)</span>
-    </span>
+    <span class="rank__text--${item.imdbRatingLevel}">${item.imdbRatingRounded} rating (${item.imdbVotesRounded} votes)</span>
   <% } %>
 </aside>

@@ -1,0 +1,40 @@
+.movie__summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: .9rem;
+  color: #666;
+
+  > span {
+    margin-bottom: .5em;
+  }
+}
+
+.portal__link {
+  background: transparent no-repeat center center;
+  height: 1.2rem;
+  padding: 0 .5rem;
+  background-size: contain;
+  opacity: .6;
+  transition: opacity 250ms;
+  float: right;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.imdb__link {
+  background-image: url('imdb.png');
+  width: 2rem;
+  margin-right: -.5rem;
+}
+
+.filmweb__link {
+  background-image: url('filmweb.png');
+  width: 1rem;
+}
+
+.mpaa__link {
+  text-decoration: none;
+}

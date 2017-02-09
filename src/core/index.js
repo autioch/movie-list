@@ -3,7 +3,7 @@ module.exports = {
   FieldListView: require('./field/list/view'),
   HeaderView: require('./header/view'),
   ItemListView: require('./item/list/view'),
-  ItemModel: require('./item/model'),
+  ItemModel: require('./base/model'),
   ItemView: require('./item/view'),
   LegendView: require('./legend/view'),
   StatsView: require('./stats/view')
