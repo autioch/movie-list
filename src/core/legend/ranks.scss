@@ -1,0 +1,45 @@
+$rank--1: #900;
+$rank--2: #960;
+$rank--3: #990;
+$rank--4: #090;
+$rank--5: #099;
+
+.rank__bg--1 {
+  background-color: $rank--1;
+}
+
+.rank__bg--2 {
+  background-color: $rank--2;
+}
+
+.rank__bg--3 {
+  background-color: $rank--3;
+}
+
+.rank__bg--4 {
+  background-color: $rank--4;
+}
+
+.rank__bg--5 {
+  background-color: $rank--5;
+}
+
+.rank__text--1 {
+  color: $rank--1;
+}
+
+.rank__text--2 {
+  color: $rank--2;
+}
+
+.rank__text--3 {
+  color: $rank--3;
+}
+
+.rank__text--4 {
+  color: $rank--4;
+}
+
+.rank__text--5 {
+  color: $rank--5;
+}

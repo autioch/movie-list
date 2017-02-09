@@ -24,7 +24,7 @@ rules:
     - allow-single-line: false
   class-name-format:
     - 1
-    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z]+-?)+[a-z]+)?$
+    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z0-9]+-?)+([a-z0-9]+)?)?$
     - convention-explanation: 'Use namespaced hyphenated bem'
   clean-import-paths:
     - 1
@@ -52,7 +52,7 @@ rules:
     - 0
   function-name-format:
     - 1
-    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z]+-?)+[a-z]+)?$
+    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z0-9]+-?)+([a-z0-9]+)?)?$
     - convention-explanation: 'Use namespaced hyphenated bem'
   hex-length:
     - 0
@@ -62,7 +62,7 @@ rules:
     - style: lowercase
   id-name-format:
     - 1
-    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z]+-?)+[a-z]+)?$
+    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z0-9]+-?)+([a-z0-9]+)?)?$
     - convention-explanation: 'Use namespaced hyphenated bem'
   indentation:
     - 1
@@ -78,7 +78,7 @@ rules:
     - length: 80
   mixin-name-format:
     - 1
-    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z]+-?)+[a-z]+)?$
+    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z0-9]+-?)+([a-z0-9]+)?)?$
     - convention-explanation: 'Use namespaced hyphenated bem'
   mixins-before-declarations:
     - 1
@@ -150,7 +150,7 @@ rules:
     - 1
   placeholder-name-format:
     - 1
-    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z]+-?)+[a-z]+)?$
+    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z0-9]+-?)+([a-z0-9]+)?)?$
     - convention-explanation: 'Use namespaced hyphenated bem'
   property-sort-order:
     - 0
@@ -209,7 +209,7 @@ rules:
         - 'border-color'
   variable-name-format:
     - 1
-    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z]+-?)+[a-z]+)?$
+    - convention: ^((is|has|m|s|c)-)?([a-z]+-?)+[a-z]+(__([a-z]+-?)+[a-z]+)?(--([a-z0-9]+-?)+([a-z0-9]+)?)?$
     - convention-explanation: 'Use namespaced hyphenated bem'
   zero-unit:
     - 1

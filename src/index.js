@@ -1,23 +1,14 @@
-const App = require('./app');
-const ItemListView = require('./item/list/view');
-const FieldListView = require('./field/list/view');
-const HeaderView = require('./header/view');
-const LegendView = require('./legend/view');
-const StatsView = require('./stats/view');
-
-const fields = require('./fields');
-const items = require('./data.json');
+const { App, FieldListView, HeaderView, ItemListView, LegendView, StatsView } = require('./core');
+const { Model, View, fields, items } = require('./movie');
 
 require('./style');
 
-const appInstance = new App(fields);
+const appInstance = new App(fields, Model);
 const fieldListView = new FieldListView(appInstance);
-const itemListView = new ItemListView(appInstance);
+const itemListView = new ItemListView(appInstance, View);
 const headerView = new HeaderView(appInstance);
 const legendView = new LegendView(appInstance);
 const statsView = new StatsView(appInstance);
-
-// window.addEventListener('contextmenu', (ev) => ev.preventDefault(), false);
 
 itemListView.render();
 fieldListView.render();

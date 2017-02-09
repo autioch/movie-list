@@ -1,0 +1,20 @@
+@import 'ranks';
+
+.legend__hint {
+  width: calc(100% - 2rem);
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5rem 0 .5rem;
+  color: #999;
+  font-size: .9rem;
+}
+
+.legend__bar {
+  width: calc(100% - 2rem);
+  display: flex;
+  height: 1rem;
+}
+
+.legend__item {
+  flex-grow: 2;
+}
