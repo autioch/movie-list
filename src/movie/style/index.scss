@@ -1,3 +1,9 @@
+$movie__error--color: #f00;
+$movie__error--background: #ddd;
+$movie__error--shadow: #000;
+$movie__summary--color: #666;
+$movie__details--color: #999;
+
 @import 'description';
 @import 'error';
 @import 'summary';

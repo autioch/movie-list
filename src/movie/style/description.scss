@@ -5,7 +5,7 @@
 
 .movie__title {
   font-weight: bold;
-  margin: 0 0 .5rem 0;
+  margin: 0 0 .5rem;
 }
 
 .movie__plot {
@@ -15,7 +15,7 @@
 
 .movie__details {
   margin-top: .5rem;
-  color: #999;
+  color: $movie__details--color;
   font-size: .9rem;
 }
 

@@ -7,13 +7,13 @@
   &:hover {
 
     .movie__error-list {
-      display: block !important;
+      display: block;
     }
   }
 }
 
 .movie__error-icon {
-  color: #f00;
+  color: $movie__error--color;
   font-weight: bold;
   margin-left: .5rem;
   padding: .5rem;
@@ -23,8 +23,8 @@
 .movie__error-list {
   list-style-type: none;
   padding: .5rem;
-  background: #ddd;
-  box-shadow: 0 0 .5rem 000;
+  background: $movie__error--background;
+  box-shadow: 0 0 .5rem $movie__error--shadow;
   position: absolute;
   display: none;
   white-space: nowrap;
