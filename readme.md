@@ -17,8 +17,9 @@ This list is changing when I have new ideas or when I get feedback from friends 
 10. Move heavy operations to the web workers.
 11. Cleanup hardcoded colors in styles.
 12. Make better styles for sort markers and field inputs in general.
-13. Add links to metacritic.
+13. ~~Add links to metacritic.~~
 14. Make the app mobile friendly.
 15. Add the "watched/added" field.
 16. Add option to export currently listed movies in some friendly format.
 17. Extract the generic part to the separate package.
+18. Cleanup package dependencies.

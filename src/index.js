@@ -1,5 +1,5 @@
 const { App, FieldListView, HeaderView, ItemListView, LegendView, StatsView } = require('./core');
-const { Model, View, fields, items } = require('./movie');
+const { Model, View, fields, data } = require('./movie');
 
 require('./style');
 
@@ -26,4 +26,7 @@ stats.appendChild(headerView.el);
 stats.appendChild(legendView.el);
 stats.appendChild(statsView.el);
 
-appInstance.setItems(items);
+window
+  .fetch(data)
+  .then((response) => response.json())
+  .then((items) => appInstance.setItems(items));

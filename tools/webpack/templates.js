@@ -27,10 +27,12 @@ const templateRegexes = [{
  * - the base html file.
  */
 module.exports = function templates(webpackConfig, setup) {
+  webpackConfig.resolveLoader.alias['tpl-custom'] = path.join(__dirname, './tpl-custom-loader');
+
   webpackConfig.module.loaders.push({
     test: /\.tpl$/,
     exclude: /node_modules/,
-    loader: StringReplacePlugin.replace({ replacements: templateRegexes }, 'underscore-template-loader?engine=lodash')
+    loader: 'tpl-custom'
   }, {
     test: /\.+svg$/,
     exclude: /(node_modules)/,

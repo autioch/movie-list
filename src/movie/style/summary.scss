@@ -22,16 +22,24 @@
   &:hover {
     opacity: 1;
   }
+
+  &:first-child {
+    margin-right: -.3rem;
+  }
 }
 
 .imdb__link {
   background-image: url('imdb.png');
   width: 2rem;
-  margin-right: -.5rem;
 }
 
 .filmweb__link {
   background-image: url('filmweb.png');
+  width: 1rem;
+}
+
+.metacritic__link {
+  background-image: url('metacritic.png');
   width: 1rem;
 }
 
