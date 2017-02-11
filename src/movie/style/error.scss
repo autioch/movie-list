@@ -13,7 +13,6 @@
 }
 
 .movie__error-icon {
-  color: $movie__error--color;
   font-weight: bold;
   margin-left: .5rem;
   padding: .5rem;
@@ -22,9 +21,6 @@
 
 .movie__error-list {
   list-style-type: none;
-  padding: .5rem;
-  background: $movie__error--background;
-  box-shadow: 0 0 .5rem $movie__error--shadow;
   position: absolute;
   display: none;
   white-space: nowrap;
@@ -38,5 +34,19 @@
     width: 1rem;
     display: inline-block;
     text-align: center;
+  }
+
+  &:not(:last-child) {
+
+    &::after {
+      content: ',';
+    }
+  }
+
+  &:last-child {
+
+    &::after {
+      content: '.';
+    }
   }
 }

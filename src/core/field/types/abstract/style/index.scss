@@ -1,0 +1,13 @@
+@import 'filter';
+@import 'sort';
+
+.field {
+  margin: 2em 0;
+
+  &:hover {
+
+    .field__sort-icon {
+      opacity: 1;
+    }
+  }
+}

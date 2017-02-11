@@ -1,6 +1,6 @@
 const ListView = require('core/base/listView');
-const { TYPE_NAMES } = require('core/field/dicts');
-const Types = require('../types');
+const { TYPE_NAMES } = require('./dicts');
+const Types = require('./types');
 
 module.exports = ListView.extend({
   tagName: 'section',

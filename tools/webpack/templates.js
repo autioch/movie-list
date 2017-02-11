@@ -50,7 +50,8 @@ module.exports = function templates(webpackConfig, setup) {
     new HtmlWebpackPlugin({
       template: path.join(setup.sourcePath, 'index.html'),
       filename: 'index.html',
-      allChunks: true
+      allChunks: true,
+      injest: 'body'
     }),
     new StringReplacePlugin()
   );

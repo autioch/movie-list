@@ -1,12 +1,11 @@
 <article class="movie__description">
-  <header class="movie__title">
-    ${item.title}
+  <header class="movie__header">
+    <span class="movie__title t-header">${item.title}</span>
     <% if (item.errors.length > 0){ %>
       <span class="movie__error">
-        <span class="movie__error-icon">!</span>
-        <ul class="movie__error-list">
-          <li>Info might be incorrect. Check IMDB or Filmweb.</li>
-          <li>Reasons:</li>
+        <span class="movie__error-icon t-error">!</span>
+        <ul class="movie__error-list t-box">
+          <li>Info might be incorrect (check websites). Reasons:</li>
           <% item.errors.forEach(function(error){ %>
             <li class="movie__error-item">${error.label}</li>
           <% }) %>
@@ -15,7 +14,7 @@
     <% } %>
   </header>
   <p class="movie__plot">${item.plot}</p>
-  <footer class="movie__details">
+  <footer class="movie__details t-hint">
     <% if (item.genre.length > 0) { %>
       <span class="movie__genre">${item.genre.join(', ')}</span>
     <% } %>
@@ -30,13 +29,13 @@
   </span>
   <span>${item.year}</span>
   <% if (item.rated) { %>
-    <a class="rank__text--${item.ratedLevel} mpaa__link" target="_blank" title="Read about ratings"
+    <a class="t-rank__text--${item.ratedLevel} mpaa__link" target="_blank" title="Read about ratings"
       href="https://en.wikipedia.org/wiki/Motion_Picture_Association_of_America#Film_rating_system">${item.rated} rated</a>
   <% } %>
   <% if (item.metascore) { %>
-    <span class="rank__text--${item.metascoreLevel}">${item.metascore} metascore</span>
+    <span class="t-rank__text--${item.metascoreLevel}">${item.metascore} metascore</span>
   <% } %>
   <% if (item.imdbRating && item.imdbVotes) { %>
-    <span class="rank__text--${item.imdbRatingLevel}">${item.imdbRatingRounded} rating (${item.imdbVotesRounded} votes)</span>
+    <span class="t-rank__text--${item.imdbRatingLevel}">${item.imdbRatingRounded} rating (${item.imdbVotesRounded} votes)</span>
   <% } %>
 </aside>

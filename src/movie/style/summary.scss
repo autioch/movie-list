@@ -3,10 +3,11 @@
   flex-direction: column;
   align-items: flex-end;
   font-size: .9rem;
-  color: $movie__summary--color;
 
-  > span {
+  > span,
+  > a {
     margin-bottom: .5em;
+    text-align: right;
   }
 }
 
@@ -14,6 +15,7 @@
   background: transparent no-repeat center center;
   height: 1.2rem;
   padding: 0 .5rem;
+  margin: .25em 0;
   background-size: contain;
   opacity: .6;
   transition: opacity 250ms;

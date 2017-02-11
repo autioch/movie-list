@@ -1,0 +1,53 @@
+// sass-lint:disable variable-for-property
+
+html {
+  color: $t-text;
+  background-color: $t-bg;
+}
+
+.t-box {
+  background-color: $t-box--background;
+  box-shadow: 0 0 .25rem $t-box--shadow;
+  padding: .5rem;
+  box-sizing: border-box;
+  transition: box-shadow 250ms, background-color 250ms;
+
+  &:hover {
+    background-color: darken($t-box--background, 1%);
+    box-shadow: 0 0 .5rem darken($t-box--shadow, 10%);
+  }
+}
+
+.t-error {
+  color: $t-error--color;
+}
+
+.t-header {
+  color: $t-header--color;
+}
+
+.t-label {
+  color: $t-label--color;
+}
+
+.t-hint {
+  color: $t-hint--color;
+}
+
+.t-value {
+  color: $t-value--color;
+}
+
+.t-btn {
+  color: $t-btn--color;
+}
+
+.t-input {
+  background: $t-input-background;
+  color: $t-input-color;
+  border: solid 1px $t-input-border;
+  outline: 0;
+  padding: .15em;
+  box-sizing: border-box;
+  line-height: 1.2rem;
+}

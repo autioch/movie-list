@@ -3,6 +3,10 @@ const debounce = require('lodash.debounce');
 const DEBOUNCE_EVENTS = ['keyup'];
 const DEBOUNCE_TIME = 500;
 
+function matches(el, selector) {
+  return (el.matches || el.matchesSelector || el.msMatchesSelector).call(el, selector);
+}
+
 function View() {
   this.el = document.createElement(this.tagName);
   if (this.className) {
@@ -18,7 +22,7 @@ function View() {
       handler = debounce(handler, DEBOUNCE_TIME);
     }
 
-    this.el.addEventListener(eventName, (ev) => ev.target.matches(selector) && handler.call(this, ev));
+    this.el.addEventListener(eventName, (ev) => matches(ev.target, selector) && handler.call(this, ev));
   });
   this.initialize.apply(this, arguments);
 }

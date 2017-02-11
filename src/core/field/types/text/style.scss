@@ -1,16 +1,7 @@
 .field-text__input {
-  width: calc(100% - 2rem);
-  margin: 0;
-  box-sizing: border-box;
-  padding: .1em .2em;
-  outline: none;
-  border: solid 1px #999;
+  flex-grow: 1;
 
-  &:hover {
-    border: solid 1px #00f;
-  }
-
-  &:focus {
-    border: solid 1px #00f;
+  &::-ms-clear {
+    display: none;
   }
 }

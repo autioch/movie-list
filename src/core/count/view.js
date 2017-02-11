@@ -4,7 +4,7 @@ const template = require('./template.tpl');
 require('./style');
 
 module.exports = BaseView.extend({
-  className: 'header',
+  className: 'count',
   template,
   initialize(app) {
     this.app = app;

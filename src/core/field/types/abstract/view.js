@@ -16,15 +16,25 @@ module.exports = BaseView.extend({
   },
   render() {
     BaseView.prototype.render.apply(this, arguments);
-    this.syncFilter();
+    requestAnimationFrame(() => {
+      this.syncFilter();
+      this.syncSort();
+    });
   },
   setSort() {
     this.field.makeSort();
-    this.render();
+    this.syncSort();
   },
   resetFilter() {
     this.field.resetValue();
     this.render();
+  },
+  syncSort() {
+    this.el.classList.remove('is-sort-1');
+    this.el.classList.remove('is-sort--1');
+    if (this.field.hasSort()) {
+      this.el.classList.add(`is-sort-${this.field.order}`);
+    }
   },
   syncFilter() {
     if (this.field.hasValue()) {

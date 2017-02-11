@@ -1,7 +1,5 @@
 const ListView = require('core/base/listView');
 
-require('./style');
-
 module.exports = ListView.extend({
   className: 'item-list',
   tagName: 'main',

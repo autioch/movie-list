@@ -1,31 +1,16 @@
-.field-range__from {
-  width: 3rem;
-  display: inline-block;
-  color: #999;
-  font-size: .9rem;
-}
+.field-range__text {
+  margin: 0 .5em;
 
-.field-range__to {
-  width: 3rem;
-  display: inline-block;
-  text-align: center;
-  color: #999;
-  font-size: .9rem;
+  &:first-child {
+    margin-left: 0;
+  }
 }
 
 .field-range__input {
-  width: calc(50% - 4rem);
-  margin: 0;
-  box-sizing: border-box;
-  padding: .1em .2em;
-  outline: none;
-  border: solid 1px #999;
+  flex-grow: 1;
+  width: 1em;
 
-  &:hover {
-    border: solid 1px #00f;
-  }
-
-  &:focus {
-    border: solid 1px #00f;
+  &::-ms-clear {
+    display: none;
   }
 }

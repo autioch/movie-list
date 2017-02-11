@@ -1,0 +1,38 @@
+.field__filter {
+  display: flex;
+  align-items: center;
+}
+
+.field__filter-reset {
+  width: 0;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: width 250ms;
+  opacity: 0;
+  align-self: stretch;
+
+  .is-filter-active & {
+    width: 2em;
+    opacity: 1;
+  }
+
+  &::after,
+  &::before {
+    position: absolute;
+    left: .9em;
+    top: 10%;
+    content: '';
+    height: 80%;
+    width: .3em;
+    background-color: currentColor;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}

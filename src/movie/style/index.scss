@@ -1,9 +1,24 @@
-$movie__error--color: #f00;
-$movie__error--background: #ddd;
-$movie__error--shadow: #000;
-$movie__summary--color: #666;
-$movie__details--color: #999;
-
 @import 'description';
 @import 'error';
 @import 'summary';
+
+.item {
+  margin: .5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.legend {
+  margin: 1em 0;
+}
+
+.header__title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.header__description {
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0 0 1em;
+}

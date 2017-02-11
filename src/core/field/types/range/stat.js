@@ -63,9 +63,11 @@ module.exports = function statRange(values) {
     divider += dict[key];
   });
 
+  const count = keys.length;
+
   const items = [{
     key: 'Average',
-    value: Math.round(keysSum / keys.length)
+    value: count ? Math.round(keysSum / count) : 'N/A'
   }, {
     key: 'Sum',
     value: sum
@@ -77,10 +79,10 @@ module.exports = function statRange(values) {
     value: max
   }, {
     key: 'Variety',
-    value: keys.length
+    value: count
   }, {
     key: 'Min',
-    value: min
+    value: min || 0
   }];
 
   items.forEach((item) => {
