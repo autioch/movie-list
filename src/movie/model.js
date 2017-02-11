@@ -10,6 +10,7 @@ const RATINGS = {
 
   /* Parental Guidance Suggested */
   'PG': 4,
+  'TV-PG': 4,
 
   /* Parents Strongly Cautioned */
   'PG-13': 3,
@@ -18,7 +19,11 @@ const RATINGS = {
   'R': 2,
 
   /* Adults Only */
-  'NC-17': 1
+  'NC-17': 1,
+
+  /* Unknown */
+  'APPROVED': 0,
+  'NOT RATED': 0
 };
 
 module.exports = ItemModel.extend({

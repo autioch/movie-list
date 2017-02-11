@@ -1,3 +1,7 @@
+.legend__header {
+  margin-bottom: 2rem;
+}
+
 .legend__hint {
   display: flex;
   justify-content: space-between;
@@ -7,9 +11,40 @@
 .legend__bar {
   margin-top: .5em;
   display: flex;
-  height: 1em;
 }
 
 .legend__item {
   flex-grow: 1;
+  height: 1em;
+  position: relative;
+  font-size: .9rem;
+
+  &::after {
+    position: absolute;
+    bottom: 100%;
+    width: 100%;
+    margin-bottom: .25rem;
+    text-align: center;
+  }
+
+  &.t-rank__bg--0 {
+
+    &::after {
+      content: '?';
+    }
+  }
+
+  &.t-rank__bg--1 {
+
+    &::after {
+      content: 'BAD';
+    }
+  }
+
+  &.t-rank__bg--5 {
+
+    &::after {
+      content: 'GOOD';
+    }
+  }
 }
