@@ -10,4 +10,14 @@
       opacity: .8;
     }
   }
+
+  @media print {
+    display: none;
+    margin: 0;
+
+    &.is-filter-active {
+      display: flex;
+      align-items: center;
+    }
+  }
 }

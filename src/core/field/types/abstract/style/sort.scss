@@ -2,6 +2,12 @@
   cursor: pointer;
   display: flex;
   margin: .5em 0;
+
+  @media print {
+    margin: 0;
+    /* TODO Hardcoded value. Instead, filters should use table display to align values properly.*/
+    width: 20em;
+  }
 }
 
 .field__sort-icon {
@@ -55,5 +61,9 @@
     &::before {
       border-bottom-color: transparent;
     }
+  }
+
+  @media print {
+    display: none;
   }
 }

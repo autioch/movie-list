@@ -4,6 +4,10 @@
   font-size: .9rem;
   font-weight: normal;
 
+  @media print {
+    display: none;
+  }
+
   &:hover {
 
     .movie__error-list {

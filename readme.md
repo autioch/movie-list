@@ -4,7 +4,7 @@ Simple browser for videos extracted using `movie-collector`.
 # To do / Ideas
 This list is changing when I have new ideas or when I get feedback from friends and _Analyzer_ Team at [Slideworx](https://slideworx.com) - thanks guys!
 
-1. Change mechanism for applying sorts.
+1. ~~Change mechanism for applying sorts~~.
 2. Allow multiselection for dictionary (select) fields.
 3. Text filtering should allow multi search with comma separated values.
 4. ~~Work with font size to allow more content in item list~~.

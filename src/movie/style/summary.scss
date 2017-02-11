@@ -9,6 +9,18 @@
     margin-bottom: .25em;
     text-align: right;
   }
+
+  @media print {
+    display: block;
+    width: 100%;
+
+    > span,
+    > a {
+      &:not(:first-child) {
+        margin: 0 1em 0 0;
+      }
+    }
+  }
 }
 
 .portal__link {
@@ -27,6 +39,11 @@
 
   &:first-child {
     margin-right: -.3rem;
+  }
+
+  @media print {
+    display: none;
+    margin: 0;
   }
 }
 

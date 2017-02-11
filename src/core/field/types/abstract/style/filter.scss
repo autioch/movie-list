@@ -1,6 +1,10 @@
 .field__filter {
   display: flex;
   align-items: center;
+
+  @media print {    
+    flex-grow: 2;
+  }
 }
 
 .field__filter-reset {
@@ -11,6 +15,10 @@
   transition: width 250ms;
   opacity: 0;
   align-self: stretch;
+
+  @media print {
+    display: none;
+  }
 
   .is-filter-active & {
     width: 2em;

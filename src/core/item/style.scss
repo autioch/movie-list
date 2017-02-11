@@ -1,0 +1,11 @@
+.item-list {
+
+  /* Prevents repaints on scroll */
+  transform: translateZ(0);
+  flex: 1;
+
+  @media print {
+    height: auto;
+    overflow: visible;
+  }
+}

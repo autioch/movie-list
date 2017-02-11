@@ -6,6 +6,11 @@
   margin: .5rem;
   display: flex;
   justify-content: space-between;
+
+  @media print {
+    display: block;
+    margin: .5rem 0 0;
+  }
 }
 
 .legend {
@@ -21,4 +26,30 @@
   font-size: 1rem;
   font-weight: normal;
   margin: 0 0 1em;
+
+  @media print {
+    display: none;
+    margin: 0;
+  }
+}
+
+.stats {
+
+  /* Prevents repaints on scroll */
+  transform: translateZ(0);
+
+  @media print {
+    display: none;
+  }
+}
+
+.filters {
+  height: auto;
+
+  @media print {
+    width: 100%;
+  }
+
+  /* Prevents repaints on scroll */
+  transform: translateZ(0);
 }

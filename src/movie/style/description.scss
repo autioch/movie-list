@@ -1,6 +1,11 @@
 .movie__description {
   display: flex;
   flex-direction: column;
+
+  @media print {
+    display: block;
+    width: 100%;
+  }
 }
 
 .movie__title {
@@ -10,10 +15,19 @@
 .movie__plot {
   max-width: 50rem;
   margin: .5rem 0;
+
+  @media print {
+    max-width: none;
+    margin: 0;
+  }
 }
 
 .movie__details {
   font-size: .9rem;
+
+  @media print {
+    display: none;
+  }
 }
 
 .movie__genre {

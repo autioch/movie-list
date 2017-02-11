@@ -29,7 +29,12 @@ stats.appendChild(countView.el);
 stats.appendChild(statsView.el);
 stats.appendChild(legendView.el);
 
-window
-  .fetch(data)
-  .then((response) => response.json())
-  .then((items) => appInstance.setItems(items));
+/* For production config, data is separate file. For development, just the data. Avoids reloads on styles change. */
+if (typeof data === 'string') {
+  window
+    .fetch(data)
+    .then((response) => response.json())
+    .then((items) => appInstance.setItems(items));
+} else {
+  appInstance.setItems(data);
+}
