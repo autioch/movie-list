@@ -15,7 +15,7 @@
   </header>
   <p class="movie__plot">${item.plot}</p>
   <footer class="movie__details t-hint">
-    <% if (item.genre.length > 0) { %>
+    <% if (item.genre) { %>
       <span class="movie__genre">${item.genre.join(', ')}</span>
     <% } %>
     <span>${item.duration}min</span>

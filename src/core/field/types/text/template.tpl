@@ -4,5 +4,5 @@
 </div>
 <div class="field__filter">
   <input class="field-text__input t-input js-filter" type="text" value="${field.value}" title="Filter by ${field.label}"/>
-  <span class="field__filter-reset t-btn js-reset"></span>
+  <span class="field__filter-reset t-btn js-reset" title="Reset ${field.label} filter"></span>
 </div>

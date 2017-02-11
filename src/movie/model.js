@@ -41,6 +41,9 @@ module.exports = ItemModel.extend({
     if (this.imdbVotes) {
       this.imdbVotesRounded = this.roundValue(this.imdbVotes);
     }
+    if (!this.genre || !this.genre.length) {
+      this.genre = null;
+    }
   },
   getLevel(value) {
     return Math.ceil(value / LEVEL_SIZE);

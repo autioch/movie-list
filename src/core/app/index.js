@@ -8,6 +8,7 @@ function App(fields, ItemModel) {
   this.callbacks = [];
   this.items = [];
   this._items = [];
+  this._sorts = [];
   this.count = 0;
   this._count = 0;
   this.fields = fields.map((field) => new FieldTypes[TYPE_NAMES[field.type]].Model(field, this));
@@ -20,6 +21,7 @@ App.prototype = {
   /* Resets values for all filters. Does not modify sort. */
   resetFilters() {
     this.fields.forEach((field) => field.resetValue());
+    this.syncItems();
   },
 
   /* Filters out passed array of items through fields. */
@@ -29,9 +31,23 @@ App.prototype = {
       .reduce((filteredItems, level) => filteredItems.filter((item) => level.test(item)), items);
   },
 
-  /* Sorts passed array of items with fields. */
-  sortItems(items) {
-    return applySorts(this.fields, items);
+  /* Removes sorting by given key. */
+  removeSort(key) {
+    this._sorts = this._sorts.filter((sort) => sort.key !== key);
+    this.syncItems();
+  },
+
+  /* Adds or updates existing sort. */
+  addSort(newSort) {
+    const existing = this._sorts.find((sort) => sort.key === newSort.key);
+
+    if (existing) {
+      existing.order = newSort.order;
+      existing.orderInverse = newSort.orderInverse;
+    } else {
+      this._sorts.push(newSort);
+    }
+    this.syncItems();
   },
 
   /* Sets new array of items and syncs matching items. */
@@ -47,7 +63,7 @@ App.prototype = {
 
   /* Finds items that match current filters and sorts. */
   syncItems() {
-    this.items = this.sortItems(this.filterItems(this._items.slice(0)));
+    this.items = applySorts(this._sorts, this.filterItems(this._items.slice(0)));
     this.count = this.items.length;
     this.callbacks.forEach((callback) => callback());
   },

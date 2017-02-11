@@ -25,28 +25,28 @@ module.exports = BaseModel.extend({
     this.app = app;
     this.label = this.key.replace(/\.?([A-Z]+)/g, (x, y) => ` ${y}`);
     this.label = this.label[0].toUpperCase() + this.label.slice(1);
-    this.orderInverse = ORDER_INVERSION[this.order];
-    this._sortTimestamp = 0;
-    this._firstSort = false;
   },
   hasSort() {
     return this.order !== ORDER.NONE;
   },
-  resetSort() {
-    this.order = ORDER.NONE;
-    this.orderInverse = ORDER.NONE;
-  },
   makeSort() {
-    if (this._firstSort && (this.order === ORDER.ASC)) {
+    if (this.order === ORDER.ASC) {
       return this.resetSort();
     }
     this.invertSort();
-    this.app.syncItems();
+  },
+  resetSort() {
+    this.order = ORDER.NONE;
+    this.app.removeSort(this.key);
   },
   invertSort() {
     this.order = ORDER_INVERSION[this.order];
-    this.orderInverse = ORDER_INVERSION[this.order];
-    this._sortTimestamp = performance.now();
+    this.app.addSort({
+      key: this.key,
+      order: this.order,
+      orderInverse: ORDER_INVERSION[this.order],
+      label: this.label
+    });
   },
   hasValue() {
     return false;

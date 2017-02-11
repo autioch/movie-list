@@ -7,5 +7,5 @@
   <input class="field-range__input t-input js-from" type="text" value="${field.getFromText()}" title="Set minimum ${field.label}"/>
   <span class="field-range__text t-hint">To</span>
   <input class="field-range__input t-input js-to" type="text" value="${field.getToText()}" title="Set maximum ${field.label}"/>
-  <span class="field__filter-reset t-btn js-reset"></span>
+  <span class="field__filter-reset t-btn js-reset" title="Reset ${field.label} filter"></span>
 </div>

@@ -1,0 +1,29 @@
+.sort-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 500ms, opacity 500ms;
+  opacity: 0;
+  font-size: .9rem;
+
+  &.is-visible {
+    max-height: 5rem;
+    opacity: 1;
+  }
+}
+
+.sort__label {
+  // font-weight: bold;
+}
+
+.sort__item {
+
+  &:not(:last-child){
+    &::after {
+      content: ',';
+    }
+  }
+
+  > .field__filter-reset {
+    opacity: 1;
+  }
+}

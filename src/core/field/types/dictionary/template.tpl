@@ -9,5 +9,5 @@
       <option value="${option}" ${field.selected.indexOf(option) > -1 ? 'selected' : ''}>${option}</option>
     <% }) %>
   </select>
-  <span class="field__filter-reset t-btn js-reset"></span>
+  <span class="field__filter-reset t-btn js-reset" title="Reset ${field.label} filter"></span>
 </div>
