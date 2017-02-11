@@ -18,6 +18,7 @@
   opacity: 0;
   margin-left: .5rem;
   align-self: flex-end;
+  transition: opacity 150ms;
 
   &::before,
   &::after {

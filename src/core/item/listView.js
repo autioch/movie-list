@@ -1,4 +1,5 @@
 const ListView = require('core/base/listView');
+const template = require('./template.tpl');
 
 module.exports = ListView.extend({
   className: 'item-list',
@@ -8,6 +9,21 @@ module.exports = ListView.extend({
     this.app = app;
     this.app.addCallback(this.render.bind(this));
     this.ItemView = ItemView;
+  },
+  render() {
+    this.removeSubviews();
+    this.empty();
+    if (this.app._loading) {
+      this.el.innerHTML = template({ message: 'Loading items...' });
+
+      return;
+    }
+    if (!this.app.items.length) {
+      this.el.innerHTML = template({ message: 'No items match filters.' });
+
+      return;
+    }
+    ListView.prototype.render.apply(this, arguments);
   },
   getItems() {
     return this.app.items;

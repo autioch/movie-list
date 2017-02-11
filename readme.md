@@ -12,7 +12,7 @@ This list is changing when I have new ideas or when I get feedback from friends 
 6. Add option to expand stats panel.
 7. Add simple charts to stats visible when stats are expanded.
 8. Work out algorithm for adding color borders for items that will mark rank for chosen field. Need to somehow set min and max.
-9. Add loading markers for fields, list and stats.
+9. ~~Add loading markers for fields, list and stats~~.
 10. ~~Inline above fold styles to speed up page load~~.
 11. Move heavy operations to the web workers.
 12. ~~Cleanup hardcoded colors in styles~~.
@@ -24,3 +24,4 @@ This list is changing when I have new ideas or when I get feedback from friends 
 18. Extract the generic part to the separate package.
 19. ~~Cleanup package dependencies~~.
 20. Serialize fields state in hash.
+21. ~~Add google search link~~.

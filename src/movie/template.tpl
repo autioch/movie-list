@@ -23,9 +23,10 @@
 </article>
 <aside class="movie__summary">
   <span>
-    <a class="portal__link filmweb__link" target="_blank" title="Search in Filmweb" href="http://www.filmweb.pl/search/film?q=${item.title}"></a>
-    <a class="portal__link imdb__link" target="_blank" title="Search in IMDB" href="http://www.imdb.com/find?q=${item.title}&s=tt&ttype=ft&ref_=fn_ft"></a>
     <a class="portal__link metacritic__link" target="_blank" title="Search in Metacritic" href="http://www.metacritic.com/search/movie/${item.title}/results?date_range_from=${item.year}"></a>
+    <a class="portal__link google__link" target="_blank" title="Search in Google" href="https://www.google.pl/search?q=movie+${item.title}"></a>
+    <a class="portal__link imdb__link" target="_blank" title="Search in IMDB" href="http://www.imdb.com/find?q=${item.title}&s=tt&ttype=ft&ref_=fn_ft"></a>
+    <a class="portal__link filmweb__link" target="_blank" title="Search in Filmweb" href="http://www.filmweb.pl/search/film?q=${item.title}"></a>
   </span>
   <span>${item.year}</span>
   <% if (item.rated) { %>

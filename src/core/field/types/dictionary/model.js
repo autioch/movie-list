@@ -35,6 +35,9 @@ module.exports = AbstractModel.extend({
     }
   },
   selectValue(value) {
+    if (value === '') {
+      return this.resetValue();
+    }
     this.selected = [value];
     this.app.syncItems();
   },

@@ -8,9 +8,10 @@ function App(fields, ItemModel) {
   this.callbacks = [];
   this.items = [];
   this._items = [];
-  this._sorts = [];
   this.count = 0;
   this._count = 0;
+  this._sorts = [];
+  this._loading = true;
   this.fields = fields.map((field) => new FieldTypes[TYPE_NAMES[field.type]].Model(field, this));
   this.ItemModel = ItemModel;
 }
@@ -58,6 +59,7 @@ App.prototype = {
     dictionary(this.fields, this._items);
 
     this._count = items.length;
+    this._loading = false;
     this.syncItems();
   },
 
