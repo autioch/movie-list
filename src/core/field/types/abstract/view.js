@@ -4,6 +4,7 @@ require('./style');
 
 module.exports = BaseView.extend({
   className: 'field',
+  tagName: 'section',
   events: {
     'click sort': 'setSort',
     'click reset': 'resetFilter'

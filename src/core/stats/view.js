@@ -4,7 +4,7 @@ const template = require('./template.tpl');
 require('./style');
 
 module.exports = BaseView.extend({
-  className: 'aside',
+  className: 'stat-list',
   template,
   events: {},
   initialize(app) {

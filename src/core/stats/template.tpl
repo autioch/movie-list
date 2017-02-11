@@ -5,7 +5,7 @@
       <% stat.items.forEach(function(item){ %>
         <li class="stat__item">
           <span class="stat-item__value t-value ${item.rounded ? 'is-rounded' : ''}">${item.value}</span>
-          <span class="stat-item__label t-label">${item.key}</span>
+          <span class="stat-item__label t-hint">${item.key}</span>
         </li>
       <% }) %>
     </ul>

@@ -34,7 +34,7 @@
   }
 
   .is-sort--1 & {
-    opacity: 1;
+    opacity: .8;
 
     &::after {
       border-top-color: transparent;
@@ -46,7 +46,7 @@
   }
 
   .is-sort-1 & {
-    opacity: 1;
+    opacity: .8;
 
     &::after {
       border-top-width: 1em;

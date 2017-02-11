@@ -5,6 +5,7 @@ require('./style');
 
 module.exports = BaseView.extend({
   className: 'count',
+  tagName: 'section',
   template,
   initialize(app) {
     this.app = app;

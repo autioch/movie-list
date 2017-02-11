@@ -3,7 +3,8 @@ const { TYPE_NAMES } = require('./dicts');
 const Types = require('./types');
 
 module.exports = ListView.extend({
-  tagName: 'section',
+  className: 'field-list',
+  tagName: 'div',
   initialize(app) {
     ListView.prototype.initialize.apply(this, arguments);
     this.app = app;

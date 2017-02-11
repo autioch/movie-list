@@ -23,8 +23,8 @@ document.body.insertBefore(itemListView.el, stats);
 
 filters.appendChild(fieldListView.el);
 stats.appendChild(countView.el);
-stats.appendChild(legendView.el);
 stats.appendChild(statsView.el);
+stats.appendChild(legendView.el);
 
 window
   .fetch(data)
