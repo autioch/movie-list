@@ -17,7 +17,7 @@
 
 .sort__item {
 
-  &:not(:last-child){
+  &:not(:last-child) {
     &::after {
       content: ',';
     }
