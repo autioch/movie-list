@@ -1,7 +1,7 @@
 const { App, FieldListView, CountView, ItemListView, LegendView, StatsView, SortsView } = require('./core');
 const { Model, View, fields, data } = require('./movie');
 
-const appInstance = new App(fields, Model);
+const appInstance = new App(Model);
 const fieldListView = new FieldListView(appInstance);
 const itemListView = new ItemListView(appInstance, View);
 const countView = new CountView(appInstance);
@@ -13,7 +13,6 @@ require('./core/style');
 require('./favicon.ico');
 
 itemListView.render();
-fieldListView.render();
 countView.render();
 legendView.render();
 statsView.render();
@@ -38,4 +37,17 @@ if (typeof data === 'string') {
     .then((items) => appInstance.setItems(items));
 } else {
   appInstance.setItems(data);
+}
+
+if (typeof fields === 'string') {
+  window
+    .fetch(fields)
+    .then((response) => response.json())
+    .then((items) => {
+      appInstance.setFields(items);
+      fieldListView.render();
+    });
+} else {
+  appInstance.setFields(fields);
+  fieldListView.render();
 }

@@ -4,15 +4,16 @@ const FieldTypes = require('core/field/types');
 const { TYPE_NAMES } = require('core/field/dicts');
 
 /* Core class for holding items and fields. */
-function App(fields, ItemModel) {
+function App(ItemModel) {
   this.callbacks = [];
   this.items = [];
   this._items = [];
   this.count = 0;
   this._count = 0;
   this._sorts = [];
-  this._loading = true;
-  this.fields = fields.map((field) => new FieldTypes[TYPE_NAMES[field.type]].Model(field, this));
+  this._fieldsLoading = true;
+  this._itemsLoading = true;
+  this.fields = [];
   this.ItemModel = ItemModel;
 }
 
@@ -51,6 +52,12 @@ App.prototype = {
     this.syncItems();
   },
 
+  setFields(fields) {
+    this._fieldsLoading = false;
+    this.fields = fields.map((field) => new FieldTypes[TYPE_NAMES[field.type]].Model(field, this));
+    this.syncItems();
+  },
+
   /* Sets new array of items and syncs matching items. */
   setItems(items) {
     this._items.forEach((item) => item.remove());
@@ -59,7 +66,7 @@ App.prototype = {
     dictionary(this.fields, this._items);
 
     this._count = items.length;
-    this._loading = false;
+    this._itemsLoading = false;
     this.syncItems();
   },
 

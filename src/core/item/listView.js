@@ -13,7 +13,7 @@ module.exports = ListView.extend({
   render() {
     this.removeSubviews();
     this.empty();
-    if (this.app._loading) {
+    if (this.app._fieldsLoading || this.app._itemsLoading) {
       this.el.innerHTML = template({ message: 'Loading items...' });
 
       return;

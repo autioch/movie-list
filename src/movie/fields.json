@@ -1,0 +1,37 @@
+[{
+  "key": "title",
+  "type": 1,
+  "stat": false
+}, {
+  "key": "genre",
+  "type": 3,
+  "stat": false
+}, {
+  "key": "plot",
+  "type": 1,
+  "stat": false
+}, {
+  "key": "year",
+  "type": 2,
+  "stat": true
+}, {
+  "key": "rated",
+  "type": 3,
+  "stat": false
+}, {
+  "key": "duration",
+  "type": 2,
+  "stat": true
+}, {
+  "key": "metascore",
+  "type": 2,
+  "stat": true
+}, {
+  "key": "imdbRating",
+  "type": 2,
+  "stat": true
+}, {
+  "key": "imdbVotes",
+  "type": 2,
+  "stat": true
+}]
