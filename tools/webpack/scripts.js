@@ -8,7 +8,7 @@ module.exports = function input(webpackConfig, setup) {
     loader: 'babel-loader',
     query: {
       cacheDirectory: true,
-      presets: ['es2015']
+      presets: [['es2015', { 'loose': true }]]
     }
   });
 
