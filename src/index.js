@@ -10,6 +10,7 @@ const statsView = new StatsView(appInstance);
 const sortsView = new SortsView(appInstance);
 
 require('./core/style');
+require('./favicon.ico');
 
 itemListView.render();
 fieldListView.render();
