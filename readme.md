@@ -25,3 +25,4 @@ This list is changing when I have new ideas or when I get feedback from friends 
 19. ~~Cleanup package dependencies~~.
 20. Serialize fields state in hash.
 21. ~~Add google search link~~.
+22. Add Date field.
