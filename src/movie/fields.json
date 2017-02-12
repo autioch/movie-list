@@ -34,4 +34,28 @@
   "key": "imdbVotes",
   "type": 2,
   "stat": true
+}, {
+  "key": "created",
+  "type": 1,
+  "stat": false
+}, {
+  "key": "audioChannels",
+  "type": 3,
+  "stat": false
+}, {
+  "key": "displayAspectRatio",
+  "type": 3,
+  "stat": false
+}, {
+  "key": "fps",
+  "type": 3,
+  "stat": false
+}, {
+  "key": "width",
+  "type": 2,
+  "stat": true
+}, {
+  "key": "height",
+  "type": 2,
+  "stat": true
 }]
