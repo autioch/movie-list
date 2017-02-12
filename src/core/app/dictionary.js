@@ -1,5 +1,3 @@
-const { TYPES } = require('core/field/dicts');
-
 function uniqArray(array) {
   const seen = {
     'undefined': 1,
@@ -20,9 +18,11 @@ function uniqArray(array) {
   return items;
 }
 
+const DICT_TYPE = 3;
+
 module.exports = function dictionary(fields, items) {
   const dict = fields
-    .filter((field) => field.type === TYPES.DICTIONARY)
+    .filter((field) => field.type === DICT_TYPE)
     .map((field) => ({
       key: field.key,
       values: [],

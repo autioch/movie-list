@@ -1,5 +1,4 @@
 const ListView = require('core/base/listView');
-const { TYPE_NAMES } = require('./dicts');
 const Types = require('./types');
 
 module.exports = ListView.extend({
@@ -13,6 +12,6 @@ module.exports = ListView.extend({
     return this.app.fields;
   },
   getSubview(field) {
-    return new Types[TYPE_NAMES[field.type]].View(field);
+    return new Types[field.type].View(field);
   }
 });

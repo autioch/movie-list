@@ -1,5 +1,4 @@
 const BaseModel = require('core/base/model');
-const { TYPES } = require('core/field/dicts');
 
 const ORDER = {
   NONE: 0,
@@ -17,7 +16,7 @@ module.exports = BaseModel.extend({
   defaults() {
     return {
       key: '',
-      type: TYPES.TEXT,
+      type: 1,
       order: ORDER.NONE
     };
   },
