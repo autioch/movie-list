@@ -19,17 +19,16 @@ const RATINGS = {
   'R': 2,
 
   /* Adults Only */
-  'NC-17': 1,
-
-  /* Unknown */
-  'APPROVED': 0,
-  'NOT RATED': 0
+  'NC-17': 1
 };
 
 module.exports = ItemModel.extend({
   initialize() {
     if (this.rated) {
-      this.ratedLevel = RATINGS[this.rated];
+      this.ratedLevel = RATINGS[this.rated] || 0;
+    } else {
+      this.rated = 'N/A';
+      this.ratedLevel = 0;
     }
     if (this.metascore) {
       this.metascoreLevel = this.getLevel(this.metascore);
