@@ -1,4 +1,6 @@
 const { ItemModel } = require('core');
+const subtitlesMap = require('./subtitlesMap');
+const uniq = require('../core/uniq');
 
 const ROUND_AMOUNT = 1000;
 const LEVEL_SIZE = 20;
@@ -7,6 +9,7 @@ const RATINGS = {
 
   /* General Audiences */
   'G': 5,
+  'TV-G': 5,
 
   /* Parental Guidance Suggested */
   'PG': 4,
@@ -42,6 +45,26 @@ module.exports = ItemModel.extend({
     }
     if (!this.genre || !this.genre.length) {
       this.genre = null;
+    }
+    if (!this.actors || !this.actors.length) {
+      this.actors = null;
+    } else {
+      this.actors = this.actors.sort();
+    }
+    if (!this.director || !this.director.length) {
+      this.director = null;
+    } else {
+      this.director = this.director.sort();
+    }
+    if (!this.writer || !this.writer.length) {
+      this.writer = null;
+    } else {
+      this.writer = this.writer.map((writer) => writer.replace(/\([^)]+\)/, '').trim()).sort();
+    }
+    if (!this.subtitles || !this.subtitles.length) {
+      this.subtitles = null;
+    } else {
+      this.subtitles = uniq(this.subtitles.map((sub) => subtitlesMap[sub] || 'Other').sort());
     }
   },
   getLevel(value) {

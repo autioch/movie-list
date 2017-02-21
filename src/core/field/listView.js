@@ -9,7 +9,7 @@ module.exports = ListView.extend({
     this.app = app;
   },
   getItems() {
-    return this.app.fields;
+    return this.app.fields.filter((field) => !field.hidden);
   },
   getSubview(field) {
     return new Types[field.type].View(field);

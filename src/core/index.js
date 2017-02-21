@@ -6,6 +6,5 @@
     ItemModel: require('./base/model'),
     ItemView: require('./item/view'),
     LegendView: require('./legend/view'),
-    StatsView: require('./stats/view'),
-    SortsView: require('./sorts/view')
+    StatsView: require('./stats/view')
   };

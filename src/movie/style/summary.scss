@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: flex-end;
   font-size: .9rem;
+  white-space: nowrap;
+  margin-left: .5rem;
 
   > span,
   > a {
@@ -59,6 +61,11 @@
 
 .google__link {
   background-image: url('google.png');
+  width: 1rem;
+}
+
+.rotten__link {
+  background-image: url('rotten.png');
   width: 1rem;
 }
 
