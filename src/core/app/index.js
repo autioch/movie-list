@@ -27,17 +27,20 @@ function App() {
 
   Promise
     .all([this.store.get('fields'), this.store.get('items')])
-    .then((values) => this.setContent(values[0], values[1]));
+    .then((values) => {
+      const fields = values[0];
+      const items = values[1];
+
+      dictionary(fields, items);
+      this.fields = fields;
+      this.fieldCallbacks.forEach((callback) => callback());
+      this._count = items.length;
+      this._syncItems(items);
+    });
 }
 
 App.prototype = {
   constructor: App,
-
-  /* Resets values for all filters. Does not modify sort. */
-  resetFilters() {
-    this.fields.forEach((field) => field.resetValue());
-    this.syncItems();
-  },
 
   /* Filters out passed array of items through fields. */
   filterItems(items) {
@@ -63,14 +66,6 @@ App.prototype = {
       this._sorts.push(newSort);
     }
     this.syncItems();
-  },
-
-  setContent(fields, items) {
-    dictionary(fields, items);
-    this.fields = fields;
-    this.fieldCallbacks.forEach((callback) => callback());
-    this._count = items.length;
-    this._syncItems(items);
   },
 
   /* Finds items that match current filters and sorts. */

@@ -2,10 +2,6 @@ const AbstractModel = require('../abstract/model');
 const stat = require('./stat');
 
 module.exports = AbstractModel.extend({
-  initialize() {
-    AbstractModel.prototype.initialize.apply(this, arguments);
-    this.callbacks = [];
-  },
   defaults() {
     return {
       selected: [],
@@ -15,7 +11,6 @@ module.exports = AbstractModel.extend({
   setOptions(options) {
     this.options = options;
     this.selected = [];
-    this.callbacks.forEach((callback) => callback());
   },
   hasValue() {
     return this.selected.length > 0;
@@ -40,11 +35,6 @@ module.exports = AbstractModel.extend({
     }
     this.selected = [value];
     this.app.syncItems();
-  },
-
-  /* Registers callback for when list of options changes. */
-  addCallback(callback) {
-    this.callbacks.push(callback);
   },
   getStats(items) {
     return stat(items.map((item) => item[this.key]));

@@ -5,7 +5,6 @@ module.exports = BaseView.extend({
     this.subviews = [];
   },
   render() {
-    this.removeSubviews();
     const fragment = document.createElement('div');
 
     this.subviews = this.getItems().map((item) => {
@@ -17,21 +16,12 @@ module.exports = BaseView.extend({
       return itemView;
     });
 
-    while (fragment.childNodes.length > 0) {
-      this.el.appendChild(fragment.childNodes[0]);
-    }
+    this.el.appendChild(fragment);
   },
   getItems() {
     return [];
   },
   getSubview(item) {
     return new BaseView(item);
-  },
-  removeSubviews() {
-    this.subviews.forEach((subview) => subview.remove());
-    this.subviews = [];
-  },
-  remove() {
-    this.removeSubviews();
   }
 });

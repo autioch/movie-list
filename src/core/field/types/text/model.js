@@ -5,7 +5,6 @@ module.exports = AbstractModel.extend({
     return { value: '' };
   },
   initialize() {
-    AbstractModel.prototype.initialize.apply(this, arguments);
     this.regex = new RegExp('', 'i');
   },
   hasValue() {

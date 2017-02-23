@@ -11,7 +11,8 @@ module.exports = ListView.extend({
     this.app.addCallback(this.render.bind(this));
   },
   render() {
-    this.removeSubviews();
+    this.subviews.forEach((subview) => subview.remove());
+    this.subviews = [];
     this.empty();
     if (!this.app.store.allLoaded()) {
       this.el.innerHTML = template({ message: 'Loading items...' });
