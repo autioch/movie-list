@@ -7,6 +7,7 @@ module.exports = ListView.extend({
   initialize(app) {
     ListView.prototype.initialize.apply(this, arguments);
     this.app = app;
+    this.app.fieldCallbacks.push(this.render.bind(this));
   },
   getItems() {
     return this.app.fields.filter((field) => !field.hidden);

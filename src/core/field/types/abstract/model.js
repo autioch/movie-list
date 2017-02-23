@@ -1,4 +1,4 @@
-const BaseModel = require('core/base/model');
+const BaseModel = require('./baseModel');
 
 const ORDER = {
   NONE: 0,

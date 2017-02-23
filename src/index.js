@@ -1,50 +1,6 @@
-const { App, FieldListView, CountView, ItemListView, LegendView, StatsView } = require('./core');
-const { parser, fields, data } = require('./movie');
+const { App } = require('./core');
+const setViews = require('./setViews');
 
 const appInstance = new App();
-const fieldListView = new FieldListView(appInstance);
-const itemListView = new ItemListView(appInstance);
-const countView = new CountView(appInstance);
-const legendView = new LegendView(appInstance);
-const statsView = new StatsView(appInstance);
 
-require('./core/style');
-require('./favicon.ico');
-
-itemListView.render();
-countView.render();
-legendView.render();
-statsView.render();
-
-const filters = document.querySelector('.filters');
-const stats = document.querySelector('.stats');
-
-document.body.insertBefore(itemListView.el, stats);
-
-filters.appendChild(fieldListView.el);
-stats.appendChild(countView.el);
-stats.appendChild(statsView.el);
-stats.appendChild(legendView.el);
-
-/* For production config, data is separate file. For development, just the data. Avoids reloads on styles change. */
-if (typeof data === 'string') {
-  window
-    .fetch(data)
-    .then((response) => response.json())
-    .then((items) => appInstance.setItems(items.map((dataItem) => parser(dataItem))));
-} else {
-  appInstance.setItems(data.map((dataItem) => parser(dataItem)));
-}
-
-if (typeof fields === 'string') {
-  window
-    .fetch(fields)
-    .then((response) => response.json())
-    .then((items) => {
-      appInstance.setFields(items);
-      fieldListView.render();
-    });
-} else {
-  appInstance.setFields(fields);
-  fieldListView.render();
-}
+setViews(appInstance);

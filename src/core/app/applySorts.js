@@ -1,18 +1,14 @@
 module.exports = function applySorts(sorts, items) {
-  let index;
-  let field;
-  let prop1;
-  let prop2;
-
   if (!sorts.length) {
     return items;
   }
 
   return items.sort((item1, item2) => {
-    for (index = 0; index < sorts.length; index++) {
-      field = sorts[index];
-      prop1 = item1[field.key];
-      prop2 = item2[field.key];
+    for (let index = 0; index < sorts.length; index++) {
+      const field = sorts[index];
+      const prop1 = item1[field.key];
+      const prop2 = item2[field.key];
+
       if (!prop1 && !prop2) {
         return 0;
       }

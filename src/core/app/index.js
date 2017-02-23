@@ -1,19 +1,33 @@
 const applySorts = require('./applySorts');
 const dictionary = require('./dictionary');
 const FieldTypes = require('core/field/types');
-const ItemModel = require('../base/model');
+const { parser, fields: fieldsUrl, data: itemsUrl } = require('../../movie');
+const Store = require('./store');
 
 /* Core class for holding items and fields. */
 function App() {
   this.callbacks = [];
+  this.fieldCallbacks = [];
   this.items = [];
-  this._items = [];
   this.count = 0;
   this._count = 0;
   this._sorts = [];
-  this._fieldsLoading = true;
-  this._itemsLoading = true;
   this.fields = [];
+  const that = this;
+
+  this.store = new Store([{
+    key: 'items',
+    url: itemsUrl,
+    parser
+  }, {
+    key: 'fields',
+    url: fieldsUrl,
+    parser: (field) => new FieldTypes[field.type].Model(field, that)
+  }]);
+
+  Promise
+    .all([this.store.get('fields'), this.store.get('items')])
+    .then((values) => this.setContent(values[0], values[1]));
 }
 
 App.prototype = {
@@ -51,26 +65,21 @@ App.prototype = {
     this.syncItems();
   },
 
-  setFields(fields) {
-    this.fields = fields.map((field) => new FieldTypes[field.type].Model(field, this));
-    dictionary(this.fields, this._items);
-    this._fieldsLoading = false;
-    this.syncItems();
-  },
-
-  /* Sets new array of items and syncs matching items. */
-  setItems(items) {
-    this._items.forEach((item) => item.remove());
-    this._items = items.map((item) => new ItemModel(item));
-    dictionary(this.fields, this._items);
+  setContent(fields, items) {
+    dictionary(fields, items);
+    this.fields = fields;
+    this.fieldCallbacks.forEach((callback) => callback());
     this._count = items.length;
-    this._itemsLoading = false;
-    this.syncItems();
+    this._syncItems(items);
   },
 
   /* Finds items that match current filters and sorts. */
   syncItems() {
-    this.items = applySorts(this._sorts, this.filterItems(this._items.slice(0)));
+    this.store.get('items').then((items) => this._syncItems(items));
+  },
+
+  _syncItems(items) {
+    this.items = applySorts(this._sorts, this.filterItems(items));
     this.count = this.items.length;
     this.callbacks.forEach((callback) => callback());
   },
