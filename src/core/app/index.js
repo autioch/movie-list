@@ -1,9 +1,10 @@
 const applySorts = require('./applySorts');
 const dictionary = require('./dictionary');
 const FieldTypes = require('core/field/types');
+const ItemModel = require('../base/model');
 
 /* Core class for holding items and fields. */
-function App(ItemModel) {
+function App() {
   this.callbacks = [];
   this.items = [];
   this._items = [];
@@ -13,7 +14,6 @@ function App(ItemModel) {
   this._fieldsLoading = true;
   this._itemsLoading = true;
   this.fields = [];
-  this.ItemModel = ItemModel;
 }
 
 App.prototype = {
@@ -61,7 +61,7 @@ App.prototype = {
   /* Sets new array of items and syncs matching items. */
   setItems(items) {
     this._items.forEach((item) => item.remove());
-    this._items = items.map((item) => new this.ItemModel(item));
+    this._items = items.map((item) => new ItemModel(item));
     dictionary(this.fields, this._items);
     this._count = items.length;
     this._itemsLoading = false;

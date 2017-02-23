@@ -1,4 +1,4 @@
-.movie__description {
+.item__info {
   display: flex;
   flex-direction: column;
 
@@ -8,11 +8,11 @@
   }
 }
 
-.movie__title {
+.item__title {
   font-weight: bold;
 }
 
-.movie__plot {
+.item__description {
   max-width: 50rem;
   margin: .5rem 0;
 
@@ -22,7 +22,7 @@
   }
 }
 
-.movie__details {
+.item__detail {
   font-size: .9rem;
 
   @media print {
@@ -30,6 +30,6 @@
   }
 }
 
-.movie__genre {
+.item__detail-content {
   margin-right: .5rem;
 }

@@ -2,6 +2,27 @@
 @import 'error';
 @import 'summary';
 
+.item-list {
+
+  /* Prevents repaints on scroll */
+  transform: translateZ(0);
+  flex: 1;
+
+  @media print {
+    height: auto;
+    overflow: visible;
+  }
+}
+
+.item-list__message {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+
 .item {
   margin: .5rem;
   display: flex;
@@ -37,7 +58,7 @@
 
   /* Prevents repaints on scroll */
   transform: translateZ(0);
-  
+
 
   @media print {
     display: none;

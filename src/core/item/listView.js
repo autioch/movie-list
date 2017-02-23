@@ -1,14 +1,14 @@
 const ListView = require('core/base/listView');
-const template = require('./template.tpl');
+const template = require('./list.tpl');
+const ItemView = require('./view');
 
 module.exports = ListView.extend({
   className: 'item-list',
   tagName: 'main',
-  initialize(app, ItemView) {
+  initialize(app) {
     ListView.prototype.initialize.apply(this, arguments);
     this.app = app;
     this.app.addCallback(this.render.bind(this));
-    this.ItemView = ItemView;
   },
   render() {
     this.removeSubviews();
@@ -29,6 +29,6 @@ module.exports = ListView.extend({
     return this.app.items;
   },
   getSubview(item) {
-    return new this.ItemView(item);
+    return new ItemView(item);
   }
 });

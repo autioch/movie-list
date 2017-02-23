@@ -1,4 +1,4 @@
-.movie__error {
+.item__warning {
   position: relative;
   display: inline-block;
   font-size: .9rem;
@@ -10,20 +10,20 @@
 
   &:hover {
 
-    .movie__error-list {
+    .item__warning-list {
       display: block;
     }
   }
 }
 
-.movie__error-icon {
+.item__warning-icon {
   font-weight: bold;
   margin-left: .5rem;
   padding: .5rem;
   cursor: default;
 }
 
-.movie__error-list {
+.item__warning-list {
   list-style-type: none;
   position: absolute;
   display: none;
@@ -31,7 +31,7 @@
   z-index: 1;
 }
 
-.movie__error-item {
+.item__warning-item {
 
   &::before {
     content: '-';

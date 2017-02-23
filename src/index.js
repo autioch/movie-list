@@ -1,9 +1,9 @@
 const { App, FieldListView, CountView, ItemListView, LegendView, StatsView } = require('./core');
-const { Model, View, fields, data } = require('./movie');
+const { parser, fields, data } = require('./movie');
 
-const appInstance = new App(Model);
+const appInstance = new App();
 const fieldListView = new FieldListView(appInstance);
-const itemListView = new ItemListView(appInstance, View);
+const itemListView = new ItemListView(appInstance);
 const countView = new CountView(appInstance);
 const legendView = new LegendView(appInstance);
 const statsView = new StatsView(appInstance);
@@ -31,9 +31,9 @@ if (typeof data === 'string') {
   window
     .fetch(data)
     .then((response) => response.json())
-    .then((items) => appInstance.setItems(items));
+    .then((items) => appInstance.setItems(items.map((dataItem) => parser(dataItem))));
 } else {
-  appInstance.setItems(data);
+  appInstance.setItems(data.map((dataItem) => parser(dataItem)));
 }
 
 if (typeof fields === 'string') {

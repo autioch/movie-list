@@ -1,6 +1,5 @@
 module.exports = {
-  Model: require('./model'),
-  View: require('./view'),
+  parser: require('./parser'),
   fields: require('./fields'),
   data: require('./data.json')
 };
