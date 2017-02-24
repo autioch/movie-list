@@ -1,0 +1,45 @@
+// sass-lint:disable variable-for-property
+
+html {
+  color: $t-text;
+  background-color: $t-bg;
+}
+
+body {
+
+  @media print {
+    display: block;
+  }
+}
+
+.t-box {
+  background-color: $t-box--background;
+  box-shadow: 0 0 .25rem $t-box--shadow;
+  padding: .75rem;
+  box-sizing: border-box;
+  transition: box-shadow 250ms, background-color 250ms;
+
+  @media print {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+.t-input {
+  background: $t-input-background;
+  color: $t-input-color;
+  border: solid 1px $t-input-border;
+  outline: 0;
+  padding: .15em;
+  box-sizing: border-box;
+  line-height: 1.2rem;
+
+  @media print {
+    border-color: transparent;
+    background: inherit;
+    min-width: 1px;
+    font-size: inherit;
+    padding: 0;
+  }
+}

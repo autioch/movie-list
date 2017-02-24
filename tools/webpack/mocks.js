@@ -4,7 +4,7 @@ module.exports = function mocks(webpackConfig, setup) {
   webpackConfig.module.loaders.push({
     test: /\.json$/,
     exclude: /node_modules/,
-    // loader: 'json'
-    loader: setup.isProduction ? `file?name=${setup.assets}[name].[ext]` : 'json'
+    loader: 'json'
+    // loader: setup.isProduction ? `file?name=${setup.assets}[name].[ext]` : 'json'
   });
 };
