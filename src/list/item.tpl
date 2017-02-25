@@ -1,4 +1,4 @@
-<article class="item__info">
+<article class="item__description">
   <header class="item__header">
     ${header}
     <% if (warning.length > 0){ %>
@@ -11,10 +11,10 @@
       </span>
     <% } %>
   </header>
-  ${description}
-  ${summary}
+  ${content}
+  ${details}
 </article>
 <aside class="item__summary">
   <span>${links}</span>
-  ${details}
+  ${summary}
 </aside>

@@ -1,5 +1,5 @@
 const template = require('./template.tpl');
-const createElement = require('createElement');
+const createElement = require('utils/createElement');
 
 require('./style');
 
@@ -7,9 +7,11 @@ module.exports = function countViewFactory(app, el = createElement('count', 'sec
   return {
     el,
     render() {
+      const { count, totalCount } = app.query();
+
       el.innerHTML = template({
-        visible: app.count,
-        filtered: app._count - app.count
+        visible: count,
+        filtered: totalCount - count
       });
 
       return el;

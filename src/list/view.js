@@ -1,6 +1,6 @@
 const messageTemplate = require('./message.tpl');
 const getItem = require('./getItem');
-const createElement = require('createElement');
+const createElement = require('utils/createElement');
 
 require('./style');
 
@@ -8,15 +8,13 @@ module.exports = function listViewFactory(app, el = createElement('item-list', '
   return {
     el,
     render() {
-      const { items, store, schema } = app;
+      const { items, schema } = app.query();
 
       while (el.firstChild) {
         el.removeChild(el.firstChild);
       }
 
-      if (!store.allLoaded()) {
-        el.innerHTML = messageTemplate({ message: 'Loading items...' });
-      } else if (items.length) {
+      if (items.length) {
         const fragment = document.createDocumentFragment();
 
         items.forEach((item) => fragment.appendChild(getItem(item, schema)));

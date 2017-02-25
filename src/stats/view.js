@@ -1,5 +1,5 @@
 const template = require('./template.tpl');
-const createElement = require('createElement');
+const createElement = require('utils/createElement');
 const statRange = require('./statRange');
 
 require('./style');
@@ -10,7 +10,7 @@ module.exports = function statsViewFactory(app, el = createElement('stat-list'))
   return {
     el,
     render() {
-      const { items, fields } = app;
+      const { items, fields } = app.query();
 
       const stats = fields
         .filter((field) => field.type === RANGE_TYPE)

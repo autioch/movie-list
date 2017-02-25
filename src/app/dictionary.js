@@ -1,24 +1,10 @@
 const DICT_TYPE = 3;
 
-function uniq(array) {
-  const seen = {
-    'undefined': 1,
-    'null': 1,
-    'N/A': 1
-  };
-  const items = [];
-
-  for (let i = 0; i < array.length; i++) {
-    const item = array[i];
-
-    if (seen[item] !== 1) {
-      seen[item] = 1;
-      items.push(item);
-    }
-  }
-
-  return items;
-}
+const uniq = require('utils/uniq')({
+  'undefined': true,
+  'null': true,
+  'N/A': true
+});
 
 module.exports = function dictionary(fields, items) {
   const dict = fields

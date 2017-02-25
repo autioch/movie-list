@@ -1,5 +1,5 @@
 const template = require('./template.tpl');
-const createElement = require('createElement');
+const createElement = require('utils/createElement');
 
 require('./style');
 

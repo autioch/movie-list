@@ -33,23 +33,3 @@
     margin: .5rem 0 0;
   }
 }
-
-.legend {
-  margin-top: 2.5em;
-}
-
-.header__title {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-.header__description {
-  font-size: 1rem;
-  font-weight: normal;
-  margin: 0 0 1em;
-
-  @media print {
-    display: none;
-    margin: 0;
-  }
-}

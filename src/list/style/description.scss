@@ -1,4 +1,4 @@
-.item__info {
+.item__description {
   display: flex;
   flex-direction: column;
 
@@ -12,7 +12,7 @@
   font-weight: bold;
 }
 
-.item__description {
+.item__content {
   max-width: 50rem;
   margin: .5rem 0;
 

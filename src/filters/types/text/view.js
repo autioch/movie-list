@@ -1,7 +1,7 @@
 const baseViewFactory = require('../base/view');
 const template = require('./template.tpl');
-const bindEvents = require('bindEvents');
-const createElement = require('createElement');
+const bindEvents = require('utils/bindEvents');
+const createElement = require('utils/createElement');
 
 require('./style');
 
