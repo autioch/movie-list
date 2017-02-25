@@ -1,4 +1,4 @@
-const baseViewFactory = require('../abstract/view');
+const baseViewFactory = require('../base/view');
 const template = require('./template.tpl');
 const bindEvents = require('bindEvents');
 const createElement = require('createElement');
@@ -9,7 +9,7 @@ module.exports = function textViewFactory(field, el = createElement('field', 'se
   const { render: baseRender, query, syncFilter } = baseViewFactory(field, el);
 
   function render() {
-    el.innerHTML = template({ field });
+    el.innerHTML = template(field.query());
 
     return baseRender();
   }

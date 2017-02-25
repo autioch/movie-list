@@ -3,6 +3,11 @@ const dictionary = require('./dictionary');
 const FieldTypes = require('filters/types');
 const Store = require('./store');
 
+/*
+  Public:  items, store, schema, fields, syncItems, addSort, removeSort, count, _count
+
+ */
+
 /* Core class for holding items and fields. */
 function App() {
   this.callbacks = [];
@@ -28,7 +33,7 @@ function App() {
       const schema = values[0];
       const items = values[1];
 
-      this.fields = schema.fields.map((field) => new FieldTypes[field.type].Model(field, that));
+      this.fields = schema.fields.map((field) => FieldTypes[field.type].modelFactory(field, that));
       dictionary(this.fields, items);
       this.schema = schema;
       this.fieldCallbacks.forEach((callback) => callback());

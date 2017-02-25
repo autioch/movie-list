@@ -1,4 +1,4 @@
 module.exports = {
-  Model: require('./model'),
+  modelFactory: require('./model'),
   viewFactory: require('./view')
 };

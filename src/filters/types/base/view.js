@@ -3,12 +3,12 @@ const createElement = require('createElement');
 
 require('./style');
 
-module.exports = function abstractViewFactory(field, el = createElement('field', 'section')) {
+module.exports = function baseViewFactory(field, el = createElement('field', 'section')) {
   function syncSort() {
     el.classList.remove('is-sort-1');
     el.classList.remove('is-sort--1');
     if (field.hasSort()) {
-      el.classList.add(`is-sort-${field.order}`);
+      el.classList.add(`is-sort-${field.query().order}`);
     }
   }
 

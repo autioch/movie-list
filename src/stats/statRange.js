@@ -1,10 +1,3 @@
-/**
- * Decides order of string fields containing floats.
- * @param  {String} value1 [description]
- * @param  {String} value2 [description]
- * @return {Number}   Order of the strings.
- */
-
 function sortFloat(value1, value2) {
   const floatA = parseFloat(value1);
   const floatB = parseFloat(value2);

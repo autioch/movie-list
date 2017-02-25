@@ -1,26 +1,49 @@
-const AbstractModel = require('../abstract/model');
+const baseModelFactory = require('../base/model');
 
-module.exports = AbstractModel.extend({
-  defaults() {
-    return { value: '' };
-  },
-  initialize() {
-    this.regex = new RegExp('', 'i');
-  },
-  hasValue() {
-    return this.value.length > 0;
-  },
-  resetValue() {
-    this.value = '';
-    this.regex = new RegExp('', 'i');
-    this.app.syncItems();
-  },
-  test(item) {
-    return this.regex.test(item[this.key]);
-  },
-  setValue(value) {
-    this.value = value;
-    this.regex = new RegExp(value.split('').join('.?'), 'i');
-    this.app.syncItems();
+module.exports = function textModelFactory(attributes, app) {
+  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, app);
+
+  let value = attributes.value || '';
+  let regex = new RegExp('', 'i');
+
+  function hasValue() {
+    return value.length > 0;
   }
-});
+
+  function resetValue() {
+    value = '';
+    regex = new RegExp('', 'i');
+    app.syncItems();
+  }
+
+  function test(item) {
+    return regex.test(item[config.key]);
+  }
+
+  function setValue(newValue) {
+    value = newValue;
+    regex = new RegExp(value.split('').join('.?'), 'i');
+    app.syncItems();
+  }
+
+  function query() {
+    return {
+      label,
+      order: config.order,
+      value
+    };
+  }
+
+  return {
+    setValue,
+    resetValue,
+    hasSort,
+    makeSort,
+    hasValue,
+    test,
+    query,
+    label,
+    type: config.type,
+    key: config.key
+  };
+};
