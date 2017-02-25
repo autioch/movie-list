@@ -1,3 +1,4 @@
+/* Utility method for setting up dom element properties. */
 const PAIR = 2;
 
 module.exports = function prop(el, pairs) {

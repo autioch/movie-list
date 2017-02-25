@@ -1,3 +1,4 @@
+/* One time binder for dom events. Can't unbind (no need here). */
 const DEBOUNCE_TIME = 250;
 
 function matches(el, selector) {
@@ -20,7 +21,6 @@ function debounce(debouncedFn, msToWait) {
   };
 }
 
-/* This binds events without option to unbind. This could be added if there was a usage. */
 module.exports = function events(el, eventHash) {
   Object.keys(eventHash).forEach((key) => {
     const eventDesc = key.split(' ');

@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+/* Simple wrapper for creating dom elements. */
 module.exports = function dom(tagName, className, children) {
   const el = document.createElement(tagName);
 
