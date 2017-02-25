@@ -1,21 +1,18 @@
-const Types = require('./types');
-const createElement = require('utils/createElement');
+const dom = require('utils/dom');
+const filterViewFactory = require('filters/types/view');
 
 require('./style');
 
-module.exports = function filtersViewFactory(app, el = createElement('field-list')) {
+module.exports = function filtersViewFactory(app, el = dom('div', 'field-list')) {
+  const fragment = document.createDocumentFragment();
+
+  app.query().fields
+    .filter((field) => !field.hidden)
+    .forEach((field) => fragment.appendChild(filterViewFactory(field).render()));
+
+  el.appendChild(fragment);
+
   function render() {
-    const fragment = document.createDocumentFragment();
-
-    app.query().fields.filter((field) => !field.hidden).forEach((field) => {
-      const itemView = Types[field.type].viewFactory(field);
-
-      itemView.render();
-      fragment.appendChild(itemView.el);
-    });
-
-    el.appendChild(fragment);
-
     return el;
   }
 

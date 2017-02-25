@@ -43,6 +43,7 @@ module.exports = function textModelFactory(attributes, app) {
     test,
     query,
     label,
+    config,
     type: config.type,
     key: config.key
   };

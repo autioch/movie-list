@@ -1,9 +1,15 @@
-const bindEvents = require('utils/bindEvents');
-const createElement = require('utils/createElement');
+const events = require('utils/events');
+const dom = require('utils/dom');
+const prop = require('utils/prop');
 
 require('./style');
 
-module.exports = function baseViewFactory(field, el = createElement('field', 'section')) {
+module.exports = function baseViewFactory(field, el = dom('section', 'field')) {
+  const markerEl = dom('span', `field__sort-icon js-sort is-${field.config.order}`);
+  const sortEl = dom('div', 'field__sort js-sort t-label', [dom('span', 'field__sort-text js-sort', field.label), markerEl]);
+
+  el.appendChild(prop(sortEl, ['title', `Sort by ${field.label}`]));
+
   function syncSort() {
     el.classList.remove('is-sort-1');
     el.classList.remove('is-sort--1');
@@ -26,24 +32,18 @@ module.exports = function baseViewFactory(field, el = createElement('field', 'se
   }
 
   function render() {
-    requestAnimationFrame(() => {
-      syncFilter();
-      syncSort();
-    });
+    markerEl.className = `field__sort-icon js-sort is-${field.config.order}`;
+    syncFilter();
+    syncSort();
 
     return el;
   }
 
-  function query(selector) {
-    return el.querySelector(`.js-${selector}`);
-  }
-
-  bindEvents(el, { 'click sort': setSort });
+  events(el, { 'click sort': setSort });
 
   return {
     el,
     render,
-    query,
     syncFilter
   };
 };

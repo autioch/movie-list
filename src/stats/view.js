@@ -1,25 +1,28 @@
-const template = require('./template.tpl');
-const createElement = require('utils/createElement');
-const statRange = require('./statRange');
+const dom = require('utils/dom');
+const empty = require('utils/empty');
 
 require('./style');
 
-const RANGE_TYPE = 2;
+module.exports = function statsViewFactory(app, el = dom('div', 'stat-list')) {
+  function domStatItem(item) {
+    return dom('li', 'stat__item', [
+      dom('span', `stat-item__value t-value ${item.rounded ? 'is-rounded' : ''}`, item.value),
+      dom('span', 'stat-item__label t-hint', item.key)
+    ]);
+  }
 
-module.exports = function statsViewFactory(app, el = createElement('stat-list')) {
+  function domStat(stat) {
+    return dom('section', 'stat', [
+      dom('header', 'stat__header t-header', stat.label),
+      dom('ul', 'stat__item-list', stat.items.map(domStatItem))
+    ]);
+  }
+
   return {
     el,
     render() {
-      const { items, fields } = app.query();
-
-      const stats = fields
-        .filter((field) => field.type === RANGE_TYPE)
-        .map((field) => ({
-          label: field.label,
-          items: statRange(items.map((item) => item[field.key]))
-        }));
-
-      el.innerHTML = template({ stats });
+      empty(el);
+      app.query().stats.map(domStat).forEach((statEl) => el.appendChild(statEl));
 
       return el;
     }

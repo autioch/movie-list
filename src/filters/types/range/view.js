@@ -1,35 +1,44 @@
 const baseViewFactory = require('../base/view');
-const template = require('./template.tpl');
-const bindEvents = require('utils/bindEvents');
-const createElement = require('utils/createElement');
+const events = require('utils/events');
+const dom = require('utils/dom');
+const prop = require('utils/prop');
 
 require('./style');
 
-module.exports = function textViewFactory(field, el = createElement('field', 'section')) {
-  const { render: baseRender, query, syncFilter } = baseViewFactory(field, el);
+module.exports = function textViewFactory(field, el = dom('section', 'field')) {
+  const { render, syncFilter } = baseViewFactory(field, el);
+  const { label, fromValue, toValue } = field.query();
 
-  function render() {
-    el.innerHTML = template(field.query());
+  const fromEl = dom('input', 'field-range__input t-input js-from');
+  const toEl = dom('input', 'field-range__input t-input js-to');
+  const resetEl = dom('span', 'field__filter-reset t-btn js-reset');
 
-    return baseRender();
-  }
+  el.appendChild(dom('div', 'field__filter', [
+    dom('span', 'field-range__text t-hint', 'From'),
+    prop(fromEl, ['type', 'text', 'value', fromValue, 'title', `Set minimum ${label}`]),
+    dom('span', 'field-range__text t-hint', 'To'),
+    prop(toEl, ['type', 'text', 'value', toValue, 'title', `Set maximum ${label}`]),
+    prop(resetEl, ['title', `Reset ${label} filter`])
+  ]));
 
   function setFromValue() {
-    field.setFromValue(query('from').value);
+    field.setFromValue(fromEl.value);
     syncFilter();
   }
 
   function setToValue() {
-    field.setToValue(query('to').value);
+    field.setToValue(toEl.value);
     syncFilter();
   }
 
   function resetFilter() {
     field.resetValue();
-    render();
+    fromEl.value = '';
+    toEl.value = '';
+    syncFilter();
   }
 
-  bindEvents(el, {
+  events(el, {
     'keyup from': setFromValue,
     'keyup to': setToValue,
     'click reset': resetFilter

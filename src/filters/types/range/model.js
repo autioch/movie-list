@@ -44,8 +44,8 @@ module.exports = function rangeModelFactory(attributes, app) {
     return {
       label,
       order: config.order,
-      fromText: fromValue === -Infinity ? '' : fromValue,
-      toText: toValue === Infinity ? '' : toValue
+      fromValue: fromValue === -Infinity ? '' : fromValue,
+      toValue: toValue === Infinity ? '' : toValue
     };
   }
 
@@ -59,6 +59,7 @@ module.exports = function rangeModelFactory(attributes, app) {
     test,
     query,
     label,
+    config,
     type: config.type,
     key: config.key
   };

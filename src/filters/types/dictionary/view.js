@@ -1,30 +1,33 @@
 const baseViewFactory = require('../base/view');
-const template = require('./template.tpl');
-const bindEvents = require('utils/bindEvents');
-const createElement = require('utils/createElement');
+const prop = require('utils/prop');
+const events = require('utils/events');
+const dom = require('utils/dom');
+const selectViewFactory = require('./selectView');
 
 require('./style');
 
-module.exports = function textViewFactory(field, el = createElement('field', 'section')) {
-  const { render: baseRender, query, syncFilter } = baseViewFactory(field, el);
+module.exports = function textViewFactory(field, el = dom('section', 'field')) {
+  const { render, syncFilter } = baseViewFactory(field, el);
+  const selectView = selectViewFactory(field);
+  const resetEl = dom('span', 'field__filter-reset t-btn js-reset');
 
-  function render() {
-    el.innerHTML = template(field.query());
-
-    return baseRender();
-  }
+  el.appendChild(dom('div', 'field__filter', [
+    selectView.el,
+    prop(resetEl, ['title', `Reset ${field.label} filter`])
+  ]));
 
   function selectValue() {
-    field.selectValue(query('filter').value);
+    field.selectValue(selectView.el.value);
     syncFilter();
   }
 
   function resetFilter() {
     field.resetValue();
-    render();
+    selectView.reset();
+    syncFilter();
   }
 
-  bindEvents(el, {
+  events(el, {
     'change filter': selectValue,
     'click reset': resetFilter
   });
