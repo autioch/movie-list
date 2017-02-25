@@ -1,5 +1,5 @@
 @import 'description';
-@import 'error';
+@import 'warning';
 @import 'summary';
 
 .item-list {
@@ -52,30 +52,4 @@
     display: none;
     margin: 0;
   }
-}
-
-.stats {
-
-  /* Prevents repaints on scroll */
-  transform: translateZ(0);
-
-
-  @media print {
-    display: none;
-  }
-
-  @media (max-width: 960px) {
-    display: none;
-  }
-}
-
-.filters {
-  height: auto;
-
-  @media print {
-    width: 100%;
-  }
-
-  /* Prevents repaints on scroll */
-  transform: translateZ(0);
 }

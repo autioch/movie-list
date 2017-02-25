@@ -1,0 +1,10 @@
+.filters {
+  height: auto;
+
+  @media print {
+    width: 100%;
+  }
+
+  /* Prevents repaints on scroll */
+  transform: translateZ(0);
+}

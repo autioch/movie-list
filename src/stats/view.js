@@ -1,22 +1,22 @@
-const BaseView = require('base/view');
 const template = require('./template.tpl');
+const createElement = require('createElement');
 
 require('./style');
 
-module.exports = BaseView.extend({
-  className: 'stat-list',
-  template,
-  initialize(app) {
-    this.app = app;
-    this.app.addCallback(this.render.bind(this));
-  },
-  data() {
-    const items = this.app.items;
-    const stats = this.app.fields.filter((field) => field.stat).map((field) => ({
-      label: field.label,
-      items: field.getStats(items)
-    }));
+module.exports = function statsViewFactory(app, el = createElement('stat-list')) {
+  return {
+    el,
+    render() {
+      const { items, fields } = app;
 
-    return { stats };
-  }
-});
+      const stats = fields.filter((field) => field.stat).map((field) => ({
+        label: field.label,
+        items: field.getStats(items)
+      }));
+
+      el.innerHTML = template({ stats });
+
+      return el;
+    }
+  };
+};

@@ -1,6 +1,6 @@
 const applySorts = require('./applySorts');
 const dictionary = require('./dictionary');
-const FieldTypes = require('field/types');
+const FieldTypes = require('filters/types');
 const Store = require('./store');
 
 /* Core class for holding items and fields. */

@@ -1,3 +1,6 @@
+const template = require('./item.tpl');
+const createElement = require('createElement');
+
 const templateRegex = /#\{([^}]+)\}/g;
 
 function getLink(link, item) {
@@ -63,11 +66,29 @@ function getWarning(def, item) {
   return items.map((valueItem) => `<li class="item__warning-item">${valueItem}</li>`).join('');
 }
 
-module.exports = {
-  getLink,
-  getSummary,
-  getDetail,
-  getDescription,
-  getHeader,
-  getWarning
+module.exports = function getItem(item, schema) {
+  let el = item.__el;
+
+  if (!el) {
+    el = createElement('item t-box', 'section');
+
+    const links = schema.links.map((link) => getLink(link, item)).filter((def) => !!def).join('');
+    const summary = schema.summary.map((def) => getSummary(def, item)).filter((def) => !!def).join('');
+    const details = schema.details.map((def) => getDetail(def, item)).filter((def) => !!def).join('');
+    const description = schema.description.map((def) => getDescription(def, item)).filter((def) => !!def).join('');
+    const header = schema.header.map((def) => getHeader(def, item)).filter((def) => !!def).join('');
+    const warning = schema.warning.map((def) => getWarning(def, item)).filter((def) => !!def).join('');
+
+    el.innerHTML = template({
+      links,
+      summary,
+      details,
+      description,
+      header,
+      warning
+    });
+    item.__el = el;
+  }
+
+  return el;
 };

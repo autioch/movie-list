@@ -1,3 +1,19 @@
+.stats {
+
+  /* Prevents repaints on scroll */
+  transform: translateZ(0);
+
+
+  @media print {
+    display: none;
+  }
+
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+
 .stat-list {
   margin-top: 1em;
 }

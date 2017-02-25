@@ -1,10 +1,15 @@
-const BaseView = require('base/view');
 const template = require('./template.tpl');
+const createElement = require('createElement');
 
 require('./style');
 
-module.exports = BaseView.extend({
-  className: 'legend',
-  tagName: 'section',
-  template
-});
+module.exports = function legendViewFactory(app, el = createElement('legend', 'section')) {
+  return {
+    el,
+    render() {
+      el.innerHTML = template();
+
+      return el;
+    }
+  };
+};

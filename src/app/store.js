@@ -12,7 +12,7 @@ const productDefaults = {
 };
 
 function cloneItems(items) {
-  return JSON.parse(JSON.stringify(items));
+  return items.length ? items.slice(0) : items;
 }
 
 Store.prototype = {

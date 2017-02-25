@@ -1,22 +1,18 @@
-const BaseView = require('base/view');
 const template = require('./template.tpl');
+const createElement = require('createElement');
 
 require('./style');
 
-module.exports = BaseView.extend({
-  className: 'count',
-  tagName: 'section',
-  template,
-  initialize(app) {
-    this.app = app;
-    this.app.addCallback(this.render.bind(this));
-  },
-  data() {
-    const { count, _count } = this.app;
+module.exports = function countViewFactory(app, el = createElement('count', 'section')) {
+  return {
+    el,
+    render() {
+      el.innerHTML = template({
+        visible: app.count,
+        filtered: app._count - app.count
+      });
 
-    return {
-      visible: count,
-      filtered: _count - count
-    };
-  }
-});
+      return el;
+    }
+  };
+};
