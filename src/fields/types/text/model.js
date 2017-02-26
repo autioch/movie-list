@@ -5,6 +5,7 @@ module.exports = function textModelFactory(attributes, appModel) {
 
   let value = attributes.value || '';
   let regex = new RegExp('', 'i');
+  let testFunction = testRegex;
 
   function hasValue() {
     return value.length > 0;
@@ -12,17 +13,29 @@ module.exports = function textModelFactory(attributes, appModel) {
 
   function resetValue() {
     value = '';
-    regex = new RegExp('', 'i');
     appModel.syncItems();
   }
 
+  function testRegex(text) {
+    return regex.test(text);
+  }
+
+  function testString(text) {
+    return text.indexOf(value) > -1;
+  }
+
   function test(item) {
-    return regex.test(item[config.key]);
+    return testFunction(item[config.key]);
   }
 
   function setValue(newValue) {
     value = newValue;
-    regex = new RegExp(value.split('').join('.?'), 'i');
+    try {
+      regex = new RegExp(value.replace(/ /g, '.?'), 'i');
+      testFunction = testRegex;
+    } catch (err) {
+      testFunction = testString;
+    }
     appModel.syncItems();
   }
 
