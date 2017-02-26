@@ -5,8 +5,8 @@ const prop = require('utils/prop');
 require('./style');
 
 module.exports = function baseViewFactory(field, el = dom('section', 'field')) {
-  const markerEl = dom('span', `field__sort-icon js-sort is-${field.config.order}`);
-  const sortEl = dom('div', 'field__sort js-sort t-label', [dom('span', 'field__sort-text js-sort', field.label), markerEl]);
+  const markerEl = dom('span', `field__sort-icon is-${field.config.order}`);
+  const sortEl = dom('div', 'field__sort t-label', [dom('span', 'field__sort-text', field.label), markerEl]);
 
   events(sortEl, { click: setSort });
   prop(sortEl, ['title', `Sort by ${field.label}`]);

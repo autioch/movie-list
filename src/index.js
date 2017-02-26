@@ -2,8 +2,8 @@
 const errorsEl = document.querySelector('.js-errors');
 
 /* Setup error handler as soon as possible. */
-window.addEventListener('error', (e) => {
-  errorsEl.textContent = e.message;
+window.addEventListener('error', (err) => {
+  errorsEl.textContent = err.message;
 }, false);
 
 /* This should hide browser address bar. */
@@ -29,6 +29,6 @@ Promise
   .then((schemaAndItems) => appViewFactory(appModelFactory(...schemaAndItems)))
 
   /* If data can't be fetched, just die. */
-  .catch(() => {
-    errorsEl.textContent = 'Failed to fetch data';
+  .catch((err) => {
+    errorsEl.textContent = err;
   });

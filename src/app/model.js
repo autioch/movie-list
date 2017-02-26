@@ -1,6 +1,6 @@
 const dictionary = require('./dictionary');
 const sortsModelFactory = require('./sorts');
-const filterModelFactory = require('filters/types/model');
+const fieldModelFactory = require('fields/types/model');
 
 module.exports = function appModelFactory(schema, totalItems) {
   const totalCount = totalItems.length;
@@ -13,7 +13,7 @@ module.exports = function appModelFactory(schema, totalItems) {
     onChange
   };
 
-  const fields = schema.fields.map((field) => filterModelFactory(field, api));
+  const fields = schema.fields.map((field) => fieldModelFactory(field, api));
 
   let callbackFn = () => {};
   let currentItems = totalItems.slice(0);

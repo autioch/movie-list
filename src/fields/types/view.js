@@ -4,6 +4,6 @@ const factories = {
   '3': require('./dictionary/view')
 };
 
-module.exports = function filterViewFactory(field, appModel) {
+module.exports = function fieldViewFactory(field, appModel) {
   return factories[field.type](field, appModel);
 };

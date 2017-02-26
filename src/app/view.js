@@ -1,4 +1,4 @@
-const filtersViewFactory = require('../filters/view');
+const fieldsViewFactory = require('../fields/view');
 const countViewFactory = require('../count/view');
 const listViewFactory = require('../list/view');
 const legendViewFactory = require('../legend/view');
@@ -18,7 +18,7 @@ module.exports = function viewFactory(appModel) {
   const statsView = statsViewFactory(appModel);
   const stats = document.querySelector('.stats');
 
-  document.querySelector('.filters').appendChild(filtersViewFactory(appModel).el);
+  document.querySelector('.filters').appendChild(fieldsViewFactory(appModel).el);
   stats.appendChild(countView.el);
   stats.appendChild(statsView.el);
   stats.appendChild(legendViewFactory(appModel).el);

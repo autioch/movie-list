@@ -2,7 +2,7 @@ const dom = require('utils/dom');
 const prop = require('utils/prop');
 const fragment = require('utils/fragment');
 
-module.exports = function selectViewFactory(field, el = dom('select', 'field-dictionary__select t-input js-filter')) {
+module.exports = function selectViewFactory(field, el = dom('select', 'field-dictionary__select t-input')) {
   prop(el, ['title', `Filter by ${field.label}`]);
 
   const { options, selected } = field.query();

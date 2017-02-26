@@ -9,7 +9,7 @@ require('./style');
 module.exports = function textViewFactory(field, el = dom('section', 'field')) {
   const { syncFilter } = baseViewFactory(field, el);
   const selectView = selectViewFactory(field);
-  const resetEl = dom('span', 'field__filter-reset t-btn js-reset');
+  const resetEl = dom('span', 'field__filter-reset t-btn');
 
   prop(resetEl, ['title', `Reset ${field.label} filter`]);
   events(resetEl, { click: resetFilter });

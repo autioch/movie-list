@@ -10,9 +10,9 @@ module.exports = function textViewFactory(field, el = dom('section', 'field')) {
   const { syncFilter } = baseViewFactory(field, el);
   const { label, fromValue, toValue } = field.query();
 
-  const fromEl = dom('input', 'field-range__input t-input js-from');
-  const toEl = dom('input', 'field-range__input t-input js-to');
-  const resetEl = dom('span', 'field__filter-reset t-btn js-reset');
+  const fromEl = dom('input', 'field-range__input t-input');
+  const toEl = dom('input', 'field-range__input t-input');
+  const resetEl = dom('span', 'field__filter-reset t-btn');
 
   el.appendChild(dom('div', 'field__filter', [
     dom('span', 'field-range__text t-hint', 'From'),

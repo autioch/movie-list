@@ -8,8 +8,8 @@ require('./style');
 
 module.exports = function textViewFactory(field, el = dom('section', 'field')) {
   const { syncFilter } = baseViewFactory(field, el);
-  const inputEl = dom('input', 'field-text__input t-input js-filter');
-  const resetEl = dom('span', 'field__filter-reset t-btn js-reset');
+  const inputEl = dom('input', 'field-text__input t-input');
+  const resetEl = dom('span', 'field__filter-reset t-btn');
 
   prop(inputEl, ['type', 'text', 'value', field.query().value, 'title', `Filter by ${field.label}`]);
   prop(resetEl, ['title', `Reset ${field.label} filter`]);
