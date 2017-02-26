@@ -4,6 +4,6 @@ const factories = {
   '3': require('./dictionary/model')
 };
 
-module.exports = function filterModelFactory(field, app) {
-  return factories[field.type](field, app);
+module.exports = function filterModelFactory(field, appModel) {
+  return factories[field.type](field, appModel);
 };

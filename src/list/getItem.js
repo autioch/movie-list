@@ -1,5 +1,6 @@
 const dom = require('utils/dom');
 const prop = require('utils/prop');
+const fragment = require('utils/fragment');
 
 const getters = {
   header: (def, item) => dom('span', 'item__title t-header', item[def.key]),
@@ -20,11 +21,12 @@ const getters = {
   warning(def, item) {
     const value = item[def.key];
     const content = Array.isArray(value) ? value : [value];
-    const fragment = document.createDocumentFragment();
+    const frag = fragment();
 
-    content.forEach((val) => fragment.appendChild(dom('li', 'item__warning-item', val)));
+    /* Use fragment to avoid the need for flattening the arrays. */
+    content.forEach((val) => frag.appendChild(dom('li', 'item__warning-item', val)));
 
-    return fragment;
+    return frag;
   }
 };
 

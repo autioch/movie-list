@@ -1,7 +1,7 @@
 const baseModelFactory = require('../base/model');
 
-module.exports = function textModelFactory(attributes, app) {
-  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, app);
+module.exports = function textModelFactory(attributes, appModel) {
+  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
 
   let selected = [];
   let options = [];
@@ -12,7 +12,7 @@ module.exports = function textModelFactory(attributes, app) {
 
   function resetValue() {
     selected = [];
-    app.syncItems();
+    appModel.syncItems();
   }
 
   function test(item) {
@@ -31,7 +31,7 @@ module.exports = function textModelFactory(attributes, app) {
       return resetValue();
     }
     selected = [value];
-    app.syncItems();
+    appModel.syncItems();
   }
 
   function query() {

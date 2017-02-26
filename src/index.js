@@ -26,7 +26,7 @@ Promise
   .all([fetchJson('/data/schema.json'), fetchJson('/data/items.json')])
 
   /* Setup app model and view. */
-  .then((appData) => appViewFactory(appModelFactory(...appData)))
+  .then((schemaAndItems) => appViewFactory(appModelFactory(...schemaAndItems)))
 
   /* If data can't be fetched, just die. */
   .catch(() => {

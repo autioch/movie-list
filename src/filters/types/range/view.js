@@ -2,11 +2,12 @@ const baseViewFactory = require('../base/view');
 const events = require('utils/events');
 const dom = require('utils/dom');
 const prop = require('utils/prop');
+const debounce = require('utils/debounce');
 
 require('./style');
 
 module.exports = function textViewFactory(field, el = dom('section', 'field')) {
-  const { render, syncFilter } = baseViewFactory(field, el);
+  const { syncFilter } = baseViewFactory(field, el);
   const { label, fromValue, toValue } = field.query();
 
   const fromEl = dom('input', 'field-range__input t-input js-from');
@@ -38,14 +39,9 @@ module.exports = function textViewFactory(field, el = dom('section', 'field')) {
     syncFilter();
   }
 
-  events(el, {
-    'keyup from': setFromValue,
-    'keyup to': setToValue,
-    'click reset': resetFilter
-  });
+  events(fromEl, { keyup: debounce(setFromValue) });
+  events(toEl, { keyup: debounce(setToValue) });
+  events(resetEl, { click: resetFilter });
 
-  return {
-    el,
-    render
-  };
+  return { el };
 };

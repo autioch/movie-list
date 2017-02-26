@@ -1,37 +1,14 @@
-/* One time binder for dom events. Can't unbind (no need here). */
-const DEBOUNCE_TIME = 250;
-
-function matches(el, selector) {
-  return (el.matches || el.matchesSelector || el.msMatchesSelector).call(el, selector);
-}
-
-function debounce(debouncedFn, msToWait) {
-  let timeout;
-
-  return function exposed() {
-    const args = arguments;
-
-    function later() {
-      timeout = null;
-      debouncedFn(args);
-    }
-
-    clearTimeout(timeout);
-    timeout = setTimeout(later, msToWait);
-  };
-}
-
+/**
+ * Binds events to the element. No delegation. The same hash can be used unbind these events.
+ * No events are unbound in the application, so there's no function that does this.
+ * @param  {HTMLElement} el        Element to add listeners.
+ * @param  {Object} eventHash      Object where keys are event names, and values are handlers.
+ * @return {HTMLElement}           Element paased as an argument.
+ */
 module.exports = function events(el, eventHash) {
-  Object.keys(eventHash).forEach((key) => {
-    const eventDesc = key.split(' ');
-    const eventName = eventDesc.shift();
-    const selector = `.js-${eventDesc.join(' ')}`;
-    let handler = eventHash[key];
+  Object
+    .keys(eventHash)
+    .forEach((eventName) => el.addEventListener(eventName, eventHash[eventName]));
 
-    if (eventName === 'keyup') {
-      handler = debounce(handler, DEBOUNCE_TIME);
-    }
-
-    el.addEventListener(eventName, (ev) => matches(ev.target, selector) && handler(ev));
-  });
+  return el;
 };

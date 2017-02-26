@@ -3,21 +3,12 @@ const filterViewFactory = require('filters/types/view');
 
 require('./style');
 
-module.exports = function filtersViewFactory(app, el = dom('div', 'field-list')) {
-  const fragment = document.createDocumentFragment();
-
-  app.query().fields
+module.exports = function filtersViewFactory(appModel, el = dom('div', 'field-list')) {
+  appModel
+    .query()
+    .fields
     .filter((field) => !field.hidden)
-    .forEach((field) => fragment.appendChild(filterViewFactory(field).render()));
+    .forEach((field) => el.appendChild(filterViewFactory(field).el));
 
-  el.appendChild(fragment);
-
-  function render() {
-    return el;
-  }
-
-  return {
-    el,
-    render
-  };
+  return { el };
 };

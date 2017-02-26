@@ -22,7 +22,7 @@ function getLabel(key) {
   return label[0].toUpperCase() + label.slice(1);
 }
 
-module.exports = function baseModelFactory(attributes, app) {
+module.exports = function baseModelFactory(attributes, appModel) {
   const config = Object.assign({}, DEFAULTS, attributes);
   const label = getLabel(config.key);
 
@@ -39,12 +39,12 @@ module.exports = function baseModelFactory(attributes, app) {
 
   function resetSort() {
     config.order = ORDER.NONE;
-    app.removeSort(config.key);
+    appModel.removeSort(config.key);
   }
 
   function invertSort() {
     config.order = ORDER_INVERSION[config.order];
-    app.addSort({
+    appModel.addSort({
       key: config.key,
       order: config.order,
       orderInverse: ORDER_INVERSION[config.order],

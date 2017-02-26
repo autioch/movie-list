@@ -1,9 +1,6 @@
 const dictionary = require('./dictionary');
 const sortsModelFactory = require('./sorts');
-const statRange = require('./statRange');
 const filterModelFactory = require('filters/types/model');
-
-const RANGE_TYPE = 2;
 
 module.exports = function appModelFactory(schema, totalItems) {
   const totalCount = totalItems.length;
@@ -21,7 +18,6 @@ module.exports = function appModelFactory(schema, totalItems) {
   let callbackFn = () => {};
   let currentItems = totalItems.slice(0);
   let currentCount = currentItems.length;
-  let stats = [];
 
   function syncItems() {
     currentItems = sorts.applySorts(filterItems(totalItems.slice(0)));
@@ -37,12 +33,7 @@ module.exports = function appModelFactory(schema, totalItems) {
   }
 
   function generateStats() {
-    stats = fields
-      .filter((field) => field.type === RANGE_TYPE)
-      .map((field) => ({
-        label: field.label,
-        items: statRange(currentItems.map((item) => item[field.key]))
-      }));
+    fields.forEach((field) => field.stat && field.stat(currentItems));
   }
 
   function addSort(newSort) {
@@ -65,8 +56,7 @@ module.exports = function appModelFactory(schema, totalItems) {
       count: currentCount,
       items: currentItems,
       fields,
-      schema,
-      stats
+      schema
     };
   }
 

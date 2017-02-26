@@ -4,7 +4,7 @@ require('./style');
 
 const levelCount = 5;
 
-module.exports = function legendViewFactory(app, el = dom('div', 'stat-list')) {
+module.exports = function legendViewFactory(appModel, el = dom('div', 'stat-list')) {
   const levels = [];
 
   for (let i = levelCount; i > -1; i--) {
@@ -17,10 +17,5 @@ module.exports = function legendViewFactory(app, el = dom('div', 'stat-list')) {
   el.appendChild(header);
   el.appendChild(list);
 
-  return {
-    el,
-    render() {
-      return el;
-    }
-  };
+  return { el };
 };

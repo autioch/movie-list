@@ -6,24 +6,26 @@ const statsViewFactory = require('../stats/view');
 
 require('./style');
 
+/**
+ * Application view. Consists of smaller views.
+ *
+ * @param  {Object}    appModel Application  model.
+ * @return {undefined}          Nothing.
+ */
 module.exports = function viewFactory(appModel) {
-  const filtersView = filtersViewFactory(appModel);
-  const legendView = legendViewFactory(appModel);
   const countView = countViewFactory(appModel);
   const listView = listViewFactory(appModel, document.querySelector('.item-list'));
   const statsView = statsViewFactory(appModel);
-
   const stats = document.querySelector('.stats');
 
-  listView.render();
-  document.querySelector('.filters').appendChild(filtersView.render());
-  stats.appendChild(countView.render());
-  stats.appendChild(statsView.render());
-  stats.appendChild(legendView.render());
+  document.querySelector('.filters').appendChild(filtersViewFactory(appModel).el);
+  stats.appendChild(countView.el);
+  stats.appendChild(statsView.el);
+  stats.appendChild(legendViewFactory(appModel).el);
 
   appModel.onChange(() => {
-    countView.render();
-    listView.render();
-    statsView.render();
+    countView.update();
+    listView.update();
+    statsView.update();
   });
 };

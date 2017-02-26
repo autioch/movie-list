@@ -1,7 +1,7 @@
 const baseModelFactory = require('../base/model');
 
-module.exports = function textModelFactory(attributes, app) {
-  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, app);
+module.exports = function textModelFactory(attributes, appModel) {
+  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
 
   let value = attributes.value || '';
   let regex = new RegExp('', 'i');
@@ -13,7 +13,7 @@ module.exports = function textModelFactory(attributes, app) {
   function resetValue() {
     value = '';
     regex = new RegExp('', 'i');
-    app.syncItems();
+    appModel.syncItems();
   }
 
   function test(item) {
@@ -23,7 +23,7 @@ module.exports = function textModelFactory(attributes, app) {
   function setValue(newValue) {
     value = newValue;
     regex = new RegExp(value.split('').join('.?'), 'i');
-    app.syncItems();
+    appModel.syncItems();
   }
 
   function query() {
