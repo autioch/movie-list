@@ -1,4 +1,4 @@
-.item__warning {
+.item-warning {
   position: relative;
   display: inline-block;
   font-size: .9rem;
@@ -10,20 +10,20 @@
 
   &:hover {
 
-    .item__warning-list {
+    .item-warning__list {
       display: block;
     }
   }
 }
 
-.item__warning-icon {
+.item-warning__icon {
   font-weight: bold;
   margin-left: .5rem;
   padding: .5rem;
   cursor: default;
 }
 
-.item__warning-list {
+.item-warning__list {
   list-style-type: none;
   position: absolute;
   display: none;
@@ -31,7 +31,7 @@
   z-index: 1;
 }
 
-.item__warning-item {
+.item-warning__item {
 
   &::before {
     content: '-';

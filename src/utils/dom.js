@@ -8,7 +8,9 @@
 module.exports = function dom(tagName, className, children) {
   const el = document.createElement(tagName);
 
-  el.className = className;
+  if (className) {
+    el.className = className;
+  }
 
   if (children === undefined) {
     return el;

@@ -1,35 +1,7 @@
+@import 'list';
+@import 'item';
 @import 'description';
 @import 'warning';
+@import 'detail';
 @import 'summary';
-
-.item-list {
-
-  /* Prevents repaints on scroll */
-  transform: translateZ(0);
-  flex: 1;
-
-  @media print {
-    height: auto;
-    overflow: visible;
-  }
-}
-
-.item-list__message {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-}
-
-
-.item {
-  margin: .5rem;
-  display: flex;
-  justify-content: space-between;
-
-  @media print {
-    display: block;
-    margin: .5rem 0 0;
-  }
-}
+@import 'link';

@@ -21,15 +21,3 @@
     margin: 0;
   }
 }
-
-.item__detail {
-  font-size: .9rem;
-
-  @media print {
-    display: none;
-  }
-}
-
-.item__detail-content {
-  margin-right: .5rem;
-}

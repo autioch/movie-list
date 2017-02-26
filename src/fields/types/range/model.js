@@ -42,7 +42,7 @@ module.exports = function rangeModelFactory(attributes, appModel) {
     appModel.syncItems();
   }
 
-  function stat(items) {
+  function getStats(items) {
     stats = generateStats(items.map((item) => item[config.key]));
   }
 
@@ -64,7 +64,8 @@ module.exports = function rangeModelFactory(attributes, appModel) {
     makeSort,
     hasValue,
     test,
-    stat,
+    getStats,
+    stat: config.stat,
     query,
     label,
     config,

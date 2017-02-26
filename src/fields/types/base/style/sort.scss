@@ -5,9 +5,6 @@
 
   @media print {
     margin: 0;
-    /* TODO Hardcoded value.
-     * Instead, filters should use table display to align values properly. */
-    width: 20em;
   }
 }
 

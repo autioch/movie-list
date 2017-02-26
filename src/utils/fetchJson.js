@@ -14,6 +14,8 @@ module.exports = function fetchJson(url) {
     request.onload = function() {
       if (request.status >= HTTP_OK && request.status < HTTP_ERROR) {
         resolve(JSON.parse(this.responseText));
+      } else {
+        reject(request.statusText);
       }
     };
     request.onerror = reject;

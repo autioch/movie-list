@@ -3,6 +3,7 @@ const countViewFactory = require('../count/view');
 const listViewFactory = require('../list/view');
 const legendViewFactory = require('../legend/view');
 const statsViewFactory = require('../stats/view');
+const delve = require('utils/delve');
 
 require('./style');
 
@@ -14,14 +15,14 @@ require('./style');
  */
 module.exports = function viewFactory(appModel) {
   const countView = countViewFactory(appModel);
-  const listView = listViewFactory(appModel, document.querySelector('.item-list'));
+  const listView = listViewFactory(appModel, delve(document, 'center'));
   const statsView = statsViewFactory(appModel);
-  const stats = document.querySelector('.stats');
+  const rightEl = delve(document, 'right');
 
-  document.querySelector('.filters').appendChild(fieldsViewFactory(appModel).el);
-  stats.appendChild(countView.el);
-  stats.appendChild(statsView.el);
-  stats.appendChild(legendViewFactory(appModel).el);
+  delve(document, 'left').appendChild(fieldsViewFactory(appModel).el);
+  rightEl.appendChild(countView.el);
+  rightEl.appendChild(statsView.el);
+  rightEl.appendChild(legendViewFactory(appModel).el);
 
   appModel.onChange(() => {
     countView.update();

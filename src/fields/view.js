@@ -7,7 +7,7 @@ module.exports = function fieldsViewFactory(appModel, el = dom('div', 'field-lis
   appModel
     .query()
     .fields
-    .filter((field) => !field.hidden)
+    .filter((field) => !field.config.hidden)
     .forEach((field) => el.appendChild(fieldViewFactory(field).el));
 
   return { el };

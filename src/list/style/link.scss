@@ -1,0 +1,24 @@
+.item__link {
+  height: 1.2rem;
+  padding: .25rem;
+  transition: opacity 250ms;
+  display: inline-block;
+  opacity: .6;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  > img {
+    height: 100%;
+  }
+
+
+  &:last-child {
+    margin-right: -.3rem;
+  }
+
+  @media print {
+    display: none;
+  }
+}

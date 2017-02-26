@@ -1,8 +1,4 @@
 .field-dictionary__select {
   flex-grow: 1;
-  max-width: 100%;
-
-  .is-filter-active & {
-    max-width: calc(100% - 2em);
-  }
+  width: 1em;
 }

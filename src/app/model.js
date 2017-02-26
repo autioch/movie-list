@@ -33,7 +33,7 @@ module.exports = function appModelFactory(schema, totalItems) {
   }
 
   function generateStats() {
-    fields.forEach((field) => field.stat && field.stat(currentItems));
+    fields.forEach((field) => field.stat && field.getStats(currentItems));
   }
 
   function addSort(newSort) {

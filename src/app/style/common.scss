@@ -1,34 +1,3 @@
-// sass-lint:disable variable-for-property
-
-html {
-  color: $t-text;
-  background-color: $t-bg;
-}
-
-body {
-
-  @media print {
-    display: block;
-  }
-}
-
-.header__title {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-.header__description {
-  font-size: 1rem;
-  font-weight: normal;
-  margin: 0 0 1em;
-
-  @media print {
-    display: none;
-    margin: 0;
-  }
-}
-
-
 .t-box {
   background-color: $t-box--background;
   box-shadow: 0 0 .25rem $t-box--shadow;

@@ -2,7 +2,7 @@ const dom = require('utils/dom');
 
 require('./style');
 
-module.exports = function countViewFactory(appModel, el = dom('div', 'stat-list')) {
+module.exports = function countViewFactory(appModel, el = dom('section', 'count')) {
   const visible = dom('header', 'count__visible t-value');
   const filtered = dom('footer', 'count__filtered t-hint');
 

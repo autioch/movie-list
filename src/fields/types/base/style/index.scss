@@ -2,13 +2,17 @@
 @import 'sort';
 
 .field {
-  margin: 2em 0;
+  margin: 1em 0 2em;
 
   &:hover {
 
     .field__sort-icon {
       opacity: .8;
     }
+  }
+
+  &:last-child {
+    margin-bottom: .25rem;
   }
 
   @media print {

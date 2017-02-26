@@ -1,5 +1,7 @@
+const delve = require('utils/delve');
+
 /* "Logger" for errors. */
-const errorsEl = document.querySelector('.js-errors');
+const errorsEl = delve(document, 'errors');
 
 /* Setup error handler as soon as possible. */
 window.addEventListener('error', (err) => {
