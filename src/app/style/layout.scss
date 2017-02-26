@@ -36,6 +36,11 @@ body {
   @media (max-width: 800px) {
     position: fixed;
   }
+
+  @media print {
+    width: 100%;
+    position: static !important;
+  }
 }
 
 .panel--right {

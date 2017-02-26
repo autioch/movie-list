@@ -7,6 +7,7 @@
   @media print {
     height: auto;
     overflow: visible;
+    margin: 0 !important;
   }
 
   @media (max-width: 800px) {
