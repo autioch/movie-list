@@ -14,15 +14,21 @@ require('./style');
  * @return {undefined}          Nothing.
  */
 module.exports = function viewFactory(appModel) {
-  const countView = countViewFactory(appModel);
-  const listView = listViewFactory(appModel, delve(document, 'center'));
-  const statsView = statsViewFactory(appModel);
-  const rightEl = delve(document, 'right');
+  const bodyEl = document.body;
+  const leftPanelEl = delve(bodyEl, 'left');
+  const centerPanelEl = delve(bodyEl, 'center');
+  const rightPanelEl = delve(bodyEl, 'right');
 
-  delve(document, 'left').appendChild(fieldsViewFactory(appModel).el);
-  rightEl.appendChild(countView.el);
-  rightEl.appendChild(statsView.el);
-  rightEl.appendChild(legendViewFactory(appModel).el);
+  const countView = countViewFactory(appModel);
+  const statsView = statsViewFactory(appModel);
+  const fieldsView = fieldsViewFactory(appModel);
+  const legendView = legendViewFactory(appModel);
+  const listView = listViewFactory(appModel, centerPanelEl);
+
+  leftPanelEl.appendChild(fieldsView.el);
+  rightPanelEl.appendChild(countView.el);
+  rightPanelEl.appendChild(statsView.el);
+  rightPanelEl.appendChild(legendView.el);
 
   appModel.onChange(() => {
     countView.update();

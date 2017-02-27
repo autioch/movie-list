@@ -23,10 +23,8 @@ module.exports = function dom(tagName, className, children) {
     }
   } else if (children instanceof Node) {
     el.appendChild(children);
-  } else if (typeof children === 'string') {
+  } else {
     el.textContent = children;
-  } else if (typeof children === 'number') {
-    el.textContent = children.toString();
   }
 
   return el;

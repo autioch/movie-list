@@ -5,7 +5,7 @@ const fragment = require('utils/fragment');
 
 require('./style');
 
-module.exports = function listViewFactory(appModel, el = dom('div', 'stat-list')) {
+module.exports = function listViewFactory(appModel, el = dom('main', 'item-list')) {
   const noMatchEl = dom('div', 'item-list__message', 'No items match filters.');
 
   function update() {
