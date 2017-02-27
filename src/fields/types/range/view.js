@@ -43,5 +43,17 @@ module.exports = function textViewFactory(field, el = dom('section', 'field')) {
   events(toEl, { keyup: debounce(setToValue) });
   events(resetEl, { click: resetFilter });
 
-  return { el };
+  function update() {
+    const { stats } = field.query();
+
+    fromEl.placeholder = stats[5].value;
+    toEl.placeholder = stats[3].value;
+  }
+
+  update();
+
+  return {
+    el,
+    update
+  };
 };

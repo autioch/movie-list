@@ -28,5 +28,12 @@ module.exports = function textViewFactory(field, el = dom('section', 'field')) {
     syncFilter();
   }
 
-  return { el };
+  function update() {
+
+  }
+
+  return {
+    el,
+    update
+  };
 };

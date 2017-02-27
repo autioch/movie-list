@@ -34,5 +34,6 @@ module.exports = function viewFactory(appModel) {
     countView.update();
     listView.update();
     statsView.update();
+    fieldsView.update();
   });
 };

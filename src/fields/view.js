@@ -4,11 +4,20 @@ const fieldViewFactory = require('fields/types/view');
 require('./style');
 
 module.exports = function fieldsViewFactory(appModel, el = dom('div', 'field-list')) {
-  appModel
+  const fieldViews = appModel
     .query()
     .fields
     .filter((field) => !field.config.hidden)
-    .forEach((field) => el.appendChild(fieldViewFactory(field).el));
+    .map((field) => fieldViewFactory(field));
 
-  return { el };
+  fieldViews.forEach((fieldView) => el.appendChild(fieldView.el));
+
+  function update() {
+    fieldViews.forEach((fieldView) => fieldView.update());
+  }
+
+  return {
+    el,
+    update
+  };
 };
