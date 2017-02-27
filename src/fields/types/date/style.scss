@@ -1,0 +1,17 @@
+//sass-lint:disable no-vendor-prefixes
+.field-date__text {
+  margin: 0 .5em;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.field-date__input {
+  flex-grow: 1;
+  width: 1em;
+
+  &::-ms-clear {
+    display: none;
+  }
+}
