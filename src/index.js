@@ -22,6 +22,8 @@ const fetchJson = require('utils/fetchJson');
 
 /* Application icon. */
 require('./favicon.ico');
+require('./themes/dark');
+require('./themes/light');
 
 /* Fetch items and application schema. */
 Promise

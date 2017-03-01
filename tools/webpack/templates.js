@@ -19,7 +19,13 @@ module.exports = function templates(webpackConfig, setup) {
       template: path.join(setup.sourcePath, 'index.html'),
       filename: 'index.html',
       allChunks: true,
-      injest: 'body'
+      injest: 'body',
+      themes: ['dark', 'light'],
+      minify: setup.isProduction ? {
+        collapseWhitespace: true,
+        minifyCSS: true,
+        removeComments: true
+      } : false
     }),
     new StringReplacePlugin()
   );
