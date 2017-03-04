@@ -1,5 +1,5 @@
 # Movie list
-Simple browser for videos extracted using `movie-collector`.
+Configurable movies browser. Can be used to list, filter, stat basically anything.
 
 # Installation
 `npm install qb-movie-list`.
