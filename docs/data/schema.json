@@ -1,0 +1,57 @@
+{
+  "header":[
+    {"key":"title"}
+  ],
+  "warning":[
+    {"key":"errors"}
+  ],
+  "content":[
+    {"key":"plot"}
+  ],
+  "details":[
+    {"hidden":false,"key":"genre","label":"Genre"},
+    {"hidden":true ,"key":"director","label":"Director"},
+    {"hidden":true ,"key":"writer","label":"Writer"},
+    {"hidden":true ,"key":"actors","label":"Actors"},
+    {"hidden":true ,"key":"subtitles","label":"Subtitles"}
+  ],
+  "links":[
+    {"hidden":true ,"key":"metacritic","label":"Metacritic","template":"http://www.metacritic.com/search/movie/#{title}/results?date_range_from=#{year}"},
+    {"hidden":false,"key":"imdb","label":"IMDB","template":"http://www.imdb.com/find?q=#{title}&s=tt&ttype=ft&ref_=fn_ft"},
+    {"hidden":false,"key":"filmweb","label":"Filmeb","template":"http://www.filmweb.pl/search/film?q=#{title}"},
+    {"hidden":true ,"key":"rotten","label":"Rotten Tomatoes","template":"https://www.rottentomatoes.com/search/?search=#{title}"},
+    {"hidden":false,"key":"google","label":"Google","template":"https://www.google.pl/search?q=movie+#{title}"}
+  ],
+  "summary":[
+    {"hidden":false,"key":"year","template":"#{year}","ranked":false},
+    {"hidden":true ,"key":"duration","template":"#{duration}min","ranked":false},
+    {"hidden":true ,"key":"rated","template":"#{rated} rated","ranked":true},
+    {"hidden":false,"key":"metascore","template":"#{metascore} metascore","ranked":true},
+    {"hidden":false,"key":"imdbRating","template":"#{imdbRating} rating (#{imdbVotesRounded} votes)","ranked":true},
+    {"hidden":true ,"key":"added","template":"#{added} added"}
+  ],
+  "fields":[
+    {"type":1,"stat":true ,"hidden":false,"key":"title"},
+    {"type":3,"stat":true ,"hidden":false,"key":"genre"},
+    {"type":1,"stat":true ,"hidden":false,"key":"plot"},
+    {"type":2,"stat":true ,"hidden":false,"key":"year"},
+    {"type":2,"stat":true ,"hidden":false,"key":"metascore"},
+    {"type":2,"stat":true ,"hidden":false,"key":"imdbRating"},
+    {"type":2,"stat":true ,"hidden":true ,"key":"imdbVotes"},
+    {"type":3,"stat":true ,"hidden":false,"key":"actors"},
+    {"type":3,"stat":true ,"hidden":false,"key":"director"},
+    {"type":3,"stat":true ,"hidden":false,"key":"writer"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"rated"},
+    {"type":3,"stat":true ,"hidden":false,"key":"subtitles"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"displayAspectRatio"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"errors"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"formatLongName"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"fps"},
+    {"type":4,"stat":false,"hidden":false,"key":"added"},
+    {"type":2,"stat":true ,"hidden":true ,"key":"duration"},
+    {"type":2,"stat":false,"hidden":true ,"key":"height"},
+    {"type":2,"stat":false,"hidden":true ,"key":"width"},
+    {"type":2,"stat":false,"hidden":true ,"key":"size"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"audioChannels"}
+  ]
+}

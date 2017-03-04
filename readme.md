@@ -97,3 +97,8 @@ In addition, fields can have `stat` property. If it's set to true, stats for the
 ## Themes
 By default, application produces 2 themes, `themes/dark.css` and `themes/light.css`. Light theme is attached by default, but this can be changed in the produced html.
 Additional themes can be produced by cloning existing theme and replacing colors.
+
+# Random fun facts
+1. Compilied application weights 25kb - both styles and scripts.
+2. This application does not use any libraries besides building process.
+3. There's no virtual dom. All optimizations are done by hand.
