@@ -1,7 +1,6 @@
 {
-  "name": "movie-list",
-  "private": true,
-  "version": "0.2.0",
+  "name": "qb-movie-list",
+  "version": "1.0.1",
   "description": "Viewer for data collected with movie-collector",
   "author": "autioch",
   "license": "ISC",

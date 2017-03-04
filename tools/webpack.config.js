@@ -17,7 +17,7 @@ module.exports = require('./webpack')({
   sourcePath: path.join(projectPath, 'src'),
 
   /* Name of the folder. It's relative to projectPath. */
-  buildFolder: 'dist',
+  buildFolder: path.join(projectPath, 'dist'),
 
   /* Suffix appended to every js css file for cache busting for new publishes. */
   nameSuffix: new Date().getTime() + (isProduction ? '.min' : ''),
