@@ -1,13 +1,16 @@
-const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 /* Configures config for production. */
-module.exports = function development(webpackConfig) {
+module.exports = function development(webpackConfig, setup) {
   /* Adds sourcemaps for js.*/
   webpackConfig.devtool = '#eval';
 
   /* Runs livereload. */
-  webpackConfig.plugins.push(new LiveReloadPlugin({
-    appendScriptTag: true,
-    ignore: /.(js|config|ico|woff)$/
-  }));
+  if (setup.isWatch) {
+    const LiveReloadPlugin = require('webpack-livereload-plugin');
+
+    webpackConfig.plugins.push(new LiveReloadPlugin({
+      appendScriptTag: true,
+      ignore: /.(js|config|ico|woff)$/
+    }));
+  }
 };

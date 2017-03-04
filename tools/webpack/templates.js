@@ -12,7 +12,6 @@ module.exports = function templates(webpackConfig, setup) {
     test: /\.ico$/i,
     exclude: /node_modules/,
     loader: 'file?name=[name].[ext]'
-
   });
   webpackConfig.plugins.push(
     new HtmlWebpackPlugin({

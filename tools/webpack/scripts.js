@@ -1,7 +1,5 @@
-const path = require('path');
-
 /* Sets up entry files. */
-module.exports = function input(webpackConfig, setup) {
+module.exports = function input(webpackConfig) {
   webpackConfig.module.loaders.push({
     test: /\.js$/,
     exclude: /node_modules/,
@@ -11,6 +9,4 @@ module.exports = function input(webpackConfig, setup) {
       presets: [['es2015', { 'loose': true }]]
     }
   });
-
-  webpackConfig.resolve.root.push(path.join(setup.projectPath, 'node_modules'));
 };

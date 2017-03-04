@@ -2,7 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const webpackConfig = require('./tools/webpack');
-const projectPath = path.resolve('.');
+const projectPath = path.resolve(__dirname);
 
 module.exports = function movieList(options) {
   const isProduction = options.isProduction === undefined ? true : options.isProduction;

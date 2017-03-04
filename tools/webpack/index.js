@@ -2,17 +2,12 @@
 const path = require('path');
 
 const mixins = [
-  require('./aliases'),
   require('./enviroment'),
-  require('./externals'),
-  require('./fonts'),
   require('./input'),
-  require('./mocks'),
   require('./output'),
   require('./scripts'),
   require('./styles'),
   require('./templates'),
-  require('./logger'), // This should be after all other parts
   require('./validation') // This should be after all other parts
 ];
 
@@ -32,7 +27,7 @@ module.exports = function configure(setup) {
     module: { loaders: [] },
     plugins: [],
     resolveLoader: {
-      root: [path.join(setup.projectPath, 'node_modules')],
+      root: [],
       alias: {}
     },
     stats: {

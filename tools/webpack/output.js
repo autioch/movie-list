@@ -12,7 +12,7 @@ module.exports = function output(webpackConfig, setup) {
   /* Remove previous results of the build. */
   webpackConfig.plugins.push(new CleanWebpackPlugin([setup.buildFolder], {
     root: setup.projectPath,
-    verbose: true,
+    verbose: false,
     dry: false,
     exclude: ['data']
   }));
