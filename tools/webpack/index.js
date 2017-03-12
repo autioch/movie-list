@@ -8,7 +8,9 @@ const mixins = [
   require('./scripts'),
   require('./styles'),
   require('./templates'),
-  require('./validation') // This should be after all other parts
+
+  // This should be after all other parts
+  require('./validation')
 ];
 
 module.exports = function configure(setup) {
@@ -24,14 +26,17 @@ module.exports = function configure(setup) {
       extensions: ['', '.js'],
       alias: {}
     },
-    module: { loaders: [] },
+    module: {
+      loaders: []
+    },
     plugins: [],
     resolveLoader: {
       root: [],
       alias: {}
     },
     stats: {
-      children: false, // Avoid "child extract-text-webpack-plugin" spam,
+      // Avoid "child extract-text-webpack-plugin" spam
+      children: false,
       hash: false,
       version: false,
       colors: true

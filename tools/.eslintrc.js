@@ -1,19 +1,15 @@
 module.exports = {
-  extends: [
-    './eslint/enviroment',
-    './eslint/best-practices',
-    './eslint/common-js',
-    './eslint/es6',
-    './eslint/possible-errors',
-    './eslint/strict-mode',
-    './eslint/stylistic-issues',
-    './eslint/variables'
-  ].map(require.resolve),
+  extends: 'qb',
   root: true,
-  env: {
-    node: true
-  },
+  // env: {
+  //   node: true
+  // },
   rules: {
-    'no-console': ['off']
+    'no-console': ['off'],
+    'no-unused-vars': ['error', {
+      'vars': 'all',
+      'args': 'after-used',
+      'ignoreRestSiblings': false
+    }],
   }
 };

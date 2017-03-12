@@ -1,6 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const Joi = require('webpack-validator').Joi;
+const { Joi } = require('webpack-validator');
 const path = require('path');
 
 /* Adds support for scss styles. */
@@ -24,7 +24,9 @@ module.exports = function styles(webpackConfig, setup, schemaExtension) {
     loader: ExtractTextPlugin.extract('style', ['css-loader', 'postcss-loader', 'sass-loader'])
   });
 
-  webpackConfig.sassLoader = { includePaths: [setup.sourcePath] };
+  webpackConfig.sassLoader = {
+    includePaths: [setup.sourcePath]
+  };
 
   schemaExtension.sassLoader = Joi.object();
 };

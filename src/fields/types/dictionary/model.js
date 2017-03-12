@@ -24,14 +24,17 @@ module.exports = function textModelFactory(attributes, appModel) {
     if (Array.isArray(value)) {
       return selected.find((sel) => value.indexOf(sel) > -1);
     }
+
+    return false;
   }
 
   function selectValue(value) {
     if (value === '') {
-      return resetValue();
+      resetValue();
+    } else {
+      selected = [value];
+      appModel.syncItems();
     }
-    selected = [value];
-    appModel.syncItems();
   }
 
   function query() {

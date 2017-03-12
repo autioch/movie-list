@@ -1,3 +1,4 @@
+/* eslint no-magic-numbers: 0 */
 const http = require('http');
 const url = require('url');
 const path = require('path');
@@ -20,7 +21,9 @@ function sendFile(response, file, filename) {
 
 function sendError(response, code, filename) {
   console.log(`${new Date().toTimeString().substr(0, 8)}  ${code}  ${filename}`);
-  response.writeHead(code, { 'Content-Type': 'text/plain' });
+  response.writeHead(code, {
+    'Content-Type': 'text/plain'
+  });
   response.end();
 }
 
@@ -33,16 +36,19 @@ module.exports = function server(webpackConfig, setup) {
 
       fs.exists(filename, function existCallback(exists) {
         if (!exists) {
-          return sendError(response, 404, uri);
+          sendError(response, 404, uri);
+
+          return;
         }
-        if (fs.statSync(filename).isDirectory()) {
+        if (fs.statSync(filename).isDirectory()) { // eslint-disable-line no-sync
           filename += '/index.html';
         }
         fs.readFile(filename, 'binary', function sendBinaryFile(err, file) {
           if (err) {
-            return sendError(response, 500, uri);
+            sendError(response, 500, uri);
+          } else {
+            sendFile(response, file, uri);
           }
-          sendFile(response, file, uri);
         });
       });
     })

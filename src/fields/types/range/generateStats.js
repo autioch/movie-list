@@ -11,7 +11,7 @@ function sortFloat(value1, value2) {
 
 function updateDict(dict, item) {
   if (dict.hasOwnProperty(item)) {
-    dict[item]++;
+    dict[item]++; // eslint-disable-line no-plusplus
   } else {
     dict[item] = 1;
   }
@@ -25,7 +25,7 @@ module.exports = function generateStats(values) {
   let dividend = 0;
   let divider = 0;
   let keysSum = 0;
-  let min = values[0];
+  let [min] = values;
   let max = 0;
   let sum = 0;
 
@@ -41,7 +41,7 @@ module.exports = function generateStats(values) {
       }
       sum += num;
     }
-    updateDict(dict, (value === null || value === undefined) ? 'null' : value.toString());
+    updateDict(dict, value === null || value === undefined ? 'null' : value.toString());
   });
 
   const keys = Object.keys(dict);

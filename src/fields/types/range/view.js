@@ -4,6 +4,9 @@ const dom = require('utils/dom');
 const prop = require('utils/prop');
 const debounce = require('utils/debounce');
 
+const statMaxIndex = 3;
+const statMinIndex = 5;
+
 require('./style');
 
 module.exports = function textViewFactory(field, el = dom('section', 'field')) {
@@ -46,8 +49,8 @@ module.exports = function textViewFactory(field, el = dom('section', 'field')) {
   function update() {
     const { stats } = field.query();
 
-    fromEl.placeholder = stats[5].value;
-    toEl.placeholder = stats[3].value;
+    fromEl.placeholder = stats[statMinIndex].value;
+    toEl.placeholder = stats[statMaxIndex].value;
   }
 
   update();

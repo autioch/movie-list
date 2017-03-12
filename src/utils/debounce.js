@@ -26,7 +26,7 @@ module.exports = function debounce(debouncedFn, msToWait = defaultDebounce) {
    * @return {undefined} Nothing.
    */
   return function exposed() {
-    args = arguments;
+    args = arguments; // eslint-disable-line prefer-rest-params
 
     clearTimeout(timeout);
     timeout = setTimeout(later, msToWait);

@@ -18,8 +18,8 @@ module.exports = function dom(tagName, className, children) {
 
   if (Array.isArray(children)) {
     /* For large amount of children instead of just appending, fragment could be used. */
-    for (let i = 0; i < children.length; i++) {
-      el.appendChild(children[i]);
+    for (let index = 0; index < children.length; index++) {
+      el.appendChild(children[index]);
     }
   } else if (children instanceof Node) {
     el.appendChild(children);

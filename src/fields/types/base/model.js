@@ -17,7 +17,7 @@ const DEFAULTS = {
 };
 
 function getLabel(key) {
-  const label = key.replace(/\.?([A-Z]+)/g, (x, y) => ` ${y}`);
+  const label = key.replace(/\.?([A-Z]+)/g, (match, word) => ` ${word}`);
 
   return label[0].toUpperCase() + label.slice(1);
 }
@@ -32,9 +32,10 @@ module.exports = function baseModelFactory(attributes, appModel) {
 
   function makeSort() {
     if (config.order === ORDER.ASC) {
-      return resetSort();
+      resetSort();
+    } else {
+      invertSort();
     }
-    invertSort();
   }
 
   function resetSort() {

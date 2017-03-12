@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: 1 */
 const dom = require('utils/dom');
 const prop = require('utils/prop');
 const fragment = require('utils/fragment');
@@ -24,8 +25,9 @@ const getters = {
   },
   summary(def, item) {
     const content = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
+    const rankClassName = def.ranked ? `t-rank__text--${item[`${def.key}Level`]}` : '';
 
-    return dom('li', def.ranked ? `item-summary__list-item t-rank__text--${item[`${def.key}Level`]}` : 'item-summary__list-item', content);
+    return dom('li', def.ranked ? `item-summary__list-item ${rankClassName}` : 'item-summary__list-item', content);
   }
 };
 
@@ -73,10 +75,11 @@ module.exports = function getItem(item, schema) {
 
   const headerContent = dom('header', 'item__header', header.concat(domWarning(warning)));
   const links = schema.links.filter((def) => !def.hidden).map((def) => getLink(def, item));
+  const summaryItems = [dom('li', 'item-summary__list-item', links)].concat(summary);
 
   item.__el = dom('section', 'item t-box', [
     dom('article', 'item__description', [headerContent].concat(content, details)),
-    dom('aside', 'item-summary', dom('ul', 'item-summary__list', [dom('li', 'item-summary__list-item', links)].concat(summary)))
+    dom('aside', 'item-summary', dom('ul', 'item-summary__list', summaryItems))
   ]);
 
   return item.__el;

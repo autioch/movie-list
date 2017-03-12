@@ -11,7 +11,7 @@ module.exports = function fetchJson(url) {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
 
-    request.onload = function() {
+    request.onload = function() { // eslint-disable-line func-names
       if (request.status >= HTTP_OK && request.status < HTTP_ERROR) {
         resolve(JSON.parse(this.responseText));
       } else {

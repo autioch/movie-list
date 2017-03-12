@@ -1,4 +1,3 @@
-
 /* Configures config for production. */
 module.exports = function development(webpackConfig, setup) {
   /* Adds sourcemaps for js.*/
