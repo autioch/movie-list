@@ -2,14 +2,16 @@ const tag = require('lean-tag');
 
 require('./style');
 
-module.exports = function baseViewFactory(field, el = tag('section.field')) {
-  el.appendChild(tag('div.field__sort.t-label',
-                     tag('span.field__sort-text', field.label),
-                     tag(`span.field__sort-icon.t-btn.is-${field.config.order}`),
-                     {
-                       onclick: setSort,
-                       title: `Sort by ${field.label}`
-                     }));
+module.exports = function baseViewFactory(field) {
+  const el = tag('section.field', [
+    tag('div.field__sort.t-label', [
+      tag('span.field__sort-text', field.label),
+      tag(`span.field__sort-icon.t-btn.is-${field.config.order}`)
+    ], {
+      onclick: setSort,
+      title: `Sort by ${field.label}`
+    })
+  ]);
 
   function setSort() {
     field.makeSort();

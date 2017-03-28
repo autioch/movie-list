@@ -2,20 +2,13 @@ const tag = require('lean-tag');
 
 require('./style');
 
-const levelCount = 5;
+const levels = [-1, 0, 1, 2, 3, 4]; // eslint-disable-line no-magic-numbers
 
-module.exports = function legendViewFactory(appModel, el = tag('section.legend')) {
-  const levels = [];
-
-  for (let index = levelCount; index > -1; index--) {
-    levels.push(tag(`li.legend__item.t-rank__bg--${index}.t-hint`));
-  }
-
-  const header = tag('header.legend__header.t-header', 'Ranking');
-  const list = tag('ul.legend__list', levels);
-
-  el.appendChild(header);
-  el.appendChild(list);
+module.exports = function legendViewFactory() {
+  const el = tag('section.legend', [
+    tag('header.legend__header.t-header', 'Ranking'),
+    tag('ul.legend__list', levels.map((level) => tag(`li.legend__item.t-rank__bg--${level}.t-hint`)))
+  ]);
 
   return { el };
 };

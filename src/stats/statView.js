@@ -1,23 +1,25 @@
 const tag = require('lean-tag');
 
-module.exports = function statViewFactory(field, el = tag('section.stat')) {
-  const ulEl = tag('ul.stat__item-list', field.query().stats.map(itemTag));
+module.exports = function statViewFactory(field) {
+  const listEl = tag('ul.stat__item-list', getStatItems());
 
-  function itemTag(item) {
-    return tag('li.stat__item', [
+  const el = tag('section.stat', [
+    tag('header.stat__header.t-header', field.label),
+    listEl
+  ]);
+
+  function getStatItems() {
+    return field.query().stats.map((item) => tag('li.stat__item', [
       tag(`span.stat-item__value.t-value${item.rounded ? '.is-rounded' : ''}`, item.value),
       tag('span.stat-item__label.t-hint', item.key)
-    ]);
+    ]));
   }
 
-  el.appendChild(tag('header.stat__header.t-header', field.label));
-  el.appendChild(ulEl);
-
   function update() {
-    while (ulEl.firstChild) {
-      ulEl.removeChild(ulEl.firstChild);
+    while (listEl.firstChild) {
+      listEl.removeChild(listEl.firstChild);
     }
-    field.query().stats.map(itemTag).forEach((li) => ulEl.appendChild(li));
+    getStatItems().forEach((li) => listEl.appendChild(li));
   }
 
   return {

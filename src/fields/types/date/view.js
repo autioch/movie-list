@@ -4,8 +4,8 @@ const debounce = require('utils/debounce');
 
 require('./style');
 
-module.exports = function dateViewFactory(field, el = tag('section.field')) {
-  const { syncFilter } = baseViewFactory(field, el);
+module.exports = function dateViewFactory(field) {
+  const { el, syncFilter } = baseViewFactory(field);
   const { label, fromDate, toDate } = field.query();
 
   const fromEl = tag('input.field-date__input.t-input', {

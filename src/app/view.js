@@ -13,7 +13,7 @@ require('./style');
  * @param  {Object}    appModel Application  model.
  * @return {undefined}          Nothing.
  */
-module.exports = function viewFactory(appModel) {
+module.exports = function appViewFactory(appModel) {
   const bodyEl = document.body;
   const leftPanelEl = delve(bodyEl, 'left');
   const centerPanelEl = delve(bodyEl, 'center');

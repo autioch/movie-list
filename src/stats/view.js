@@ -3,10 +3,9 @@ const statViewFactory = require('./statView');
 
 require('./style');
 
-module.exports = function statsViewFactory(appModel, el = tag('section.stat-list')) {
+module.exports = function statsViewFactory(appModel) {
   const statViews = appModel.query().fields.filter((field) => field.stat).map((field) => statViewFactory(field));
-
-  statViews.forEach((statView) => el.appendChild(statView.el));
+  const el = tag('section.stat-list', statViews.map((statView) => statView.el));
 
   function update() {
     statViews.forEach((statView) => statView.update());

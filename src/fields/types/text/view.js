@@ -4,22 +4,21 @@ const debounce = require('utils/debounce');
 
 require('./style');
 
-module.exports = function textViewFactory(field, el = tag('section.field')) {
-  const { syncFilter } = baseViewFactory(field, el);
+module.exports = function textViewFactory(field) {
+  const { el, syncFilter } = baseViewFactory(field);
   const inputEl = tag('input.field-text__input.t-input', {
     onkeyup: debounce(setFilter),
     type: 'text',
     value: field.query().value,
     title: `Filter by ${field.label}`
   });
-  const resetEl = tag('span.field__filter-reset.t-btn', {
-    onclick: resetFilter,
-    title: `Reset ${field.label} filter`
-  });
 
   el.appendChild(tag('.field__filter', [
     inputEl,
-    resetEl
+    tag('span.field__filter-reset.t-btn', {
+      onclick: resetFilter,
+      title: `Reset ${field.label} filter`
+    })
   ]));
 
   function setFilter() {
@@ -33,9 +32,7 @@ module.exports = function textViewFactory(field, el = tag('section.field')) {
     syncFilter();
   }
 
-  function update() {
-
-  }
+  function update() {}
 
   return {
     el,

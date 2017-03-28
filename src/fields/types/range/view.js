@@ -7,8 +7,8 @@ const statMinIndex = 5;
 
 require('./style');
 
-module.exports = function textViewFactory(field, el = tag('section.field')) {
-  const { syncFilter } = baseViewFactory(field, el);
+module.exports = function textViewFactory(field) {
+  const { el, syncFilter } = baseViewFactory(field);
   const { label, fromValue, toValue } = field.query();
 
   const fromEl = tag('input.field-range__input.t-input', {
@@ -23,17 +23,16 @@ module.exports = function textViewFactory(field, el = tag('section.field')) {
     title: `Set maximum ${label}`,
     onkeyup: debounce(setToValue)
   });
-  const resetEl = tag('span.field__filter-reset.t-btn', {
-    title: `Reset ${label} filter`,
-    onclick: resetFilter
-  });
 
   el.appendChild(tag('.field__filter', [
     tag('span.field-range__text.t-hint', 'From'),
     fromEl,
     tag('span.field-range__text.t-hint', 'To'),
     toEl,
-    resetEl
+    tag('span.field__filter-reset.t-btn', {
+      title: `Reset ${label} filter`,
+      onclick: resetFilter
+    })
   ]));
 
   function setFromValue() {

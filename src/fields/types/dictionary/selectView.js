@@ -1,8 +1,11 @@
 const fragment = require('utils/fragment');
 const tag = require('lean-tag');
 
-module.exports = function selectViewFactory(field, el = tag('select.field-dictionary__select.t-input')) {
-  el.title = `Filter by ${field.label}`;
+module.exports = function selectViewFactory(field, changeCallback) {
+  const el = tag('select.field-dictionary__select.t-input', {
+    title: `Filter by ${field.label}`,
+    onchange: changeCallback
+  });
 
   const { options, selected } = field.query();
   const frag = fragment();

@@ -2,12 +2,10 @@ const tag = require('lean-tag');
 
 require('./style');
 
-module.exports = function countViewFactory(appModel, el = tag('section.count')) {
+module.exports = function countViewFactory(appModel) {
   const visible = tag('header.count__visible.t-value');
   const filtered = tag('footer.count__filtered.t-hint');
-
-  el.appendChild(visible);
-  el.appendChild(filtered);
+  const el = tag('section.count', [visible, filtered]);
 
   function update() {
     const { count, totalCount } = appModel.query();

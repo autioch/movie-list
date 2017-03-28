@@ -1,10 +1,11 @@
-const getItem = require('./getItem');
+/* eslint no-underscore-dangle: 0 */
+const itemViewFactory = require('./itemView');
 const tag = require('lean-tag');
 const fragment = require('utils/fragment');
 
 require('./style');
 
-module.exports = function listViewFactory(appModel, el = tag('main.item-list')) {
+module.exports = function listViewFactory(appModel, el) {
   const noMatchEl = tag('div.item-list__message', 'No items match filters.');
 
   function update() {
@@ -16,7 +17,10 @@ module.exports = function listViewFactory(appModel, el = tag('main.item-list')) 
     if (items.length) {
       const frag = fragment();
 
-      items.forEach((item) => frag.appendChild(getItem(item, schema)));
+      items.forEach((item) => {
+        item.__el = item.__el || itemViewFactory(item, schema);
+        frag.appendChild(item.__el);
+      });
 
       el.appendChild(frag);
     } else {

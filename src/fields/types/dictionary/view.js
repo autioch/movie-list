@@ -4,17 +4,17 @@ const selectViewFactory = require('./selectView');
 
 require('./style');
 
-module.exports = function textViewFactory(field, el = tag('section.field')) {
-  const { syncFilter } = baseViewFactory(field, el);
+module.exports = function textViewFactory(field) {
+  const { el, syncFilter } = baseViewFactory(field);
   const selectView = selectViewFactory(field, setFilterValue);
-  const resetEl = tag('span.field__filter-reset.t-btn', {
-    title: `Reset ${field.label} filter`,
-    onclick: resetFilter
-  });
 
-  selectView.el.onchange = setFilterValue;
-
-  el.appendChild(tag('div.field__filter', selectView.el, resetEl));
+  el.appendChild(tag('div.field__filter', [
+    selectView.el,
+    tag('span.field__filter-reset.t-btn', {
+      title: `Reset ${field.label} filter`,
+      onclick: resetFilter
+    })
+  ]));
 
   function setFilterValue() {
     field.selectValue(selectView.el.value);
@@ -27,9 +27,7 @@ module.exports = function textViewFactory(field, el = tag('section.field')) {
     syncFilter();
   }
 
-  function update() {
-
-  }
+  function update() {}
 
   return {
     el,
