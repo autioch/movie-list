@@ -1,9 +1,8 @@
-const prop = require('utils/prop');
 const fragment = require('utils/fragment');
 const tag = require('lean-tag');
 
 module.exports = function selectViewFactory(field, el = tag('select.field-dictionary__select.t-input')) {
-  prop(el, ['title', `Filter by ${field.label}`]);
+  el.title = `Filter by ${field.label}`;
 
   const { options, selected } = field.query();
   const frag = fragment();
@@ -11,7 +10,7 @@ module.exports = function selectViewFactory(field, el = tag('select.field-dictio
     const optionEl = tag('option', option);
 
     if (selected.indexOf(option) > -1) {
-      prop(optionEl, [option.selected, true]);
+      optionEl.selected = true;
     }
     frag.appendChild(optionEl);
 

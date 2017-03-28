@@ -1,6 +1,5 @@
 const getItem = require('./getItem');
 const tag = require('lean-tag');
-const empty = require('utils/empty');
 const fragment = require('utils/fragment');
 
 require('./style');
@@ -11,7 +10,9 @@ module.exports = function listViewFactory(appModel, el = tag('main.item-list')) 
   function update() {
     const { items, schema } = appModel.query();
 
-    empty(el);
+    while (el.firstChild) {
+      el.removeChild(el.firstChild);
+    }
     if (items.length) {
       const frag = fragment();
 

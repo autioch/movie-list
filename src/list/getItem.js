@@ -1,6 +1,5 @@
-/* eslint no-underscore-dangle: 1 */
+/* eslint no-underscore-dangle: 0 */
 const tag = require('lean-tag');
-const prop = require('utils/prop');
 const fragment = require('utils/fragment');
 
 const getters = {
@@ -54,10 +53,11 @@ function domWarning(warning) {
 }
 
 function getLink(def, item) {
-  const url = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
-  const anchor = tag('a.item__link', prop(tag('img'), ['src', `/data/${def.key}.png`]));
-
-  return prop(anchor, ['target', '_blank', 'title', `Search in ${def.label}`, 'href', url]);
+  return tag('a.item__link', tag('img', { src: `/data/${def.key}.png` }), {
+    target: '_blank',
+    title: `Search in ${def.label}`,
+    href: def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key])
+  });
 }
 
 module.exports = function getItem(item, schema) {
