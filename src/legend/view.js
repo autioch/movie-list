@@ -2,7 +2,7 @@ const tag = require('lean-tag');
 
 require('./style');
 
-const levels = [-1, 0, 1, 2, 3, 4]; // eslint-disable-line no-magic-numbers
+const levels = [0, 1, 2, 3, 4, 5]; // eslint-disable-line no-magic-numbers
 
 module.exports = function legendViewFactory() {
   const el = tag('section.legend', [

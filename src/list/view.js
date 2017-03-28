@@ -5,6 +5,17 @@ const fragment = require('utils/fragment');
 
 require('./style');
 
+function getItemTags(items, schema) {
+  const frag = fragment();
+
+  items.forEach((item) => {
+    item.__el = item.__el || itemViewFactory(item, schema);
+    frag.appendChild(item.__el);
+  });
+
+  return frag;
+}
+
 module.exports = function listViewFactory(appModel, el) {
   const noMatchEl = tag('div.item-list__message', 'No items match filters.');
 
@@ -14,18 +25,7 @@ module.exports = function listViewFactory(appModel, el) {
     while (el.firstChild) {
       el.removeChild(el.firstChild);
     }
-    if (items.length) {
-      const frag = fragment();
-
-      items.forEach((item) => {
-        item.__el = item.__el || itemViewFactory(item, schema);
-        frag.appendChild(item.__el);
-      });
-
-      el.appendChild(frag);
-    } else {
-      el.appendChild(noMatchEl);
-    }
+    el.appendChild(items.length ? getItemTags(items, schema) : noMatchEl);
 
     return el;
   }
