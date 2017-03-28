@@ -37,6 +37,7 @@
     "clean-webpack-plugin": "^0.1.14",
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
+    "lean-tag": "^1.0.0",
     "node-sass": "^4.0.0",
     "postcss-loader": "^1.2.1",
     "sass-loader": "^4.0.2",

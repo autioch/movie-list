@@ -1,17 +1,15 @@
-const events = require('utils/events');
-const dom = require('utils/dom');
-const prop = require('utils/prop');
+const tag = require('lean-tag');
 
 require('./style');
 
-module.exports = function baseViewFactory(field, el = dom('section', 'field')) {
-  const markerEl = dom('span', `field__sort-icon t-btn is-${field.config.order}`);
-  const sortEl = dom('div', 'field__sort t-label', [dom('span', 'field__sort-text', field.label), markerEl]);
-
-  events(sortEl, { click: setSort });
-  prop(sortEl, ['title', `Sort by ${field.label}`]);
-
-  el.appendChild(sortEl);
+module.exports = function baseViewFactory(field, el = tag('section.field')) {
+  el.appendChild(tag('div.field__sort.t-label',
+                     tag('span.field__sort-text', field.label),
+                     tag(`span.field__sort-icon.t-btn.is-${field.config.order}`),
+                     {
+                       onclick: setSort,
+                       title: `Sort by ${field.label}`
+                     }));
 
   function setSort() {
     field.makeSort();

@@ -1,10 +1,10 @@
-const dom = require('utils/dom');
+const tag = require('lean-tag');
 
 require('./style');
 
-module.exports = function countViewFactory(appModel, el = dom('section', 'count')) {
-  const visible = dom('header', 'count__visible t-value');
-  const filtered = dom('footer', 'count__filtered t-hint');
+module.exports = function countViewFactory(appModel, el = tag('section.count')) {
+  const visible = tag('header.count__visible.t-value');
+  const filtered = tag('footer.count__filtered.t-hint');
 
   el.appendChild(visible);
   el.appendChild(filtered);

@@ -1,22 +1,22 @@
-const dom = require('utils/dom');
+const tag = require('lean-tag');
 const empty = require('utils/empty');
 
-module.exports = function statViewFactory(field, el = dom('section', 'stat')) {
-  const ulEl = dom('ul', 'stat__item-list', field.query().stats.map(domStatItem));
+module.exports = function statViewFactory(field, el = tag('section.stat')) {
+  const ulEl = tag('ul.stat__item-list', field.query().stats.map(itemTag));
 
-  function domStatItem(item) {
-    return dom('li', 'stat__item', [
-      dom('span', `stat-item__value t-value ${item.rounded ? 'is-rounded' : ''}`, item.value),
-      dom('span', 'stat-item__label t-hint', item.key)
+  function itemTag(item) {
+    return tag('li.stat__item', [
+      tag(`span.stat-item__value.t-value${item.rounded ? '.is-rounded' : ''}`, item.value),
+      tag('span.stat-item__label.t-hint', item.key)
     ]);
   }
 
-  el.appendChild(dom('header', 'stat__header t-header', field.label));
+  el.appendChild(tag('header.stat__header.t-header', field.label));
   el.appendChild(ulEl);
 
   function update() {
     empty(ulEl);
-    field.query().stats.map(domStatItem).forEach((li) => ulEl.appendChild(li));
+    field.query().stats.map(itemTag).forEach((li) => ulEl.appendChild(li));
   }
 
   return {

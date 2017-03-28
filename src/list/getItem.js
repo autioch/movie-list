@@ -1,33 +1,33 @@
 /* eslint no-underscore-dangle: 1 */
-const dom = require('utils/dom');
+const tag = require('lean-tag');
 const prop = require('utils/prop');
 const fragment = require('utils/fragment');
 
 const getters = {
-  header: (def, item) => dom('span', 'item__title t-header', item[def.key]),
+  header: (def, item) => tag('span.item__title.t-header', item[def.key]),
   warning(def, item) {
     const value = item[def.key];
     const frag = fragment();
 
     /* Use fragment to avoid the need for flattening the arrays. */
-    value.forEach((val) => frag.appendChild(dom('li', 'item-warning__item', val)));
+    value.forEach((val) => frag.appendChild(tag('li.item-warning__item', val)));
 
     return frag;
   },
-  content: (def, item) => dom('p', 'item__content', item[def.key]),
+  content: (def, item) => tag('p.item__content', item[def.key]),
   details(def, item) {
     const value = item[def.key];
 
-    return dom('section', 'item-detail t-hint', [
-      dom('header', 'item-detail__header', def.label),
-      dom('ul', 'item-detail__list', value.map((detail) => dom('li', 'item-detail__list-item', detail)))
+    return tag('section.item-detail t-hint', [
+      tag('header.item-detail__header', def.label),
+      tag('ul.item-detail__list', value.map((detail) => tag('li.item-detail__list-item', detail)))
     ]);
   },
   summary(def, item) {
     const content = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
-    const rankClassName = def.ranked ? `t-rank__text--${item[`${def.key}Level`]}` : '';
+    const rankClassName = def.ranked ? `.t-rank__text--${item[`${def.key}Level`]}` : '';
 
-    return dom('li', def.ranked ? `item-summary__list-item ${rankClassName}` : 'item-summary__list-item', content);
+    return tag(`li.item-summary__list-item${rankClassName}`, content);
   }
 };
 
@@ -47,15 +47,15 @@ function domWarning(warning) {
     return [];
   }
 
-  return dom('span', 'item-warning', [
-    dom('span', 'item-warning__icon t-warn', '?'),
-    dom('ul', 'item-warning__list t-box', [dom('li', '', 'Info might be incorrect. Reasons:')].concat(warning))]
+  return tag('span.item-warning', [
+    tag('span.item-warning__icon.t-warn', '?'),
+    tag('ul.item-warning__list.t-box', tag('li', 'Info might be incorrect. Reasons:'), warning)]
   );
 }
 
 function getLink(def, item) {
   const url = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
-  const anchor = dom('a', 'item__link', prop(dom('img'), ['src', `/data/${def.key}.png`]));
+  const anchor = tag('a.item__link', prop(tag('img'), ['src', `/data/${def.key}.png`]));
 
   return prop(anchor, ['target', '_blank', 'title', `Search in ${def.label}`, 'href', url]);
 }
@@ -73,13 +73,13 @@ module.exports = function getItem(item, schema) {
     return acc;
   }, {});
 
-  const headerContent = dom('header', 'item__header', header.concat(domWarning(warning)));
+  const headerContent = tag('header.item__header', header.concat(domWarning(warning)));
   const links = schema.links.filter((def) => !def.hidden).map((def) => getLink(def, item));
-  const summaryItems = [dom('li', 'item-summary__list-item', links)].concat(summary);
+  const summaryItems = [tag('li.item-summary__list-item', links)].concat(summary);
 
-  item.__el = dom('section', 'item t-box', [
-    dom('article', 'item__description', [headerContent].concat(content, details)),
-    dom('aside', 'item-summary', dom('ul', 'item-summary__list', summaryItems))
+  item.__el = tag('section.item.t-box', [
+    tag('article.item__description', [headerContent].concat(content, details)),
+    tag('aside.item-summary', tag('ul.item-summary__list', summaryItems))
   ]);
 
   return item.__el;

@@ -1,9 +1,9 @@
-const dom = require('utils/dom');
+const tag = require('lean-tag');
 const fieldViewFactory = require('fields/types/view');
 
 require('./style');
 
-module.exports = function fieldsViewFactory(appModel, el = dom('div', 'field-list')) {
+module.exports = function fieldsViewFactory(appModel, el = tag('.field-list')) {
   const fieldViews = appModel
     .query()
     .fields

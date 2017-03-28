@@ -17,6 +17,12 @@ module.exports = {
     'object-curly-newline': ['error', {
       ObjectExpression: { minProperties: 2 },
       ObjectPattern: { 'multiline': true }
-    }]
+    }],
+    'no-magic-numbers': ['error', {
+      detectObjects: false,
+      enforceConst: true,
+      ignore: [-1, 0, 1, 10],
+      ignoreArrayIndexes: false
+    }],
   }
 };

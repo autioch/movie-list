@@ -1,6 +1,6 @@
 const baseViewFactory = require('../base/view');
 const events = require('utils/events');
-const dom = require('utils/dom');
+const tag = require('lean-tag');
 const prop = require('utils/prop');
 const debounce = require('utils/debounce');
 
@@ -9,18 +9,18 @@ const statMinIndex = 5;
 
 require('./style');
 
-module.exports = function textViewFactory(field, el = dom('section', 'field')) {
+module.exports = function textViewFactory(field, el = tag('section.field')) {
   const { syncFilter } = baseViewFactory(field, el);
   const { label, fromValue, toValue } = field.query();
 
-  const fromEl = dom('input', 'field-range__input t-input');
-  const toEl = dom('input', 'field-range__input t-input');
-  const resetEl = dom('span', 'field__filter-reset t-btn');
+  const fromEl = tag('input.field-range__input.t-input');
+  const toEl = tag('input.field-range__input.t-input');
+  const resetEl = tag('span.field__filter-reset.t-btn');
 
-  el.appendChild(dom('div', 'field__filter', [
-    dom('span', 'field-range__text t-hint', 'From'),
+  el.appendChild(tag('.field__filter', [
+    tag('span.field-range__text.t-hint', 'From'),
     prop(fromEl, ['type', 'text', 'value', fromValue, 'title', `Set minimum ${label}`]),
-    dom('span', 'field-range__text t-hint', 'To'),
+    tag('span.field-range__text.t-hint', 'To'),
     prop(toEl, ['type', 'text', 'value', toValue, 'title', `Set maximum ${label}`]),
     prop(resetEl, ['title', `Reset ${label} filter`])
   ]));

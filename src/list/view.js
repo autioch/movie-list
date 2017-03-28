@@ -1,12 +1,12 @@
 const getItem = require('./getItem');
-const dom = require('utils/dom');
+const tag = require('lean-tag');
 const empty = require('utils/empty');
 const fragment = require('utils/fragment');
 
 require('./style');
 
-module.exports = function listViewFactory(appModel, el = dom('main', 'item-list')) {
-  const noMatchEl = dom('div', 'item-list__message', 'No items match filters.');
+module.exports = function listViewFactory(appModel, el = tag('main.item-list')) {
+  const noMatchEl = tag('div.item-list__message', 'No items match filters.');
 
   function update() {
     const { items, schema } = appModel.query();
