@@ -8,6 +8,9 @@ Configurable movies browser. Can be used to list, filter, stat basically anythin
 Deployed application will make 2 requests, for `data/schema.json` and `data/items.json`.
 See `Content` section of this readme.
 
+# Support
+Tested in latest Chrome, Firefox, Edge and Safari.
+
 # Usage
 
 ## Standalone application
@@ -99,6 +102,6 @@ By default, application produces 2 themes, `themes/dark.css` and `themes/light.c
 Additional themes can be produced by cloning existing theme and replacing colors.
 
 # Random fun facts
-1. Compilied application weights 25kb - both styles and scripts.
-2. This application does not use any libraries besides building process.
+1. Compilied application weights around 27kb - both styles and scripts.
+2. Application uses single external script besides building process.
 3. There's no virtual dom. All optimizations are done by hand.
