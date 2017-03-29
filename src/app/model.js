@@ -19,13 +19,6 @@ module.exports = function appModelFactory(schema, totalItems) {
   let currentItems = totalItems.slice(0);
   let currentCount = currentItems.length;
 
-  function syncItems() {
-    currentItems = sorts.applySorts(filterItems(totalItems.slice(0)));
-    currentCount = currentItems.length;
-    generateStats();
-    callbackFn();
-  }
-
   function filterItems(items) {
     return fields
       .filter((field) => field.hasValue())
@@ -34,6 +27,13 @@ module.exports = function appModelFactory(schema, totalItems) {
 
   function generateStats() {
     fields.forEach((field) => field.stat && field.getStats(currentItems));
+  }
+
+  function syncItems() {
+    currentItems = sorts.applySorts(filterItems(totalItems.slice(0)));
+    currentCount = currentItems.length;
+    generateStats();
+    callbackFn();
   }
 
   function addSort(newSort) {

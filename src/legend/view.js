@@ -10,5 +10,7 @@ module.exports = function legendViewFactory() {
     tag('ul.legend__list', levels.map((level) => tag(`li.legend__item.t-rank__bg--${level}.t-hint`)))
   ]);
 
-  return { el };
+  return {
+    el
+  };
 };

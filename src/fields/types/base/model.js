@@ -30,14 +30,6 @@ module.exports = function baseModelFactory(attributes, appModel) {
     return config.order !== ORDER.NONE;
   }
 
-  function makeSort() {
-    if (config.order === ORDER.ASC) {
-      resetSort();
-    } else {
-      invertSort();
-    }
-  }
-
   function resetSort() {
     config.order = ORDER.NONE;
     appModel.removeSort(config.key);
@@ -51,6 +43,14 @@ module.exports = function baseModelFactory(attributes, appModel) {
       orderInverse: ORDER_INVERSION[config.order],
       label
     });
+  }
+
+  function makeSort() {
+    if (config.order === ORDER.ASC) {
+      resetSort();
+    } else {
+      invertSort();
+    }
   }
 
   return {
