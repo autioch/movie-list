@@ -103,5 +103,5 @@ Additional themes can be produced by cloning existing theme and replacing colors
 
 # Random fun facts
 1. Compilied application weights around 27kb - both styles and scripts.
-2. Application uses single external script besides building process.
+2. Application uses single library (extracted from the app) besides building process.
 3. There's no virtual dom. All optimizations are done by hand.
