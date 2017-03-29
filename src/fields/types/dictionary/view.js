@@ -1,6 +1,7 @@
 const baseViewFactory = require('../base/view');
 const tag = require('lean-tag');
 const selectViewFactory = require('./selectView');
+const { resetButton } = require('utils');
 
 require('./style');
 
@@ -10,10 +11,7 @@ module.exports = function textViewFactory(field) {
 
   el.appendChild(tag('div.field__filter', [
     selectView.el,
-    tag('span.field__filter-reset.t-btn', {
-      title: `Reset ${field.label} filter`,
-      onclick: resetFilter
-    })
+    resetButton(field.label, resetFilter)
   ]));
 
   function setFilterValue() {

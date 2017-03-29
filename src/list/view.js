@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 const itemViewFactory = require('./itemView');
 const tag = require('lean-tag');
-const fragment = require('utils/fragment');
+const { empty, fragment } = require('utils');
 
 require('./style');
 
@@ -22,9 +22,7 @@ module.exports = function listViewFactory(appModel, el) {
   function update() {
     const { items, schema } = appModel.query();
 
-    while (el.firstChild) {
-      el.removeChild(el.firstChild);
-    }
+    empty(el);
     el.appendChild(items.length ? getItemTags(items, schema) : noMatchEl);
 
     return el;

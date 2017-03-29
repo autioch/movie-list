@@ -3,7 +3,7 @@ const tag = require('lean-tag');
 function getOptionEls(field) {
   const { options, selected } = field.query();
 
-  [''].concat(options).map((option) => {
+  return [''].concat(options).map((option) => {
     const optionEl = tag('option', option);
 
     if (selected.indexOf(option) > -1) {

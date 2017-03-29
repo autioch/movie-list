@@ -1,6 +1,6 @@
 const baseViewFactory = require('../base/view');
 const tag = require('lean-tag');
-const debounce = require('utils/debounce');
+const { resetButton, textInput } = require('utils');
 
 require('./style');
 
@@ -8,20 +8,20 @@ module.exports = function dateViewFactory(field) {
   const { el, syncFilter } = baseViewFactory(field);
   const { label, fromDate, toDate } = field.query();
 
-  const fromEl = tag('input.field-date__input.t-input', {
-    type: 'text',
+  const fromEl = textInput({
+    className: '.field-date__input',
     value: fromDate,
     title: `Set minimum ${label}`,
     placeholder: '2016-12-31',
-    onkeyup: debounce(setFromValue)
+    callback: setFromValue
   });
 
-  const toEl = tag('input.field-date__input.t-input', {
-    type: 'text',
+  const toEl = textInput({
+    className: '.field-date__input',
     value: toDate,
     title: `Set maximum ${label}`,
     placeholder: '2016-12-31',
-    onkeyup: debounce(setToValue)
+    callback: setToValue
   });
 
   el.appendChild(tag('div.field__filter', [
@@ -29,10 +29,7 @@ module.exports = function dateViewFactory(field) {
     fromEl,
     tag('span.field-date__text.t-hint', 'To'),
     toEl,
-    tag('span.field__filter-reset.t-btn', {
-      onclick: resetFilter,
-      title: `Reset ${label} filter`
-    })
+    resetButton(label, resetFilter)
   ]));
 
   function setFromValue() {

@@ -1,6 +1,6 @@
 const baseViewFactory = require('../base/view');
 const tag = require('lean-tag');
-const debounce = require('utils/debounce');
+const { resetButton, textInput } = require('utils');
 
 const statMaxIndex = 3;
 const statMinIndex = 5;
@@ -11,17 +11,18 @@ module.exports = function textViewFactory(field) {
   const { el, syncFilter } = baseViewFactory(field);
   const { label, fromValue, toValue } = field.query();
 
-  const fromEl = tag('input.field-range__input.t-input', {
-    type: 'text',
+  const fromEl = textInput({
+    className: '.field-range__input',
     value: fromValue,
     title: `Set minimum ${label}`,
-    onkeyup: debounce(setFromValue)
+    callback: setFromValue
   });
-  const toEl = tag('input.field-range__input.t-input', {
-    type: 'text',
+
+  const toEl = textInput({
+    className: '.field-range__input',
     value: toValue,
     title: `Set maximum ${label}`,
-    onkeyup: debounce(setToValue)
+    callback: setToValue
   });
 
   el.appendChild(tag('.field__filter', [
@@ -29,10 +30,7 @@ module.exports = function textViewFactory(field) {
     fromEl,
     tag('span.field-range__text.t-hint', 'To'),
     toEl,
-    tag('span.field__filter-reset.t-btn', {
-      title: `Reset ${label} filter`,
-      onclick: resetFilter
-    })
+    resetButton(label, resetFilter)
   ]));
 
   function setFromValue() {

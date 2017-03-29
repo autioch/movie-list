@@ -1,4 +1,5 @@
 const tag = require('lean-tag');
+const { empty } = require('utils');
 
 function getStatItems(field) {
   return field.query().stats.map((item) => tag('li.stat__item', [
@@ -16,9 +17,7 @@ module.exports = function statViewFactory(field) {
   ]);
 
   function update() {
-    while (listEl.firstChild) {
-      listEl.removeChild(listEl.firstChild);
-    }
+    empty(listEl);
     getStatItems(field).forEach((li) => listEl.appendChild(li));
   }
 

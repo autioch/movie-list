@@ -1,24 +1,21 @@
 const baseViewFactory = require('../base/view');
 const tag = require('lean-tag');
-const debounce = require('utils/debounce');
+const { resetButton, textInput } = require('utils');
 
 require('./style');
 
 module.exports = function textViewFactory(field) {
   const { el, syncFilter } = baseViewFactory(field);
-  const inputEl = tag('input.field-text__input.t-input', {
-    onkeyup: debounce(setFilter),
-    type: 'text',
+  const inputEl = textInput({
+    className: '.field-text__input',
     value: field.query().value,
-    title: `Filter by ${field.label}`
+    title: `Reset ${field.label} filter`,
+    callback: setFilter
   });
 
   el.appendChild(tag('.field__filter', [
     inputEl,
-    tag('span.field__filter-reset.t-btn', {
-      onclick: resetFilter,
-      title: `Reset ${field.label} filter`
-    })
+    resetButton(field.label, resetFilter)
   ]));
 
   function setFilter() {
