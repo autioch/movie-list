@@ -16,10 +16,11 @@ This list is changing when I have new ideas or when I get feedback from friends 
 13. ~~Make better styles for sort markers and field inputs in general.~~
 14. ~~Add links to metacritic.~~
 15. ~~Make the app mobile friendly.~~
-16. Add the "watched/added" field.
+16. ~~Add the "watched/added" field.~~
 17. ~~Add option to export currently listed movies in some friendly format.~~
 18. ~~Extract the generic part to the separate package.~~
 19. ~~Cleanup package dependencies.~~
 20. Serialize fields state in hash.
 21. ~~Add google search link.~~
-22. Add Date field.
+22. ~~Add Date field.~~]
+23. Add posters.

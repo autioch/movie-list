@@ -10,7 +10,7 @@ const path = require('path');
 module.exports = function templates(webpackConfig, setup) {
   webpackConfig.module.loaders.push({
     test: /\.ico$/i,
-    exclude: /node_modules/,
+    include: [setup.sourcePath],
     loader: 'file?name=[name].[ext]'
   });
   webpackConfig.plugins.push(

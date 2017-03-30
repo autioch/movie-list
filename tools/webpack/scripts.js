@@ -1,8 +1,8 @@
 /* Sets up entry files. */
-module.exports = function input(webpackConfig) {
+module.exports = function input(webpackConfig, setup) {
   webpackConfig.module.loaders.push({
     test: /\.js$/,
-    exclude: /node_modules/,
+    include: [setup.sourcePath],
     loader: 'babel-loader',
     query: {
       cacheDirectory: true,
