@@ -1,6 +1,6 @@
 {
   "name": "qb-movie-list",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Configurable movie list browser",
   "keywords": [
     "movie-list",
@@ -30,25 +30,25 @@
     "lint:sass": "sass-lint -c .sass-lint.yml -v -q & exit 0"
   },
   "dependencies": {
-    "autoprefixer": "^6.5.3",
-    "babel-core": "^6.20.0",
-    "babel-loader": "^6.2.9",
-    "babel-preset-es2015": "^6.18.0",
-    "clean-webpack-plugin": "^0.1.14",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.24.1",
-    "lean-tag": "^1.0.0",
-    "node-sass": "^4.0.0",
-    "postcss-loader": "^1.2.1",
-    "sass-loader": "^4.0.2",
+    "autoprefixer": "6.5.3",
+    "babel-core": "6.20.0",
+    "babel-loader": "6.2.9",
+    "babel-preset-es2015": "6.18.0",
+    "clean-webpack-plugin": "0.1.14",
+    "extract-text-webpack-plugin": "1.0.1",
+    "html-webpack-plugin": "2.24.1",
+    "lean-tag": "1.0.0",
+    "node-sass": "4.0.0",
+    "postcss-loader": "1.2.1",
+    "sass-loader": "4.0.2",
     "string-replace-webpack-plugin": "0.0.4",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.14.0",
-    "webpack-validator": "^2.2.12"
+    "style-loader": "0.13.1",
+    "webpack": "1.14.0",
+    "webpack-validator": "2.2.12"
   },
   "devDependencies": {
-    "eslint": "^3.17.1",
-    "eslint-config-qb": "^1.0.0",
-    "webpack-livereload-plugin": "^0.9.0"
+    "eslint": "3.17.1",
+    "eslint-config-qb": "1.0.0",
+    "webpack-livereload-plugin": "0.9.0"
   }
 }
