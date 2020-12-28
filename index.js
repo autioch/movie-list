@@ -8,7 +8,7 @@ module.exports = function movieList(options) {
   const isProduction = options.isProduction === undefined ? true : options.isProduction;
 
   if (!options.buildFolder) {
-    return Promise.reject('Movie-list: No buildFolder specified');
+    return Promise.reject(new Error('Movie-list: No buildFolder specified'));
   }
 
   const config = webpackConfig({

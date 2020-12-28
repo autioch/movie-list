@@ -1,5 +1,4 @@
 const tag = require('lean-tag');
-const debounce = require('./debounce');
 
 function noop() {}
 
@@ -20,7 +19,7 @@ module.exports = function textInput({
   placeholder = ''
 }) {
   return tag(`input.t-input${className}`, {
-    onkeyup: debounce(callback),
+    onkeyup: callback,
     type: 'text',
     value,
     title,

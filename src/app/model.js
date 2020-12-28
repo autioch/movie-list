@@ -56,7 +56,8 @@ module.exports = function appModelFactory(schema, totalItems) {
       count: currentCount,
       items: currentItems,
       fields,
-      schema
+      schema,
+      isLoading: false
     };
   }
 

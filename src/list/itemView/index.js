@@ -1,23 +1,89 @@
-const tag = require('lean-tag');
-const getters = require('./getters');
-const check = require('./check');
-const getWarnings = require('./getWarnings');
-const getLinks = require('./getLinks');
+import './style.scss';
 
-require('./style');
+function Header({ def, item }) {
+  return (<span className="item__title t-header">{item[def.key]}</span>);
+}
 
-const getterKeys = Object.keys(getters);
+function Warnings({ item, def }) {
+  return (
+    <span className="item-warning">
+      <span className="item-warning__icon t-warn">?</span>
+      <ul className="item-warning__list t-box">
+        <li>Info might be incorrect. Reasons:</li>
+        {item[def.key].map((warning, index) => <li key={index} className="item-warning__item">{warning}</li>)}
+      </ul>
+    </span>
+  );
+}
 
-module.exports = function itemViewFactory(item, schema) {
-  const links = getLinks(item, schema);
-  const { header, warning, content, details, summary } = getterKeys.reduce((acc, key) => {
-    acc[key] = schema[key].filter((def) => check(def, item)).map((def) => getters[key](def, item));
+function Content({ def, item }) {
+  return (<p className="item__content">{item[def.key]}</p>)
+}
 
-    return acc;
-  }, {});
+function Details({ def, item }){
+  return (
+    <section className="item-detail t-hint">
+      <header className="item-detail__header">{def.label}</header>
+      <ul className="item-detail__list">
+        {item[def.key].map((detail, index) => <li key={index} className="item-detail__list-item">{detail}</li>)}
+      </ul>
+    </section>
+  );
+}
 
-  return tag('section.item.t-box', [
-    tag('article.item__description', tag('header.item__header', header, getWarnings(warning)), content, details),
-    tag('aside.item-summary', tag('ul.item-summary__list', tag('li.item-summary__list-item', links), summary))
-  ]);
+function Link({ item, def }){
+  return (
+     <a
+      className="item__link"
+      target="_blank"
+      rel="noreferrer"
+      title={`Search in ${def.label}`}
+      href={def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key])}
+    >
+      <img src={`/data/${def.key}.png`} alt={`${def.key}`}/>
+    </a>
+  )
+}
+
+function Summary({ def, item }) {
+  const content = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
+  const rankClassName = def.ranked ? `.t-rank__text--${item[`${def.key}Level`]}` : '';
+
+  return <li className={`item-summary__list-item${rankClassName}`}>{content}</li>;
+}
+
+function SchemaItem(schema, item, View) {
+  return schema
+    .filter((def) => {
+      if (def.hidden) {
+        return false;
+      }
+      const value = item[def.key];
+
+      return value !== null && value !== undefined && value !== '' && (!Array.isArray(value) || value.length);
+    })
+    .map((def, index) => <View key={index} def={def} item={item} />);
+}
+
+export default function Item({ item, schema }) {
+  return (
+    <section className="item t-box">
+      <article className="item__description">
+        <header className="item__header">
+          <SchemaItem schema={schema.header} item={item} View={Header} />
+          <SchemaItem schema={schema.warning} item={item} View={Warnings} />
+        </header>
+        <SchemaItem schema={schema.content} item={item} View={Content} />
+        <SchemaItem schema={schema.details} item={item} View={Details} />
+      </article>
+      <aside className="item-summary">
+        <ul className="item-summary__list">
+          <li className="item-summary__list-item">
+            <SchemaItem schema={schema.links} item={item} View={Link} />
+          </li>
+          <SchemaItem schema={schema.summary} item={item} View={Summary} />
+        </ul>
+      </aside>
+    </section>
+  );
 };
