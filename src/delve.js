@@ -4,6 +4,6 @@
  * @param  {String} selector Description of the child.
  * @return {mixed}           First found element or null.
  */
-module.exports = function delve(el, selector) {
+export default function delve(el, selector) {
   return el.querySelector(`.js-${selector}`);
 };

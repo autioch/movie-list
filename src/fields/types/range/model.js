@@ -1,7 +1,7 @@
-const baseModelFactory = require('../base/model');
-const generateStats = require('./generateStats');
+import baseModelFactory from '../base/model';
+import generateStats from './generateStats';
 
-module.exports = function rangeModelFactory(attributes, appModel) {
+export default function rangeModelFactory(attributes, appModel) {
   const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
 
   let stats = [];
@@ -86,4 +86,4 @@ module.exports = function rangeModelFactory(attributes, appModel) {
     type: config.type,
     key: config.key
   };
-};
+}

@@ -1,3 +1,5 @@
+import './style/index.scss';
+
 const ORDER = {
   NONE: 0,
   DESC: 1,
@@ -22,7 +24,7 @@ function getLabel(key) {
   return label[0].toUpperCase() + label.slice(1);
 }
 
-module.exports = function baseModelFactory(attributes, appModel) {
+export default function baseModelFactory(attributes, appModel) {
   const config = Object.assign({}, DEFAULTS, attributes);
   const label = getLabel(config.key);
 
@@ -59,4 +61,4 @@ module.exports = function baseModelFactory(attributes, appModel) {
     makeSort,
     label
   };
-};
+}

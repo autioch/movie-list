@@ -1,8 +1,8 @@
-const dictionary = require('./dictionary');
-const sortsModelFactory = require('./sorts');
-const fieldModelFactory = require('./fields/types/model');
+import dictionary from './dictionary';
+import sortsModelFactory from './sorts';
+import fieldModelFactory from './fields/types/model';
 
-module.exports = function appModelFactory(schema, totalItems) {
+export default function appModelFactory(schema, totalItems) {
   const totalCount = totalItems.length;
   const sorts = sortsModelFactory();
   const api = {
@@ -67,4 +67,4 @@ module.exports = function appModelFactory(schema, totalItems) {
   generateStats();
 
   return api;
-};
+}

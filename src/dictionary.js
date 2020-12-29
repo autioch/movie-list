@@ -20,7 +20,7 @@ function uniq(array) {
   return items;
 }
 
-module.exports = function dictionary(fields, items) {
+export default function dictionary(fields, items) {
   const dict = fields
     .filter((field) => field.type === DICT_TYPE)
     .map((field) => ({
@@ -39,4 +39,4 @@ module.exports = function dictionary(fields, items) {
     key.field.setOptions(uniq(key.values).sort());
     key.field = key.key = key.values = null; // eslint-disable-line no-multi-assign
   });
-};
+}

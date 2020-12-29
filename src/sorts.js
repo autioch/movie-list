@@ -2,7 +2,7 @@ const EQUAL = 0;
 const ITEM_1_LATER = 1;
 const ITEM_2_LATER = -1;
 
-module.exports = function sortsModelFactory() {
+export default function sortsModelFactory() {
   let sorts = [];
 
   function addSort(newSort) {
@@ -57,4 +57,4 @@ module.exports = function sortsModelFactory() {
     removeSort,
     applySorts
   };
-};
+}

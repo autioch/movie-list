@@ -1,7 +1,7 @@
-const baseModelFactory = require('../base/model');
+import baseModelFactory from '../base/model';
 const EMPTY = undefined;
 
-module.exports = function dateModelFactory(attributes, appModel) {
+export default function dateModelFactory(attributes, appModel) {
   const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
 
   let fromDate = EMPTY;
@@ -97,4 +97,4 @@ module.exports = function dateModelFactory(attributes, appModel) {
     type: config.type,
     key: config.key
   };
-};
+}

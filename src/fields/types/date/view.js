@@ -1,5 +1,4 @@
 import ResetButton from '../resetButton';
-import TextInput from '../textInput';
 import Header from '../header';
 import './style.scss';
 
@@ -9,8 +8,9 @@ export default function DateView({ id, label, value: { fromDate, toDate }, order
       <Header label={label} order={order} setSort={() => setSort(id)} />
       <div className="field__filter">
         <span className="field-date__text t-hint">From</span>
-        <TextInput
-          className="field-date__input"
+        <input
+          className="field-date__input t-input"
+          type="text"
           value={fromDate}
           title={`Set minimum ${label}`}
           placeholder="2016-12-31"
@@ -20,8 +20,9 @@ export default function DateView({ id, label, value: { fromDate, toDate }, order
           })}
         />
         <span className="field-date__text t-hint">To</span>
-        <TextInput
-          className="field-date__input"
+        <input
+          className="field-date__input t-input"
+          type="text"
           value={toDate}
           title={`Set maximum ${label}`}
           placeholder="2016-12-31"

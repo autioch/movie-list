@@ -7,7 +7,7 @@ import './App.scss';
 import { Component } from 'react';
 import fetchJson from './fetchJson';
 import appModelFactory from './appModel';
-import './themes/dark.scss';
+import './themes/light.scss';
 
 class App extends Component {
   state = {

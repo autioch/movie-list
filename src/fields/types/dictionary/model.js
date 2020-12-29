@@ -1,6 +1,6 @@
-const baseModelFactory = require('../base/model');
+import baseModelFactory from '../base/model';
 
-module.exports = function textModelFactory(attributes, appModel) {
+export default function textModelFactory(attributes, appModel) {
   const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
 
   let selected = [];
@@ -68,4 +68,4 @@ module.exports = function textModelFactory(attributes, appModel) {
     type: config.type,
     key: config.key
   };
-};
+}
