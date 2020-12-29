@@ -3,9 +3,11 @@ const generateStats = require('./generateStats');
 
 module.exports = function rangeModelFactory(attributes, appModel) {
   const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
+
   let stats = [];
 
   let fromValue = -Infinity;
+
   let toValue = Infinity;
 
   function hasValue() {
@@ -18,7 +20,7 @@ module.exports = function rangeModelFactory(attributes, appModel) {
     appModel.syncItems();
   }
 
-  function test(item) {
+  function test(item) { // eslint-disable-line no-shadow
     const value = item[config.key];
 
     return value >= fromValue && value <= toValue;
@@ -48,11 +50,23 @@ module.exports = function rangeModelFactory(attributes, appModel) {
 
   function query() {
     return {
+      id: config.key,
       label,
+      value: {
+        fromValue: fromValue === -Infinity ? '' : fromValue,
+        toValue: toValue === Infinity ? '' : toValue
+      },
       order: config.order,
       fromValue: fromValue === -Infinity ? '' : fromValue,
       toValue: toValue === Infinity ? '' : toValue,
-      stats
+      stats,
+      setValue(id, {
+        fromValue, // eslint-disable-line no-shadow
+        toValue // eslint-disable-line no-shadow
+      }) {
+        setToValue(toValue);
+        setFromValue(fromValue);
+      }
     };
   }
 

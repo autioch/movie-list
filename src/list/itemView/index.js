@@ -1,4 +1,4 @@
-import './style.scss';
+import './style/index.scss';
 
 function Header({ def, item }) {
   return (<span className="item__title t-header">{item[def.key]}</span>);
@@ -17,10 +17,10 @@ function Warnings({ item, def }) {
 }
 
 function Content({ def, item }) {
-  return (<p className="item__content">{item[def.key]}</p>)
+  return (<p className="item__content">{item[def.key]}</p>);
 }
 
-function Details({ def, item }){
+function Details({ def, item }) {
   return (
     <section className="item-detail t-hint">
       <header className="item-detail__header">{def.label}</header>
@@ -31,9 +31,9 @@ function Details({ def, item }){
   );
 }
 
-function Link({ item, def }){
+function Link({ item, def }) {
   return (
-     <a
+    <a
       className="item__link"
       target="_blank"
       rel="noreferrer"
@@ -42,7 +42,7 @@ function Link({ item, def }){
     >
       <img src={`/data/${def.key}.png`} alt={`${def.key}`}/>
     </a>
-  )
+  );
 }
 
 function Summary({ def, item }) {
@@ -52,7 +52,7 @@ function Summary({ def, item }) {
   return <li className={`item-summary__list-item${rankClassName}`}>{content}</li>;
 }
 
-function SchemaItem(schema, item, View) {
+function SchemaItem({ schema, item, View }) {
   return schema
     .filter((def) => {
       if (def.hidden) {
@@ -86,4 +86,4 @@ export default function Item({ item, schema }) {
       </aside>
     </section>
   );
-};
+}

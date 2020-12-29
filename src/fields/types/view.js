@@ -5,6 +5,6 @@ const factories = {
   '4': require('./date/view')
 };
 
-module.exports = function fieldViewFactory(field, appModel) {
-  return factories[field.type](field, appModel);
+module.exports = function fieldViewFactory(field) {
+  return factories[field.type];
 };

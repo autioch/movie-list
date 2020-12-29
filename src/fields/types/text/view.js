@@ -1,38 +1,21 @@
-const baseViewFactory = require('../base/view');
-const tag = require('lean-tag');
-const { resetButton, textInput } = require('utils');
+import ResetButton from '../resetButton';
+import TextInput from '../textInput';
+import Header from '../header';
+import './style.scss';
 
-require('./style');
-
-module.exports = function textViewFactory(field) {
-  const { el, syncFilter } = baseViewFactory(field);
-  const inputEl = textInput({
-    className: '.field-text__input',
-    value: field.query().value,
-    title: `Reset ${field.label} filter`,
-    callback: setFilter
-  });
-
-  el.appendChild(tag('.field__filter', [
-    inputEl,
-    resetButton(field.label, resetFilter)
-  ]));
-
-  function setFilter() {
-    field.setValue(inputEl.value);
-    syncFilter();
-  }
-
-  function resetFilter() {
-    field.resetValue();
-    inputEl.value = '';
-    syncFilter();
-  }
-
-  function update() {}
-
-  return {
-    el,
-    update
-  };
-};
+export default function TextView({ id, label, value, order, setValue, setSort }) {
+  return (
+    <section className={`field${value.length > 0 ? 'is-filter-active' : ''}`}>
+      <Header label={label} order={order} setSort={() => setSort(id)} />
+      <div className="field__filter">
+        <TextInput
+          className="field-text__input"
+          value={value}
+          title={`Reset ${label} filter`}
+          onKeyUp={(ev) => setValue(id, ev.target.value)}
+        />
+        <ResetButton label={label} onClick={() => setValue(id, '')} />
+      </div>
+    </section>
+  );
+}

@@ -6,7 +6,7 @@ const HTTP_ERROR = 400;
  * @param  {String} url Address to query for data.
  * @return {Promise}    Promise resolving to parsed data recieved in the request.
  */
-module.exports = function fetchJson(url) {
+export default function fetchJson(url) {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
 
@@ -21,4 +21,4 @@ module.exports = function fetchJson(url) {
     request.open('GET', url, true);
     request.send();
   });
-};
+}

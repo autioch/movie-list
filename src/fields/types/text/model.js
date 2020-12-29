@@ -4,7 +4,9 @@ module.exports = function textModelFactory(attributes, appModel) {
   const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
 
   let value = attributes.value || '';
+
   let regex = new RegExp('', 'i');
+
   let testFunction = testRegex;
 
   function hasValue() {
@@ -24,7 +26,7 @@ module.exports = function textModelFactory(attributes, appModel) {
     return text.indexOf(value) > -1;
   }
 
-  function test(item) {
+  function test(item) { // eslint-disable-line no-shadow
     return testFunction(item[config.key]);
   }
 
@@ -41,9 +43,12 @@ module.exports = function textModelFactory(attributes, appModel) {
 
   function query() {
     return {
+      id: config.key,
       label,
+      value,
       order: config.order,
-      value
+      setValue,
+      setSort: makeSort
     };
   }
 

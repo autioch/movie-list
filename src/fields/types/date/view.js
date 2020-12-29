@@ -1,58 +1,40 @@
-const baseViewFactory = require('../base/view');
-const tag = require('lean-tag');
-const { resetButton, textInput } = require('utils');
+import ResetButton from '../resetButton';
+import TextInput from '../textInput';
+import Header from '../header';
+import './style.scss';
 
-require('./style');
-
-module.exports = function dateViewFactory(field) {
-  const { el, syncFilter } = baseViewFactory(field);
-  const { label, fromDate, toDate } = field.query();
-
-  const fromEl = textInput({
-    className: '.field-date__input',
-    value: fromDate,
-    title: `Set minimum ${label}`,
-    placeholder: '2016-12-31',
-    callback: setFromValue
-  });
-
-  const toEl = textInput({
-    className: '.field-date__input',
-    value: toDate,
-    title: `Set maximum ${label}`,
-    placeholder: '2016-12-31',
-    callback: setToValue
-  });
-
-  el.appendChild(tag('div.field__filter', [
-    tag('span.field-date__text.t-hint', 'From'),
-    fromEl,
-    tag('span.field-date__text.t-hint', 'To'),
-    toEl,
-    resetButton(label, resetFilter)
-  ]));
-
-  function setFromValue() {
-    field.setFromValue(fromEl.value);
-    syncFilter();
-  }
-
-  function setToValue() {
-    field.setToValue(toEl.value);
-    syncFilter();
-  }
-
-  function resetFilter() {
-    field.resetValue();
-    fromEl.value = '';
-    toEl.value = '';
-    syncFilter();
-  }
-
-  function update() {}
-
-  return {
-    el,
-    update
-  };
-};
+export default function DateView({ id, label, value: { fromDate, toDate }, order, setValue, setSort }) {
+  return (
+    <section className={`field${fromDate.length > 0 || toDate.length > 0 ? 'is-filter-active' : ''}`}>
+      <Header label={label} order={order} setSort={() => setSort(id)} />
+      <div className="field__filter">
+        <span className="field-date__text t-hint">From</span>
+        <TextInput
+          className="field-date__input"
+          value={fromDate}
+          title={`Set minimum ${label}`}
+          placeholder="2016-12-31"
+          onKeyUp={(ev) => setValue(id, {
+            fromDate: ev.target.value,
+            toDate
+          })}
+        />
+        <span className="field-date__text t-hint">To</span>
+        <TextInput
+          className="field-date__input"
+          value={toDate}
+          title={`Set maximum ${label}`}
+          placeholder="2016-12-31"
+          onKeyUp={(ev) => setValue(id, {
+            fromDate,
+            toDate: ev.target.value
+          })}
+        />
+        <ResetButton label={label} onClick={() => setValue(id, {
+          fromDate: '',
+          toDate: ''
+        })} />
+      </div>
+    </section>
+  );
+}

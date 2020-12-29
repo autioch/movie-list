@@ -8,7 +8,7 @@ export default function Stats({ appModel }) {
         .query()
         .fields
         .filter((field) => field.stat)
-        .map((field) => <StatItem field={field} />)}
+        .map((field, index) => <StatItem field={field} key={index}/>)}
     </section>
   );
-};
+}

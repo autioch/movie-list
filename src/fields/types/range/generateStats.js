@@ -22,11 +22,17 @@ const ROUND_VALUE = 1000000;
 
 module.exports = function generateStats(values) {
   const dict = {};
+
   let dividend = 0;
+
   let divider = 0;
+
   let keysSum = 0;
+
   let [min] = values;
+
   let max = 0;
+
   let sum = 0;
 
   values.sort(sortFloat).forEach((value) => {

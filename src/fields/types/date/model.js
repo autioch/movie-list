@@ -5,7 +5,9 @@ module.exports = function dateModelFactory(attributes, appModel) {
   const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
 
   let fromDate = EMPTY;
+
   let toDate = EMPTY;
+
   let testFunction = () => true;
 
   function hasValue() {
@@ -30,7 +32,7 @@ module.exports = function dateModelFactory(attributes, appModel) {
     return value >= fromDate && value <= toDate;
   }
 
-  function test(item) {
+  function test(item) { // eslint-disable-line no-shadow
     return testFunction(item[config.key]);
   }
 
@@ -70,10 +72,13 @@ module.exports = function dateModelFactory(attributes, appModel) {
 
   function query() {
     return {
+      id: config.key,
       label,
       order: config.order,
-      fromDate: fromDate === EMPTY ? '' : fromDate,
-      toDate: toDate === EMPTY ? '' : toDate
+      value: {
+        fromDate: fromDate === EMPTY ? '' : fromDate,
+        toDate: toDate === EMPTY ? '' : toDate
+      }
     };
   }
 

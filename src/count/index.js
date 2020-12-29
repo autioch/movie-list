@@ -1,6 +1,6 @@
 import './style.scss';
 
-export default function Count({count = 0, totalCount = 0}){
+export default function Count({ count = 0, totalCount = 0 }) {
   return (
     <section className="count">
       <header className="count__visible t-value">

@@ -4,6 +4,7 @@ module.exports = function textModelFactory(attributes, appModel) {
   const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
 
   let selected = [];
+
   let options = [];
 
   function hasValue() {
@@ -15,7 +16,7 @@ module.exports = function textModelFactory(attributes, appModel) {
     appModel.syncItems();
   }
 
-  function test(item) {
+  function test(item) { // eslint-disable-line no-shadow
     const value = item[config.key];
 
     if (typeof value === 'string') {
@@ -39,8 +40,10 @@ module.exports = function textModelFactory(attributes, appModel) {
 
   function query() {
     return {
+      id: config.key,
       label,
       order: config.order,
+      value: selected[0] || '',
       selected,
       options
     };
