@@ -2,7 +2,7 @@ import Fields from './fields';
 import Count from './count';
 import List from './list';
 import Legend from './legend';
-import Stats from './stats';
+import Stat from './stat';
 import './App.scss';
 import { Component } from 'react';
 import fetchJson from './fetchJson';
@@ -16,7 +16,8 @@ class App extends Component {
     items: [],
     fields: [],
     schema: {},
-    isLoading: true
+    isLoading: true,
+    stats: []
   }
 
   componentDidMount() {
@@ -37,18 +38,26 @@ class App extends Component {
   }
 
   syncStateWithAppModel() {
-    const { totalCount, count } = this.appModel.query();
+    const { totalCount, count, fields } = this.appModel.query();
+
+    const stats = fields
+      .filter((field) => field.stat)
+      .map((field) => ({
+        label: field.label,
+        stats: field.query().stats
+      }));
 
     this.setState({
       totalCount,
-      count
+      count,
+      stats
     });
   }
 
   render() { // eslint-disable-line class-methods-use-this
     const { appModel } = this;
 
-    const { totalCount, count } = this.state;
+    const { totalCount, count, stats } = this.state;
 
     if (!appModel) {
       return (
@@ -71,7 +80,9 @@ class App extends Component {
         <List appModel={appModel} />
         <aside className="panel panel--right t-box">
           <Count count={count} totalCount={totalCount}/>
-          <Stats appModel={appModel} />
+          <section className="stat-list">
+            {stats.map((field, index) => <Stat field={field} key={index}/>)}
+          </section>
           <Legend />
         </aside>
       </>
