@@ -1,4 +1,4 @@
-import baseModelFactory from '../base/model';
+import baseModelFactory from './base';
 import generateStats from './generateStats';
 
 export default function rangeModelFactory(attributes, appModel) {
@@ -50,15 +50,15 @@ export default function rangeModelFactory(attributes, appModel) {
 
   function query() {
     return {
-      id: config.key,
+      ...config,
       label,
       value: {
         fromValue: fromValue === -Infinity ? '' : fromValue,
         toValue: toValue === Infinity ? '' : toValue
       },
-      order: config.order,
       fromValue: fromValue === -Infinity ? '' : fromValue,
       toValue: toValue === Infinity ? '' : toValue,
+      hasValue: fromValue.length > 0 || toValue.length > 0,
       stats,
       setValue(id, {
         fromValue, // eslint-disable-line no-shadow

@@ -1,23 +1,23 @@
-import Fields from './fields';
+import Filters from './filters';
 import Count from './count';
-import List from './list';
+import Item from './item';
 import Legend from './legend';
 import Stat from './stat';
 import './App.scss';
 import { Component } from 'react';
 import fetchJson from './fetchJson';
-import appModelFactory from './appModel';
+import appModelFactory from './model';
 import './themes/light.scss';
 
 class App extends Component {
   state = {
     totalCount: 0,
     count: 0,
-    items: [],
-    fields: [],
-    schema: {},
+    stats: [],
+    filters: [],
     isLoading: true,
-    stats: []
+    items: [],
+    schema: {}
   }
 
   componentDidMount() {
@@ -28,42 +28,17 @@ class App extends Component {
 
   setupAppModel([schema, items]) {
     this.appModel = appModelFactory(schema, items);
-    this.appModel.onChange(() => this.syncStateWithAppModel());
+    this.appModel.onChange(() => this.setState(this.appModel.toState()));
 
-    this.syncStateWithAppModel();
+    this.setState(this.appModel.toState());
 
     this.setState(() => ({
       isLoading: false
     }));
   }
 
-  syncStateWithAppModel() {
-    const { totalCount, count, fields } = this.appModel.query();
-
-    const stats = fields
-      .filter((field) => field.stat)
-      .map((field) => ({
-        label: field.label,
-        stats: field.query().stats
-      }));
-
-    this.setState({
-      totalCount,
-      count,
-      stats
-    });
-  }
-
-  render() { // eslint-disable-line class-methods-use-this
-    const { appModel } = this;
-
-    const { totalCount, count, stats } = this.state;
-
-    if (!appModel) {
-      return (
-        <div>Loading...</div>
-      );
-    }
+  render() {
+    const { totalCount, count, stats, filters, isLoading, items, schema } = this.state;
 
     return (
       <>
@@ -75,9 +50,13 @@ class App extends Component {
             </h2>
             <div className="js-errors t-warn"></div>
           </div>
-          <Fields appModel={appModel}/>
+          <Filters filters={filters}/>
         </aside>
-        <List appModel={appModel} />
+        <main className="item-list">
+          {isLoading ? <div className="item-list__message">Loading movies...</div> : ''}
+          {items.length ? '' : <div className="item-list__message">No items match filters.</div>}
+          {items.map((item, index) => <Item schema={schema} item={item} key={index} />) }
+        </main>
         <aside className="panel panel--right t-box">
           <Count count={count} totalCount={totalCount}/>
           <section className="stat-list">

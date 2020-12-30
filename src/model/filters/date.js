@@ -1,4 +1,4 @@
-import baseModelFactory from '../base/model';
+import baseModelFactory from './base';
 const EMPTY = undefined;
 
 export default function dateModelFactory(attributes, appModel) {
@@ -71,14 +71,16 @@ export default function dateModelFactory(attributes, appModel) {
   }
 
   function query() {
+    const value = {
+      fromDate: fromDate === EMPTY ? '' : fromDate,
+      toDate: toDate === EMPTY ? '' : toDate
+    };
+
     return {
-      id: config.key,
+      ...config,
       label,
-      order: config.order,
-      value: {
-        fromDate: fromDate === EMPTY ? '' : fromDate,
-        toDate: toDate === EMPTY ? '' : toDate
-      }
+      value,
+      hasValue: value.fromDate.length > 0 || value.toDate.length > 0
     };
   }
 

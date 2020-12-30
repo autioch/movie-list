@@ -1,6 +1,6 @@
 import dictionary from './dictionary';
 import sortsModelFactory from './sorts';
-import fieldModelFactory from './fields/types/model';
+import fieldModelFactory from './filters';
 
 export default function appModelFactory(schema, totalItems) {
   const totalCount = totalItems.length;
@@ -10,7 +10,8 @@ export default function appModelFactory(schema, totalItems) {
     addSort,
     removeSort,
     query,
-    onChange
+    onChange,
+    toState
   };
 
   const fields = schema.fields.map((field) => fieldModelFactory(field, api));
@@ -65,6 +66,44 @@ export default function appModelFactory(schema, totalItems) {
 
   dictionary(fields, totalItems);
   generateStats();
+
+  function toState() {
+    const { count, isLoading, items } = query();
+
+    const stats = fields
+      .filter((field) => field.stat)
+      .map((field) => ({
+        label: field.label,
+        stats: field.query().stats
+      }));
+
+    const filters = fields
+      .filter((field) => !field.config.hidden)
+      .map((field) => {
+        const { id, label, value, type, options, order, setValue, setSort } = field.query();
+
+        return {
+          id,
+          label,
+          value,
+          type,
+          options,
+          order,
+          setValue,
+          setSort
+        };
+      });
+
+    return {
+      totalCount,
+      count,
+      stats,
+      filters,
+      isLoading,
+      items,
+      schema
+    };
+  }
 
   return api;
 }

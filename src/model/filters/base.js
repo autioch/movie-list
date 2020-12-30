@@ -1,5 +1,3 @@
-import './style/index.scss';
-
 const ORDER = {
   NONE: 0,
   DESC: 1,
@@ -27,6 +25,8 @@ function getLabel(key) {
 export default function baseModelFactory(attributes, appModel) {
   const config = Object.assign({}, DEFAULTS, attributes);
   const label = getLabel(config.key);
+
+  config.id = config.key;
 
   function hasSort() {
     return config.order !== ORDER.NONE;

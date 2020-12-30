@@ -1,7 +1,7 @@
-import DateModel from './date/model';
-import DictionaryModel from './dictionary/model';
-import RangeModel from './range/model';
-import TextModel from './text/model';
+import DateModel from './date';
+import DictionaryModel from './dictionary';
+import RangeModel from './range';
+import TextModel from './text';
 
 const factories = {
   '1': TextModel,

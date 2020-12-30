@@ -1,0 +1,24 @@
+.item-list {
+
+  /* Prevents repaints on scroll */
+  transform: translateZ(0);
+  flex: 1;
+
+  @media print {
+    height: auto;
+    overflow: visible;
+    margin: 0 !important;
+  }
+
+  @media (max-width: 800px) {
+    margin-left: 15rem;
+  }
+}
+
+.item-list__message {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}

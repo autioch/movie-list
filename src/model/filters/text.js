@@ -1,4 +1,4 @@
-import baseModelFactory from '../base/model';
+import baseModelFactory from './base';
 
 export default function textModelFactory(attributes, appModel) {
   const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
@@ -43,12 +43,12 @@ export default function textModelFactory(attributes, appModel) {
 
   function query() {
     return {
-      id: config.key,
+      ...config,
       label,
       value,
-      order: config.order,
       setValue,
-      setSort: makeSort
+      setSort: makeSort,
+      hasValue: value.length > 0
     };
   }
 
