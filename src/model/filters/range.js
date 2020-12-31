@@ -1,10 +1,8 @@
 import baseModelFactory from './base';
 import generateStats from './generateStats';
 
-export default function rangeModelFactory(attributes, appModel) {
-  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
-
-  let stats = [];
+export default function rangeModelFactory(attributes) {
+  const { config, label } = baseModelFactory(attributes);
 
   let fromValue = -Infinity;
 
@@ -17,7 +15,6 @@ export default function rangeModelFactory(attributes, appModel) {
   function resetValue() {
     fromValue = -Infinity;
     toValue = Infinity;
-    appModel.syncItems();
   }
 
   function test(item) { // eslint-disable-line no-shadow
@@ -26,64 +23,50 @@ export default function rangeModelFactory(attributes, appModel) {
     return value >= fromValue && value <= toValue;
   }
 
-  function setFromValue(value) {
-    if (value === null || value === '') {
-      fromValue = -Infinity;
-    } else {
-      fromValue = value;
-    }
-    appModel.syncItems();
-  }
-
-  function setToValue(value) {
-    if (value === null || value === '') {
-      toValue = Infinity;
-    } else {
-      toValue = value;
-    }
-    appModel.syncItems();
-  }
-
-  function getStats(items) {
-    stats = generateStats(items.map((item) => item[config.key]));
-  }
-
-  function query() {
+  function toStats(items) {
     return {
-      ...config,
       label,
-      value: {
-        fromValue: fromValue === -Infinity ? '' : fromValue,
-        toValue: toValue === Infinity ? '' : toValue
-      },
-      fromValue: fromValue === -Infinity ? '' : fromValue,
-      toValue: toValue === Infinity ? '' : toValue,
-      hasValue: fromValue.length > 0 || toValue.length > 0,
-      stats,
-      setValue(id, {
-        fromValue, // eslint-disable-line no-shadow
-        toValue // eslint-disable-line no-shadow
-      }) {
-        setToValue(toValue);
-        setFromValue(fromValue);
-      }
+      stats: generateStats(items.map((item) => item[config.key]))
     };
   }
 
+  function toState() {
+    const isApplied = fromValue.length > 0 || toValue.length > 0;
+
+    return {
+      id: config.id,
+      type: config.type,
+      label,
+      order: config.order,
+      isApplied: fromValue.length > 0 || toValue.length > 0,
+      value: isApplied ? {
+        fromValue: fromValue === -Infinity ? '' : fromValue,
+        toValue: toValue === Infinity ? '' : toValue
+      } : undefined
+    };
+  }
+
+  function setValue(filterValue) {
+    if (filterValue.toValue === null || filterValue.toValue === '') {
+      toValue = -Infinity;
+    } else {
+      toValue = filterValue.toValue; // eslint-disable-line prefer-destructuring
+    }
+    if (filterValue.fromValue === null || filterValue.fromValue === '') {
+      fromValue = -Infinity;
+    } else {
+      fromValue = filterValue.fromValue; // eslint-disable-line prefer-destructuring
+    }
+  }
+
   return {
-    setFromValue,
-    setToValue,
+    setValue,
     resetValue,
-    hasSort,
-    makeSort,
+    config,
+    toState,
+    toStats,
     hasValue,
     test,
-    getStats,
-    stat: config.stat,
-    query,
-    label,
-    config,
-    type: config.type,
     key: config.key
   };
 }

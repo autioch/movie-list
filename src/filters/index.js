@@ -11,20 +11,27 @@ const types = {
   '4': DateView
 };
 
-export default function Filters({ filters }) {
+export default function Filters({ filters, resetFilter, setFilterValue, setSort }) {
   return (
     <div className="field-list">
-      {filters.map((filter, index) => {
+      {filters.map((filter) => {
         const View = types[filter.type];
-        const { value, label, order, id, setSort } = filter;
+        const { id, label, order, isApplied } = filter;
 
         return (
-          <section key={id} className={`field${value.length > 0 ? 'is-filter-active' : ''}`}>
-            <div className="field__sort t-label" onClick={setSort} title={`Sort by ${label}`}>
+          <section key={id} className={`field${isApplied ? ' is-filter-active' : ''}`}>
+            <div className="field__sort t-label" onClick={() => setSort(id)} title={`Sort by ${label}`}>
               <span className="field__sort-text">{label}</span>
-              <span className={`field__sort-icon t-btn is-${order}`}></span>
+              <span className={`field__sort-icon t-btn is-sort-${order}`}></span>
             </div>
-            <View {...filter} key={index}/>
+            <View filter={filter} setFilterValue={setFilterValue}>
+              <span
+                className="field__filter-reset t-btn"
+                title={`Reset ${label} filter`}
+                onClick={() => resetFilter(id)}
+              >
+              </span>
+            </View>
           </section>
         );
       })}

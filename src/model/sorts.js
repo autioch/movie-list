@@ -2,22 +2,48 @@ const EQUAL = 0;
 const ITEM_1_LATER = 1;
 const ITEM_2_LATER = -1;
 
+const ORDER = {
+  NONE: 0,
+  DESC: 1,
+  ASC: -1
+};
+
+const ORDER_INVERSION = {
+  [ORDER.NONE]: ORDER.DESC,
+  [ORDER.DESC]: ORDER.ASC,
+  [ORDER.ASC]: ORDER.DESC
+};
+
 export default function sortsModelFactory() {
   let sorts = [];
 
-  function addSort(newSort) {
-    const existing = sorts.find((sort) => sort.key === newSort.key);
+  function setSort(key) {
+    const existing = sorts.find((sort) => sort.key === key);
 
-    if (existing) {
-      existing.order = newSort.order;
-      existing.orderInverse = newSort.orderInverse;
-    } else {
-      sorts.push(newSort);
+    if (!existing) {
+      sorts.push({
+        key,
+        order: ORDER.DESC,
+        orderInverse: ORDER_INVERSION[ORDER.DESC]
+      });
+
+      return ORDER.DESC;
     }
-  }
 
-  function removeSort(key) {
-    sorts = sorts.filter((sort) => sort.key !== key);
+    if (existing.order === ORDER.DESC) {
+      existing.order = ORDER.ASC;
+      existing.orderInverse = ORDER_INVERSION[ORDER.ASC];
+
+      return ORDER.ASC;
+    }
+
+    if (existing.order === ORDER.ASC) {
+      sorts = sorts.filter((sort) => sort.key !== key);
+
+      return ORDER.NONE;
+    }
+
+    throw Error(`Unexpected sort state for ${key}`);
   }
 
   function applySorts(items) {
@@ -53,8 +79,7 @@ export default function sortsModelFactory() {
   }
 
   return {
-    addSort,
-    removeSort,
+    setSort,
     applySorts
   };
 }

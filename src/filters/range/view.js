@@ -1,7 +1,8 @@
-import ResetButton from '../resetButton';
 import './style.scss';
 
-export default function RangeView({ id, label, value: { fromValue, toValue }, setValue }) {
+export default function RangeView({ filter: { id, label, value = {} }, setFilterValue, children }) {
+  const { fromValue = '', toValue = '' } = value;
+
   return (
     <div className="field__filter">
       <span className="field-date__text t-hint">From</span>
@@ -10,8 +11,7 @@ export default function RangeView({ id, label, value: { fromValue, toValue }, se
         value={fromValue}
         type="text"
         title={`Set minimum ${label}`}
-        placeholder="2016-12-31"
-        onChange={(ev) => setValue(id, {
+        onChange={(ev) => setFilterValue(id, {
           fromValue: ev.target.value,
           toValue
         })}
@@ -22,16 +22,12 @@ export default function RangeView({ id, label, value: { fromValue, toValue }, se
         value={toValue}
         type="text"
         title={`Set maximum ${label}`}
-        placeholder="2016-12-31"
-        onChange={(ev) => setValue(id, {
+        onChange={(ev) => setFilterValue(id, {
           fromValue,
           toValue: ev.target.value
         })}
       />
-      <ResetButton label={label} onClick={() => setValue(id, {
-        fromValue: '',
-        toValue: ''
-      })} />
+      {children}
     </div>
   );
 }

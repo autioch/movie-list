@@ -10,6 +10,6 @@ const factories = {
   '4': DateModel
 };
 
-export default function fieldModelFactory(field, appModel) {
-  return factories[field.type](field, appModel);
+export default function fieldModelFactory(field) {
+  return factories[field.type](field);
 }

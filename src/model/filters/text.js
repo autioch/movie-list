@@ -1,21 +1,20 @@
 import baseModelFactory from './base';
 
-export default function textModelFactory(attributes, appModel) {
-  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
+export default function textModelFactory(attributes) {
+  const { config, label } = baseModelFactory(attributes);
 
-  let value = attributes.value || '';
+  let value;
 
   let regex = new RegExp('', 'i');
 
   let testFunction = testRegex;
 
   function hasValue() {
-    return value.length > 0;
+    return value !== undefined && value.length > 0;
   }
 
   function resetValue() {
-    value = '';
-    appModel.syncItems();
+    setValue(undefined);
   }
 
   function testRegex(text) {
@@ -31,38 +30,33 @@ export default function textModelFactory(attributes, appModel) {
   }
 
   function setValue(newValue) {
-    value = newValue;
+    value = newValue || undefined;
     try {
       regex = new RegExp(value.replace(/ /g, '.?'), 'i');
       testFunction = testRegex;
     } catch (err) {
       testFunction = testString;
     }
-    appModel.syncItems();
   }
 
-  function query() {
+  function toState() {
     return {
-      ...config,
+      id: config.id,
+      type: config.type,
       label,
-      value,
-      setValue,
-      setSort: makeSort,
-      hasValue: value.length > 0
+      order: config.order,
+      isApplied: value !== undefined,
+      value
     };
   }
 
   return {
     setValue,
     resetValue,
-    hasSort,
-    makeSort,
+    config,
+    toState,
     hasValue,
     test,
-    query,
-    label,
-    config,
-    type: config.type,
     key: config.key
   };
 }

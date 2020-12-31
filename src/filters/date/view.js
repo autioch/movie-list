@@ -1,7 +1,8 @@
-import ResetButton from '../resetButton';
 import './style.scss';
 
-export default function DateView({ id, label, value: { fromDate, toDate }, setValue }) {
+export default function DateView({ filter: { id, label, value = {} }, setFilterValue, children }) {
+  const { fromDate = '', toDate = '' } = value;
+
   return (
     <div className="field__filter">
       <span className="field-date__text t-hint">From</span>
@@ -11,7 +12,7 @@ export default function DateView({ id, label, value: { fromDate, toDate }, setVa
         value={fromDate}
         title={`Set minimum ${label}`}
         placeholder="2016-12-31"
-        onChange={(ev) => setValue(id, {
+        onChange={(ev) => setFilterValue(id, {
           fromDate: ev.target.value,
           toDate
         })}
@@ -23,15 +24,12 @@ export default function DateView({ id, label, value: { fromDate, toDate }, setVa
         value={toDate}
         title={`Set maximum ${label}`}
         placeholder="2016-12-31"
-        onChange={(ev) => setValue(id, {
+        onChange={(ev) => setFilterValue(id, {
           fromDate,
           toDate: ev.target.value
         })}
       />
-      <ResetButton label={label} onClick={() => setValue(id, {
-        fromDate: '',
-        toDate: ''
-      })} />
+      {children}
     </div>
   );
 }

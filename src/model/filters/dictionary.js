@@ -1,71 +1,57 @@
 import baseModelFactory from './base';
 
-export default function textModelFactory(attributes, appModel) {
-  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
+const IGNORED = {
+  undefined: true,
+  'null': true,
+  'N/A': true
+};
 
-  let selected = [];
+export default function textModelFactory(attributes) {
+  const { config, label } = baseModelFactory(attributes);
 
-  let options = [];
+  let value;
 
   function hasValue() {
-    return selected.length > 0;
+    return value !== undefined;
   }
 
   function resetValue() {
-    selected = [];
-    appModel.syncItems();
+    value = undefined;
   }
 
   function test(item) { // eslint-disable-line no-shadow
-    const value = item[config.key];
+    const itemValue = item[config.key];
 
-    if (typeof value === 'string') {
-      return selected.indexOf(value) > -1;
-    }
-    if (Array.isArray(value)) {
-      return selected.find((sel) => value.indexOf(sel) > -1);
+    if (Array.isArray(itemValue)) {
+      return itemValue.includes(value);
     }
 
-    return false;
+    return itemValue === value;
   }
 
-  function selectValue(value) {
-    if (value === '') {
-      resetValue();
-    } else {
-      selected = [value];
-      appModel.syncItems();
-    }
-  }
-
-  function query() {
+  function toState(items) {
     return {
-      ...config,
+      id: config.id,
+      type: config.type,
       label,
-      value: selected[0] || '',
-      selected,
-      options,
-      hasValue: (selected[0] || '').length > 0
+      order: config.order,
+      options: [...new Set(items.flatMap((item) => item[config.key]))].filter((val) => !IGNORED[val]).sort(),
+      isApplied: value !== undefined,
+      value
     };
   }
 
-  function setOptions(newOptions) {
-    options = newOptions;
-    selected = [];
+  function setValue(newValue) {
+    value = newValue || undefined;
   }
 
   return {
-    selectValue,
+    setValue,
     resetValue,
-    hasSort,
-    makeSort,
-    hasValue,
-    setOptions,
-    test,
-    query,
-    label,
     config,
-    type: config.type,
+    toState,
+    hasValue,
+    test,
     key: config.key
   };
 }

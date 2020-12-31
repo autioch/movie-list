@@ -1,8 +1,8 @@
 import baseModelFactory from './base';
 const EMPTY = undefined;
 
-export default function dateModelFactory(attributes, appModel) {
-  const { config, hasSort, makeSort, label } = baseModelFactory(attributes, appModel);
+export default function dateModelFactory(attributes) {
+  const { config, label } = baseModelFactory(attributes);
 
   let fromDate = EMPTY;
 
@@ -17,7 +17,6 @@ export default function dateModelFactory(attributes, appModel) {
   function resetValue() {
     fromDate = EMPTY;
     toDate = EMPTY;
-    appModel.syncItems();
   }
 
   function testFromDate(value) {
@@ -48,55 +47,45 @@ export default function dateModelFactory(attributes, appModel) {
     }
   }
 
-  function setFromValue(value) {
-    fromDate = new Date(value);
+  function toState() {
+    const isApplied = fromDate !== EMPTY || toDate !== EMPTY;
+
+    return {
+      id: config.id,
+      type: config.type,
+      label,
+      order: config.order,
+      isApplied,
+      value: isApplied ? {
+        fromDate: fromDate === EMPTY ? '' : fromDate,
+        toDate: toDate === EMPTY ? '' : toDate
+      } : undefined
+    };
+  }
+
+  function setValue(filterValue) {
+    toDate = new Date(filterValue.toValue);
+    if (isNaN(toDate.getTime())) {
+      toDate = EMPTY;
+    } else {
+      toDate = fromDate.toISOString();
+    }
+    fromDate = new Date(filterValue.fromValue);
     if (isNaN(fromDate.getTime())) {
       fromDate = EMPTY;
     } else {
       fromDate = fromDate.toISOString();
     }
     setTestFunction();
-    appModel.syncItems();
-  }
-
-  function setToValue(value) {
-    toDate = new Date(value);
-    if (isNaN(toDate.getTime())) {
-      toDate = EMPTY;
-    } else {
-      toDate = fromDate.toISOString();
-    }
-    setTestFunction();
-    appModel.syncItems();
-  }
-
-  function query() {
-    const value = {
-      fromDate: fromDate === EMPTY ? '' : fromDate,
-      toDate: toDate === EMPTY ? '' : toDate
-    };
-
-    return {
-      ...config,
-      label,
-      value,
-      hasValue: value.fromDate.length > 0 || value.toDate.length > 0
-    };
   }
 
   return {
-    setFromValue,
-    setToValue,
+    setValue,
     resetValue,
-    hasSort,
-    makeSort,
+    config,
+    toState,
     hasValue,
     test,
-    stat: config.stat,
-    query,
-    label,
-    config,
-    type: config.type,
     key: config.key
   };
 }
