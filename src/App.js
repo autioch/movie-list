@@ -10,6 +10,7 @@ import './themes/light.scss';
 import { HAS_VALUE, RESET_VALUE, PREPARE_TEST, SET_VALUE, STATS, EXTRAS } from './model/actions';
 import { ORDER } from './model/consts';
 import List from './list';
+import Menu from './menu';
 
 function getLabel(key) {
   const label = key.replace(/\.?([A-Z]+)/g, (match, word) => ` ${word}`);
@@ -27,12 +28,16 @@ class App extends Component {
     items: [],
     schema: {},
 
-    allItems: []
+    allItems: [],
+    filtersVisible: false,
+    statsVisible: false
   }
 
   constructor(props) {
     super(props);
     this.resetFilter = this.resetFilter.bind(this);
+    this.toggleFilters = this.toggleFilters.bind(this);
+    this.toggleStats = this.toggleStats.bind(this);
     this.setFilterValue = this.setFilterValue.bind(this);
     this.setSort = this.setSort.bind(this);
     this.sorts = sortsModelFactory();
@@ -129,35 +134,50 @@ class App extends Component {
     this.syncFilters(filters);
   }
 
+  toggleFilters() {
+    this.setState({
+      statsVisible: false,
+      filtersVisible: !this.state.filtersVisible
+    });
+  }
+
+  toggleStats() {
+    this.setState({
+      statsVisible: !this.state.statsVisible,
+      filtersVisible: false
+    });
+  }
+
   render() {
-    const { totalCount, count, stats, filters, isLoading, items, schema } = this.state;
+    const { totalCount, count, stats, filters, isLoading, items, schema, filtersVisible, statsVisible } = this.state;
 
     return (
-      <>
-        <aside className="panel panel--left t-box">
-          <div className="header">
-            <h1 className="header__title t-header">Movie list</h1>
-            <h2 className="header__description t-header">
-                List of movies that I have watched. For various reasons I can suggest these movies to other people.
-            </h2>
-            <div className="js-errors t-warn"></div>
-          </div>
-          <Filters
+      <div className="app">
+        <div className="app-content">
+
+          {filtersVisible ? <Filters
             filters={filters}
             resetFilter={this.resetFilter}
             setFilterValue={this.setFilterValue}
             setSort={this.setSort}
-          />
-        </aside>
-        <List isLoading={isLoading} schema={schema} items={items} />
-        <aside className="panel panel--right t-box">
-          <Count count={count} totalCount={totalCount}/>
-          <section className="stat-list">
-            {stats.map((field, index) => <Stat field={field} key={index}/>)}
-          </section>
-          <Legend />
-        </aside>
-      </>
+          /> : ''}
+          {statsVisible || filtersVisible ? '' : <List isLoading={isLoading} schema={schema} items={items} /> }
+          {statsVisible ? <aside className="panel panel--right t-box">
+            <Count count={count} totalCount={totalCount}/>
+            <section className="stat-list">
+              {stats.map((field, index) => <Stat field={field} key={index}/>)}
+            </section>
+            <Legend />
+          </aside> : ''}
+        </div>
+        <Menu
+          toggleFilters={this.toggleFilters}
+          filtersVisible={filtersVisible}
+          filtersApplied={filters.some((filter) => filter.isApplied)}
+          toggleStats={this.toggleStats}
+          statsVisible={statsVisible}
+        />
+      </div>
     );
   }
 }

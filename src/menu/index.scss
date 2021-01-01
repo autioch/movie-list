@@ -1,0 +1,25 @@
+.app-menu {
+  flex: none;
+  display: flex;
+  align-items: center;
+}
+
+.app-menu-button {
+  flex: none;
+  height: 2cm;
+  width: 2cm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &:hover {
+    background: #f1f1f1;
+  }
+}
+
+
+.app-menu-header {
+  flex: 1 1 auto;
+  text-align: center;
+}

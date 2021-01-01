@@ -32,7 +32,7 @@ export default class MacroList extends PureComponent {
   componentWillUnmount() {
     window.removeEventListener('resize', this.resetCache);
 
-    this.resetCache.abort();
+    this.resetCache.cancel();
   }
   rowRenderer({ index, key, parent, style }) { // eslint-disable-line no-shadow
     return (
