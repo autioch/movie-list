@@ -1,6 +1,6 @@
 import './style.scss';
 
-export default function RangeView({ filter: { id, label, value = {} }, setFilterValue, children }) {
+export default function RangeView({ filter: { id, label, value = {}, minValue, maxValue }, setFilterValue, children }) {
   const { fromValue = '', toValue = '' } = value;
 
   return (
@@ -11,6 +11,7 @@ export default function RangeView({ filter: { id, label, value = {} }, setFilter
         value={fromValue}
         type="text"
         title={`Set minimum ${label}`}
+        placeholder={minValue}
         onChange={(ev) => setFilterValue(id, {
           fromValue: ev.target.value,
           toValue
@@ -22,6 +23,7 @@ export default function RangeView({ filter: { id, label, value = {} }, setFilter
         value={toValue}
         type="text"
         title={`Set maximum ${label}`}
+        placeholder={maxValue}
         onChange={(ev) => setFilterValue(id, {
           fromValue,
           toValue: ev.target.value

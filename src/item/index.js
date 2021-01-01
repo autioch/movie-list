@@ -52,7 +52,7 @@ function Summary({ def, item }) {
   return <li className={`item-summary__list-item${rankClassName}`}>{content}</li>;
 }
 
-function SchemaItem({ schema, item, View }) {
+function SchemaItem({ schema = [], item, View }) {
   return schema
     .filter((def) => {
       if (def.hidden) {
@@ -79,7 +79,7 @@ export default function Item({ item, schema }) {
       <aside className="item-summary">
         <ul className="item-summary__list">
           <li className="item-summary__list-item">
-            <SchemaItem schema={schema.links} item={item} View={Link} />
+            {schema.links.filter((def) => !def.hidden).map((def, index) => <Link key={index} item={item} def={def} />)}
           </li>
           <SchemaItem schema={schema.summary} item={item} View={Summary} />
         </ul>

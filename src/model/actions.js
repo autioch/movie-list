@@ -132,11 +132,38 @@ export const STATS = {
 };
 
 export const EXTRAS = {
-  [TYPES.TEXT]: (state) => state,
-  [TYPES.RANGE]: (state) => state,
+  [TYPES.TEXT]: (state) => ({
+    ...state,
+    isApplied: HAS_VALUE[TYPES.TEXT](state)
+  }),
+  [TYPES.RANGE](state, items) {
+    const { key } = state;
+
+    const values = [...new Set(items.map((item) => parseFloat(item[key])))].filter((val) => !isNaN(val))
+      .sort((aa, bb) => aa - bb);
+
+    return {
+      ...state,
+      minValue: values[0],
+      maxValue: values.pop(),
+      isApplied: HAS_VALUE[TYPES.RANGE](state)
+    };
+  },
   [TYPES.DICTIONARY]: (state, items) => ({
     ...state,
-    options: [...new Set(items.flatMap((item) => item[state.key]))].filter((val) => !IGNORED[val]).sort()
+    options: [...new Set(items.flatMap((item) => item[state.key]))].filter((val) => !IGNORED[val]).sort(),
+    isApplied: HAS_VALUE[TYPES.DICTIONARY](state)
   }),
-  [TYPES.DATE]: (state) => state
+  [TYPES.DATE](state, items) {
+    const { key } = state;
+
+    const dates = [...new Set(items.map((item) => item[key]))].filter((val) => val !== EMPTY && val !== null).sort();
+
+    return {
+      ...state,
+      minDate: dates[0],
+      maxDate: dates.pop(),
+      isApplied: HAS_VALUE[TYPES.DATE](state)
+    };
+  }
 };

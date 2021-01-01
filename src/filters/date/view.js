@@ -1,6 +1,6 @@
 import './style.scss';
 
-export default function DateView({ filter: { id, label, value = {} }, setFilterValue, children }) {
+export default function DateView({ filter: { id, label, value = {}, minDate, maxDate }, setFilterValue, children }) {
   const { fromDate = '', toDate = '' } = value;
 
   return (
@@ -11,7 +11,7 @@ export default function DateView({ filter: { id, label, value = {} }, setFilterV
         type="text"
         value={fromDate}
         title={`Set minimum ${label}`}
-        placeholder="2016-12-31"
+        placeholder={minDate}
         onChange={(ev) => setFilterValue(id, {
           fromDate: ev.target.value,
           toDate
@@ -23,7 +23,7 @@ export default function DateView({ filter: { id, label, value = {} }, setFilterV
         type="text"
         value={toDate}
         title={`Set maximum ${label}`}
-        placeholder="2016-12-31"
+        placeholder={maxDate}
         onChange={(ev) => setFilterValue(id, {
           fromDate,
           toDate: ev.target.value
