@@ -1,6 +1,5 @@
 import Filters from './filters';
 import Count from './count';
-import Item from './item';
 import Legend from './legend';
 import Stat from './stat';
 import './App.scss';
@@ -10,6 +9,7 @@ import sortsModelFactory from './model/sorts';
 import './themes/light.scss';
 import { HAS_VALUE, RESET_VALUE, PREPARE_TEST, SET_VALUE, STATS, EXTRAS } from './model/actions';
 import { ORDER } from './model/consts';
+import List from './list';
 
 function getLabel(key) {
   const label = key.replace(/\.?([A-Z]+)/g, (match, word) => ` ${word}`);
@@ -149,11 +149,7 @@ class App extends Component {
             setSort={this.setSort}
           />
         </aside>
-        <main className="item-list">
-          {isLoading ? <div className="item-list__message">Loading movies...</div> : ''}
-          {items.length ? '' : <div className="item-list__message">No items match filters.</div>}
-          {items.map((item, index) => <Item schema={schema} item={item} key={index} />) }
-        </main>
+        <List isLoading={isLoading} schema={schema} items={items} />
         <aside className="panel panel--right t-box">
           <Count count={count} totalCount={totalCount}/>
           <section className="stat-list">

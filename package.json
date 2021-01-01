@@ -25,6 +25,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
+    "react-virtualized": "^9.22.3",
     "sass": "^1.30.0",
     "web-vitals": "^0.2.4"
   },
@@ -42,19 +43,31 @@
       "qb"
     ],
     "rules": {
-      "id-blacklist": ["off"],
-      "no-empty-function": ["off"],
-      "no-use-before-define": ["error", {
-        "functions": false,
-        "variables": true,
-        "classes": true
-      }],
-      "no-unused-vars": ["error", {
-        "vars": "all",
-        "args": "after-used",
-        "ignoreRestSiblings": false
-      }],
-      "no-undefined": ["off"]
+      "id-blacklist": [
+        "off"
+      ],
+      "no-empty-function": [
+        "off"
+      ],
+      "no-use-before-define": [
+        "error",
+        {
+          "functions": false,
+          "variables": true,
+          "classes": true
+        }
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "vars": "all",
+          "args": "after-used",
+          "ignoreRestSiblings": false
+        }
+      ],
+      "no-undefined": [
+        "off"
+      ]
     }
   },
   "browserslist": {
