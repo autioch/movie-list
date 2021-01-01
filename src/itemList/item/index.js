@@ -1,14 +1,14 @@
 import './style/index.scss';
 
 function Header({ def, item }) {
-  return (<span className="item__title t-header">{item[def.key]}</span>);
+  return (<span className="item__title">{item[def.key]}</span>);
 }
 
 function Warnings({ item, def }) {
   return (
     <span className="item-warning">
-      <span className="item-warning__icon t-warn">?</span>
-      <ul className="item-warning__list t-box">
+      <span className="item-warning__icon">?</span>
+      <ul className="item-warning__list">
         <li>Info might be incorrect. Reasons:</li>
         {item[def.key].map((warning, index) => <li key={index} className="item-warning__item">{warning}</li>)}
       </ul>
@@ -22,7 +22,7 @@ function Content({ def, item }) {
 
 function Details({ def, item }) {
   return (
-    <section className="item-detail t-hint">
+    <section className="item-detail">
       <header className="item-detail__header">{def.label}</header>
       <ul className="item-detail__list">
         {item[def.key].map((detail, index) => <li key={index} className="item-detail__list-item">{detail}</li>)}
@@ -68,7 +68,7 @@ function SchemaItem({ schema = [], item, View }) {
 export default function Item({ item, schema, style }) {
   return (
     <div className="item-container" style={style}>
-      <section className="item t-box">
+      <section className="item">
         <article className="item__description">
           <header className="item__header">
             <SchemaItem schema={schema.header} item={item} View={Header} />

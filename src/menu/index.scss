@@ -2,12 +2,16 @@
   flex: none;
   display: flex;
   align-items: center;
+  box-shadow: 0 0 6px #aaa;
+  position: relative;
+  z-index: 10;
+  height: 1.5cm;
 }
 
 .app-menu-button {
   flex: none;
-  height: 2cm;
-  width: 2cm;
+  height: 1.5cm;
+  width: 1.5cm;
   display: flex;
   align-items: center;
   justify-content: center;

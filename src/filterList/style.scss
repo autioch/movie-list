@@ -1,0 +1,103 @@
+.filter-list {
+  padding: .5cm;
+}
+
+.filter {
+  &:hover {
+    .filter-sort-icon {
+      opacity: .8;
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1cm;
+  }
+}
+
+.filter-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.filter-content {
+  display: flex;
+  align-items: center;
+
+  > .ant-select {
+    flex: 1 1 auto;
+  }
+
+
+  > .ant-select,
+  > .ant-typography,
+  > .ant-input {
+    &:not(:last-child) {
+      margin-right: .25cm;
+    }
+  }
+
+  > .ant-typography {
+    margin-bottom: 0;
+  }
+
+  > .ant-btn {
+    flex: none;
+  }
+}
+
+
+.filter-sort-icon {
+  height: 24px;
+  width: 20px;
+  opacity: 0;
+  margin-left: .5cm;
+  transition: opacity 150ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &::before,
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    transition: border 250ms;
+  }
+
+  &::before {
+    top: 0;
+    border-bottom: 10px solid currentColor;
+  }
+
+  &::after {
+    bottom: 0;
+    border-top: 10px solid currentColor;
+  }
+
+  &.is-sort--1 {
+    opacity: .8;
+
+    &::after {
+      border-top-width: 0;
+    }
+
+    &::before {
+      border-bottom-width: 24px;
+    }
+  }
+
+  &.is-sort-1 {
+    opacity: .8;
+
+    &::after {
+      border-top-width: 24px;
+    }
+
+    &::before {
+      border-bottom-width: 0;
+    }
+  }
+}

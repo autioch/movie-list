@@ -9,7 +9,7 @@ body,
 
 .app {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   overflow: hidden;
 }
 
@@ -17,4 +17,6 @@ body,
   flex: 1 1 auto;
   // height: 100%;
   overflow: auto;
+  position: relative;
+  box-sizing: border-box;
 }

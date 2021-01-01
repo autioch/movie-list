@@ -1,9 +1,0 @@
-//sass-lint:disable no-vendor-prefixes
-.field-text__input {
-  flex: 1;
-  width: 1em;
-
-  &::-ms-clear {
-    display: none;
-  }
-}

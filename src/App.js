@@ -1,7 +1,7 @@
-import Filters from './filters';
-import Count from './count';
-import Legend from './legend';
-import Stat from './stat';
+import FilterList from './filterList';
+import ItemList from './itemList';
+import StatList from './statList';
+
 import './App.scss';
 import { Component } from 'react';
 import fetchJson from './fetchJson';
@@ -9,8 +9,8 @@ import sortsModelFactory from './model/sorts';
 import './themes/light.scss';
 import { HAS_VALUE, RESET_VALUE, PREPARE_TEST, SET_VALUE, STATS, EXTRAS } from './model/actions';
 import { ORDER } from './model/consts';
-import List from './list';
 import Menu from './menu';
+import 'antd/dist/antd.css';
 
 function getLabel(key) {
   const label = key.replace(/\.?([A-Z]+)/g, (match, word) => ` ${word}`);
@@ -153,23 +153,6 @@ class App extends Component {
 
     return (
       <div className="app">
-        <div className="app-content">
-
-          {filtersVisible ? <Filters
-            filters={filters}
-            resetFilter={this.resetFilter}
-            setFilterValue={this.setFilterValue}
-            setSort={this.setSort}
-          /> : ''}
-          {statsVisible || filtersVisible ? '' : <List isLoading={isLoading} schema={schema} items={items} /> }
-          {statsVisible ? <aside className="panel panel--right t-box">
-            <Count count={count} totalCount={totalCount}/>
-            <section className="stat-list">
-              {stats.map((field, index) => <Stat field={field} key={index}/>)}
-            </section>
-            <Legend />
-          </aside> : ''}
-        </div>
         <Menu
           toggleFilters={this.toggleFilters}
           filtersVisible={filtersVisible}
@@ -177,6 +160,11 @@ class App extends Component {
           toggleStats={this.toggleStats}
           statsVisible={statsVisible}
         />
+        <div className="app-content">
+          {filtersVisible ? <FilterList filters={filters} resetFilter={this.resetFilter} setFilterValue={this.setFilterValue} setSort={this.setSort} /> : ''}
+          {statsVisible || filtersVisible ? '' : <ItemList isLoading={isLoading} schema={schema} items={items} /> }
+          {statsVisible ? <StatList count={count} totalCount={totalCount} stats={stats} /> : ''}
+        </div>
       </div>
     );
   }

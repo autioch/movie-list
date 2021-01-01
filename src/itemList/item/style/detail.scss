@@ -1,14 +1,6 @@
 .item-detail {
   font-size: .9rem;
-  margin-bottom: .1rem;
-
-  @media print {
-    display: none;
-  }
-
-  @media (max-width: 800px) {
-    display: none;
-  }
+  // margin-bottom: .1rem;
 }
 
 .item-detail__header {

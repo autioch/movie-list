@@ -1,0 +1,15 @@
+.item-summary {
+  font-size: .9rem;
+  text-align: right;
+  flex: none;
+}
+
+.item-summary__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item-summary__list-item {
+  margin-bottom: .25rem;
+}

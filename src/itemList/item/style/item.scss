@@ -1,0 +1,10 @@
+.item-container {
+  padding-bottom: .5cm;
+  box-sizing: border-box;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}

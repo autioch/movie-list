@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react';
 import { CellMeasurer, CellMeasurerCache, AutoSizer, List } from 'react-virtualized';
-import Item from '../item';
+import Item from './item';
 
 import throttle from 'lodash.throttle';
-
-// import './index.css';
 
 export default class MacroList extends PureComponent {
   constructor(props) {

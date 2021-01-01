@@ -31,6 +31,7 @@
     {"hidden":false,"key":"added","template":"#{added} added"}
   ],
   "fields":[
+    {"type":4,"stat":true ,"hidden":false,"key":"added"},
     {"type":1,"stat":true ,"hidden":false,"key":"title"},
     {"type":3,"stat":true ,"hidden":false,"key":"genre"},
     {"type":1,"stat":true ,"hidden":false,"key":"plot"},
@@ -48,9 +49,9 @@
     {"type":3,"stat":true ,"hidden":false,"key":"formatLongName"},
     {"type":3,"stat":true ,"hidden":false,"key":"fps"},
     {"type":2,"stat":true ,"hidden":false,"key":"duration"},
-    {"type":2,"stat":false,"hidden":false,"key":"height"},
-    {"type":2,"stat":false,"hidden":false,"key":"width"},
-    {"type":2,"stat":false,"hidden":false,"key":"size"},
+    {"type":2,"stat":true ,"hidden":false,"key":"height"},
+    {"type":2,"stat":true ,"hidden":false,"key":"width"},
+    {"type":2,"stat":true ,"hidden":false,"key":"size"},
     {"type":3,"stat":true ,"hidden":false,"key":"audioChannels"}
   ]
 }
