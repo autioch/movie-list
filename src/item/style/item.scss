@@ -1,7 +1,14 @@
+.item-container {
+  padding: .25rem;
+  box-sizing: border-box;
+}
+
 .item {
-  margin: .5rem;
   display: flex;
+  // height: 100%;
+  // margin: .5rem;
   justify-content: space-between;
+  box-sizing: border-box;
 
   @media print {
     display: block;

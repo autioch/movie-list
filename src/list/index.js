@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { CellMeasurer, CellMeasurerCache, AutoSizer, List } from 'react-virtualized';
 import Item from '../item';
 
+import throttle from 'lodash.throttle';
+
 // import './index.css';
 
 export default class MacroList extends PureComponent {
@@ -9,27 +11,28 @@ export default class MacroList extends PureComponent {
     super(props);
 
     this.rowRenderer = this.rowRenderer.bind(this);
-    this.resetCache = this.resetCache.bind(this);
-    this.keyMapper = this.keyMapper.bind(this);
+    this.resetCache = throttle(this.resetCache.bind(this), 100); // eslint-disable-line no-magic-numbers
     this.cache = new CellMeasurerCache({
-      fixedWidth: true,
-      keyMapper: this.keyMapper
+      fixedWidth: true
     });
   }
+
   resetCache() {
-    this.cache.resetAll();
+    this.cache.clearAll();
+
+    // this.list.recomputeRowHeights();
   }
-  keyMapper(index) {
-    return this.props.items[index].id;
-  }
+
   componentDidMount() {
-    document.addEventListener('resize', this.resetCache);
+    window.addEventListener('resize', this.resetCache);
   }
   componentDidUpdate() {
-    this.list.recomputeRowHeights();
+    this.resetCache();
   }
   componentWillUnmount() {
-    document.removeEventListener('resize', this.resetCache);
+    window.removeEventListener('resize', this.resetCache);
+
+    this.resetCache.abort();
   }
   rowRenderer({ index, key, parent, style }) { // eslint-disable-line no-shadow
     return (

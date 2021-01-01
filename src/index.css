@@ -4,15 +4,6 @@
   transform: translateZ(0);
   flex: 1;
 
-  @media print {
-    height: auto;
-    overflow: visible;
-    margin: 0 !important;
-  }
-
-  @media (max-width: 800px) {
-    margin-left: 15rem;
-  }
 }
 
 .item-list__message {

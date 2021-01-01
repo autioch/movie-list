@@ -1,6 +1,7 @@
 .item-summary {
   font-size: .9rem;
   text-align: right;
+  flex: none;
 
   @media print {
     display: none;
