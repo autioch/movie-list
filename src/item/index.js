@@ -47,7 +47,7 @@ function Link({ item, def }) {
 
 function Summary({ def, item }) {
   const content = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
-  const rankClassName = def.ranked ? `.t-rank__text--${item[`${def.key}Level`]}` : '';
+  const rankClassName = def.ranked ? ` t-rank__text--${item[`${def.key}Level`]}` : '';
 
   return <li className={`item-summary__list-item${rankClassName}`}>{content}</li>;
 }

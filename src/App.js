@@ -6,8 +6,16 @@ import Stat from './stat';
 import './App.scss';
 import { Component } from 'react';
 import fetchJson from './fetchJson';
-import appModelFactory from './model';
+import sortsModelFactory from './model/sorts';
 import './themes/light.scss';
+import { HAS_VALUE, RESET_VALUE, PREPARE_TEST, SET_VALUE, STATS, EXTRAS } from './model/actions';
+import { ORDER } from './model/consts';
+
+function getLabel(key) {
+  const label = key.replace(/\.?([A-Z]+)/g, (match, word) => ` ${word}`);
+
+  return label[0].toUpperCase() + label.slice(1);
+}
 
 class App extends Component {
   state = {
@@ -17,7 +25,9 @@ class App extends Component {
     filters: [],
     isLoading: true,
     items: [],
-    schema: {}
+    schema: {},
+
+    allItems: []
   }
 
   constructor(props) {
@@ -25,35 +35,98 @@ class App extends Component {
     this.resetFilter = this.resetFilter.bind(this);
     this.setFilterValue = this.setFilterValue.bind(this);
     this.setSort = this.setSort.bind(this);
+    this.sorts = sortsModelFactory();
   }
 
   componentDidMount() {
+    this.setState(() => ({
+      isLoading: true
+    }));
     Promise
       .all([fetchJson('/data/schema.json'), fetchJson('/data/items.json')])
       .then(this.setupAppModel.bind(this));
   }
 
   setupAppModel([schema, items]) {
-    this.appModel = appModelFactory(schema, items);
-    this.setState(this.appModel.toState());
-    this.setState(() => ({
-      isLoading: false
+    const filters = schema.fields.filter((field) => !field.hidden).map(({ type, stat, key }) => ({
+      id: key,
+      key,
+      type,
+      stat,
+      label: getLabel(key),
+      order: ORDER.NONE
     }));
+
+    this.setState({
+      isLoading: false,
+      allItems: items,
+      totalCount: items.length,
+      schema
+    });
+
+    this.syncFilters(filters);
+  }
+
+  syncFilters(filters) {
+    const { allItems } = this.state;
+    const items = allItems.slice(0);
+    const filtered = filters
+      .filter((field) => HAS_VALUE[field.type](field))
+      .map((field) => PREPARE_TEST[field.type](field))
+      .reduce((filteredItems, testFn) => filteredItems.filter(testFn), items);
+
+    const currentItems = this.sorts.applySorts(filtered);
+    const stats = filters
+      .filter((field) => field.stat)
+      .map((field) => STATS[field.type](field, currentItems))
+      .filter(Boolean);
+
+    this.setState({
+      count: currentItems.length,
+      stats,
+      filters: filters.map((filter) => EXTRAS[filter.type](filter, currentItems)),
+      isLoading: false,
+      items: currentItems
+    });
   }
 
   resetFilter(filterId) {
-    this.appModel.resetFilter(filterId);
-    this.setState(this.appModel.toState());
+    const filters = this.state.filters.map((filter) => {
+      if (filter.id === filterId) {
+        return RESET_VALUE[filter.type](filter);
+      }
+
+      return filter;
+    });
+
+    this.syncFilters(filters);
   }
 
-  setFilterValue(filterId, filterValue) {
-    this.appModel.setFilterValue(filterId, filterValue);
-    this.setState(this.appModel.toState());
+  setFilterValue(filterId, newValue) {
+    const filters = this.state.filters.map((filter) => {
+      if (filter.id === filterId) {
+        return SET_VALUE[filter.type](filter, newValue);
+      }
+
+      return filter;
+    });
+
+    this.syncFilters(filters);
   }
 
   setSort(filterId) {
-    this.appModel.setSort(filterId);
-    this.setState(this.appModel.toState());
+    const filters = this.state.filters.map((filter) => {
+      if (filter.id === filterId) {
+        return {
+          ...filter,
+          order: this.sorts.setSort(filterId)
+        };
+      }
+
+      return filter;
+    });
+
+    this.syncFilters(filters);
   }
 
   render() {

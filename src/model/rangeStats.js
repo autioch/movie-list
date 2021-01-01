@@ -20,7 +20,7 @@ function updateDict(dict, item) {
 const ROUND_AMOUNT = 1000;
 const ROUND_VALUE = 1000000;
 
-export default function generateStats(values) {
+export default function rangeStats(values) {
   const dict = {};
 
   let dividend = 0;

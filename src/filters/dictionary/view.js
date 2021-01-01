@@ -1,6 +1,6 @@
 import './style.scss';
 
-export default function DictionaryView({ filter: { id, label, value, options }, setFilterValue, children }) {
+export default function DictionaryView({ filter: { id, label, value, options = [] }, setFilterValue, children }) {
   return (
     <div className="field__filter">
       <select

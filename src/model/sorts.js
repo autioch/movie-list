@@ -1,18 +1,8 @@
+import { ORDER, ORDER_INVERSION } from './consts';
+
 const EQUAL = 0;
 const ITEM_1_LATER = 1;
 const ITEM_2_LATER = -1;
-
-const ORDER = {
-  NONE: 0,
-  DESC: 1,
-  ASC: -1
-};
-
-const ORDER_INVERSION = {
-  [ORDER.NONE]: ORDER.DESC,
-  [ORDER.DESC]: ORDER.ASC,
-  [ORDER.ASC]: ORDER.DESC
-};
 
 export default function sortsModelFactory() {
   let sorts = [];
