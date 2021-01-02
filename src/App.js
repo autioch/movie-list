@@ -1,16 +1,18 @@
 import FilterList from './filterList';
 import ItemList from './itemList';
 import StatList from './statList';
+import About from './about';
 
 import './App.scss';
 import { Component } from 'react';
 import fetchJson from './fetchJson';
 import sortsModelFactory from './model/sorts';
 import './themes/light.scss';
-import { HAS_VALUE, RESET_VALUE, PREPARE_TEST, SET_VALUE, STATS, EXTRAS } from './model/actions';
+import { HAS_VALUE, RESET_VALUE, PREPARE_TEST, SET_VALUE, EXTRAS } from './model/actions';
 import { ORDER } from './model/consts';
 import Menu from './menu';
 import 'antd/dist/antd.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function getLabel(key) {
   const label = key.replace(/\.?([A-Z]+)/g, (match, word) => ` ${word}`);
@@ -22,7 +24,6 @@ class App extends Component {
   state = {
     totalCount: 0,
     count: 0,
-    stats: [],
     filters: [],
     isLoading: true,
     items: [],
@@ -65,7 +66,6 @@ class App extends Component {
     this.setState({
       isLoading: false,
       allItems: items,
-      totalCount: items.length,
       schema
     });
 
@@ -81,14 +81,9 @@ class App extends Component {
       .reduce((filteredItems, testFn) => filteredItems.filter(testFn), items);
 
     const currentItems = this.sorts.applySorts(filtered);
-    const stats = filters
-      .filter((field) => field.stat)
-      .map((field) => STATS[field.type](field, currentItems))
-      .filter(Boolean);
 
     this.setState({
       count: currentItems.length,
-      stats,
       filters: filters.map((filter) => EXTRAS[filter.type](filter, currentItems)),
       isLoading: false,
       items: currentItems
@@ -149,23 +144,37 @@ class App extends Component {
   }
 
   render() {
-    const { totalCount, count, stats, filters, isLoading, items, schema, filtersVisible, statsVisible } = this.state;
+    const { count, filters, isLoading, items, schema, filtersVisible, statsVisible } = this.state;
 
     return (
-      <div className="app">
-        <Menu
-          toggleFilters={this.toggleFilters}
-          filtersVisible={filtersVisible}
-          filtersApplied={filters.some((filter) => filter.isApplied)}
-          toggleStats={this.toggleStats}
-          statsVisible={statsVisible}
-        />
-        <div className="app-content">
-          {filtersVisible ? <FilterList filters={filters} resetFilter={this.resetFilter} setFilterValue={this.setFilterValue} setSort={this.setSort} /> : ''}
-          {statsVisible || filtersVisible ? '' : <ItemList isLoading={isLoading} schema={schema} items={items} /> }
-          {statsVisible ? <StatList count={count} totalCount={totalCount} stats={stats} /> : ''}
+      <Router>
+        <div className="app">
+          <Menu
+            toggleFilters={this.toggleFilters}
+            filtersVisible={filtersVisible}
+            filtersApplied={filters.some((filter) => filter.isApplied)}
+            toggleStats={this.toggleStats}
+            statsVisible={statsVisible}
+            count={count}
+          />
+          <div className="app-content">
+            <Switch>
+              <Route path="/filterList">
+                <FilterList filters={filters} resetFilter={this.resetFilter} setFilterValue={this.setFilterValue} setSort={this.setSort} />
+              </Route>
+              <Route path="/statList">
+                <StatList filters={filters} items={items} />
+              </Route>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/">
+                <ItemList isLoading={isLoading} schema={schema} items={items} />
+              </Route>
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }

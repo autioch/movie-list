@@ -68,25 +68,23 @@ function SchemaItem({ schema = [], item, View }) {
 export default function Item({ item, schema, style }) {
   return (
     <div className="item-container" style={style}>
+      <header className="item__header">
+        <SchemaItem schema={schema.header} item={item} View={Header} />
+        <SchemaItem schema={schema.warning} item={item} View={Warnings} />
+        {schema.links.filter((def) => !def.hidden)
+          .map((def, index) => <Link key={index} item={item} def={def} />)}
+      </header>
       <section className="item">
         <article className="item__description">
-          <header className="item__header">
-            <SchemaItem schema={schema.header} item={item} View={Header} />
-            <SchemaItem schema={schema.warning} item={item} View={Warnings} />
-          </header>
           <SchemaItem schema={schema.content} item={item} View={Content} />
-          <SchemaItem schema={schema.details} item={item} View={Details} />
         </article>
         <aside className="item-summary">
           <ul className="item-summary__list">
-            <li className="item-summary__list-item">
-              {schema.links.filter((def) => !def.hidden)
-                .map((def, index) => <Link key={index} item={item} def={def} />)}
-            </li>
             <SchemaItem schema={schema.summary} item={item} View={Summary} />
           </ul>
         </aside>
       </section>
+      <SchemaItem schema={schema.details} item={item} View={Details} />
     </div>
   );
 }

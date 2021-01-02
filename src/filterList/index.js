@@ -8,6 +8,7 @@ const { Title } = Typography;
 export default function FilterList({ filters, resetFilter, setFilterValue, setSort }) {
   return (
     <div className="filter-list">
+      <Title level={3}>Apply filters</Title>
       {filters.map((filter) => {
         const View = TYPE_VIEWS[filter.type];
         const { id, label, order, isApplied } = filter;

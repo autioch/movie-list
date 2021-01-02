@@ -1,5 +1,5 @@
 .item-container {
-  padding-bottom: .5cm;
+  padding: .25cm .25cm .75cm .25cm;
   box-sizing: border-box;
 }
 
@@ -7,4 +7,9 @@
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
+}
+
+.item__header {
+  display: flex;
+  align-items: center;
 }

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { CellMeasurer, CellMeasurerCache, AutoSizer, List } from 'react-virtualized';
 import Item from './item';
+import './index.scss';
 
 import throttle from 'lodash.throttle';
 

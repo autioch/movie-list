@@ -1,16 +1,20 @@
 import Item from './item';
-import Count from './count';
-import Legend from './legend';
+import { STATS } from '../model/actions';
+import { Typography } from 'antd';
 import './style.scss';
 
-export default function StatList({ count, totalCount, stats }) {
+const { Title } = Typography;
+
+export default function StatList({ filters, items }) {
+  const stats = filters
+    .filter((field) => field.stat)
+    .map((field) => STATS[field.type](field, items))
+    .filter(Boolean);
+
   return (
-    <aside className="stat-list">
-      <Count count={count} totalCount={totalCount}/>
-      <section className="stat-list">
-        {stats.map((field, index) => <Item field={field} key={index}/>)}
-      </section>
-      <Legend />
-    </aside>
+    <div className="stat-list">
+      <Title level={3}>Statistics</Title>
+      {stats.map((field, index) => <Item field={field} key={index}/>)}
+    </div>
   );
 }

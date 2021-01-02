@@ -1,37 +1,56 @@
-import { FilterOutlined, QuestionOutlined, BarChartOutlined, ShareAltOutlined } from '@ant-design/icons';
-
+import { NavLink, useLocation } from 'react-router-dom';
 import classname from 'classname';
 import './index.scss';
+import { AboutIcon, FilterListIcon, ShareIcon, StatListIcon } from './icons';
+import copyToClipboard from './copyToClipboard';
 
-// TODO Use routes
-export default function Menu({ toggleFilters, filtersVisible, filtersApplied, toggleStats, statsVisible }) {
+function toggleRoute(pathname, suggestedRoute) {
+  return pathname === suggestedRoute ? '/' : suggestedRoute;
+}
+
+export default function Menu({ count, filtersVisible, filtersApplied, statsVisible }) {
+  const { pathname } = useLocation();
+
   return (
     <div className="app-menu">
-      <div onClick={toggleFilters} className={classname({
-        'app-menu-button': true,
-        'is-active': filtersVisible,
-        'is-applied': filtersApplied
-      })}>
-        <FilterOutlined />
-      </div>
-      <div className="app-menu-header">Movies</div>
 
-      <div className={classname({
+      <NavLink to={toggleRoute(pathname, '/filterList')} activeClassName="selected">
+        <div className={classname({
+          'app-menu-button': true,
+          'is-active': filtersVisible,
+          'is-applied': filtersApplied
+        })}>
+          <FilterListIcon />
+        </div>
+      </NavLink>
+
+      <NavLink to={toggleRoute(pathname, '/statList')} activeClassName="selected">
+        <div className={classname({
+          'app-menu-button': true,
+          'is-active': statsVisible
+        })}>
+          <StatListIcon />
+        </div>
+      </NavLink>
+
+      <NavLink to="/" className="app-menu-header" activeClassName="selected" exact>
+        {count} Movie{count === 1 ? '' : 's'}
+      </NavLink>
+
+      <NavLink to={toggleRoute(pathname, '/about')} activeClassName="selected">
+        <div className={classname({
+          'app-menu-button': true
+        })}>
+          <AboutIcon />
+        </div>
+      </NavLink>
+
+      <div onClick={() => copyToClipboard(document.location.href)} className={classname({
         'app-menu-button': true
       })}>
-        <QuestionOutlined />
+        <ShareIcon />
       </div>
-      <div className={classname({
-        'app-menu-button': true
-      })}>
-        <ShareAltOutlined />
-      </div>
-      <div onClick={toggleStats} className={classname({
-        'app-menu-button': true,
-        'is-active': statsVisible
-      })}>
-        <BarChartOutlined />
-      </div>
+
     </div>
   );
 }
