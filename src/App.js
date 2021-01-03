@@ -1,8 +1,3 @@
-import FilterList from './filterList';
-import ItemList from './itemList';
-import StatList from './statList';
-import About from './about';
-
 import './App.scss';
 import { Component } from 'react';
 import fetchJson from './fetchJson';
@@ -10,9 +5,8 @@ import sortsModelFactory from './model/sorts';
 import './themes/light.scss';
 import { HAS_VALUE, RESET_VALUE, PREPARE_TEST, SET_VALUE, EXTRAS } from './model/actions';
 import { ORDER } from './model/consts';
-import Menu from './menu';
 import 'antd/dist/antd.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Tmp from './tmp';
 
 function getLabel(key) {
   const label = key.replace(/\.?([A-Z]+)/g, (match, word) => ` ${word}`);
@@ -133,30 +127,16 @@ class App extends Component {
     const { count, filters, isLoading, items, schema } = this.state;
 
     return (
-      <Router>
-        <div className="app">
-          <Menu
-            filtersApplied={filters.some((filter) => filter.isApplied)}
-            count={count}
-          />
-          <div className="app-content">
-            <Switch>
-              <Route path="/filterList">
-                <FilterList filters={filters} resetFilter={this.resetFilter} setFilterValue={this.setFilterValue} setSort={this.setSort} />
-              </Route>
-              <Route path="/statList">
-                <StatList filters={filters} items={items} />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/">
-                <ItemList isLoading={isLoading} schema={schema} items={items} />
-              </Route>
-            </Switch>
-          </div>
-        </div>
-      </Router>
+      <Tmp
+        count={count}
+        filters={filters}
+        isLoading={isLoading}
+        items={items}
+        schema={schema}
+        resetFilter={this.resetFilter}
+        setFilterValue={this.setFilterValue}
+        setSort={this.setSort}
+      />
     );
   }
 }

@@ -52,7 +52,7 @@ export default class MacroList extends PureComponent {
     return (
       <main className="item-list">
         {isLoading ? <div className="item-list__message">Loading movies...</div> : ''}
-        {items.length ? '' : <div className="item-list__message">No items match filters.</div>}
+        {items.length || isLoading ? '' : <div className="item-list__message">No items match filters.</div>}
         <AutoSizer>
           {({ height, width }) => (
             <List
