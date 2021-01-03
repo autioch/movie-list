@@ -8,7 +8,7 @@ function toggleRoute(pathname, suggestedRoute) {
   return pathname === suggestedRoute ? '/' : suggestedRoute;
 }
 
-export default function Menu({ count, filtersVisible, filtersApplied, statsVisible }) {
+export default function Menu({ count, filtersApplied }) {
   const { pathname } = useLocation();
 
   return (
@@ -17,7 +17,6 @@ export default function Menu({ count, filtersVisible, filtersApplied, statsVisib
       <NavLink to={toggleRoute(pathname, '/filterList')} activeClassName="selected">
         <div className={classname({
           'app-menu-button': true,
-          'is-active': filtersVisible,
           'is-applied': filtersApplied
         })}>
           <FilterListIcon />
@@ -26,8 +25,7 @@ export default function Menu({ count, filtersVisible, filtersApplied, statsVisib
 
       <NavLink to={toggleRoute(pathname, '/statList')} activeClassName="selected">
         <div className={classname({
-          'app-menu-button': true,
-          'is-active': statsVisible
+          'app-menu-button': true
         })}>
           <StatListIcon />
         </div>

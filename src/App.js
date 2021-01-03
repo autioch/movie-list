@@ -29,16 +29,12 @@ class App extends Component {
     items: [],
     schema: {},
 
-    allItems: [],
-    filtersVisible: false,
-    statsVisible: false
+    allItems: []
   }
 
   constructor(props) {
     super(props);
     this.resetFilter = this.resetFilter.bind(this);
-    this.toggleFilters = this.toggleFilters.bind(this);
-    this.toggleStats = this.toggleStats.bind(this);
     this.setFilterValue = this.setFilterValue.bind(this);
     this.setSort = this.setSort.bind(this);
     this.sorts = sortsModelFactory();
@@ -48,31 +44,35 @@ class App extends Component {
     this.setState(() => ({
       isLoading: true
     }));
-    Promise
-      .all([fetchJson('/data/schema.json'), fetchJson('/data/items.json')])
-      .then(this.setupAppModel.bind(this));
-  }
 
-  setupAppModel([schema, items]) {
-    const filters = schema.fields.filter((field) => !field.hidden).map(({ type, stat, key }) => ({
-      id: key,
-      key,
-      type,
-      stat,
-      label: getLabel(key),
-      order: ORDER.NONE
+    const schemaPromise = fetchJson('/data/schema.json').then((schema) => {
+      this.setState({
+        schema,
+        filters: schema.fields.filter((field) => !field.hidden).map(({ type, stat, key }) => ({
+          id: key,
+          key,
+          type,
+          stat,
+          label: getLabel(key),
+          order: ORDER.NONE
+        }))
+      });
+    });
+    const dataPromise = fetchJson('/data/items.json').then((items) => this.setState({
+      allItems: items
     }));
 
-    this.setState({
-      isLoading: false,
-      allItems: items,
-      schema
-    });
-
-    this.syncFilters(filters);
+    Promise
+      .all([schemaPromise, dataPromise])
+      .then(() => {
+        this.setState({
+          isLoading: false
+        });
+        this.syncFilters();
+      });
   }
 
-  syncFilters(filters) {
+  syncFilters(filters = this.state.filters) {
     const { allItems } = this.state;
     const items = allItems.slice(0);
     const filtered = filters
@@ -129,32 +129,14 @@ class App extends Component {
     this.syncFilters(filters);
   }
 
-  toggleFilters() {
-    this.setState({
-      statsVisible: false,
-      filtersVisible: !this.state.filtersVisible
-    });
-  }
-
-  toggleStats() {
-    this.setState({
-      statsVisible: !this.state.statsVisible,
-      filtersVisible: false
-    });
-  }
-
   render() {
-    const { count, filters, isLoading, items, schema, filtersVisible, statsVisible } = this.state;
+    const { count, filters, isLoading, items, schema } = this.state;
 
     return (
       <Router>
         <div className="app">
           <Menu
-            toggleFilters={this.toggleFilters}
-            filtersVisible={filtersVisible}
             filtersApplied={filters.some((filter) => filter.isApplied)}
-            toggleStats={this.toggleStats}
-            statsVisible={statsVisible}
             count={count}
           />
           <div className="app-content">
