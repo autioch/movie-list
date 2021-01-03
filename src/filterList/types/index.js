@@ -2,7 +2,7 @@ import DateView from './date';
 import DictionaryView from './dictionary';
 import RangeView from './range';
 import TextView from './text';
-import { TYPES } from '../../model/consts';
+import { TYPES } from '../../consts';
 
 const TYPE_VIEWS = {
   [TYPES.TEXT]: TextView,

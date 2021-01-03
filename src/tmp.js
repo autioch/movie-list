@@ -9,21 +9,29 @@ import Menu from './menu';
 import 'antd/dist/antd.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-export default function tmp({ count, filters, isLoading, items, schema, resetFilter, setFilterValue, setSort }) {
+export default function tmp({ filters, isLoading, items, schema, resetFilter, setFilterValue, setSort, sortOrders, filterValues }) {
   return (
     <Router>
       <div className="app">
         <Menu
-          filtersApplied={filters.some((filter) => filter.isApplied)}
-          count={count}
+          filtersApplied={Object.values(filterValues).some((value) => value !== undefined)}
+          items={items}
         />
         <div className="app-content">
           <Switch>
             <Route path="/filterList">
-              <FilterList filters={filters} resetFilter={resetFilter} setFilterValue={setFilterValue} setSort={setSort} />
+              <FilterList
+                filters={filters}
+                resetFilter={resetFilter}
+                setFilterValue={setFilterValue}
+                setSort={setSort}
+                sortOrders={sortOrders}
+                filterValues={filterValues}
+                items={items}
+              />
             </Route>
             <Route path="/statList">
-              <StatList filters={filters} items={items} />
+              <StatList schema={schema} items={items} />
             </Route>
             <Route path="/about">
               <About />

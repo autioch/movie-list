@@ -1,9 +1,24 @@
 import { Input, Typography } from 'antd';
+import { uniqValues } from '../utils';
+import { NO_VALUE } from '../../consts';
 
 const { Title } = Typography;
 
-export default function DateView({ filter: { id, label, value = {}, minDate, maxDate }, setFilterValue }) {
+const checkValue = (val) => {
+  const toDate = new Date(val);
+
+  if (isNaN(toDate.getTime())) {
+    return NO_VALUE;
+  }
+
+  return toDate.toISOString();
+};
+
+export default function DateView({ filterId, label, value = {}, items, setFilterValue }) {
   const { fromDate = '', toDate = '' } = value;
+
+  const options = uniqValues(items, filterId).map(parseFloat).filter((val) => !isNaN(val))
+    .sort((aa, bb) => aa - bb);
 
   return (
     <>
@@ -11,9 +26,9 @@ export default function DateView({ filter: { id, label, value = {}, minDate, max
       <Input
         value={fromDate}
         title={`Set minimum ${label}`}
-        placeholder={minDate}
-        onChange={(ev) => setFilterValue(id, {
-          fromValue: ev.target.value,
+        placeholder={options[0]}
+        onChange={(ev) => setFilterValue(filterId, {
+          fromValue: checkValue(ev.target.value),
           toDate
         })}
       />
@@ -21,10 +36,10 @@ export default function DateView({ filter: { id, label, value = {}, minDate, max
       <Input
         value={toDate}
         title={`Set maximum ${label}`}
-        placeholder={maxDate}
-        onChange={(ev) => setFilterValue(id, {
+        placeholder={options[options.length - 1]}
+        onChange={(ev) => setFilterValue(filterId, {
           fromDate,
-          toDate: ev.target.value
+          toDate: checkValue(ev.target.value)
         })}
       />
     </>

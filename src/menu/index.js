@@ -8,8 +8,9 @@ function toggleRoute(pathname, suggestedRoute) {
   return pathname === suggestedRoute ? '/' : suggestedRoute;
 }
 
-export default function Menu({ count, filtersApplied }) {
+export default function Menu({ items, filtersApplied }) {
   const { pathname } = useLocation();
+  const count = items.length;
 
   return (
     <div className="app-menu">
