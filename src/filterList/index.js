@@ -6,29 +6,29 @@ import { getLabel } from './utils';
 
 const { Title } = Typography;
 
-export default function FilterList({ filters, resetFilter, setFilterValue, setSort, sortOrders, items, filterValues }) {
+export default function FilterList({ schema, setFilterValue, setSort, sortOrders, items, filterValues }) {
   return (
     <div className="filter-list">
       <Title level={3}>Apply filters</Title>
-      {filters.map((filter) => {
-        const { id, type } = filter;
+      {(schema.fields || []).map((filter) => {
+        const { key, type } = filter;
         const View = TYPE_VIEWS[type];
-        const value = filterValues[id];
-        const label = getLabel(id);
+        const value = filterValues[key];
+        const label = getLabel(key);
 
         return (
-          <section className="filter" key={id}>
-            <div className="filter-header" onClick={() => setSort(id)} title={`Sort by ${label}`}>
+          <section className="filter" key={key}>
+            <div className="filter-header" onClick={() => setSort(key)} title={`Sort by ${label}`}>
               <Title level={4}>{label}</Title>
-              <span className={`filter-sort-icon is-sort-${sortOrders[id]}`}></span>
+              <span className={`filter-sort-icon is-sort-${sortOrders[key]}`}></span>
             </div>
             <div className="filter-content">
-              <View filterId={id} label={label} value={value} setFilterValue={setFilterValue} items={items}/>
+              <View filterId={key} label={label} value={value} setFilterValue={setFilterValue} items={items}/>
               {value === undefined ? '' : <Button
                 type="primary"
                 icon={<CloseOutlined />}
                 title={`Reset ${label} filter`}
-                onClick={() => resetFilter(id)}
+                onClick={() => setFilterValue(key, undefined)}
               />}
             </div>
           </section>

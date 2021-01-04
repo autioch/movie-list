@@ -8,16 +8,16 @@ const { Title } = Typography;
 
 export const STATS = {
   [TYPES.TEXT]: () => EMPTY,
-  [TYPES.RANGE]: ({ id, label }, items) => ({
-    label,
-    stats: rangeStats(items.map((item) => item[id]))
+  [TYPES.RANGE]: ({ key }, items) => ({
+    label: key,
+    stats: rangeStats(items.flatMap((item) => item[key]))
   }),
   [TYPES.DICTIONARY]: () => EMPTY,
   [TYPES.DATE]: () => EMPTY
 };
 
 export default function StatList({ schema, items }) {
-  const stats = schema.fields
+  const stats = (schema.fields || [])
     .filter((field) => field.stat)
     .map((field) => STATS[field.type](field, items))
     .filter(Boolean);

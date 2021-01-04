@@ -41,26 +41,26 @@ const TEST_FN = {
   }
 };
 
-function getTestFn(id, type, value) {
+function getTestFn(key, type, value) {
   const testFn = TEST_FN[type](value);
 
-  testFn.filterId = id;
+  testFn.key = key;
 
   return testFn;
 }
 
 function filterByTestFn(items, testFn) {
   return items.filter((item) => {
-    const itemValue = item[testFn.filterId];
+    const itemValue = item[testFn.key];
 
     return Array.isArray(itemValue) ? itemValue.some(testFn) : testFn(itemValue);
   });
 }
 
-export default function getItems(allItems, filters, sortKeys, sortOrders, filterValues) { // eslint-disable-line max-params
-  return filters
-    .filter((field) => filterValues[field.id] !== undefined)
-    .map((field) => getTestFn(field.id, field.type, filterValues[field.id]))
+export default function getItems(allItems, schema, sortKeys, sortOrders, filterValues) { // eslint-disable-line max-params
+  return schema.fields
+    .filter((field) => filterValues[field.key] !== undefined)
+    .map((field) => getTestFn(field.key, field.type, filterValues[field.key]))
     .reduce(filterByTestFn, allItems.slice(0))
     .sort((item1, item2) => {
       for (let index = 0; index < sortKeys.length; index++) {

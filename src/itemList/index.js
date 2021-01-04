@@ -53,7 +53,7 @@ export default class MacroList extends PureComponent {
       <main className="item-list">
         {isLoading ? <div className="item-list__message">Loading movies...</div> : ''}
         {items.length || isLoading ? '' : <div className="item-list__message">No items match filters.</div>}
-        <AutoSizer>
+        {items.length ? <AutoSizer>
           {({ height, width }) => (
             <List
               deferredMeasurementCache={cache}
@@ -67,7 +67,7 @@ export default class MacroList extends PureComponent {
               }}
             />
           )}
-        </AutoSizer>
+        </AutoSizer> : ''}
       </main>
     );
   }
