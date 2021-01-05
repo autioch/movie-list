@@ -10,7 +10,8 @@
     {"hidden":true,"key":"director","label":"Director"},
     {"hidden":true,"key":"writer","label":"Writer"},
     {"hidden":true,"key":"actors","label":"Actors"},
-    {"hidden":true,"key":"subtitles","label":"Subtitles"}
+    {"hidden":true,"key":"subtitles","label":"Subtitles"},
+    {"hidden":true,"key":"errors","label":"Errors"}
   ],
   "links":[
     {"hidden":false,"key":"metacritic","label":"Metacritic","template":"http://www.metacritic.com/search/movie/#{title}/results?date_range_from=#{year}"},
@@ -28,27 +29,27 @@
     {"hidden":true,"key":"added","template":"#{added} added"}
   ],
   "filters":[
-    {"type":4,"stat":true ,"hidden":false,"key":"added"},
     {"type":1,"stat":true ,"hidden":false,"key":"title"},
     {"type":3,"stat":true ,"hidden":false,"key":"genre"},
     {"type":1,"stat":true ,"hidden":false,"key":"plot"},
+    {"type":3,"stat":true ,"hidden":false,"key":"actors"},
+    {"type":3,"stat":true ,"hidden":false,"key":"director"},
+    {"type":3,"stat":true ,"hidden":false,"key":"writer"},
     {"type":2,"stat":true ,"hidden":false,"key":"year"},
     {"type":2,"stat":true ,"hidden":false,"key":"metascore"},
     {"type":2,"stat":true ,"hidden":false,"key":"imdbRating"},
     {"type":2,"stat":true ,"hidden":false,"key":"imdbVotes"},
-    {"type":3,"stat":true ,"hidden":false,"key":"actors"},
-    {"type":3,"stat":true ,"hidden":false,"key":"director"},
-    {"type":3,"stat":true ,"hidden":false,"key":"writer"},
     {"type":3,"stat":true ,"hidden":false,"key":"rated"},
     {"type":3,"stat":true ,"hidden":false,"key":"subtitles"},
-    {"type":3,"stat":true ,"hidden":false,"key":"displayAspectRatio"},
-    {"type":3,"stat":true ,"hidden":false,"key":"errors"},
-    {"type":3,"stat":true ,"hidden":false,"key":"formatLongName"},
-    {"type":3,"stat":true ,"hidden":false,"key":"fps"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"displayAspectRatio"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"errors"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"formatLongName"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"fps"},
     {"type":2,"stat":true ,"hidden":false,"key":"duration"},
-    {"type":2,"stat":true ,"hidden":false,"key":"height"},
-    {"type":2,"stat":true ,"hidden":false,"key":"width"},
-    {"type":2,"stat":true ,"hidden":false,"key":"size"},
-    {"type":3,"stat":true ,"hidden":false,"key":"audioChannels"}
+    {"type":2,"stat":true ,"hidden":true ,"key":"height"},
+    {"type":2,"stat":true ,"hidden":true ,"key":"width"},
+    {"type":2,"stat":true ,"hidden":true ,"key":"size"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"audioChannels"},
+    {"type":4,"stat":true ,"hidden":false,"key":"added"}
   ]
 }
