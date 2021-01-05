@@ -6,7 +6,7 @@ import { EMPTY, TYPES } from '../consts';
 
 const { Title } = Typography;
 
-export const STATS = {
+const STATS = {
   [TYPES.TEXT]: () => EMPTY,
   [TYPES.RANGE]: ({ key }, items) => ({
     label: key,

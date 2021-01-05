@@ -2,7 +2,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import { Button, Typography } from 'antd';
 import './style.scss';
 import TYPE_VIEWS from './types';
-import { getLabel } from './utils';
+import { getLabel } from '../utils';
 
 const { Title } = Typography;
 

@@ -42,7 +42,7 @@ export default class MacroList extends PureComponent {
         rowIndex={index}
         parent={parent}
       >
-        <Item style={style} item={this.props.items[index]} schema={this.props.schema} />
+        <Item style={style} item={this.props.items[index]} schema={this.props.schema} hiddenFields={this.props.hiddenFields}/>
       </CellMeasurer>
     );
   }

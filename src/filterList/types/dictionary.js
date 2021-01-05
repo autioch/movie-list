@@ -1,5 +1,5 @@
 import { Select } from 'antd';
-import { uniqValues } from '../utils';
+import { uniqValues } from '../../utils';
 import { IGNORED, NO_VALUE } from '../../consts';
 
 const { Option } = Select; // eslint-disable-line no-shadow

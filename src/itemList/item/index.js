@@ -1,18 +1,7 @@
-import './style/index.scss';
+import './index.scss';
 
 function Header({ def, item }) {
-  return (<span>{item[def.key]}</span>);
-}
-
-function Warnings({ item, def }) {
-  return (
-    <span>
-      <span>?</span>
-      <ul>
-        {item[def.key].map((warning, index) => <li key={index}>{warning}</li>)}
-      </ul>
-    </span>
-  );
+  return (<h3>{item[def.key]}</h3>);
 }
 
 function Content({ def, item }) {
@@ -21,10 +10,10 @@ function Content({ def, item }) {
 
 function Footnotes({ def, item }) {
   return (
-    <section>
-      <header>{def.label}</header>
-      <ul>
-        {item[def.key].map((detail, index) => <li key={index}>{detail}</li>)}
+    <section className="item-footnotes">
+      <header className="item-footnotes__header">{def.label}</header>
+      <ul className="item-footnotes__list">
+        {item[def.key].map((detail, index) => <li className="item-footnotes__item" key={index}>{detail}</li>)}
       </ul>
     </section>
   );
@@ -33,6 +22,7 @@ function Footnotes({ def, item }) {
 function Link({ item, def }) {
   return (
     <a
+      className="item__link"
       target="_blank"
       rel="noreferrer"
       title={`Search in ${def.label}`}
@@ -45,15 +35,15 @@ function Link({ item, def }) {
 
 function Sidenotes({ def, item }) {
   const content = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
-  const rankClassName = def.ranked ? ` t-rank__text--${item[`${def.key}Level`]}` : '';
+  const rankClassName = def.ranked ? `t-rank__text--${item[`${def.key}Level`]}` : '';
 
   return <li className={rankClassName}>{content}</li>;
 }
 
-function SchemaItem({ schema = [], item, View }) {
+function SchemaItem({ schema = [], item, View, hiddenFields }) {
   return schema
     .filter((def) => {
-      if (def.hidden) {
+      if (hiddenFields[def.key]) {
         return false;
       }
       const value = item[def.key];
@@ -63,26 +53,26 @@ function SchemaItem({ schema = [], item, View }) {
     .map((def, index) => <View key={index} def={def} item={item} />);
 }
 
-export default function Item({ item, schema, style }) {
+export default function Item({ item, schema, style, hiddenFields }) {
   return (
-    <div style={style}>
-      <header>
-        <SchemaItem schema={schema.header} item={item} View={Header} />
-        <SchemaItem schema={schema.warning} item={item} View={Warnings} />
-        {schema.links.filter((def) => !def.hidden)
-          .map((def, index) => <Link key={index} item={item} def={def} />)}
-      </header>
-      <section>
-        <article>
-          <SchemaItem schema={schema.content} item={item} View={Content} />
-        </article>
-        <aside>
-          <ul>
-            <SchemaItem schema={schema.sidenotes} item={item} View={Sidenotes} />
-          </ul>
-        </aside>
-      </section>
-      <SchemaItem schema={schema.footnotes} item={item} View={Footnotes} />
+    <div className="item" style={style}>
+      <div className="item__headline">
+        <div className="item__header">
+          <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.header} View={Header} />
+        </div>
+        <div className="item__links">
+          {schema.links.filter((def) => !hiddenFields[def.key]).map((def, index) => <Link key={index} item={item} def={def} />)}
+        </div>
+      </div>
+      <div className="item__body">
+        <div className="item__content">
+          <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.content} View={Content}/>
+          <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.footnotes} View={Footnotes} />
+        </div>
+        <ul className="item__sidenotes">
+          <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.sidenotes} View={Sidenotes} />
+        </ul>
+      </div>
     </div>
   );
 }

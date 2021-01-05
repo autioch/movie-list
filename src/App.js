@@ -9,8 +9,10 @@ import FilterList from './filterList';
 import ItemList from './itemList';
 import StatList from './statList';
 import About from './about';
+import Settings from './settings';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Menu from './menu';
+import { getHiddenFields } from './utils';
 
 class App extends Component {
   state = {
@@ -19,12 +21,14 @@ class App extends Component {
     items: [],
     schema: {},
     sortOrders: {},
+    hiddenFields: {},
     sortKeys: [],
     allItems: []
   }
 
   constructor(props) {
     super(props);
+    this.toggleFieldVisibility = this.toggleFieldVisibility.bind(this);
     this.setFilterValue = this.setFilterValue.bind(this);
     this.setSort = this.setSort.bind(this);
   }
@@ -36,7 +40,8 @@ class App extends Component {
 
     const schemaPromise = fetchJson('/data/schema.json').then((schema) => {
       this.setState({
-        schema
+        schema,
+        hiddenFields: getHiddenFields(schema)
       });
       this.syncItems();
     });
@@ -86,8 +91,19 @@ class App extends Component {
     this.syncItems();
   }
 
+  toggleFieldVisibility(key) {
+    const { hiddenFields } = this.state;
+
+    this.setState({
+      hiddenFields: {
+        ...hiddenFields,
+        [key]: !hiddenFields[key]
+      }
+    });
+  }
+
   render() {
-    const { isLoading, items, schema, sortOrders, filterValues } = this.state;
+    const { isLoading, items, schema, sortOrders, filterValues, hiddenFields } = this.state;
 
     return (
       <Router>
@@ -114,8 +130,20 @@ class App extends Component {
               <Route path="/about">
                 <About />
               </Route>
+              <Route path="/settings">
+                <Settings
+                  schema={schema}
+                  hiddenFields={hiddenFields}
+                  toggleFieldVisibility={this.toggleFieldVisibility}
+                />
+              </Route>
               <Route path="/">
-                <ItemList isLoading={isLoading} schema={schema} items={items} />
+                <ItemList
+                  isLoading={isLoading}
+                  schema={schema}
+                  items={items}
+                  hiddenFields={hiddenFields}
+                />
               </Route>
             </Switch>
           </div>

@@ -1,0 +1,14 @@
+.settings {
+  padding: .5cm;
+}
+
+.settings-item {
+  display: block;
+  margin: 0 !important;
+}
+
+.cols {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}

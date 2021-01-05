@@ -1,5 +1,5 @@
 import { Input, Typography } from 'antd';
-import { uniqValues } from '../utils';
+import { uniqValues } from '../../utils';
 import { NO_VALUE } from '../../consts';
 
 const { Title } = Typography;

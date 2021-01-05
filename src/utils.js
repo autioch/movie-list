@@ -8,3 +8,9 @@ export function getLabel(key) {
 
   return label[0].toUpperCase() + label.slice(1);
 }
+
+export function getHiddenFields(schema) {
+  return Object.fromEntries(Object.entries(schema)
+    .filter(([key]) => key !== 'filters')
+    .flatMap(([, fields]) => fields.map(({ key, hidden }) => [key, !!hidden])));
+}
