@@ -55,8 +55,8 @@ In each element of schema, `key` is the property od an item. Each such object ca
   "content":[
     {"key":"plot"}
   ],
-  /* Small additional details on the bottom of an item.  */
-  "details":[
+  /* Small additional footnotes on the bottom of an item.  */
+  "footnotes":[
     {"hidden":false,"key":"genre","label":"Genre"},
     {"hidden":true ,"key":"director","label":"Director"}
   ],
@@ -65,13 +65,13 @@ In each element of schema, `key` is the property od an item. Each such object ca
     {"hidden":true ,"key":"metacritic","label":"Metacritic","template":"http://www.metacritic.com/search/movie/#{title}/results?date_range_from=#{year}"},
     {"hidden":false,"key":"imdb","label":"IMDB","template":"http://www.imdb.com/find?q=#{title}&s=tt&ttype=ft&ref_=fn_ft"}
   ],
-  /* Column on the right with addtional info about the item. See more about summary below. */
-  "summary":[
+  /* Column on the right with addtional info about the item. See more about sidenotes below. */
+  "sidenotes":[
     {"hidden":false,"key":"year","template":"#{year}","ranked":false},
     {"hidden":true ,"key":"duration","template":"#{duration}min","ranked":false},
   ],
-  /* List of filters and stats. See more about fields below. */
-  "fields":[
+  /* List of filters and stats. See more about filters below. */
+  "filters":[
     {"type":1,"stat":true ,"hidden":false,"key":"title"},
     {"type":3,"stat":true ,"hidden":false,"key":"genre"},
     {"type":1,"stat":true ,"hidden":false,"key":"plot"},
@@ -84,18 +84,18 @@ In each element of schema, `key` is the property od an item. Each such object ca
 Links can lead anywhere. They're constructed using passed `template`. When hovered, `label` will be displayed.
 Links are represented using images. These images `src` attribute is set to `datas/${key}.png`, where `key` is the key of the link.
 
-### Summary
-Summary is a list of various info about the item in the right side of the box. Content of each item is constructed using `template`.
-If property `ranked` is set to true, application will expect property `${key}Level` on the item, which will be used to colorize the summary.
+### Sidenotes
+Sidenotes is a list of various info about the item in the right side of the box. Content of each item is constructed using `template`.
+If property `ranked` is set to true, application will expect property `${key}Level` on the item, which will be used to colorize the sidenotes.
 
-### Fields
-Fields can be one of the 4 types, which is specified by `type` property.
+### Filters
+Filters can be one of the 4 types, which is specified by `type` property.
 1. text, which is standard text input. Filtering is regex or just string match.
 2. range, which is represented by 2 fields, from and to. Filtering is checking if property is in range of the values.
 3. ictionary, which is a dropdown (select). Filtering checks if property matches selected option.
 4. date, which is similar to range, but checks for dates.
 
-In addition, fields can have `stat` property. If it's set to true, stats for the key about visible items will be presented at the right.
+In addition, filters can have `stat` property. If it's set to true, stats for the key about visible items will be presented at the right.
 
 ## Themes
 By default, application produces 2 themes, `themes/dark.css` and `themes/light.css`. Light theme is attached by default, but this can be changed in the produced html.

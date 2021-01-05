@@ -10,7 +10,7 @@ export default function FilterList({ schema, setFilterValue, setSort, sortOrders
   return (
     <div className="filter-list">
       <Title level={3}>Apply filters</Title>
-      {(schema.fields || []).map((filter) => {
+      {(schema.filters || []).map((filter) => {
         const { key, type } = filter;
         const View = TYPE_VIEWS[type];
         const value = filterValues[key];

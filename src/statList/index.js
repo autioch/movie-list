@@ -17,7 +17,7 @@ export const STATS = {
 };
 
 export default function StatList({ schema, items }) {
-  const stats = (schema.fields || [])
+  const stats = (schema.filters || [])
     .filter((field) => field.stat)
     .map((field) => STATS[field.type](field, items))
     .filter(Boolean);

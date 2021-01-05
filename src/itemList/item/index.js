@@ -1,31 +1,30 @@
 import './style/index.scss';
 
 function Header({ def, item }) {
-  return (<span className="item__title">{item[def.key]}</span>);
+  return (<span>{item[def.key]}</span>);
 }
 
 function Warnings({ item, def }) {
   return (
-    <span className="item-warning">
-      <span className="item-warning__icon">?</span>
-      <ul className="item-warning__list">
-        <li>Info might be incorrect. Reasons:</li>
-        {item[def.key].map((warning, index) => <li key={index} className="item-warning__item">{warning}</li>)}
+    <span>
+      <span>?</span>
+      <ul>
+        {item[def.key].map((warning, index) => <li key={index}>{warning}</li>)}
       </ul>
     </span>
   );
 }
 
 function Content({ def, item }) {
-  return (<p className="item__content">{item[def.key]}</p>);
+  return (<p>{item[def.key]}</p>);
 }
 
-function Details({ def, item }) {
+function Footnotes({ def, item }) {
   return (
-    <section className="item-detail">
-      <header className="item-detail__header">{def.label}</header>
-      <ul className="item-detail__list">
-        {item[def.key].map((detail, index) => <li key={index} className="item-detail__list-item">{detail}</li>)}
+    <section>
+      <header>{def.label}</header>
+      <ul>
+        {item[def.key].map((detail, index) => <li key={index}>{detail}</li>)}
       </ul>
     </section>
   );
@@ -34,7 +33,6 @@ function Details({ def, item }) {
 function Link({ item, def }) {
   return (
     <a
-      className="item__link"
       target="_blank"
       rel="noreferrer"
       title={`Search in ${def.label}`}
@@ -45,11 +43,11 @@ function Link({ item, def }) {
   );
 }
 
-function Summary({ def, item }) {
+function Sidenotes({ def, item }) {
   const content = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
   const rankClassName = def.ranked ? ` t-rank__text--${item[`${def.key}Level`]}` : '';
 
-  return <li className={`item-summary__list-item${rankClassName}`}>{content}</li>;
+  return <li className={rankClassName}>{content}</li>;
 }
 
 function SchemaItem({ schema = [], item, View }) {
@@ -67,24 +65,24 @@ function SchemaItem({ schema = [], item, View }) {
 
 export default function Item({ item, schema, style }) {
   return (
-    <div className="item-container" style={style}>
-      <header className="item__header">
+    <div style={style}>
+      <header>
         <SchemaItem schema={schema.header} item={item} View={Header} />
         <SchemaItem schema={schema.warning} item={item} View={Warnings} />
         {schema.links.filter((def) => !def.hidden)
           .map((def, index) => <Link key={index} item={item} def={def} />)}
       </header>
-      <section className="item">
-        <article className="item__description">
+      <section>
+        <article>
           <SchemaItem schema={schema.content} item={item} View={Content} />
         </article>
-        <aside className="item-summary">
-          <ul className="item-summary__list">
-            <SchemaItem schema={schema.summary} item={item} View={Summary} />
+        <aside>
+          <ul>
+            <SchemaItem schema={schema.sidenotes} item={item} View={Sidenotes} />
           </ul>
         </aside>
       </section>
-      <SchemaItem schema={schema.details} item={item} View={Details} />
+      <SchemaItem schema={schema.footnotes} item={item} View={Footnotes} />
     </div>
   );
 }

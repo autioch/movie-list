@@ -8,7 +8,7 @@
   "content":[
     {"key":"plot"}
   ],
-  "details":[
+  "footnotes":[
     {"hidden":false,"key":"genre","label":"Genre"},
     {"hidden":false,"key":"director","label":"Director"},
     {"hidden":false,"key":"writer","label":"Writer"},
@@ -22,7 +22,7 @@
     {"hidden":false,"key":"rotten","label":"Rotten Tomatoes","template":"https://www.rottentomatoes.com/search/?search=#{title}"},
     {"hidden":false,"key":"google","label":"Google","template":"https://www.google.pl/search?q=movie+#{title}"}
   ],
-  "summary":[
+  "sidenotes":[
     {"hidden":false,"key":"year","template":"#{year}","ranked":false},
     {"hidden":false,"key":"duration","template":"#{duration}min","ranked":false},
     {"hidden":false,"key":"rated","template":"#{rated} rated","ranked":true},
@@ -30,7 +30,7 @@
     {"hidden":false,"key":"imdbRating","template":"#{imdbRating} rating (#{imdbVotesRounded} votes)","ranked":true},
     {"hidden":false,"key":"added","template":"#{added} added"}
   ],
-  "fields":[
+  "filters":[
     {"type":4,"stat":true ,"hidden":false,"key":"added"},
     {"type":1,"stat":true ,"hidden":false,"key":"title"},
     {"type":3,"stat":true ,"hidden":false,"key":"genre"},

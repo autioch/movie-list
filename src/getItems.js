@@ -58,7 +58,7 @@ function filterByTestFn(items, testFn) {
 }
 
 export default function getItems(allItems, schema, sortKeys, sortOrders, filterValues) { // eslint-disable-line max-params
-  return schema.fields
+  return schema.filters
     .filter((field) => filterValues[field.key] !== undefined)
     .map((field) => getTestFn(field.key, field.type, filterValues[field.key]))
     .reduce(filterByTestFn, allItems.slice(0))
