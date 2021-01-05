@@ -109,7 +109,7 @@ class App extends Component {
       <Router>
         <div className="app">
           <Menu
-            filtersApplied={Object.values(filterValues).some((value) => value !== undefined)}
+            filterValues={filterValues}
             items={items}
           />
           <div className="app-content">

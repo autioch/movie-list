@@ -6,6 +6,7 @@
   position: relative;
   z-index: 10;
   height: 1.5cm;
+  user-select: none;
 }
 
 .app-menu-button {
@@ -17,6 +18,8 @@
   justify-content: center;
   cursor: pointer;
   color: #000;
+  position: relative;
+  margin: 0 .25cm;
 
   > svg {
     width: 32px;
@@ -33,10 +36,35 @@
 .app-menu-header {
   color: #000;
   flex: 1 1 auto;
-  text-align: center;
   font-size: 24px;
+  padding: 0 .25cm;
 
   &.selected {
+    // color: #09f;
+      // color: #fff;
+  }
+}
+
+.app-menu-counter {
+  font-size: 24px;
+  line-height: 24px;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  padding-bottom: 2px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #09f;
+  color: #fff;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .selected & {
+    background-color: #fff;
     color: #09f;
   }
 }
