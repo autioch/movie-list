@@ -1,8 +1,7 @@
-import React, { PureComponent } from 'react';
+import { PureComponent, createRef } from 'react';
 import { CellMeasurer, CellMeasurerCache, AutoSizer, List } from 'react-virtualized';
 import Item from './item';
 import './index.scss';
-
 import throttle from 'lodash.throttle';
 
 export default class MacroList extends PureComponent {
@@ -14,12 +13,11 @@ export default class MacroList extends PureComponent {
     this.cache = new CellMeasurerCache({
       fixedWidth: true
     });
+    this.list = createRef();
   }
 
   resetCache() {
     this.cache.clearAll();
-
-    // this.list.recomputeRowHeights();
   }
 
   componentDidMount() {
@@ -33,6 +31,7 @@ export default class MacroList extends PureComponent {
 
     this.resetCache.cancel();
   }
+
   rowRenderer({ index, key, parent, style }) { // eslint-disable-line no-shadow
     return (
       <CellMeasurer
@@ -62,9 +61,7 @@ export default class MacroList extends PureComponent {
               rowHeight={cache.rowHeight}
               rowRenderer={this.rowRenderer}
               width={width}
-              ref={(ref) => {
-                this.list = ref;
-              }}
+              ref={this.list}
             />
           )}
         </AutoSizer> : ''}

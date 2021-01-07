@@ -9,7 +9,7 @@ export default function DictionaryView({ filterId, label, value, items, setFilte
 
   return (
     <Select
-      onChange={(newValue) => setFilterValue(filterId, newValue || NO_VALUE)}
+      onChange={(newValue) => setFilterValue(newValue || NO_VALUE)}
       value={value}
       title={`Filter by ${label}`}
     >

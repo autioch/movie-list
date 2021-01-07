@@ -19,7 +19,6 @@
   cursor: pointer;
   color: #000;
   position: relative;
-  margin: 0 .25cm;
 
   > svg {
     width: 32px;
@@ -36,8 +35,8 @@
 .app-menu-header {
   color: #000;
   flex: 1 1 auto;
-  font-size: 24px;
-  padding: 0 .25cm;
+  font-size: 20px;
+  padding: 0 .2cm;
 
   &.selected {
     // color: #09f;

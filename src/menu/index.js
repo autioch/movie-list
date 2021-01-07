@@ -3,12 +3,15 @@ import classname from 'classname';
 import './index.scss';
 import { AboutIcon, FilterListIcon, ShareIcon, StatListIcon, SettingsIcon } from './icons';
 import copyToClipboard from './copyToClipboard';
+import { useStore } from '../store';
 
 function toggleRoute(pathname, suggestedRoute) {
   return pathname === suggestedRoute ? '/' : suggestedRoute;
 }
 
-export default function Menu({ items, filterValues }) {
+export default function Menu() {
+  const [state] = useStore();
+  const { items, filterValues } = state;
   const { pathname } = useLocation();
   const count = items.length;
   const filterCount = Object.values(filterValues).filter((value) => value !== undefined).length;

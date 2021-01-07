@@ -27,7 +27,7 @@ export default function DateView({ filterId, label, value = {}, items, setFilter
         value={fromDate}
         title={`Set minimum ${label}`}
         placeholder={options[0]}
-        onChange={(ev) => setFilterValue(filterId, {
+        onChange={(ev) => setFilterValue({
           fromValue: checkValue(ev.target.value),
           toDate
         })}
@@ -37,7 +37,7 @@ export default function DateView({ filterId, label, value = {}, items, setFilter
         value={toDate}
         title={`Set maximum ${label}`}
         placeholder={options[options.length - 1]}
-        onChange={(ev) => setFilterValue(filterId, {
+        onChange={(ev) => setFilterValue({
           fromDate,
           toDate: checkValue(ev.target.value)
         })}

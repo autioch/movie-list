@@ -1,156 +1,64 @@
 import './App.scss';
-import { Component } from 'react';
+import { useEffect } from 'react';
 import fetchJson from './fetchJson';
 import 'antd/dist/antd.css';
 import './themes/light.scss';
-import { ORDER_NEXT } from './consts';
-import getItems from './getItems';
 import FilterList from './filterList';
 import ItemList from './itemList';
 import StatList from './statList';
 import About from './about';
 import Settings from './settings';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Menu from './menu';
-import { getHiddenFields } from './utils';
+import { useStore } from './store';
+import { actionLoading, actionItemsSet, actionSchemaSet } from './reducer';
+import { homepage } from '../package.json';
 
-class App extends Component {
-  state = {
-    filterValues: {},
-    isLoading: true,
-    items: [],
-    schema: {},
-    sortOrders: {},
-    hiddenFields: {},
-    sortKeys: [],
-    allItems: []
-  }
+export default function App() {
+  const [state, dispatch] = useStore();
+  const { isLoading, items, schema, hiddenFields } = state;
 
-  constructor(props) {
-    super(props);
-    this.toggleFieldVisibility = this.toggleFieldVisibility.bind(this);
-    this.setFilterValue = this.setFilterValue.bind(this);
-    this.setSort = this.setSort.bind(this);
-  }
+  useEffect(() => {
+    dispatch(actionLoading(true));
 
-  componentDidMount() {
-    this.setState(() => ({
-      isLoading: true
-    }));
+    const schemaPromise = fetchJson(`data/schema.json`).then((newSchema) => dispatch(actionSchemaSet(newSchema)));
+    const dataPromise = fetchJson(`data/items.json`).then((allItems) => dispatch(actionItemsSet(allItems)));
 
-    const schemaPromise = fetchJson('/data/schema.json').then((schema) => {
-      this.setState({
-        schema,
-        hiddenFields: getHiddenFields(schema)
-      });
-      this.syncItems();
-    });
+    Promise.all([schemaPromise, dataPromise]).then(() => dispatch(actionLoading(false)));
 
-    const dataPromise = fetchJson('/data/items.json').then((allItems) => {
-      this.setState({
-        allItems
-      });
-      this.syncItems();
-    });
+    // empty array to make this effect run only once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    Promise
-      .all([schemaPromise, dataPromise])
-      .then(() => this.setState({
-        isLoading: false
-      }));
-  }
-
-  syncItems() {
-    this.setState(({ allItems, schema, sortKeys, sortOrders, filterValues }) => ({
-      items: getItems(allItems, schema, sortKeys, sortOrders, filterValues)
-    }));
-  }
-
-  setFilterValue(filterId, newValue) {
-    this.setState({
-      filterValues: {
-        ...this.state.filterValues,
-        [filterId]: newValue
-      }
-    });
-
-    this.syncItems();
-  }
-
-  setSort(filterId) {
-    const { sortKeys, sortOrders } = this.state;
-
-    this.setState({
-      sortKeys: [...sortKeys.filter((sortKey) => sortKey !== filterId), filterId],
-      sortOrders: {
-        ...sortOrders,
-        [filterId]: ORDER_NEXT[sortOrders[filterId]]
-      }
-    });
-
-    this.syncItems();
-  }
-
-  toggleFieldVisibility(key) {
-    const { hiddenFields } = this.state;
-
-    this.setState({
-      hiddenFields: {
-        ...hiddenFields,
-        [key]: !hiddenFields[key]
-      }
-    });
-  }
-
-  render() {
-    const { isLoading, items, schema, sortOrders, filterValues, hiddenFields } = this.state;
-
-    return (
-      <Router>
-        <div className="app">
-          <Menu
-            filterValues={filterValues}
-            items={items}
-          />
-          <div className="app-content">
-            <Switch>
-              <Route path="/filterList">
-                <FilterList
-                  schema={schema}
-                  setFilterValue={this.setFilterValue}
-                  setSort={this.setSort}
-                  sortOrders={sortOrders}
-                  filterValues={filterValues}
-                  items={items}
-                />
-              </Route>
-              <Route path="/statList">
-                <StatList schema={schema} items={items} />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/settings">
-                <Settings
-                  schema={schema}
-                  hiddenFields={hiddenFields}
-                  toggleFieldVisibility={this.toggleFieldVisibility}
-                />
-              </Route>
-              <Route path="/">
-                <ItemList
-                  isLoading={isLoading}
-                  schema={schema}
-                  items={items}
-                  hiddenFields={hiddenFields}
-                />
-              </Route>
-            </Switch>
-          </div>
+  return (
+    <Router basename={homepage}>
+      <div className="app">
+        <Menu />
+        <div className="app-content">
+          <Switch>
+            <Route path="/filterList">
+              <FilterList />
+            </Route>
+            <Route path="/statList">
+              <StatList/>
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/settings">
+              <Settings/>
+            </Route>
+            <Route path="/">
+              <ItemList
+                isLoading={isLoading}
+                schema={schema}
+                items={items}
+                hiddenFields={hiddenFields}
+              />
+            </Route>
+          </Switch>
         </div>
-      </Router>
-    );
-  }
+      </div>
+    </Router>
+  );
 }
-
-export default App;

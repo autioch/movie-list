@@ -18,7 +18,7 @@ export default function RangeView({ filterId, label, value = {}, items, setFilte
         value={fromValue}
         title={`Set minimum ${label}`}
         placeholder={options[0]}
-        onChange={(ev) => setFilterValue(filterId, {
+        onChange={(ev) => setFilterValue({
           fromValue: checkValue(ev.target.value),
           toValue
         })}
@@ -28,7 +28,7 @@ export default function RangeView({ filterId, label, value = {}, items, setFilte
         value={toValue}
         title={`Set maximum ${label}`}
         placeholder={options[options.length - 1]}
-        onChange={(ev) => setFilterValue(filterId, {
+        onChange={(ev) => setFilterValue({
           fromValue,
           toValue: checkValue(ev.target.value)
         })}

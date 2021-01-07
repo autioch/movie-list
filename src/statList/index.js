@@ -3,6 +3,7 @@ import rangeStats from './rangeStats';
 import { Typography } from 'antd';
 import './style.scss';
 import { EMPTY, TYPES } from '../consts';
+import { useStore } from '../store';
 
 const { Title } = Typography;
 
@@ -16,8 +17,10 @@ const STATS = {
   [TYPES.DATE]: () => EMPTY
 };
 
-export default function StatList({ schema, items }) {
-  const stats = (schema.filters || [])
+export default function StatList() {
+  const [state] = useStore();
+  const { schema: { filters = [] }, items } = state;
+  const stats = filters
     .filter((field) => field.stat)
     .map((field) => STATS[field.type](field, items))
     .filter(Boolean);
