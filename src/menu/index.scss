@@ -5,24 +5,27 @@
   box-shadow: 0 0 6px #aaa;
   position: relative;
   z-index: 10;
-  height: 1.5cm;
   user-select: none;
 }
 
 .app-menu-button {
   flex: none;
-  height: 1.5cm;
-  width: 1.5cm;
+  height: 10vw;
+  width: 10vw;
+  max-width: 40px;
+  max-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: #000;
   position: relative;
+  box-sizing: border-box;
+  padding: 1vw;
 
   > svg {
-    width: 32px;
-    height: 32px;
+    width: 7vw;
+    height: 7vw;
   }
 
   .selected > & {
@@ -37,10 +40,12 @@
   flex: 1 1 auto;
   font-size: 20px;
   padding: 0 .2cm;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &.selected {
-    // color: #09f;
-      // color: #fff;
+    color: #09f;
   }
 }
 

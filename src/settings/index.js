@@ -2,14 +2,25 @@ import './index.scss';
 import { Typography, Checkbox } from 'antd';
 import { getLabel } from '../utils';
 import { useStore } from '../store';
-import { actionFieldToggleVisibility } from '../reducer';
+import { actionFieldToggleVisibility, actionFieldSetVisibility } from '../reducer';
 
 const { Title } = Typography;
 
 function Section({ label, fields = [], hiddenFields, dispatch }) {
+  const checkedCount = fields.filter(({ key }) => !hiddenFields[key]).length;
+  const isChecked = checkedCount === fields.length;
+  const isIndeterminate = checkedCount > 0 && !isChecked;
+
   return (
     <section className="settings-section">
-      <Title level={5}>{getLabel(label)}</Title>
+      <Checkbox
+        className="settings-header"
+        checked={isChecked}
+        indeterminate={isIndeterminate}
+        onChange={() => dispatch(actionFieldSetVisibility(fields.map(({ key }) => key), !!isChecked))}
+      >
+        {getLabel(label)}
+      </Checkbox>
       <ul>
         {fields.map(({ key }) =>
           <Checkbox className="settings-item" key={key} checked={!hiddenFields[key]} onChange={() => dispatch(actionFieldToggleVisibility(key))}>
@@ -28,7 +39,7 @@ export default function StatList() {
   return (
     <div className="settings">
       <Title level={3}>Settings</Title>
-      <Title level={4}>Visibility</Title>
+      <Title level={4}>Item details</Title>
       <div className="cols">
         <div className="col-left">
           <Section label="Header" fields={schema.header} hiddenFields={hiddenFields} dispatch={dispatch}/>

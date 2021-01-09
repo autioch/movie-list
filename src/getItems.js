@@ -58,29 +58,32 @@ function filterByTestFn(items, testFn) {
 }
 
 export default function getItems(allItems, schema, sortKeys, sortOrders, filterValues) { // eslint-disable-line max-params
-  return schema.filters
+  const filtered = schema.filters
     .filter((field) => filterValues[field.key] !== undefined)
     .map((field) => getTestFn(field.key, field.type, filterValues[field.key]))
-    .reduce(filterByTestFn, allItems.slice(0))
-    .sort((item1, item2) => {
-      for (let index = 0; index < sortKeys.length; index++) {
-        const sortKey = sortKeys[index];
-        const prop1 = item1[sortKey];
-        const prop2 = item2[sortKey];
+    .reduce(filterByTestFn, allItems.slice(0));
 
-        if (!prop1 && !prop2) {
-          return EQUAL;
-        }
-        if (!prop1) {
-          return ITEM_1_LATER;
-        }
-        if (!prop2) {
-          return ITEM_2_LATER;
-        }
+  const sorted = filtered.sort((item1, item2) => {
+    for (let index = 0; index < sortKeys.length; index++) {
+      const sortKey = sortKeys[index];
+      const prop1 = item1[sortKey];
+      const prop2 = item2[sortKey];
 
-        return sortOrders[sortKey] * (prop1 < prop2 ? 1 : -1);
+      if (!prop1 && !prop2) {
+        return EQUAL;
+      }
+      if (!prop1) {
+        return ITEM_1_LATER;
+      }
+      if (!prop2) {
+        return ITEM_2_LATER;
       }
 
-      return EQUAL;
-    });
+      return sortOrders[sortKey] * (prop1 < prop2 ? 1 : -1);
+    }
+
+    return EQUAL;
+  });
+
+  return sorted;
 }

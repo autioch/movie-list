@@ -1,5 +1,4 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import classname from 'classname';
 import './index.scss';
 import { AboutIcon, FilterListIcon, ShareIcon, StatListIcon, SettingsIcon } from './icons';
 import copyToClipboard from './copyToClipboard';
@@ -11,10 +10,9 @@ function toggleRoute(pathname, suggestedRoute) {
 
 export default function Menu() {
   const [state] = useStore();
-  const { items, filterValues } = state;
+  const { items, filterCount } = state;
   const { pathname } = useLocation();
   const count = items.length;
-  const filterCount = Object.values(filterValues).filter((value) => value !== undefined).length;
 
   return (
     <div className="app-menu">
@@ -48,9 +46,7 @@ export default function Menu() {
         </div>
       </NavLink>
 
-      <div onClick={() => copyToClipboard(document.location.href)} className={classname({
-        'app-menu-button': true
-      })}>
+      <div className="app-menu-button" onClick={() => copyToClipboard(document.location.href)}>
         <ShareIcon />
       </div>
 
