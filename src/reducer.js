@@ -185,7 +185,7 @@ export function reducer(state, action) { // eslint-disable-line max-statements
       return {
         ...state,
         filterValues: newFilterValues,
-        filterCount: Object.values(filterValues).filter((val) => val !== undefined).length,
+        filterCount: Object.values(newFilterValues).filter((val) => val !== undefined).length,
         items: getItems(allItems, schema, sortKeys, sortOrders, newFilterValues)
       };
     }

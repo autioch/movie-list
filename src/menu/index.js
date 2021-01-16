@@ -3,6 +3,7 @@ import './index.scss';
 import { AboutIcon, FilterListIcon, ShareIcon, StatListIcon, SettingsIcon } from './icons';
 import copyToClipboard from './copyToClipboard';
 import { useStore } from '../store';
+import { Badge } from 'antd';
 
 function toggleRoute(pathname, suggestedRoute) {
   return pathname === suggestedRoute ? '/' : suggestedRoute;
@@ -17,16 +18,21 @@ export default function Menu() {
   return (
     <div className="app-menu">
 
-      <NavLink to="/" className="app-menu-header" activeClassName="selected" exact>
-        {count} Movie{count === 1 ? '' : 's'}
-      </NavLink>
+      <div className="app-menu-headline">
+        <Badge count={count} overflowCount={Infinity} >
+          <NavLink to="/" className="app-menu-header" activeClassName="selected" exact>
+        Item list
+          </NavLink>
+        </Badge>
+      </div>
 
-      <NavLink to={toggleRoute(pathname, '/filterList')} activeClassName="selected">
-        <div className="app-menu-button">
-          <FilterListIcon />
-          {filterCount > 0 ? <div className="app-menu-counter">{filterCount}</div> : ''}
-        </div>
-      </NavLink>
+      <Badge count={filterCount} >
+        <NavLink to={toggleRoute(pathname, '/filterList')} activeClassName="selected">
+          <div className="app-menu-button">
+            <FilterListIcon />
+          </div>
+        </NavLink>
+      </Badge>
 
       <NavLink to={toggleRoute(pathname, '/settings')} activeClassName="selected">
         <div className="app-menu-button">

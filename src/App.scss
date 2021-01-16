@@ -24,4 +24,10 @@ body,
   overflow: auto;
   position: relative;
   box-sizing: border-box;
+
+  > .ant-spin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
 }

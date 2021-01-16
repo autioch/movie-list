@@ -13,6 +13,7 @@ import Menu from './menu';
 import { useStore } from './store';
 import { actionLoading, actionItemsSet, actionSchemaSet } from './reducer';
 import { homepage } from '../package.json';
+import { Spin } from 'antd';
 
 export default function App() {
   const [state, dispatch] = useStore();
@@ -35,7 +36,7 @@ export default function App() {
       <div className="app">
         <Menu />
         <div className="app-content">
-          <Switch>
+          {isLoading ? <Spin size="large" /> : <Switch>
             <Route path="/filterList">
               <FilterList />
             </Route>
@@ -56,7 +57,7 @@ export default function App() {
                 hiddenFields={hiddenFields}
               />
             </Route>
-          </Switch>
+          </Switch> }
         </div>
       </div>
     </Router>
