@@ -6,6 +6,7 @@ export const FIELD_TOGGLE_VISIBILITY = 'FIELD_TOGGLE_VISIBILITY';
 export const FIELD_SET_VISIBILITY = 'FIELD_SET_VISIBILITY';
 export const FILTER_SET_SORT = 'FILTER_SET_SORT';
 export const FILTER_SET_VALUE = 'FILTER_SET_VALUE';
+export const FILTER_SET_VISIBILITY = 'FILTER_SET_VISIBILITY';
 
 // export const ITEMS_LOAD = 'ITEMS_LOAD';
 export const ITEMS_SET = 'ITEMS_SET';
@@ -25,6 +26,16 @@ export const initialState = {
   sortKeys: [],
   allItems: []
 };
+
+export function actionFilterSetVisibility(key, hidden) {
+  return {
+    type: FILTER_SET_VISIBILITY,
+    payload: {
+      key,
+      hidden
+    }
+  };
+}
 
 export function actionLoading(isLoading) {
   return {
@@ -184,6 +195,30 @@ export function reducer(state, action) { // eslint-disable-line max-statements
 
       return {
         ...state,
+        filterValues: newFilterValues,
+        filterCount: Object.values(newFilterValues).filter((val) => val !== undefined).length,
+        items: getItems(allItems, schema, sortKeys, sortOrders, newFilterValues)
+      };
+    }
+
+    case FILTER_SET_VISIBILITY: {
+      const { key, hidden } = payload;
+      const { sortKeys, sortOrders, allItems, schema, filterValues } = state;
+
+      const newFilterValues = {
+        ...filterValues,
+        [key]: undefined
+      };
+
+      return {
+        ...state,
+        schema: {
+          ...schema,
+          filters: schema.filters.map((filter) => filter.key === key ? { // eslint-disable-line no-confusing-arrow
+            ...filter,
+            hidden
+          } : filter)
+        },
         filterValues: newFilterValues,
         filterCount: Object.values(newFilterValues).filter((val) => val !== undefined).length,
         items: getItems(allItems, schema, sortKeys, sortOrders, newFilterValues)

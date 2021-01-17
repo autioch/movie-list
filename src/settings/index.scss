@@ -1,5 +1,10 @@
 .settings {
   padding: .5cm;
+
+  ul {
+    margin: 0;
+    // padding: 0;
+  }
 }
 
 .settings-header {
@@ -13,8 +18,17 @@
   margin: 0 !important;
 }
 
-.cols {
+.settings-cols {
   display: flex;
   width: 100%;
   justify-content: space-around;
+}
+
+.filter-config-item {
+  display: flex;
+  margin-bottom: 1.5rem;
+
+  > .ant-switch {
+    margin-right: 1rem;
+  }
 }
