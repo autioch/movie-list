@@ -1,10 +1,7 @@
 import { ORDER_NEXT } from '../consts';
 import getItems from './getItems';
-import { getHiddenFields, getHiddenFilters } from '../utils';
-import {
-  cleanHiddenFilters, readHiddenFilters, saveHiddenFilters,
-  cleanHiddenFields, readHiddenFields, saveHiddenFields
-} from './persistence';
+import { getHiddenFields, getHiddenFilters } from './utils';
+import localStorageWrapper from './localStorageWrapper';
 
 import {
   FIELD_RESET_VISIBILITY,
@@ -21,6 +18,9 @@ import {
   LOADING
 } from './actionTypes';
 
+const hiddenFiltersLS = localStorageWrapper('hiddenFilters');
+const hiddenFieldsLS = localStorageWrapper('hiddenFields');
+
 export const initialState = {
   allItems: [],
   filterCount: 0,
@@ -33,6 +33,8 @@ export const initialState = {
   sortKeys: [],
   sortOrders: {}
 };
+
+const notUndefined = (val) => val !== undefined;
 
 export function reducer(state, action) { // eslint-disable-line max-statements
   const { type, payload } = action;
@@ -65,8 +67,8 @@ export function reducer(state, action) { // eslint-disable-line max-statements
       return {
         ...state,
         schema,
-        hiddenFilters: getHiddenFilters(schema, readHiddenFilters()),
-        hiddenFields: getHiddenFields(schema, readHiddenFields()),
+        hiddenFilters: getHiddenFilters(schema, hiddenFiltersLS.read()),
+        hiddenFields: getHiddenFields(schema, hiddenFieldsLS.read()),
         items: getItems(allItems, schema, sortKeys, sortOrders, filterValues)
       };
     }
@@ -78,7 +80,7 @@ export function reducer(state, action) { // eslint-disable-line max-statements
 
       return {
         ...state,
-        hiddenFields: saveHiddenFields({
+        hiddenFields: hiddenFieldsLS.save({
           ...hiddenFields,
           ...changed
         })
@@ -92,7 +94,7 @@ export function reducer(state, action) { // eslint-disable-line max-statements
 
       return {
         ...state,
-        hiddenFields: saveHiddenFields({
+        hiddenFields: hiddenFieldsLS.save({
           ...hiddenFields,
           ...changed
         })
@@ -100,7 +102,7 @@ export function reducer(state, action) { // eslint-disable-line max-statements
     }
 
     case FIELD_RESET_VISIBILITY: {
-      cleanHiddenFields();
+      hiddenFieldsLS.clean();
 
       return {
         ...state,
@@ -138,7 +140,7 @@ export function reducer(state, action) { // eslint-disable-line max-statements
       return {
         ...state,
         filterValues: newFilterValues,
-        filterCount: Object.values(newFilterValues).filter((val) => val !== undefined).length,
+        filterCount: Object.values(newFilterValues).filter(notUndefined).length,
         items: getItems(allItems, schema, sortKeys, sortOrders, newFilterValues)
       };
     }
@@ -156,24 +158,24 @@ export function reducer(state, action) { // eslint-disable-line max-statements
 
       return {
         ...state,
-        hiddenFilters: saveHiddenFilters({
+        hiddenFilters: hiddenFiltersLS.save({
           ...hiddenFilters,
           [key]: !!hidden
         }),
         filterValues: newFilterValues,
         sortKeys: newSortKeys,
-        filterCount: Object.values(newFilterValues).filter((val) => val !== undefined).length,
+        filterCount: Object.values(newFilterValues).filter(notUndefined).length,
         items: getItems(allItems, schema, newSortKeys, sortOrders, newFilterValues)
       };
     }
 
     case FILTER_RESET_VISIBILITY: {
-      cleanHiddenFilters();
+      hiddenFiltersLS.clean();
       const { allItems, schema } = state;
 
       return {
         ...state,
-        hiddenFilters: getHiddenFilters(schema, readHiddenFilters()),
+        hiddenFilters: getHiddenFilters(schema, hiddenFieldsLS.read()),
         filterValues: {},
         filterCount: 0,
         items: getItems(allItems, schema, [], {}, {}),

@@ -2,32 +2,17 @@ export function uniqValues(items, filterId) {
   return [...new Set(items.flatMap((item) => item[filterId]))];
 }
 
-// TODO Memoize this!
+// Simple memoize
+const LABEL_CACHE = {};
+const UPPERCASE_REGEXP = /\.?([A-Z]+)/g;
+const insertSpace = (match, word) => ` ${word}`;
+
 export function getLabel(key) {
-  const label = key.replace(/\.?([A-Z]+)/g, (match, word) => ` ${word}`);
+  if (!LABEL_CACHE[key]) {
+    const label = key.replace(UPPERCASE_REGEXP, insertSpace);
 
-  return label[0].toUpperCase() + label.slice(1);
-}
+    LABEL_CACHE[key] = label[0].toUpperCase() + label.slice(1);
+  }
 
-function hiddenMapper(savedState) {
-  return ({ key, hidden }) => [key, !!(savedState[key] ?? hidden)];
-}
-
-function notFilter([key]) {
-  return key !== 'filters';
-}
-
-export function getHiddenFields(schema, savedState) {
-  const mapper = hiddenMapper(savedState);
-
-  const fieldGroups = Object.entries(schema).filter(notFilter);
-  const fieldState = fieldGroups.flatMap(([, fields]) => fields.map(mapper));
-
-  return Object.fromEntries(fieldState);
-}
-
-export function getHiddenFilters(schema, savedState) {
-  const filterState = schema.filters.map(hiddenMapper(savedState));
-
-  return Object.fromEntries(filterState);
+  return LABEL_CACHE[key];
 }
