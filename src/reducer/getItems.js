@@ -1,4 +1,4 @@
-import { EMPTY, TYPES, EQUAL, ITEM_1_LATER, ITEM_2_LATER } from './consts';
+import { EMPTY, TYPES, EQUAL, ITEM_1_LATER, ITEM_2_LATER } from '../consts';
 
 const TEST_FN = {
   [TYPES.TEXT](value) {

@@ -1,6 +1,6 @@
-import { Typography, Checkbox } from 'antd';
+import { Typography, Checkbox, Button } from 'antd';
 import { useStore } from '../store';
-import { actionFieldToggleVisibility, actionFieldSetVisibility } from '../reducer';
+import { actionFieldToggleVisibility, actionFieldSetVisibility, actionFieldResetVisibility } from '../reducer';
 import KeyLabel from '../components/keyLabel';
 import './index.scss';
 
@@ -37,8 +37,10 @@ export default function ItemDetails() {
   const { schema, hiddenFields } = state;
 
   return (
-    <div>
+    <div className="settings-section">
+      <Button onClick={() => dispatch(actionFieldResetVisibility())}>Reset all details</Button>
       <Title level={4}>Item details</Title>
+      <p>Control which details are visible for each item.</p>
       <div className="settings-cols">
         <div>
           <Section label="Header" fields={schema.header} hiddenFields={hiddenFields} dispatch={dispatch}/>

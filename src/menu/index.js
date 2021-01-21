@@ -19,20 +19,18 @@ export default function Menu() {
     <div className="app-menu">
 
       <div className="app-menu-headline">
-        <Badge count={count} overflowCount={Infinity} >
-          <NavLink to="/" className="app-menu-header" activeClassName="selected" exact>
-        Item list
-          </NavLink>
-        </Badge>
+        <NavLink to="/" className="app-menu-header" activeClassName="selected" exact>
+          {count} item{count === 1 ? '' : 's'}
+        </NavLink>
       </div>
 
-      <Badge count={filterCount} >
-        <NavLink to={toggleRoute(pathname, '/filterList')} activeClassName="selected">
+      <NavLink to={toggleRoute(pathname, '/filterList')} activeClassName="selected">
+        <Badge count={filterCount} >
           <div className="app-menu-button">
             <FilterListIcon />
           </div>
-        </NavLink>
-      </Badge>
+        </Badge>
+      </NavLink>
 
       <NavLink to={toggleRoute(pathname, '/settings')} activeClassName="selected">
         <div className="app-menu-button">

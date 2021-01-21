@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/autioch/movie-list/issues"
   },
-  "homepage": "stage",
+  "homepage": "",
   "author": "autioch",
   "license": "ISC",
   "main": "index.js",

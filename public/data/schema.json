@@ -7,49 +7,50 @@
   ],
   "footnotes":[
     {"hidden":false,"key":"genre","label":"Genre"},
-    {"hidden":true,"key":"director","label":"Director"},
-    {"hidden":true,"key":"writer","label":"Writer"},
-    {"hidden":true,"key":"actors","label":"Actors"},
-    {"hidden":true,"key":"subtitles","label":"Subtitles"},
-    {"hidden":true,"key":"errors","label":"Errors"}
+    {"hidden":true ,"key":"director","label":"Director"},
+    {"hidden":true ,"key":"writer","label":"Writer"},
+    {"hidden":true ,"key":"actors","label":"Actors"},
+    {"hidden":true ,"key":"subtitles","label":"Subtitles"},
+    {"hidden":true ,"key":"errors","label":"Errors"}
   ],
   "links":[
-    {"hidden":false,"key":"metacritic","label":"Metacritic","template":"http://www.metacritic.com/search/movie/#{title}/results?date_range_from=#{year}"},
+    {"hidden":true ,"key":"metacritic","label":"Metacritic","template":"http://www.metacritic.com/search/movie/#{title}/results?date_range_from=#{year}"},
     {"hidden":false,"key":"imdb","label":"IMDB","template":"http://www.imdb.com/find?q=#{title}&s=tt&ttype=ft&ref_=fn_ft"},
-    {"hidden":false,"key":"filmweb","label":"Filmeb","template":"http://www.filmweb.pl/search/film?q=#{title}"},
-    {"hidden":false,"key":"rotten","label":"Rotten Tomatoes","template":"https://www.rottentomatoes.com/search/?search=#{title}"},
+    {"hidden":true ,"key":"filmweb","label":"Filmeb","template":"http://www.filmweb.pl/search/film?q=#{title}"},
+    {"hidden":true ,"key":"rotten","label":"Rotten Tomatoes","template":"https://www.rottentomatoes.com/search/?search=#{title}"},
     {"hidden":false,"key":"google","label":"Google","template":"https://www.google.pl/search?q=movie+#{title}"}
   ],
   "sidenotes":[
     {"hidden":false,"key":"year","template":"#{year}","ranked":false},
-    {"hidden":false,"key":"duration","template":"#{duration}min","ranked":false},
+    {"hidden":true ,"key":"duration","template":"#{duration}min","ranked":false},
     {"hidden":false,"key":"rated","template":"#{rated} rated","ranked":true},
     {"hidden":false,"key":"metascore","template":"#{metascore} metascore","ranked":true},
-    {"hidden":false,"key":"imdbRating","template":"#{imdbRating} rating (#{imdbVotesRounded} votes)","ranked":true},
-    {"hidden":true,"key":"added","template":"#{added} added"}
+    {"hidden":false,"key":"imdbRating","template":"#{imdbRating} rating","ranked":true},
+    {"hidden":true ,"key":"imdbVotesRounded","template":"#{imdbVotesRounded} votes","ranked":false},
+    {"hidden":true ,"key":"added","template":"#{added} added"}
   ],
   "filters":[
     {"type":1,"stat":true ,"hidden":false,"key":"title"},
     {"type":3,"stat":true ,"hidden":false,"key":"genre"},
     {"type":1,"stat":true ,"hidden":false,"key":"plot"},
-    {"type":3,"stat":true ,"hidden":false,"key":"actors"},
-    {"type":3,"stat":true ,"hidden":false,"key":"director"},
-    {"type":3,"stat":true ,"hidden":false,"key":"writer"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"actors"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"director"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"writer"},
     {"type":2,"stat":true ,"hidden":false,"key":"year"},
     {"type":2,"stat":true ,"hidden":false,"key":"metascore"},
     {"type":2,"stat":true ,"hidden":false,"key":"imdbRating"},
-    {"type":2,"stat":true ,"hidden":false,"key":"imdbVotes"},
+    {"type":2,"stat":true ,"hidden":true ,"key":"imdbVotes"},
     {"type":3,"stat":true ,"hidden":false,"key":"rated"},
-    {"type":3,"stat":true ,"hidden":false,"key":"subtitles"},
+    {"type":3,"stat":true ,"hidden":true ,"key":"subtitles"},
     {"type":3,"stat":true ,"hidden":true ,"key":"displayAspectRatio"},
     {"type":3,"stat":true ,"hidden":true ,"key":"errors"},
     {"type":3,"stat":true ,"hidden":true ,"key":"formatLongName"},
     {"type":3,"stat":true ,"hidden":true ,"key":"fps"},
-    {"type":2,"stat":true ,"hidden":false,"key":"duration"},
+    {"type":2,"stat":true ,"hidden":true ,"key":"duration"},
     {"type":2,"stat":true ,"hidden":true ,"key":"height"},
     {"type":2,"stat":true ,"hidden":true ,"key":"width"},
     {"type":2,"stat":true ,"hidden":true ,"key":"size"},
     {"type":3,"stat":true ,"hidden":true ,"key":"audioChannels"},
-    {"type":4,"stat":true ,"hidden":false,"key":"added"}
+    {"type":4,"stat":true ,"hidden":true ,"key":"added"}
   ]
 }

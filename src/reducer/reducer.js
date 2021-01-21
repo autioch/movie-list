@@ -1,106 +1,38 @@
-import { ORDER_NEXT } from './consts';
+import { ORDER_NEXT } from '../consts';
 import getItems from './getItems';
-import { getHiddenFields } from './utils';
+import { getHiddenFields, getHiddenFilters } from '../utils';
+import {
+  cleanHiddenFilters, readHiddenFilters, saveHiddenFilters,
+  cleanHiddenFields, readHiddenFields, saveHiddenFields
+} from './persistence';
 
-export const FIELD_TOGGLE_VISIBILITY = 'FIELD_TOGGLE_VISIBILITY';
-export const FIELD_SET_VISIBILITY = 'FIELD_SET_VISIBILITY';
-export const FILTER_SET_SORT = 'FILTER_SET_SORT';
-export const FILTER_SET_VALUE = 'FILTER_SET_VALUE';
-export const FILTER_SET_VISIBILITY = 'FILTER_SET_VISIBILITY';
+import {
+  FIELD_RESET_VISIBILITY,
+  FIELD_TOGGLE_VISIBILITY,
+  FIELD_SET_VISIBILITY,
 
-// export const ITEMS_LOAD = 'ITEMS_LOAD';
-export const ITEMS_SET = 'ITEMS_SET';
+  FILTER_RESET_VISIBILITY,
+  FILTER_SET_SORT,
+  FILTER_SET_VALUE,
+  FILTER_SET_VISIBILITY,
 
-// export const SCHEMA_LOAD = 'SCHEMA_LOAD';
-export const SCHEMA_SET = 'SCHEMA_SET';
-export const LOADING = 'LOADING';
+  ITEMS_SET,
+  SCHEMA_SET,
+  LOADING
+} from './actionTypes';
 
 export const initialState = {
-  filterValues: {},
+  allItems: [],
   filterCount: 0,
+  filterValues: {},
+  hiddenFields: {},
+  hiddenFilters: {},
   isLoading: true,
   items: [],
   schema: {},
-  sortOrders: {},
-  hiddenFields: {},
   sortKeys: [],
-  allItems: []
+  sortOrders: {}
 };
-
-export function actionFilterSetVisibility(key, hidden) {
-  return {
-    type: FILTER_SET_VISIBILITY,
-    payload: {
-      key,
-      hidden
-    }
-  };
-}
-
-export function actionLoading(isLoading) {
-  return {
-    type: LOADING,
-    payload: {
-      isLoading
-    }
-  };
-}
-
-export function actionItemsSet(allItems) {
-  return {
-    type: ITEMS_SET,
-    payload: {
-      allItems
-    }
-  };
-}
-
-export function actionSchemaSet(schema) {
-  return {
-    type: SCHEMA_SET,
-    payload: {
-      schema
-    }
-  };
-}
-
-export function actionFieldToggleVisibility(key) {
-  return {
-    type: FIELD_TOGGLE_VISIBILITY,
-    payload: {
-      key
-    }
-  };
-}
-
-export function actionFieldSetVisibility(key, isHidden) {
-  return {
-    type: FIELD_SET_VISIBILITY,
-    payload: {
-      key,
-      isHidden
-    }
-  };
-}
-
-export function actionFilterSetSort(key) {
-  return {
-    type: FILTER_SET_SORT,
-    payload: {
-      key
-    }
-  };
-}
-
-export function actionFilterSetValue(key, value) {
-  return {
-    type: FILTER_SET_VALUE,
-    payload: {
-      key,
-      value
-    }
-  };
-}
 
 export function reducer(state, action) { // eslint-disable-line max-statements
   const { type, payload } = action;
@@ -133,7 +65,8 @@ export function reducer(state, action) { // eslint-disable-line max-statements
       return {
         ...state,
         schema,
-        hiddenFields: getHiddenFields(schema),
+        hiddenFilters: getHiddenFilters(schema, readHiddenFilters()),
+        hiddenFields: getHiddenFields(schema, readHiddenFields()),
         items: getItems(allItems, schema, sortKeys, sortOrders, filterValues)
       };
     }
@@ -145,10 +78,10 @@ export function reducer(state, action) { // eslint-disable-line max-statements
 
       return {
         ...state,
-        hiddenFields: {
+        hiddenFields: saveHiddenFields({
           ...hiddenFields,
           ...changed
-        }
+        })
       };
     }
 
@@ -159,10 +92,19 @@ export function reducer(state, action) { // eslint-disable-line max-statements
 
       return {
         ...state,
-        hiddenFields: {
+        hiddenFields: saveHiddenFields({
           ...hiddenFields,
           ...changed
-        }
+        })
+      };
+    }
+
+    case FIELD_RESET_VISIBILITY: {
+      cleanHiddenFields();
+
+      return {
+        ...state,
+        hiddenFields: getHiddenFields(state.schema, {})
       };
     }
 
@@ -203,25 +145,40 @@ export function reducer(state, action) { // eslint-disable-line max-statements
 
     case FILTER_SET_VISIBILITY: {
       const { key, hidden } = payload;
-      const { sortKeys, sortOrders, allItems, schema, filterValues } = state;
+      const { sortKeys, sortOrders, allItems, schema, filterValues, hiddenFilters } = state;
 
       const newFilterValues = {
         ...filterValues,
         [key]: undefined
       };
 
+      const newSortKeys = sortKeys.filter((sortKey) => sortKey !== key);
+
       return {
         ...state,
-        schema: {
-          ...schema,
-          filters: schema.filters.map((filter) => filter.key === key ? { // eslint-disable-line no-confusing-arrow
-            ...filter,
-            hidden
-          } : filter)
-        },
+        hiddenFilters: saveHiddenFilters({
+          ...hiddenFilters,
+          [key]: !!hidden
+        }),
         filterValues: newFilterValues,
+        sortKeys: newSortKeys,
         filterCount: Object.values(newFilterValues).filter((val) => val !== undefined).length,
-        items: getItems(allItems, schema, sortKeys, sortOrders, newFilterValues)
+        items: getItems(allItems, schema, newSortKeys, sortOrders, newFilterValues)
+      };
+    }
+
+    case FILTER_RESET_VISIBILITY: {
+      cleanHiddenFilters();
+      const { allItems, schema } = state;
+
+      return {
+        ...state,
+        hiddenFilters: getHiddenFilters(schema, readHiddenFilters()),
+        filterValues: {},
+        filterCount: 0,
+        items: getItems(allItems, schema, [], {}, {}),
+        sortKeys: [],
+        sortOrders: {}
       };
     }
 

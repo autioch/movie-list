@@ -10,13 +10,13 @@ const { Title } = Typography;
 
 export default function FilterList() {
   const [state, dispatch] = useStore();
-  const { schema, sortOrders, items, filterValues } = state;
+  const { schema, sortOrders, items, filterValues, hiddenFilters } = state;
 
   return (
     <div className="filter-list">
       <Title level={3}>Apply filters</Title>
       {(schema.filters || [])
-        .filter((filter) => !filter.hidden)
+        .filter((filter) => !hiddenFilters[filter.key])
         .map((filter) => {
           const { key, type } = filter;
           const View = TYPE_VIEWS[type];

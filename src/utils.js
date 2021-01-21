@@ -9,8 +9,25 @@ export function getLabel(key) {
   return label[0].toUpperCase() + label.slice(1);
 }
 
-export function getHiddenFields(schema) {
-  return Object.fromEntries(Object.entries(schema)
-    .filter(([key]) => key !== 'filters')
-    .flatMap(([, fields]) => fields.map(({ key, hidden }) => [key, !!hidden])));
+function hiddenMapper(savedState) {
+  return ({ key, hidden }) => [key, !!(savedState[key] ?? hidden)];
+}
+
+function notFilter([key]) {
+  return key !== 'filters';
+}
+
+export function getHiddenFields(schema, savedState) {
+  const mapper = hiddenMapper(savedState);
+
+  const fieldGroups = Object.entries(schema).filter(notFilter);
+  const fieldState = fieldGroups.flatMap(([, fields]) => fields.map(mapper));
+
+  return Object.fromEntries(fieldState);
+}
+
+export function getHiddenFilters(schema, savedState) {
+  const filterState = schema.filters.map(hiddenMapper(savedState));
+
+  return Object.fromEntries(filterState);
 }
