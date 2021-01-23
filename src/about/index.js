@@ -7,7 +7,6 @@ const { Title } = Typography;
 export default function About() {
   return (
     <div className="about">
-      <Title level={3}>About</Title>
       <Title level={4}>App</Title>
       <p>List of movies that I have seen/watched. This is personal list,
       as I wasn't happy with lists provided by IMDB or other similar services.</p>

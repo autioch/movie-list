@@ -22,14 +22,14 @@ const hiddenFiltersLS = localStorageWrapper('hiddenFilters');
 const hiddenFieldsLS = localStorageWrapper('hiddenFields');
 
 export const initialState = {
-  allItems: [],
-  filterCount: 0,
+  allItems: [], // session
+  filterCount: 0, // derived
   filterValues: {},
-  hiddenFields: {},
-  hiddenFilters: {},
-  isLoading: true,
-  items: [],
-  schema: {},
+  hiddenFields: {}, // localStorage
+  hiddenFilters: {}, // localStorage
+  isLoading: true, // session
+  items: [], // derived
+  schema: {}, // session
   sortKeys: [],
   sortOrders: {}
 };

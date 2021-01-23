@@ -14,7 +14,6 @@ export default function FilterList() {
 
   return (
     <div className="filter-list">
-      <Title level={3}>Apply filters</Title>
       {(schema.filters || [])
         .filter((filter) => !hiddenFilters[filter.key])
         .map((filter) => {

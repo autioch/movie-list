@@ -1,16 +1,11 @@
 .app-menu {
-  flex: none;
   display: flex;
   align-items: center;
-  box-shadow: 0 0 6px #aaa;
-  position: relative;
-  z-index: 10;
-  user-select: none;
-  padding: .5rem;
+  justify-content: space-around;
 
   .ant-badge-count {
     top: .5rem !important;
-    right: .75rem !important;
+    right: .5rem !important;
   }
 }
 
@@ -19,44 +14,20 @@
   height: 4rem;
   width: 4rem;
   position: relative;
-  border-radius: .5rem;
-  margin: 0 .5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #000;
-  position: relative;
   box-sizing: border-box;
   padding: 5px;
-  z-index: 1;
+  cursor: pointer; // for share button
 
-  > svg {
+  svg {
+    color: #000;
     width: 100%;
     height: 100%;
   }
 
-  .selected & {
-    color: #fff;
-    background-color: #09f;
-    z-index: 0;
-  }
-}
-
-.app-menu-headline {
-  flex: 1 1 auto;
-}
-
-.app-menu-header {
-  color: #000;
-  flex: 1 1 auto;
-  font-size: 20px;
-  padding: 0 .2cm;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
   &.selected {
-    color: #09f;
+
+    svg {
+      color: #09f;
+    }
   }
 }

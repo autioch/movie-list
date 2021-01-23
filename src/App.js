@@ -1,19 +1,23 @@
-import './App.scss';
 import { useEffect } from 'react';
-import fetchJson from './fetchJson';
-import 'antd/dist/antd.css';
-import './themes/light.scss';
-import FilterList from './filterList';
-import ItemList from './itemList';
-import StatList from './statList';
-import About from './about';
-import Settings from './settings';
+import { Spin } from 'antd';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+
+import About from './about';
+import FilterList from './filterList';
+import Header from './header';
+import ItemList from './itemList';
 import Menu from './menu';
+import Settings from './settings';
+import StatList from './statList';
+
+import fetchJson from './fetchJson';
 import { useStore } from './store';
 import { actionLoading, actionItemsSet, actionSchemaSet } from './reducer';
 import { homepage } from '../package.json';
-import { Spin } from 'antd';
+import { ROUTES } from './consts';
+import 'antd/dist/antd.css';
+import './themes/light.scss';
+import './App.scss';
 
 export default function App() {
   const [state, dispatch] = useStore();
@@ -33,33 +37,32 @@ export default function App() {
 
   return (
     <Router basename={homepage}>
-      <div className="app">
-        <Menu />
-        <div className="app-content">
-          {isLoading ? <Spin size="large" /> : <Switch>
-            <Route path="/filterList">
-              <FilterList />
-            </Route>
-            <Route path="/statList">
-              <StatList/>
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/settings">
-              <Settings/>
-            </Route>
-            <Route path="/">
-              <ItemList
-                isLoading={isLoading}
-                schema={schema}
-                items={items}
-                hiddenFields={hiddenFields}
-              />
-            </Route>
-          </Switch> }
-        </div>
+      <Header/>
+      <div className="app-content">
+        {isLoading ? <Spin size="large" /> : <Switch>
+          <Route path={ROUTES.FILTER_LIST}>
+            <FilterList />
+          </Route>
+          <Route path={ROUTES.STAT_LIST}>
+            <StatList/>
+          </Route>
+          <Route path={ROUTES.ABOUT}>
+            <About />
+          </Route>
+          <Route path={ROUTES.SETTINGS}>
+            <Settings/>
+          </Route>
+          <Route path={ROUTES.ITEM_LIST}>
+            <ItemList
+              isLoading={isLoading}
+              schema={schema}
+              items={items}
+              hiddenFields={hiddenFields}
+            />
+          </Route>
+        </Switch> }
       </div>
+      <Menu />
     </Router>
   );
 }

@@ -1,7 +1,9 @@
 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <line stroke="currentColor" x1="3" x2="29" y1="29" y2="29" />
-  <line stroke="currentColor" x1="3" x2="3" y1="3" y2="29" />
-  <line stroke="currentColor" x1="16" x2="16" y1="7" y2="25" />
-  <line stroke="currentColor" x1="22" x2="22" y1="11" y2="25" />
-  <line stroke="currentColor" x1="10" x2="10" y1="16" y2="25" />
+  <g style="stroke-linecap:round;stroke-linejoin:round;stroke-width:1.25px;">
+    <line stroke="currentColor" x1="3" x2="29" y1="29" y2="29" />
+    <line stroke="currentColor" x1="3" x2="3" y1="3" y2="29" />
+    <line stroke="currentColor" x1="16" x2="16" y1="7" y2="25" />
+    <line stroke="currentColor" x1="22" x2="22" y1="11" y2="25" />
+    <line stroke="currentColor" x1="10" x2="10" y1="16" y2="25" />
+  </g>
 </svg>

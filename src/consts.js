@@ -30,3 +30,27 @@ export const IGNORED = {
 export const EQUAL = 0;
 export const ITEM_1_LATER = 1;
 export const ITEM_2_LATER = -1;
+
+export const ROUTES = {
+  ABOUT: '/about',
+  FILTER_LIST: '/filterList',
+  ITEM_LIST: '/',
+  SETTINGS: '/settings',
+  STAT_LIST: '/statList'
+};
+
+export const ROUTE_NAMES = {
+  [ROUTES.ABOUT]: 'About',
+  [ROUTES.FILTER_LIST]: 'Apply filters',
+  [ROUTES.ITEM_LIST]: 'Item list',
+  [ROUTES.SETTINGS]: 'Settings',
+  [ROUTES.STAT_LIST]: 'Statistics'
+};
+
+export const ROUTE_DESCRIPTIONS = {
+  [ROUTES.ABOUT]: '',
+  [ROUTES.FILTER_LIST]: '',
+  [ROUTES.ITEM_LIST]: '',
+  [ROUTES.SETTINGS]: 'All settings are saved separately for each device.',
+  [ROUTES.STAT_LIST]: ''
+};
