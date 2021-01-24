@@ -3,6 +3,7 @@ import { CellMeasurer, CellMeasurerCache, AutoSizer, List } from 'react-virtuali
 import Item from './item';
 import throttle from 'lodash.throttle';
 import Empty from './empty';
+import './index.scss';
 
 export default class MacroList extends PureComponent {
   constructor(props) {
@@ -49,7 +50,7 @@ export default class MacroList extends PureComponent {
     const { cache, props: { items } } = this;
 
     return (
-      <div>
+      <div className="item-list">
         {items.length ? <AutoSizer>
           {({ height, width }) => (
             <List

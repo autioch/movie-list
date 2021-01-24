@@ -14,6 +14,7 @@ import { fetchJson, suffix } from './utils';
 import { useStore } from './store';
 import { ROUTES, ROUTE_LABELS } from './consts';
 import 'antd/dist/antd.css';
+import './App.scss';
 
 export default function App() {
   const [state, dispatch] = useStore();
@@ -38,10 +39,10 @@ export default function App() {
 
   return (
     <>
-      <div>
+      <div className="app-header">
         {ROUTE_LABELS[pathname] || suffix(items.length, schema.labels)}
       </div>
-      <div>
+      <div className="app-content">
         <Switch>
           <Route path={ROUTES.FILTER_LIST}>
             <FilterList />
