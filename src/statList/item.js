@@ -1,19 +1,19 @@
 function StatItem({ item: { rounded, value, key } }) {
   return (
-    <li className="stat__item">
-      <span className={`stat-item__value t-value ${rounded ? 'is-rounded' : ''}`}>{value}</span>
+    <div>
+      <div className={rounded ? 'is-rounded' : ''}>{value}</div>
       <div>{key}</div>
-    </li>
+    </div>
   );
 }
 
 export default function FieldStat({ field }) {
   return (
-    <section className="stat">
+    <div>
       <div>{field.label}</div>
-      <ul className="stat__item-list">
+      <div>
         {field.stats.map((item, index) => <StatItem item={item} key={index} />)}
-      </ul>
-    </section>
+      </div>
+    </div>
   );
 }

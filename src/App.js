@@ -1,25 +1,24 @@
 import { useEffect } from 'react';
 import { Spin } from 'antd';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 import About from './about';
 import FilterList from './filterList';
-import Header from './header';
 import ItemList from './itemList';
 import Menu from './menu';
 import Settings from './settings';
 import StatList from './statList';
 
-import fetchJson from './fetchJson';
-import { useStore } from './store';
 import { actionLoading, actionItemsSet, actionSchemaSet } from './reducer';
-import { ROUTES } from './consts';
+import { fetchJson, suffix } from './utils';
+import { useStore } from './store';
+import { ROUTES, ROUTE_LABELS } from './consts';
 import 'antd/dist/antd.css';
-import './App.scss';
 
 export default function App() {
   const [state, dispatch] = useStore();
   const { isLoading, items, schema, hiddenFields } = state;
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(actionLoading(true));
@@ -39,8 +38,10 @@ export default function App() {
 
   return (
     <>
-      <Header/>
-      <div className="app-content">
+      <div>
+        {ROUTE_LABELS[pathname] || suffix(items.length, schema.labels)}
+      </div>
+      <div>
         <Switch>
           <Route path={ROUTES.FILTER_LIST}>
             <FilterList />

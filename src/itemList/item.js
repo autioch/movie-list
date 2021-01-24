@@ -1,28 +1,25 @@
-import './index.scss';
-
 function Header({ def, item }) {
   return (<h3>{item[def.key]}</h3>);
 }
 
 function Content({ def, item }) {
-  return (<p>{item[def.key]}</p>);
+  return (<div>{item[def.key]}</div>);
 }
 
 function Footnotes({ def, item }) {
   return (
-    <section className="item-footnotes">
-      <header className="item-footnotes__header">{def.label}</header>
-      <ul className="item-footnotes__list">
-        {item[def.key].map((detail, index) => <li className="item-footnotes__item" key={index}>{detail}</li>)}
-      </ul>
-    </section>
+    <div>
+      <header>{def.label}</header>
+      <div>
+        {item[def.key].map((detail, index) => <div key={index}>{detail}</div>)}
+      </div>
+    </div>
   );
 }
 
 function Link({ item, def }) {
   return (
     <a
-      className="item__link"
       target="_blank"
       rel="noreferrer"
       title={`Search in ${def.label}`}
@@ -37,7 +34,7 @@ function Sidenotes({ def, item }) {
   const content = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
   const rankClassName = def.ranked ? `t-rank__text--${item[`${def.key}Level`]}` : '';
 
-  return <li className={rankClassName}>{content}</li>;
+  return <div className={rankClassName}>{content}</div>;
 }
 
 function SchemaItem({ schema = [], item, View, hiddenFields }) {
@@ -55,23 +52,23 @@ function SchemaItem({ schema = [], item, View, hiddenFields }) {
 
 export default function Item({ item, schema, style, hiddenFields }) {
   return (
-    <div className="item" style={style}>
-      <div className="item__headline">
-        <div className="item__header">
+    <div style={style}>
+      <div>
+        <div>
           <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.header} View={Header} />
         </div>
-        <div className="item__links">
+        <div>
           {schema.links.filter((def) => !hiddenFields[def.key]).map((def, index) => <Link key={index} item={item} def={def} />)}
         </div>
       </div>
-      <div className="item__body">
-        <div className="item__content">
+      <div>
+        <div>
           <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.content} View={Content}/>
           <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.footnotes} View={Footnotes} />
         </div>
-        <ul className="item__sidenotes">
+        <div>
           <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.sidenotes} View={Sidenotes} />
-        </ul>
+        </div>
       </div>
     </div>
   );

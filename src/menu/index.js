@@ -1,5 +1,4 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import './index.scss';
 import { About, FilterList4, Home, Settings3, Share, StatList } from './icons';
 
 /* FilterList, Share2, */
@@ -18,31 +17,31 @@ export default function Menu() {
   const { pathname } = useLocation();
 
   return (
-    <div className="app-box app-menu">
+    <div>
 
-      <NavLink className="app-menu-button" to={ROUTES.ITEM_LIST} activeClassName="selected" exact>
+      <NavLink to={ROUTES.ITEM_LIST} activeClassName="selected" exact>
         <Home />
       </NavLink>
 
-      <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.FILTER_LIST)} activeClassName="selected">
+      <NavLink to={toggleRoute(pathname, ROUTES.FILTER_LIST)} activeClassName="selected">
         <Badge count={filterCount} >
           <FilterList4 />
         </Badge>
       </NavLink>
 
-      <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.STAT_LIST)} activeClassName="selected">
+      <NavLink to={toggleRoute(pathname, ROUTES.STAT_LIST)} activeClassName="selected">
         <StatList />
       </NavLink>
 
-      <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.SETTINGS)} activeClassName="selected">
+      <NavLink to={toggleRoute(pathname, ROUTES.SETTINGS)} activeClassName="selected">
         <Settings3 />
       </NavLink>
 
-      <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.ABOUT)} activeClassName="selected">
+      <NavLink to={toggleRoute(pathname, ROUTES.ABOUT)} activeClassName="selected">
         <About />
       </NavLink>
 
-      <div className="app-menu-button" onClick={copyToClipboard}>
+      <div onClick={copyToClipboard}>
         <Share />
       </div>
 

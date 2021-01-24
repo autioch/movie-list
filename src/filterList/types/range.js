@@ -1,8 +1,7 @@
-import { Input, Typography } from 'antd';
+import { Input } from 'antd';
 import { uniqValues } from '../../utils';
 import { NO_VALUE } from '../../consts';
 
-const { Title } = Typography;
 const checkValue = (val) => val === null || val === '' ? NO_VALUE : val; // eslint-disable-line no-confusing-arrow
 
 export default function RangeView({ filterId, label, value = {}, items, setFilterValue }) {

@@ -1,7 +1,6 @@
 import { PureComponent, createRef } from 'react';
 import { CellMeasurer, CellMeasurerCache, AutoSizer, List } from 'react-virtualized';
 import Item from './item';
-import './index.scss';
 import throttle from 'lodash.throttle';
 import Empty from './empty';
 
@@ -50,7 +49,7 @@ export default class MacroList extends PureComponent {
     const { cache, props: { items } } = this;
 
     return (
-      <main className="item-list">
+      <div>
         {items.length ? <AutoSizer>
           {({ height, width }) => (
             <List
@@ -64,7 +63,7 @@ export default class MacroList extends PureComponent {
             />
           )}
         </AutoSizer> : <Empty/>}
-      </main>
+      </div>
     );
   }
 }

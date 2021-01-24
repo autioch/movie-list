@@ -1,6 +1,5 @@
 import Item from './item';
 import rangeStats from './rangeStats';
-import './style.scss';
 import { EMPTY, TYPES } from '../consts';
 import { useStore } from '../store';
 
@@ -23,7 +22,7 @@ export default function StatList() {
     .filter(Boolean);
 
   return (
-    <div className="stat-list">
+    <div>
       <div>Statistics</div>
       {stats.map((field, index) => <Item field={field} key={index}/>)}
     </div>

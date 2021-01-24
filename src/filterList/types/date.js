@@ -1,8 +1,6 @@
-import { Input, Typography } from 'antd';
+import { Input } from 'antd';
 import { uniqValues } from '../../utils';
 import { NO_VALUE } from '../../consts';
-
-const { Title } = Typography;
 
 const checkValue = (val) => {
   const toDate = new Date(val);

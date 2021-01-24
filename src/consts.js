@@ -14,6 +14,8 @@ export const ORDER_NEXT = {
   [undefined]: ORDER.DESC
 };
 
+export const RANK_LEVELS = [0, 1, 2, 3, 4, 5]; // eslint-disable-line no-magic-numbers
+
 export const EMPTY = undefined;
 export const NO_VALUE = undefined;
 
@@ -40,4 +42,11 @@ export const ROUTES = {
   ITEM_LIST: '/',
   SETTINGS: '/settings',
   STAT_LIST: '/statList'
+};
+
+export const ROUTE_LABELS = {
+  [ROUTES.FILTER_LIST]: 'Apply filters',
+  [ROUTES.STAT_LIST]: 'Statistics',
+  [ROUTES.ABOUT]: 'FAQ',
+  [ROUTES.SETTINGS]: 'Settings'
 };

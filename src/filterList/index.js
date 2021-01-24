@@ -1,19 +1,16 @@
 import { CloseOutlined } from '@ant-design/icons';
-import { Button, Typography } from 'antd';
-import './style.scss';
+import { Button } from 'antd';
 import TYPE_VIEWS from './types';
 import { getLabel } from '../utils';
 import { useStore } from '../store';
 import { actionFilterSetValue, actionFilterSetSort } from '../reducer';
-
-const { Title } = Typography;
 
 export default function FilterList() {
   const [state, dispatch] = useStore();
   const { schema, sortOrders, items, filterValues, hiddenFilters } = state;
 
   return (
-    <div className="filter-list">
+    <div>
       {(schema.filters || [])
         .filter((filter) => !hiddenFilters[filter.key])
         .map((filter) => {
@@ -23,12 +20,12 @@ export default function FilterList() {
           const label = getLabel(key);
 
           return (
-            <section className="filter" key={key}>
-              <div className="filter-header" onClick={() => dispatch(actionFilterSetSort(key))} title={`Sort by ${label}`}>
+            <div key={key}>
+              <div onClick={() => dispatch(actionFilterSetSort(key))} title={`Sort by ${label}`}>
                 <div>{label}</div>
-                <span className={`filter-sort-icon is-sort-${sortOrders[key]}`}></span>
+                <div className={`is-sort-${sortOrders[key]}`}></div>
               </div>
-              <div className="filter-content">
+              <div>
                 <View filterId={key} label={label} value={value} setFilterValue={(newValue) => dispatch(actionFilterSetValue(key, newValue))} items={items}/>
                 {value === undefined ? '' : <Button
                   type="primary"
@@ -37,7 +34,7 @@ export default function FilterList() {
                   onClick={() => dispatch(actionFilterSetValue(key, undefined))}
                 />}
               </div>
-            </section>
+            </div>
           );
         })}
     </div>

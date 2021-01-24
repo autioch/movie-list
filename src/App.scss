@@ -2,93 +2,12 @@
   outline: none;
 }
 
-$t-text: #444;
-$t-bg: #fff;
-
-$t-rank--0: #aaa;
-$t-rank--1: #a00;
-$t-rank--2: #a70;
-$t-rank--3: #aa0;
-$t-rank--4: #0a0;
-$t-rank--5: #0aa;
-
-
-$t-btn--color: #69f;
-$t-warn--color: #d00;
-$t-header--color: #444;
-$t-label--color: #444;
-$t-value--color: #444;
-$t-hint--color: #999;
-
-$t-box--background: #f8f8f8;
-$t-box--shadow: #aaa;
-
-$t-input-background: #fff;
-$t-input-border: #ccc;
-$t-input-color: #666;
-
-.t-rank__bg--0 {
-  background-color: $t-rank--0;
-}
-
-.t-rank__text--0 {
-  color: $t-rank--0;
-}
-
-.t-rank__bg--1 {
-  background-color: $t-rank--1;
-}
-
-.t-rank__text--1 {
-  color: $t-rank--1;
-}
-
-.t-rank__bg--2 {
-  background-color: $t-rank--2;
-}
-
-.t-rank__text--2 {
-  color: $t-rank--2;
-}
-
-.t-rank__bg--3 {
-  background-color: $t-rank--3;
-}
-
-.t-rank__text--3 {
-  color: $t-rank--3;
-}
-
-.t-rank__bg--4 {
-  background-color: $t-rank--4;
-}
-
-.t-rank__text--4 {
-  color: $t-rank--4;
-}
-
-.t-rank__bg--5 {
-  background-color: $t-rank--5;
-}
-
-.t-rank__text--5 {
-  color: $t-rank--5;
-}
-
-
 html,
 body {
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
-
-
-html {
-  color: $t-text;
-  background-color: $t-bg;
-}
-
 
 body {
   background: #ddd;
@@ -102,31 +21,6 @@ body {
   flex-direction: column;
   overflow: hidden;
   background: #fff;
-}
-
-.app-content {
-  flex: 1 1 auto;
-  // height: 100%;
-  overflow: auto;
-  position: relative;
-  box-sizing: border-box;
-  // box-shadow: 0 0 6px #aaa;
-
-  > .ant-spin {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  }
-}
-
-.app-box {
-  flex: none;
-  width: 100%;
-  box-shadow: 0 0 4px #aaa;
-  position: relative;
-  z-index: 1;
-  user-select: none;
-  padding: .5rem;
 }
 
 //sass-lint:disable no-vendor-prefixes
@@ -147,28 +41,4 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background-color: $t-box--shadow;
-}
-
-.t-warn {
-  color: $t-warn--color;
-}
-
-.t-header {
-  color: $t-header--color;
-}
-
-.t-label {
-  color: $t-label--color;
-}
-
-.t-hint {
-  color: $t-hint--color;
-}
-
-.t-value {
-  color: $t-value--color;
-}
-
-.t-btn {
-  color: $t-btn--color;
 }
