@@ -1,18 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import './index.scss';
-import { FilterListIcon } from '../menu/icons';
+import { FilterList } from '../menu/icons';
 import { useStore } from '../store';
 import { Badge } from 'antd';
 
 export default function Empty() {
   const [state] = useStore();
-  const { filterCount } = state;
+  const { filterCount, schema: { labels } } = state;
 
   return (
     <div className="app-empty">
       <NavLink to="/filterList" activeClassName="selected">
         <div className="app-empty__message">
-        No items match filters.
+        No {labels.items} match filters.
         </div>
         <div className="app-empty__message">
         Refine filters.
@@ -20,7 +20,7 @@ export default function Empty() {
         <div className="app-empty__link">
           <Badge count={filterCount} >
             <div className="app-menu-button">
-              <FilterListIcon />
+              <FilterList />
             </div>
           </Badge>
         </div>

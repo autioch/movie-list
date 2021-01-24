@@ -1,7 +1,9 @@
-export default function copyToClipboard(text) {
+import { message } from 'antd';
+
+export default function copyToClipboard() {
   const el = document.createElement('textarea');
 
-  el.value = text;
+  el.value = document.location.href;
   el.setAttribute('readonly', '');
   el.style.position = 'absolute';
   el.style.left = '-9999px';
@@ -9,4 +11,6 @@ export default function copyToClipboard(text) {
   el.select();
   document.execCommand('copy');
   document.body.removeChild(el);
+
+  message.info('Link with filters copied!');
 }

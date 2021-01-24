@@ -1,6 +1,8 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import './index.scss';
-import { AboutIcon, FilterListIcon, HomeIcon, ShareIcon, StatListIcon, SettingsIcon } from './icons';
+import { About, FilterList4, Home, Settings3, Share, StatList } from './icons';
+
+/* FilterList, Share2, */
 import copyToClipboard from './copyToClipboard';
 import { useStore } from '../store';
 import { Badge } from 'antd';
@@ -25,29 +27,29 @@ export default function Menu() {
     <div className="app-box app-menu">
 
       <NavLink className="app-menu-button" to={ROUTES.ITEM_LIST} activeClassName="selected" exact>
-        <HomeIcon />
+        <Home />
       </NavLink>
 
       <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.FILTER_LIST)} activeClassName="selected">
         <Badge count={filterCount} >
-          <FilterListIcon />
+          <FilterList4 />
         </Badge>
       </NavLink>
 
-      <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.SETTINGS)} activeClassName="selected">
-        <SettingsIcon />
+      <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.STAT_LIST)} activeClassName="selected">
+        <StatList />
       </NavLink>
 
-      <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.STAT_LIST)} activeClassName="selected">
-        <StatListIcon />
+      <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.SETTINGS)} activeClassName="selected">
+        <Settings3 />
       </NavLink>
 
       <NavLink className="app-menu-button" to={toggleRoute(pathname, ROUTES.ABOUT)} activeClassName="selected">
-        <AboutIcon />
+        <About />
       </NavLink>
 
-      <div className="app-menu-button" onClick={() => copyToClipboard(document.location.href)}>
-        <ShareIcon />
+      <div className="app-menu-button" onClick={copyToClipboard}>
+        <Share />
       </div>
 
     </div>

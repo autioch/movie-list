@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { ROUTE_NAMES } from '../consts';
+import { ROUTE_NAMES, ROUTE_DESCRIPTIONS } from '../consts';
 import { Typography } from 'antd';
 import './index.scss';
 
@@ -11,6 +11,7 @@ export default function Header() {
   return (
     <div className="app-box app-header">
       <Title level={3}>{ROUTE_NAMES[pathname]}</Title>
+      <Title level={4}>{ROUTE_DESCRIPTIONS[pathname]}</Title>
     </div>
   );
 }

@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
 
   .ant-badge-count {
     top: .5rem !important;
@@ -12,16 +13,18 @@
 .app-menu-button {
   flex: none;
   height: 4rem;
-  width: 4rem;
+  width: 6rem;
   position: relative;
   box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
   padding: 5px;
   cursor: pointer; // for share button
 
   svg {
     color: #000;
-    width: 100%;
-    height: 100%;
+    width: 30px;
+    height: 30px;
   }
 
   &.selected {

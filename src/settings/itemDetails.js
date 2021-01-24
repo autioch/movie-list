@@ -39,8 +39,8 @@ export default function ItemDetails() {
   return (
     <div className="settings-section">
       <Button onClick={() => dispatch(actionFieldResetVisibility())}>Reset all details</Button>
-      <Title level={4}>Item details</Title>
-      <p>Control which details are visible for each item.</p>
+      <Title level={4}>{schema.labels.item} details</Title>
+      <p>Control which details are visible for each {schema.labels.item}.</p>
       <div className="settings-cols">
         <div>
           <Section label="Header" fields={schema.header} hiddenFields={hiddenFields} dispatch={dispatch}/>

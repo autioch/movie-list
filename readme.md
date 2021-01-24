@@ -110,3 +110,4 @@ Additional themes can be produced by cloning existing theme and replacing colors
 1. React helmet.
 2. https://www.robinwieruch.de/react-hooks-fetch-data
 3. Date picker
+4. Icons used: https://icon-icons.com/pack/Phosphor-light/2716&page=1

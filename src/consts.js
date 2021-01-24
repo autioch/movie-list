@@ -42,7 +42,7 @@ export const ROUTES = {
 export const ROUTE_NAMES = {
   [ROUTES.ABOUT]: 'About',
   [ROUTES.FILTER_LIST]: 'Apply filters',
-  [ROUTES.ITEM_LIST]: 'Item list',
+  [ROUTES.ITEM_LIST]: 'Item list', // todo
   [ROUTES.SETTINGS]: 'Settings',
   [ROUTES.STAT_LIST]: 'Statistics'
 };

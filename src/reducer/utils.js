@@ -2,14 +2,14 @@ function hiddenMapper(savedState) {
   return ({ key, hidden }) => [key, !!(savedState[key] ?? hidden)];
 }
 
-function notFilter([key]) {
-  return key !== 'filters';
+function isFieldGroup([key]) {
+  return key !== 'filters' && key !== 'labels';
 }
 
 export function getHiddenFields(schema, savedState) {
   const mapper = hiddenMapper(savedState);
 
-  const fieldGroups = Object.entries(schema).filter(notFilter);
+  const fieldGroups = Object.entries(schema).filter(isFieldGroup);
   const fieldState = fieldGroups.flatMap(([, fields]) => fields.map(mapper));
 
   return Object.fromEntries(fieldState);

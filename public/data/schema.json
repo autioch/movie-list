@@ -52,5 +52,10 @@
     {"type":2,"stat":true ,"hidden":true ,"key":"size"},
     {"type":3,"stat":true ,"hidden":true ,"key":"audioChannels"},
     {"type":4,"stat":true ,"hidden":true ,"key":"added"}
-  ]
+  ],
+  "labels": {
+    "item": "movie",
+    "items": "movies",
+    "description": "List of movies that I have seen/watched. This is personal list, as I wasn't happy with lists provided by IMDB or other similar services."
+  }
 }
