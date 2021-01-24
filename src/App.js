@@ -37,7 +37,7 @@ export default function App() {
 
   return (
     <Router basename={homepage}>
-      <Header/>
+      {isLoading ? '' : <Header/>}
       <div className="app-content">
         {isLoading ? <Spin size="large" /> : <Switch>
           <Route path={ROUTES.FILTER_LIST}>

@@ -12,16 +12,10 @@ function toggleRoute(pathname, suggestedRoute) {
   return pathname === suggestedRoute ? ROUTES.ITEM_LIST : suggestedRoute;
 }
 
-// {count} item{count === 1 ? '' : 's'}
 export default function Menu() {
   const [state] = useStore();
-  const {
-    // items,
-    filterCount
-  } = state;
+  const { filterCount } = state;
   const { pathname } = useLocation();
-
-  // const count = items.length;
 
   return (
     <div className="app-box app-menu">

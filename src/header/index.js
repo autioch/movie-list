@@ -1,17 +1,33 @@
-import { useLocation } from 'react-router-dom';
-import { ROUTE_NAMES, ROUTE_DESCRIPTIONS } from '../consts';
-import { Typography } from 'antd';
+import { Switch, Route } from 'react-router-dom';
+import { ROUTES } from '../consts';
+import { useStore } from '../store';
 import './index.scss';
 
-const { Title } = Typography;
+const suffix = (count, labels) => `${count} ${count === 1 ? labels.item : labels.items}`;
 
 export default function Header() {
-  const { pathname } = useLocation();
+  const [state] = useStore();
+  const { schema: { labels }, items } = state;
 
   return (
     <div className="app-box app-header">
-      <Title level={3}>{ROUTE_NAMES[pathname]}</Title>
-      <Title level={4}>{ROUTE_DESCRIPTIONS[pathname]}</Title>
+      <Switch>
+        <Route path={ROUTES.FILTER_LIST}>
+          Apply filters
+        </Route>
+        <Route path={ROUTES.STAT_LIST}>
+          Statistics
+        </Route>
+        <Route path={ROUTES.ABOUT}>
+          FAQ
+        </Route>
+        <Route path={ROUTES.SETTINGS}>
+          Settings
+        </Route>
+        <Route path={ROUTES.ITEM_LIST}>
+          {suffix(items.length, labels)}
+        </Route>
+      </Switch>
     </div>
   );
 }

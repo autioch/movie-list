@@ -38,19 +38,3 @@ export const ROUTES = {
   SETTINGS: '/settings',
   STAT_LIST: '/statList'
 };
-
-export const ROUTE_NAMES = {
-  [ROUTES.ABOUT]: 'About',
-  [ROUTES.FILTER_LIST]: 'Apply filters',
-  [ROUTES.ITEM_LIST]: 'Item list', // todo
-  [ROUTES.SETTINGS]: 'Settings',
-  [ROUTES.STAT_LIST]: 'Statistics'
-};
-
-export const ROUTE_DESCRIPTIONS = {
-  [ROUTES.ABOUT]: '',
-  [ROUTES.FILTER_LIST]: '',
-  [ROUTES.ITEM_LIST]: '',
-  [ROUTES.SETTINGS]: 'All settings are saved separately for each device.',
-  [ROUTES.STAT_LIST]: ''
-};

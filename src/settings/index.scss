@@ -7,6 +7,7 @@
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: solid 2px #eee;
+  text-transform: capitalize;
 
   .ant-btn {
     margin-top: .5rem;
@@ -42,4 +43,16 @@
   > .ant-switch {
     margin-right: 1rem;
   }
+}
+
+.icon-caution {
+  width: 2rem;
+  height: 2rem;
+}
+
+.infobox {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  
 }
