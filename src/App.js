@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Spin } from 'antd';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import About from './about';
 import FilterList from './filterList';
@@ -13,10 +13,8 @@ import StatList from './statList';
 import fetchJson from './fetchJson';
 import { useStore } from './store';
 import { actionLoading, actionItemsSet, actionSchemaSet } from './reducer';
-import { homepage } from '../package.json';
 import { ROUTES } from './consts';
 import 'antd/dist/antd.css';
-import './themes/light.scss';
 import './App.scss';
 
 export default function App() {
@@ -35,11 +33,15 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (isLoading) {
+    return <Spin size="large" />;
+  }
+
   return (
-    <Router basename={homepage}>
-      {isLoading ? '' : <Header/>}
+    <>
+      <Header/>
       <div className="app-content">
-        {isLoading ? <Spin size="large" /> : <Switch>
+        <Switch>
           <Route path={ROUTES.FILTER_LIST}>
             <FilterList />
           </Route>
@@ -60,9 +62,9 @@ export default function App() {
               hiddenFields={hiddenFields}
             />
           </Route>
-        </Switch> }
+        </Switch>
       </div>
       <Menu />
-    </Router>
+    </>
   );
 }

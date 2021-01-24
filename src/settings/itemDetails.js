@@ -1,10 +1,9 @@
-import { Typography, Checkbox, Button } from 'antd';
+import { Checkbox, Button } from 'antd';
 import { useStore } from '../store';
 import { actionFieldToggleVisibility, actionFieldSetVisibility, actionFieldResetVisibility } from '../reducer';
-import KeyLabel from '../components/keyLabel';
-import './index.scss';
+import { getLabel } from '../utils';
 
-const { Title } = Typography;
+import './index.scss';
 
 function Section({ label, fields = [], hiddenFields, dispatch }) {
   const checkedCount = fields.filter(({ key }) => !hiddenFields[key]).length;
@@ -19,12 +18,12 @@ function Section({ label, fields = [], hiddenFields, dispatch }) {
         indeterminate={isIndeterminate}
         onChange={() => dispatch(actionFieldSetVisibility(fields.map(({ key }) => key), !!isChecked))}
       >
-        <KeyLabel text={label} />
+        {getLabel(label)}
       </Checkbox>
       <ul>
         {fields.map(({ key }) =>
           <Checkbox className="settings-item" key={key} checked={!hiddenFields[key]} onChange={() => dispatch(actionFieldToggleVisibility(key))}>
-            <KeyLabel text={key} />
+            {getLabel(key)}
           </Checkbox>
         )}
       </ul>
@@ -39,7 +38,7 @@ export default function ItemDetails() {
   return (
     <div className="settings-section">
       <Button onClick={() => dispatch(actionFieldResetVisibility())}>Reset all details</Button>
-      <Title level={4}>{schema.labels.item} details</Title>
+      <div>{schema.labels.item} details</div>
       <p>Control which details are visible for each {schema.labels.item}.</p>
       <div className="settings-cols">
         <div>

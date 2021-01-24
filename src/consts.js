@@ -1,3 +1,6 @@
+export const HTTP_OK = 200;
+export const HTTP_ERROR = 400;
+
 export const ORDER = {
   NONE: 0,
   DESC: 1,

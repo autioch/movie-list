@@ -1,5 +1,3 @@
-import './style.scss';
-
 const levels = [0, 1, 2, 3, 4, 5]; // eslint-disable-line no-magic-numbers
 
 export default function Legend() {

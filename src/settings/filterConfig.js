@@ -1,17 +1,16 @@
-import { Typography, Switch, Button } from 'antd';
-import KeyLabel from '../components/keyLabel';
+import { Switch, Button } from 'antd';
 import { useStore } from '../store';
 import { actionFilterSetVisibility, actionFilterResetVisibility } from '../reducer';
 import './index.scss';
+import { getLabel } from '../utils';
 
-const { Title } = Typography;
 const HALF = 0.5;
 
 function Item({ dispatch, filter: { key }, hiddenFilters }) {
   return (
     <div className="filter-config-item">
       <Switch checked={!hiddenFilters[key]} onChange={(isChecked) => dispatch(actionFilterSetVisibility(key, !isChecked))}/>
-      <KeyLabel text={key}/>
+      {getLabel(key)}
     </div>
   );
 }
@@ -24,7 +23,7 @@ export default function FilterConfig() {
   return (
     <div className="settings-section">
       <Button onClick={() => dispatch(actionFilterResetVisibility())}>Reset all filters</Button>
-      <Title level={4}>Filter visibility</Title>
+      <div>Filter visibility</div>
       <p>Control which filters are available.</p>
       <div className="settings-cols">
         <div>

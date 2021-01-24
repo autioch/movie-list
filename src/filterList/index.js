@@ -25,7 +25,7 @@ export default function FilterList() {
           return (
             <section className="filter" key={key}>
               <div className="filter-header" onClick={() => dispatch(actionFilterSetSort(key))} title={`Sort by ${label}`}>
-                <Title level={4}>{label}</Title>
+                <div>{label}</div>
                 <span className={`filter-sort-icon is-sort-${sortOrders[key]}`}></span>
               </div>
               <div className="filter-content">

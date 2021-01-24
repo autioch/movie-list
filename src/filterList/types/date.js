@@ -22,7 +22,7 @@ export default function DateView({ filterId, label, value = {}, items, setFilter
 
   return (
     <>
-      <Title level={5}>From</Title>
+      <div>From</div>
       <Input
         value={fromDate}
         title={`Set minimum ${label}`}
@@ -32,7 +32,7 @@ export default function DateView({ filterId, label, value = {}, items, setFilter
           toDate
         })}
       />
-      <Title level={5}>To</Title>
+      <div>To</div>
       <Input
         value={toDate}
         title={`Set maximum ${label}`}

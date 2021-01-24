@@ -1,11 +1,8 @@
 import Item from './item';
 import rangeStats from './rangeStats';
-import { Typography } from 'antd';
 import './style.scss';
 import { EMPTY, TYPES } from '../consts';
 import { useStore } from '../store';
-
-const { Title } = Typography;
 
 const STATS = {
   [TYPES.TEXT]: () => EMPTY,
@@ -27,7 +24,7 @@ export default function StatList() {
 
   return (
     <div className="stat-list">
-      <Title level={3}>Statistics</Title>
+      <div>Statistics</div>
       {stats.map((field, index) => <Item field={field} key={index}/>)}
     </div>
   );
