@@ -23,12 +23,13 @@ export default function FilterList() {
           return (
             <div key={key} className="filter-item">
               <div onClick={() => dispatch(actionFilterSetSort(key))} title={`Sort by ${label}`}>
-                <div>{label}</div>
+                <div className="filter-item__header">{label}</div>
                 <div className={`is-sort-${sortOrders[key]}`}></div>
               </div>
               <div className="filter-item-content">
                 <View filterId={key} label={label} value={value} setFilterValue={(newValue) => dispatch(actionFilterSetValue(key, newValue))} items={items}/>
                 {value === undefined ? '' : <Button
+                  className="filter-item-reset"
                   type="primary"
                   icon={<CloseOutlined />}
                   title={`Reset ${label} filter`}

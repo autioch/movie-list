@@ -1,5 +1,5 @@
 .filter-item {
-  margin: 15px 0;
+  margin: 21px 15px;
 
   .ant-select {
     display: block;
@@ -7,9 +7,26 @@
   }
 }
 
+.filter-item__header {
+  // font-size: 1.1rem;
+  margin-bottom: 7px;
+}
 
 .filter-item-content {
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.filter-list-input-label {
+  margin-right: 10px;
+  color: #777;
+
+  &:not(:first-child) {
+    margin-left: 10px;
+  }
+}
+
+.filter-item-reset {
+  margin-left: 10px;
 }

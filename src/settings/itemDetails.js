@@ -17,7 +17,7 @@ function Section({ label, fields = [], hiddenFields, dispatch }) {
       >
         {getLabel(label)}
       </Checkbox>
-      <div>
+      <div className="settings-details-list">
         {fields.map(({ key }) =>
           <Checkbox key={key} checked={!hiddenFields[key]} onChange={() => dispatch(actionFieldToggleVisibility(key))}>
             {getLabel(key)}
@@ -34,10 +34,10 @@ export default function ItemDetails() {
 
   return (
     <div className="settings-section">
-      <div>{schema.labels.item} details</div>
-      <div>Control which details are visible for each {schema.labels.item}.</div>
-      <Button onClick={() => dispatch(actionFieldResetVisibility())}>Reset all details</Button>
-      <div>
+      <Button className="settings-reset" onClick={() => dispatch(actionFieldResetVisibility())}>Reset all details</Button>
+      <div className="settings-header">{schema.labels.item} details</div>
+      <div className="settings-description">Control which details are visible for each {schema.labels.item}.</div>
+      <div className="settings-cols">
         <div>
           <Section label="Header" fields={schema.header} hiddenFields={hiddenFields} dispatch={dispatch}/>
           <Section label="Content" fields={schema.content} hiddenFields={hiddenFields} dispatch={dispatch} />

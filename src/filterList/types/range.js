@@ -12,7 +12,7 @@ export default function RangeView({ filterId, label, value = {}, items, setFilte
 
   return (
     <>
-      <div>From</div>
+      <div className="filter-list-input-label">From</div>
       <Input
         value={fromValue}
         title={`Set minimum ${label}`}
@@ -22,7 +22,7 @@ export default function RangeView({ filterId, label, value = {}, items, setFilte
           toValue
         })}
       />
-      <div>To</div>
+      <div className="filter-list-input-label">To</div>
       <Input
         value={toValue}
         title={`Set maximum ${label}`}

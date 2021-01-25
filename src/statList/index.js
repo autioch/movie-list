@@ -1,6 +1,7 @@
 import rangeStats from './rangeStats';
 import { EMPTY, TYPES } from '../consts';
 import { useStore } from '../store';
+import { getLabel } from '../utils';
 import './index.scss';
 
 const STATS = {
@@ -24,8 +25,8 @@ function Stat({ stat: { rounded, value, key } }) {
 
 function FieldStats({ field: { label, stats } }) {
   return (
-    <div>
-      <div className="field-stat__header">{label}</div>
+    <div className="field-stat">
+      <div className="field-stat__header">{getLabel(label)}</div>
       <div className="field-stat__list">
         {stats.map((stat, index) => <Stat stat={stat} key={index} />)}
       </div>
