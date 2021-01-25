@@ -1,5 +1,11 @@
 import { message } from 'antd';
 
+message.config({
+  content: 'Link with filters copied!',
+  maxCount: 1,
+  top: 100 // eslint-disable-line no-magic-numbers
+});
+
 export default function copyToClipboard() {
   const el = document.createElement('textarea');
 

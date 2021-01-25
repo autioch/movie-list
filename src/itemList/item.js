@@ -1,5 +1,5 @@
 function Header({ def, item }) {
-  return (<h3>{item[def.key]}</h3>);
+  return (<div>{item[def.key]}</div>);
 }
 
 function Content({ def, item }) {
@@ -8,10 +8,10 @@ function Content({ def, item }) {
 
 function Footnotes({ def, item }) {
   return (
-    <div>
-      <header>{def.label}</header>
-      <div>
-        {item[def.key].map((detail, index) => <div key={index}>{detail}</div>)}
+    <div className="item-footnotes">
+      <div className="item-footnotes__header">{def.label}</div>
+      <div className="item-footnotes__list">
+        {item[def.key].map((detail, index) => <span className="item-footnotes__item" key={index}>{detail}</span>)}
       </div>
     </div>
   );
@@ -20,12 +20,13 @@ function Footnotes({ def, item }) {
 function Link({ item, def }) {
   return (
     <a
+      className="item-link"
       target="_blank"
       rel="noreferrer"
       title={`Search in ${def.label}`}
       href={def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key])}
     >
-      <img src={`/data/${def.key}.png`} alt={`${def.key}`}/>
+      <img className="item-link__image" src={`/data/${def.key}.png`} alt={`${def.key}`}/>
     </a>
   );
 }
@@ -52,7 +53,7 @@ function SchemaItem({ schema = [], item, View, hiddenFields }) {
 
 export default function Item({ item, schema, style, hiddenFields }) {
   return (
-    <div style={style}>
+    <div className="item" style={style}>
       <div>
         <div>
           <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.header} View={Header} />

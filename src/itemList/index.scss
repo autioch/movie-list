@@ -1,5 +1,31 @@
+.item {
+  padding: 10px 0;
+  border-bottom: solid 1px #ddd;
+}
+
 .item-list {
   position: relative;
   height: 100%;
   overflow: hidden;
+}
+
+.item-link__image {
+  opacity: .7;
+  height: 36px;
+}
+
+.item-footnotes {
+  display: flex;
+}
+
+.item-footnotes__header {
+  &::after {
+    content: ': ';
+  }
+}
+
+.item-footnotes__item {
+  &:not(:last-child)::after {
+    content: ', ';
+  }
 }

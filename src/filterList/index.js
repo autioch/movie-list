@@ -4,6 +4,7 @@ import TYPE_VIEWS from './types';
 import { getLabel } from '../utils';
 import { useStore } from '../store';
 import { actionFilterSetValue, actionFilterSetSort } from '../reducer';
+import './index.scss';
 
 export default function FilterList() {
   const [state, dispatch] = useStore();
@@ -20,12 +21,12 @@ export default function FilterList() {
           const label = getLabel(key);
 
           return (
-            <div key={key}>
+            <div key={key} className="filter-item">
               <div onClick={() => dispatch(actionFilterSetSort(key))} title={`Sort by ${label}`}>
                 <div>{label}</div>
                 <div className={`is-sort-${sortOrders[key]}`}></div>
               </div>
-              <div>
+              <div className="filter-item-content">
                 <View filterId={key} label={label} value={value} setFilterValue={(newValue) => dispatch(actionFilterSetValue(key, newValue))} items={items}/>
                 {value === undefined ? '' : <Button
                   type="primary"

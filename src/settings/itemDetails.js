@@ -9,7 +9,7 @@ function Section({ label, fields = [], hiddenFields, dispatch }) {
   const isIndeterminate = checkedCount > 0 && !isChecked;
 
   return (
-    <div>
+    <div className="settings-item-details-section">
       <Checkbox
         checked={isChecked}
         indeterminate={isIndeterminate}
@@ -33,10 +33,10 @@ export default function ItemDetails() {
   const { schema, hiddenFields } = state;
 
   return (
-    <div>
-      <Button onClick={() => dispatch(actionFieldResetVisibility())}>Reset all details</Button>
+    <div className="settings-section">
       <div>{schema.labels.item} details</div>
       <div>Control which details are visible for each {schema.labels.item}.</div>
+      <Button onClick={() => dispatch(actionFieldResetVisibility())}>Reset all details</Button>
       <div>
         <div>
           <Section label="Header" fields={schema.header} hiddenFields={hiddenFields} dispatch={dispatch}/>

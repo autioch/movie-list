@@ -1,7 +1,7 @@
-import Item from './item';
 import rangeStats from './rangeStats';
 import { EMPTY, TYPES } from '../consts';
 import { useStore } from '../store';
+import './index.scss';
 
 const STATS = {
   [TYPES.TEXT]: () => EMPTY,
@@ -13,6 +13,26 @@ const STATS = {
   [TYPES.DATE]: () => EMPTY
 };
 
+function Stat({ stat: { rounded, value, key } }) {
+  return (
+    <div className="field-stat-item">
+      <div className="field-stat-item__label">{key}</div>
+      <div className={`field-stat-item__value${rounded ? ' is-rounded' : ''}`}>{value}</div>
+    </div>
+  );
+}
+
+function FieldStats({ field: { label, stats } }) {
+  return (
+    <div>
+      <div className="field-stat__header">{label}</div>
+      <div className="field-stat__list">
+        {stats.map((stat, index) => <Stat stat={stat} key={index} />)}
+      </div>
+    </div>
+  );
+}
+
 export default function StatList() {
   const [state] = useStore();
   const { schema: { filters = [] }, items } = state;
@@ -23,8 +43,7 @@ export default function StatList() {
 
   return (
     <div>
-      <div>Statistics</div>
-      {stats.map((field, index) => <Item field={field} key={index}/>)}
+      {stats.map((field, index) => <FieldStats field={field} key={index}/>)}
     </div>
   );
 }
