@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import { NavLink, useLocation } from 'react-router-dom';
 import { Badge } from 'antd';
 
@@ -26,7 +27,7 @@ export default function Menu() {
       </NavLink>
 
       <NavLink className="menu-item" to={toggleRoute(pathname, ROUTES.FILTER_LIST)} activeClassName="selected">
-        <Badge count={filterCount} >
+        <Badge count={filterCount} offset={[0, 20]}>
           <FilterList4 />
         </Badge>
       </NavLink>

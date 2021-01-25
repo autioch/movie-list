@@ -1,5 +1,7 @@
+/* eslint-disable no-magic-numbers */
 import { NavLink } from 'react-router-dom';
-import { FilterList } from '../menu/icons';
+import { FilterList4 } from '../menu/icons';
+import { ROUTES } from '../consts';
 import { useStore } from '../store';
 import { Badge } from 'antd';
 
@@ -8,21 +10,13 @@ export default function Empty() {
   const { filterCount, schema: { labels } } = state;
 
   return (
-    <div>
-      <NavLink to="/filterList" activeClassName="selected">
-        <div>
-        No {labels.items} match filters.
-        </div>
-        <div>
-        Refine filters.
-        </div>
-        <div>
-          <Badge count={filterCount} >
-            <div>
-              <FilterList />
-            </div>
-          </Badge>
-        </div>
+    <div className="item-list-empty">
+      <NavLink to={ROUTES.FILTER_LIST} activeClassName="selected">
+        <div>No {labels.items} match filters.</div>
+        <div>Refine filters.</div>
+        <Badge count={filterCount} offset={[0, 20]}>
+          <FilterList4 />
+        </Badge>
       </NavLink>
     </div>
   );

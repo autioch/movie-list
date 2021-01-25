@@ -33,9 +33,9 @@ function Link({ item, def }) {
 
 function Sidenotes({ def, item }) {
   const content = def.template.replace(/#\{([^}]+)\}/g, (match, key) => item[key]);
-  const rankClassName = def.ranked ? `t-rank__text--${item[`${def.key}Level`]}` : '';
+  const rankClassName = def.ranked ? ` is-rank--${item[`${def.key}Level`]}` : '';
 
-  return <div className={rankClassName}>{content}</div>;
+  return <div className={`item-sidebar-item${rankClassName}`}>{content}</div>;
 }
 
 function SchemaItem({ schema = [], item, View, hiddenFields }) {
@@ -54,23 +54,19 @@ function SchemaItem({ schema = [], item, View, hiddenFields }) {
 export default function Item({ item, schema, style, hiddenFields }) {
   return (
     <div className="item" style={style}>
-      <div>
-        <div>
+      <div className="item-headline">
+        <div className="item-header">
           <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.header} View={Header} />
         </div>
-        <div>
+        <div className="item-links">
           {schema.links.filter((def) => !hiddenFields[def.key]).map((def, index) => <Link key={index} item={item} def={def} />)}
         </div>
       </div>
-      <div>
-        <div>
-          <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.content} View={Content}/>
-          <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.footnotes} View={Footnotes} />
-        </div>
-        <div>
-          <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.sidenotes} View={Sidenotes} />
-        </div>
+      <div className="item-sidebar">
+        <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.sidenotes} View={Sidenotes} />
       </div>
+      <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.content} View={Content}/>
+      <SchemaItem item={item} hiddenFields={hiddenFields} schema={schema.footnotes} View={Footnotes} />
     </div>
   );
 }
