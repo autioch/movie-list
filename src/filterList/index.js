@@ -1,10 +1,20 @@
 import { CloseOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import TYPE_VIEWS from './types';
+import { ORDER } from '../consts';
 import { getLabel } from '../utils';
 import { useStore } from '../store';
 import { actionFilterSetValue, actionFilterSetSort } from '../reducer';
+import { ReactComponent as SortAsc } from './sortAsc.svg';
+import { ReactComponent as SortDesc } from './sortDesc.svg';
 import './index.scss';
+
+const ORDER_ICONS = {
+  [ORDER.NONE]: undefined,
+  [ORDER.DESC]: <SortAsc/>,
+  [ORDER.ASC]: <SortDesc/>,
+  [undefined]: undefined
+};
 
 export default function FilterList() {
   const [state, dispatch] = useStore();
@@ -22,9 +32,9 @@ export default function FilterList() {
 
           return (
             <div key={key} className="filter-item">
-              <div onClick={() => dispatch(actionFilterSetSort(key))} title={`Sort by ${label}`}>
+              <div className="filter-item__headline" onClick={() => dispatch(actionFilterSetSort(key))} title={`Sort by ${label}`}>
                 <div className="filter-item__header">{label}</div>
-                <div className={`is-sort-${sortOrders[key]}`}></div>
+                {ORDER_ICONS[sortOrders[key]]}
               </div>
               <div className="filter-item-content">
                 <View filterId={key} label={label} value={value} setFilterValue={(newValue) => dispatch(actionFilterSetValue(key, newValue))} items={items}/>

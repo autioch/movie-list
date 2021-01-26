@@ -7,11 +7,6 @@
   }
 }
 
-.filter-item__header {
-  // font-size: 1.1rem;
-  margin-bottom: 7px;
-}
-
 .filter-item-content {
   width: 100%;
   display: flex;
@@ -30,4 +25,16 @@
 .filter-item-reset {
   margin-left: 10px;
   flex: none;
+}
+
+.filter-item__headline {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+
+  > svg {
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+  }
 }
