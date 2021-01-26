@@ -24,7 +24,7 @@ export function readFromUrl() {
   const filters = urlParams.get('filters1') ?? '';
 
   const items = filters.split(SEP).map((val) => val === '*' ? undefined : val);// eslint-disable-line no-confusing-arrow
-  const size = 3;
+  const size = 4;
 
   const fields = Array.from({
     length: Math.ceil(items.length / size)
