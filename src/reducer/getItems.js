@@ -2,39 +2,41 @@ import { EMPTY, TYPES, EQUAL, ITEM_1_LATER, ITEM_2_LATER } from '../consts';
 
 const TEST_FN = {
   [TYPES.TEXT](value) {
-    let testFn = (itemValue) => itemValue.includes(value);
+    let testFn = (itemValues) => itemValues.some((itemValue) => itemValue.includes(value));
 
     try {
       const regex = new RegExp(value.replace(/ /g, '.?'), 'i');
 
-      testFn = (itemValue) => regex.test(itemValue);
+      testFn = (itemValues) => itemValues.some((itemValue) => regex.test(itemValue));
     } catch (err) {}
 
     return testFn;
   },
   [TYPES.RANGE]({ fromValue, toValue }) {
     if (fromValue !== EMPTY && toValue !== EMPTY) {
-      return (itemValue) => itemValue >= fromValue && itemValue <= toValue;
+      return (itemValues) => itemValues.some((itemValue) => itemValue >= fromValue && itemValue <= toValue);
     }
     if (fromValue !== EMPTY) {
-      return (itemValue) => itemValue >= fromValue;
+      return (itemValues) => itemValues.some((itemValue) => itemValue >= fromValue);
     }
     if (toValue !== EMPTY) {
-      return (itemValue) => itemValue <= toValue;
+      return (itemValues) => itemValues.some((itemValue) => itemValue <= toValue);
     }
 
     return () => true;
   },
-  [TYPES.DICTIONARY]: (value) => (itemValue) => itemValue === value,
+  [TYPES.DICTIONARY](value) {
+    return (itemValues) => value.every((singleValue) => itemValues.includes(singleValue));
+  },
   [TYPES.DATE]({ fromDate, toDate }) {
     if (fromDate !== EMPTY && toDate !== EMPTY) {
-      return (itemValue) => itemValue >= fromDate && itemValue <= toDate;
+      return (itemValues) => itemValues.some((itemValue) => itemValue >= fromDate && itemValue <= toDate);
     }
     if (fromDate !== EMPTY) {
-      return (itemValue) => itemValue >= fromDate;
+      return (itemValues) => itemValues.some((itemValue) => itemValue >= fromDate);
     }
     if (toDate !== EMPTY) {
-      return (itemValue) => itemValue <= toDate;
+      return (itemValues) => itemValues.some((itemValue) => itemValue <= toDate);
     }
 
     return () => true;
@@ -53,7 +55,7 @@ function filterByTestFn(items, testFn) {
   return items.filter((item) => {
     const itemValue = item[testFn.key];
 
-    return Array.isArray(itemValue) ? itemValue.some(testFn) : testFn(itemValue);
+    return testFn(Array.isArray(itemValue) ? itemValue : [itemValue]);
   });
 }
 

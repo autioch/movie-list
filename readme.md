@@ -101,16 +101,8 @@ In addition, filters can have `stat` property. If it's set to true, stats for th
 By default, application produces 2 themes, `themes/dark.css` and `themes/light.css`. Light theme is attached by default, but this can be changed in the produced html.
 Additional themes can be produced by cloning existing theme and replacing colors.
 
-# Random fun facts
-1. Compilied application weights around 27kb - both styles and scripts.
-2. Application uses single library (extracted from the app) besides building process.
-3. There's no virtual dom. All optimizations are done by hand.
-
 ## TODO
 1. React helmet.
-1. https://www.robinwieruch.de/react-hooks-fetch-data
-1. Date picker
 1. Icons used: https://icon-icons.com/pack/Phosphor-light/2716&page=1
 1. Dark mode.
-1. Allow multiselection in dropdowns.
-1. Use date picker component for dates.
+1. Fix sorting.

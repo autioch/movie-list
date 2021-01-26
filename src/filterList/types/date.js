@@ -15,8 +15,7 @@ const checkValue = (val) => {
 export default function DateView({ filterId, label, value = {}, items, setFilterValue }) {
   const { fromDate = '', toDate = '' } = value;
 
-  const options = uniqValues(items, filterId).map(parseFloat).filter((val) => !isNaN(val))
-    .sort((aa, bb) => aa - bb);
+  const options = uniqValues(items, filterId).sort((aa, bb) => aa - bb);
 
   return (
     <>
@@ -26,7 +25,7 @@ export default function DateView({ filterId, label, value = {}, items, setFilter
         title={`Set minimum ${label}`}
         placeholder={options[0]}
         onChange={(ev) => setFilterValue({
-          fromValue: checkValue(ev.target.value),
+          fromDate: checkValue(ev.target.value),
           toDate
         })}
       />

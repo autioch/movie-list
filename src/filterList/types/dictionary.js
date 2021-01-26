@@ -11,6 +11,7 @@ export default function DictionaryView({ filterId, label, value, items, setFilte
     <Select
       onChange={(newValue) => setFilterValue(newValue || NO_VALUE)}
       value={value}
+      mode="multiple"
       title={`Filter by ${label}`}
     >
       {options.map((option, index) => <Option key={index} value={option}>{option}</Option>)}
