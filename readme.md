@@ -108,10 +108,9 @@ Additional themes can be produced by cloning existing theme and replacing colors
 
 ## TODO
 1. React helmet.
-2. https://www.robinwieruch.de/react-hooks-fetch-data
-3. Date picker
-4. Icons used: https://icon-icons.com/pack/Phosphor-light/2716&page=1
-5. Dark mode.
-6. Stats switch to include applied filters.
-7. Allow multiselection in dropdowns.
-8. Use date picker component for dates.
+1. https://www.robinwieruch.de/react-hooks-fetch-data
+1. Date picker
+1. Icons used: https://icon-icons.com/pack/Phosphor-light/2716&page=1
+1. Dark mode.
+1. Allow multiselection in dropdowns.
+1. Use date picker component for dates.

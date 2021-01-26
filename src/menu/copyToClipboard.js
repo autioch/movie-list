@@ -9,7 +9,11 @@ message.config({
 export default function copyToClipboard() {
   const el = document.createElement('textarea');
 
-  el.value = document.location.href;
+  const url = new URL(document.location.href);
+
+  url.hash = '';
+
+  el.value = url;
   el.setAttribute('readonly', '');
   el.style.position = 'absolute';
   el.style.left = '-9999px';
