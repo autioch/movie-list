@@ -36,10 +36,10 @@ function FieldStats({ field: { label, stats } }) {
 
 export default function StatList() {
   const [state] = useStore();
-  const { schema: { filters = [] }, items } = state;
+  const { schema: { filters = [] }, items, allItems, applyFiltersToStatistics } = state;
   const stats = filters
     .filter((field) => field.stat)
-    .map((field) => STATS[field.type](field, items))
+    .map((field) => STATS[field.type](field, applyFiltersToStatistics ? items : allItems))
     .filter(Boolean);
 
   return (

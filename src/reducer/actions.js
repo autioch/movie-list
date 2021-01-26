@@ -8,10 +8,21 @@ import {
   FILTER_SET_VALUE,
   FILTER_SET_VISIBILITY,
 
+  STATISTICS_WITH_FILTERS,
+
   ITEMS_SET,
   SCHEMA_SET,
   LOADING
 } from './actionTypes';
+
+export function actionStatisticsWithFilters(applyFiltersToStatistics) {
+  return {
+    type: STATISTICS_WITH_FILTERS,
+    payload: {
+      applyFiltersToStatistics
+    }
+  };
+}
 
 export function actionFieldResetVisibility() {
   return {

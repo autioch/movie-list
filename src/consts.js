@@ -43,10 +43,3 @@ export const ROUTES = {
   SETTINGS: '/settings',
   STAT_LIST: '/statList'
 };
-
-export const ROUTE_LABELS = {
-  [ROUTES.FILTER_LIST]: 'Apply filters',
-  [ROUTES.STAT_LIST]: 'Statistics',
-  [ROUTES.ABOUT]: 'FAQ',
-  [ROUTES.SETTINGS]: 'Settings'
-};

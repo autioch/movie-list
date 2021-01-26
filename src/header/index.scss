@@ -1,0 +1,28 @@
+.app-headline {
+  flex: none;
+  width: 100%;
+  box-shadow: 0 0 5px #aaa;
+  height: 50px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.app-headline__header {
+  font-size: 1.1rem;
+}
+
+.app-headline__description {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  color: #777;
+
+  .ant-switch {
+    margin-right: 10px;
+  }
+
+  .is-disabled {
+    color: #bbb;
+  }
+}

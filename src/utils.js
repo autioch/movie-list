@@ -19,8 +19,6 @@ export function getLabel(key) {
   return LABEL_CACHE[key];
 }
 
-export const suffix = (count, labels) => `${count} ${count === 1 ? labels.item : labels.items}`;
-
 /**
  * Fetches and parsed Json from given url. Window.fetch is not supported in some browsers.
  * @param  {String} url Address to query for data.

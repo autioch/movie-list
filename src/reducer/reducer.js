@@ -13,6 +13,8 @@ import {
   FILTER_SET_VALUE,
   FILTER_SET_VISIBILITY,
 
+  STATISTICS_WITH_FILTERS,
+
   ITEMS_SET,
   SCHEMA_SET,
   LOADING
@@ -28,6 +30,7 @@ export const initialState = {
   hiddenFields: {}, // localStorage
   hiddenFilters: {}, // localStorage
   isLoading: true, // session
+  applyFiltersToStatistics: true, // session
   items: [], // derived
   schema: {}, // session
   sortKeys: [],
@@ -181,6 +184,15 @@ export function reducer(state, action) { // eslint-disable-line max-statements
         items: getItems(allItems, schema, [], {}, {}),
         sortKeys: [],
         sortOrders: {}
+      };
+    }
+
+    case STATISTICS_WITH_FILTERS: {
+      const { applyFiltersToStatistics } = payload;
+
+      return {
+        ...state,
+        applyFiltersToStatistics
       };
     }
 
