@@ -2,6 +2,7 @@ import { ORDER_NEXT } from '../consts';
 import getItems from './getItems';
 import { getHiddenFields, getHiddenFilters } from './utils';
 import localStorageWrapper from './localStorageWrapper';
+import { serializeToUrl, readFromUrl } from './urlStorage';
 
 import {
   FIELD_RESET_VISIBILITY,
@@ -23,23 +24,25 @@ import {
 const hiddenFiltersLS = localStorageWrapper('hiddenFilters');
 const hiddenFieldsLS = localStorageWrapper('hiddenFields');
 
+const fromUrl = readFromUrl();
+
+const notUndefined = (val) => val !== undefined;
+
 export const initialState = {
   allItems: [], // session
-  filterCount: 0, // derived
-  filterValues: {},
+  filterCount: Object.values(fromUrl.filterValues).filter(notUndefined).length, // derived
+  filterValues: fromUrl.filterValues,
   hiddenFields: {}, // localStorage
   hiddenFilters: {}, // localStorage
   isLoading: true, // session
   applyFiltersToStatistics: true, // session
   items: [], // derived
   schema: {}, // session
-  sortKeys: [],
-  sortOrders: {}
+  sortKeys: fromUrl.sortKeys,
+  sortOrders: fromUrl.sortOrders
 };
 
-const notUndefined = (val) => val !== undefined;
-
-export function reducer(state, action) { // eslint-disable-line max-statements
+function innerReducer(state, action) { // eslint-disable-line max-statements
   const { type, payload } = action;
 
   switch (type) {
@@ -199,4 +202,12 @@ export function reducer(state, action) { // eslint-disable-line max-statements
     default:
       return state;
   }
+}
+
+export function reducer(state, action) {
+  const newState = innerReducer(state, action);
+
+  serializeToUrl(newState);
+
+  return newState;
 }
