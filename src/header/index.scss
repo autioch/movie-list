@@ -1,7 +1,9 @@
+@import '../theme';
+
 .app-headline {
   flex: none;
   width: 100%;
-  box-shadow: 0 0 5px #aaa;
+  box-shadow: 0 0 5px $t-box--shadow;
   height: 50px;
   padding: 0 15px;
   display: flex;
@@ -16,13 +18,13 @@
   display: flex;
   align-items: center;
   margin-left: auto;
-  color: #777;
+  color: $t-text--tip;
 
   .ant-switch {
     margin-right: 10px;
   }
 
   .is-disabled {
-    color: #bbb;
+    color: $t-text--disabled;
   }
 }

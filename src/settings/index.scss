@@ -21,6 +21,17 @@
   float: right;
 }
 
+
+.settings-theme {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+
+  > .ant-switch {
+    margin-right: 10px;
+  }
+}
+
 /* Details */
 
 .settings-item-details-section {

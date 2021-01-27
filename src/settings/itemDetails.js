@@ -34,7 +34,7 @@ export default function ItemDetails() {
 
   return (
     <div className="settings-section">
-      <Button className="settings-reset" onClick={() => dispatch(actionFieldResetVisibility())}>Default details</Button>
+      <Button className="settings-reset" size="small" onClick={() => dispatch(actionFieldResetVisibility())}>Default details</Button>
       <div className="settings-header">{schema.labels.item} details</div>
       <div className="settings-description">Control which details are visible for each {schema.labels.item}.</div>
       <div className="settings-cols">

@@ -21,7 +21,7 @@ export default function FilterConfig() {
 
   return (
     <div className="settings-section">
-      <Button className="settings-reset" onClick={() => dispatch(actionFilterResetVisibility())}>Default filters</Button>
+      <Button className="settings-reset" size="small" onClick={() => dispatch(actionFilterResetVisibility())}>Default filters</Button>
       <div className="settings-header">Filter visibility</div>
       <div className="settings-description">Control which filters are available.</div>
       <div className="settings-cols">

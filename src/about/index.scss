@@ -1,21 +1,7 @@
+@import '../theme';
+
 .about {
   margin: 20px;
-
-  > p {
-    font-size: .9rem;
-  }
-}
-
-$t-rank--0: #aaa;
-$t-rank--1: #a00;
-$t-rank--2: #a70;
-$t-rank--3: #aa0;
-$t-rank--4: #0a0;
-$t-rank--5: #0aa;
-
-.about-header {
-  // text-decoration: underline;
-  // font-size: 1.1rem;
 }
 
 .about-rank-list {
@@ -32,8 +18,8 @@ $t-rank--5: #0aa;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  text-shadow: 0 0 3px #444;
+  color: $t-text--contrast;
+  text-shadow: 0 0 3px $t-text--shadow;
   position: relative;
 
 
@@ -79,42 +65,6 @@ $t-rank--5: #0aa;
 
   &:nth-child(6) {
     background: $t-rank--5;
-
-    &::after {
-      content: 'GOOD';
-    }
-  }
-}
-
-
-.legend__item {
-  flex-grow: 1;
-  height: 1em;
-  position: relative;
-
-  &::after {
-    position: absolute;
-    bottom: 100%;
-    width: 100%;
-    margin-bottom: .25rem;
-    text-align: center;
-  }
-
-  &.t-rank__bg--0 {
-
-    &::after {
-      content: '?';
-    }
-  }
-
-  &.t-rank__bg--1 {
-
-    &::after {
-      content: 'BAD';
-    }
-  }
-
-  &.t-rank__bg--5 {
 
     &::after {
       content: 'GOOD';

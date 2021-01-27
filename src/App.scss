@@ -1,3 +1,56 @@
+@import './theme';
+
+:focus {
+  outline: none;
+}
+
+body {
+  background: $t-background--app;
+}
+
+#root { //sass-lint:disable-line no-ids
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: $t-background--content;
+  color: $t-text;
+
+  .ant-switch-checked {
+    background: $t-background--widget;
+  }
+
+  .ant-checkbox-wrapper {
+    color: $t-text;
+  }
+}
+
+.loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//sass-lint:disable no-vendor-prefixes
+::-webkit-scrollbar {
+  width: 1rem;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $t-scroll--track;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $t-scroll--thumb;
+}
+
 .app-content {
   flex: 1 1 auto;
   height: 100%;

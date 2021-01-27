@@ -1,3 +1,5 @@
+@import '../theme';
+
 .field-stat-item {
   width: 50%;
   flex: none;
@@ -13,7 +15,7 @@
 .field-stat-item__label {
   text-align: right;
   padding-right: 10px;
-  color: #777;
+  color: $t-text--tip;
 
   &::after {
     content: ':';

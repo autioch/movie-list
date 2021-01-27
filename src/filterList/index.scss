@@ -1,3 +1,5 @@
+@import '../theme';
+
 .filter-item {
   margin: 21px 15px;
 
@@ -15,7 +17,7 @@
 
 .filter-list-input-label {
   margin-right: 10px;
-  color: #777;
+  color: $t-text--tip;
 
   &:not(:first-child) {
     margin-left: 10px;

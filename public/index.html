@@ -9,10 +9,60 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <title>Movie list</title>
     <style>
-      html, body, #root {border:0;margin:0;padding:0;width:100%;height:100%}
-      #root {display:flex}
-      html {font:12px Verdana}
+      html,body,#root {overflow:hidden;border:0;margin:0;padding:0;width:100%;height:100%}
+      html {font:16px Verdana}
+      html {
+        --t-background--app: #ddd;
+        --t-background--content: #fafafa;
+        --t-background--widget: #09f;
+        --t-border: #ddd;
+        --t-box--shadow: #aaa;
+        --t-icon--active: #09f;
+        --t-icon: #000;
+        --t-rank--0: #aaa;
+        --t-rank--1: #a00;
+        --t-rank--2: #a70;
+        --t-rank--3: #aa0;
+        --t-rank--4: #0a0;
+        --t-rank--5: #0aa;
+        --t-scroll--thumb: #c8c8c8;
+        --t-scroll--track: #d8d8d8;
+        --t-text--contrast: #fff;
+        --t-text--disabled: #777;
+        --t-text--shadow: #444;
+        --t-text--tip: #777;
+        --t-text: #111;
+      }
+      html.dark-theme {
+        --t-background--app: #222;
+        --t-background--content: #222;
+        --t-background--widget: #09f;
+        --t-border: #ddd;
+        --t-box--shadow: #444;
+        --t-icon--active: #09f;
+        --t-icon: #888;
+
+        --t-rank--0: #aaa;
+        --t-rank--1: #a00;
+        --t-rank--2: #a70;
+        --t-rank--3: #aa0;
+        --t-rank--4: #0a0;
+        --t-rank--5: #0aa;
+
+        --t-scroll--thumb: #666;
+        --t-scroll--track: #333;
+
+        --t-text--contrast: #fff;
+        --t-text--disabled: #888;
+        --t-text--shadow: #444;
+        --t-text--tip: #888;
+        --t-text: #ddd;
+      }
     </style>
+    <script>
+      const isDarkThemeJSON = localStorage.getItem('isDarkTheme');
+      document.documentElement.classList.toggle('dark-theme', isDarkThemeJSON === undefined ? false : JSON.parse(isDarkThemeJSON))
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

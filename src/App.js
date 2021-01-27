@@ -14,6 +14,7 @@ import { actionLoading, actionItemsSet, actionSchemaSet } from './reducer';
 import { fetchJson } from './utils';
 import { useStore } from './store';
 import { ROUTES } from './consts';
+import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './App.scss';
 
@@ -34,7 +35,13 @@ export default function App() {
   }, []);
 
   if (isLoading) {
-    return <Spin size="large" />;
+    return (
+      <div className="loader">
+        <Spin indicator={<LoadingOutlined style={{
+          fontSize: 60 // eslint-disable-line no-magic-numbers
+        }} spin />} />
+      </div>
+    );
   }
 
   return (
