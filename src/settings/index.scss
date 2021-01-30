@@ -1,6 +1,4 @@
-.settings-section {
-  margin: 20px;
-}
+.settings-section {}
 
 .settings-cols {
   display: flex;
@@ -13,8 +11,6 @@
 }
 
 .settings-description {
-  font-size: .9rem;
-  margin-bottom: 20px;
 }
 
 .settings-reset {
@@ -25,7 +21,6 @@
 .settings-theme {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
 
   > .ant-switch {
     margin-right: 10px;
@@ -35,20 +30,16 @@
 /* Details */
 
 .settings-item-details-section {
-  margin-bottom: 25px;
 
   > .ant-checkbox-wrapper {
     display: block;
-    font-size: 1.1rem;
   }
 }
 
 .settings-details-list {
-  margin-left: 15px;
 
   .ant-checkbox-wrapper {
     display: block;
-    margin: 10px !important;
   }
 }
 
@@ -57,12 +48,10 @@
 .settings-filter-list {
   display: flex;
   flex-wrap: wrap;
-  margin: 20px 0;
 }
 
 .settings-filter-item {
   display: block;
-  margin-bottom: 15px;
 
   > .ant-switch {
     margin-right: 10px;

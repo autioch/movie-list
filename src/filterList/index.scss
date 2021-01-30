@@ -1,7 +1,6 @@
 @import '../theme';
 
 .filter-item {
-  margin: 21px 15px;
 
   .ant-select {
     display: block;
@@ -16,26 +15,18 @@
 }
 
 .filter-list-input-label {
-  margin-right: 10px;
   color: $t-text--tip;
-
-  &:not(:first-child) {
-    margin-left: 10px;
-  }
 }
 
 .filter-item-reset {
-  margin-left: 10px;
   flex: none;
 }
 
 .filter-item__headline {
   display: flex;
   align-items: center;
-  margin-bottom: 7px;
 
   > svg {
-    margin-left: 10px;
     width: 20px;
     height: 20px;
   }

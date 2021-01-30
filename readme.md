@@ -104,4 +104,4 @@ Additional themes can be produced by cloning existing theme and replacing colors
 ## TODO
 1. React helmet.
 1. Icons used: https://icon-icons.com/pack/Phosphor-light/2716&page=1
-1. Dark mode.
+1. Desktop layout.

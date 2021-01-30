@@ -1,19 +1,17 @@
 @import '../theme';
 
-.item {
-  padding: 10px;
-  border-bottom: solid 1px #ddd;
-}
-
 .item-list {
   position: relative;
   height: 100%;
   overflow: hidden;
 }
 
+.item {
+  border-bottom: solid 1px #ddd;
+}
+
 .item-footnotes {
   display: flex;
-  font-size: .9rem;
   color: $t-text--tip;
 }
 
@@ -38,7 +36,6 @@
 }
 
 .item-header {
-  font-weight: bold;
 }
 
 .item-links {
@@ -62,9 +59,7 @@
 
 .item-sidebar {
   float: right;
-  margin: 0 0 15px 15px;
   text-align: right;
-  font-size: .9rem;
 }
 
 .item-sidebar-item {

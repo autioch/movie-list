@@ -18,7 +18,7 @@ export default function About() {
       <p>Statistics displayed on the right of each {labels.item} are colorized based
       on their value.</p>
       <div className="about-rank-list">
-        {RANK_LEVELS.map((level, index) => <div className="about-rank" key={index}></div>)}
+        {RANK_LEVELS.map((level, index) => <div className="about-rank-item" key={index}></div>)}
       </div>
       <div className="about-header">Technical details</div>
       <p>Screen resolution: {window.innerWidth}x{window.innerHeight}</p>

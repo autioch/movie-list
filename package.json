@@ -77,8 +77,12 @@
       "no-undefined": [
         "off"
       ],
-      "no-inline-comments": ["off"],
-      "line-comment-position": ["off"]
+      "no-inline-comments": [
+        "off"
+      ],
+      "line-comment-position": [
+        "off"
+      ]
     }
   },
   "browserslist": {
