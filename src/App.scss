@@ -29,10 +29,11 @@ body {
   .ant-select .ant-select-selector.ant-select-selector {
     background: $t-background--content;
     color: $t-text;
+    border-color: $t-border;
   }
 
   .ant-select-multiple .ant-select-selection-item-content {
-    color: $t-background--content;
+    color: $t-text--tip;
   }
 
   .ant-switch {

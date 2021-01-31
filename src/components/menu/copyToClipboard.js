@@ -22,5 +22,5 @@ export default function copyToClipboard() {
   document.execCommand('copy');
   document.body.removeChild(el);
 
-  message.info('Link with filters copied!');
+  message.info('Copied link with filters applied');
 }

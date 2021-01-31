@@ -7,6 +7,7 @@ import Menu from '../components/menu';
 import Settings from '../components/settings';
 import StatList from '../components/statList';
 import Header from '../components/header';
+import './mobile.scss';
 
 import { useStore } from '../store';
 import { ROUTES } from '../consts';

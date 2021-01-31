@@ -1,5 +1,12 @@
 .app-mobile {
+  display: flex;
+  flex-direction: column;
 
+  .stat-list,
+  .settings,
+  .about {
+    padding: 20px;
+  }
 }
 
 .app-content {
