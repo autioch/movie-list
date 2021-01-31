@@ -1,0 +1,43 @@
+@import '../../theme';
+
+.filter-item {
+  padding: 10px;
+
+  .ant-select {
+    display: block;
+    width: 100%;
+  }
+}
+
+.filter-item-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  > .filter-label,
+  > .ant-input,
+  > .ant-select {
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
+
+.filter-label {
+  color: $t-text--tip;
+}
+
+.filter-item-reset {
+  flex: none;
+}
+
+.filter-item__headline {
+  display: flex;
+  align-items: center;
+
+  > svg {
+    width: 20px;
+    height: 20px;
+  }
+}

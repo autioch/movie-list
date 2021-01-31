@@ -4,36 +4,6 @@
   outline: none;
 }
 
-body {
-  background: $t-background--app;
-}
-
-#root { //sass-lint:disable-line no-ids
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: $t-background--content;
-  color: $t-text;
-
-  .ant-switch-checked {
-    background: $t-background--widget;
-  }
-
-  .ant-checkbox-wrapper {
-    color: $t-text;
-  }
-}
-
-.loader {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 //sass-lint:disable no-vendor-prefixes
 ::-webkit-scrollbar {
   width: 1rem;
@@ -51,8 +21,30 @@ body {
   background-color: $t-scroll--thumb;
 }
 
-.app-content {
-  flex: 1 1 auto;
-  height: 100%;
-  overflow: auto;
+body {
+  background: $t-background--content;
+  color: $t-text;
+
+  .ant-input,
+  .ant-select .ant-select-selector.ant-select-selector {
+    background: $t-background--content;
+    color: $t-text;
+  }
+
+  .ant-select-multiple .ant-select-selection-item-content {
+    color: $t-background--content;
+  }
+
+  .ant-switch {
+    background: $t-border;
+
+  }
+
+  .ant-switch-checked {
+    background: $t-background--widget;
+  }
+
+  .ant-checkbox-wrapper {
+    color: $t-text;
+  }
 }

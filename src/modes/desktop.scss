@@ -1,0 +1,65 @@
+@import '../theme';
+
+
+.app-desktop {
+  display: flex;
+  flex-direction: row;
+
+  .filter-list {
+    width: 20vw;
+    overflow: auto;
+    border-right: solid 1px #ddd;
+    margin-right: 5px;
+    background: $t-background--content;
+  }
+
+  .item-list {
+    background: $t-background--content;
+  }
+
+  .app-sidebar {
+    background: $t-background--content;
+
+    .ant-collapse {
+      background: $t-background--content;
+      color: $t-text;
+    }
+
+    .ant-collapse .ant-collapse-header {
+      color: $t-text;
+    }
+
+    .ant-collapse .ant-collapse-content {
+      background: $t-background--content;
+      color: $t-text;
+    }
+  }
+}
+
+.app-sidebar {
+  flex: 1 1 20em;
+  height: 100%;
+  overflow: hidden;
+
+  .ant-collapse-item-active .ant-collapse-header {
+    flex: none;
+  }
+
+  .ant-collapse-content-active {
+    overflow: auto;
+  }
+
+  > .ant-collapse {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    > .ant-collapse-item {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+}

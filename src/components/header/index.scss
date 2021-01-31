@@ -1,0 +1,28 @@
+@import '../../theme';
+
+.app-headline {
+  flex: none;
+  width: 100%;
+  box-shadow: 0 0 5px $t-box--shadow;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.app-headline__header {
+}
+
+.app-headline__description {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  color: $t-text--tip;
+
+  .ant-switch {
+    margin-right: 10px;
+  }
+
+  .is-disabled {
+    color: $t-text--disabled;
+  }
+}

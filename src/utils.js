@@ -1,9 +1,5 @@
 import { HTTP_OK, HTTP_ERROR } from './consts';
 
-export function uniqValues(items, filterId) {
-  return [...new Set(items.flatMap((item) => item[filterId]))];
-}
-
 // Simple memoize
 const LABEL_CACHE = {};
 const UPPERCASE_REGEXP = /\.?([A-Z]+)/g;

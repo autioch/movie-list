@@ -1,0 +1,72 @@
+@import '../../theme';
+
+.about-header {
+  font-weight: bold;
+}
+
+.about-rank-list {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.about-rank-item {
+  width: 100%;
+  flex: auto;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $t-text--contrast;
+  text-shadow: 0 0 3px $t-text--shadow;
+  position: relative;
+
+
+  &:nth-child(1) {
+    background: $t-rank--0;
+
+    &::after {
+      content: 'NONE';
+    }
+  }
+
+  &:nth-child(2) {
+    background: $t-rank--1;
+
+    &::after {
+      content: 'BAD';
+    }
+  }
+
+  &:nth-child(3) {
+    background: $t-rank--2;
+
+    &::after {
+      content: '';
+    }
+  }
+
+  &:nth-child(4) {
+    background: $t-rank--3;
+
+    &::after {
+      content: '';
+    }
+  }
+
+  &:nth-child(5) {
+    background: $t-rank--4;
+
+    &::after {
+      content: '';
+    }
+  }
+
+  &:nth-child(6) {
+    background: $t-rank--5;
+
+    &::after {
+      content: 'GOOD';
+    }
+  }
+}

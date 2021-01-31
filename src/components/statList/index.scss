@@ -1,0 +1,45 @@
+@import '../../theme';
+
+.field-stat-item {
+  width: 50%;
+  flex: none;
+  display: flex;
+}
+
+.field-stat-item__label,
+.field-stat-item__value {
+  width: 50%;
+  flex: none;
+}
+
+.field-stat-item__label {
+  text-align: right;
+  color: $t-text--tip;
+  margin-right: 5px;
+
+  &::after {
+    content: ':';
+  }
+}
+
+.field-stat-item__value {
+
+  &.is-rounded {
+    &::after {
+      font-style: italic;
+      content: 'K';
+    }
+  }
+}
+
+
+.field-stat__list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.field-stat__header {
+}
+
+.field-stat {
+}

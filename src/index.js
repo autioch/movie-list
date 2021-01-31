@@ -13,5 +13,5 @@ ReactDOM.render(
       </Router>
     </StoreProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.body
 );

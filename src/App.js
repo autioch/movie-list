@@ -1,26 +1,22 @@
 import { useEffect } from 'react';
-import { Spin } from 'antd';
-import { Switch, Route } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
-import About from './about';
-import FilterList from './filterList';
-import ItemList from './itemList';
-import Menu from './menu';
-import Settings from './settings';
-import StatList from './statList';
-import Header from './header';
-
+import Loader from './components/loader';
+import MobileMode from './modes/mobile';
+import DesktopMode from './modes/desktop';
 import { actionLoading, actionItemsSet, actionSchemaSet } from './reducer';
 import { fetchJson } from './utils';
 import { useStore } from './store';
-import { ROUTES } from './consts';
-import { LoadingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './App.scss';
 
 export default function App() {
   const [state, dispatch] = useStore();
-  const { isLoading, items, schema, hiddenFields } = state;
+  const { isLoading } = state;
+
+  const isTabletOrMobile = useMediaQuery({
+    query: '(max-width: 1200px)'
+  });
 
   useEffect(() => {
     dispatch(actionLoading(true));
@@ -35,43 +31,10 @@ export default function App() {
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="loader">
-        <Spin indicator={<LoadingOutlined style={{
-          fontSize: 60 // eslint-disable-line no-magic-numbers
-        }} spin />} />
-      </div>
-    );
+    return (<Loader/>);
   }
 
   return (
-    <>
-      <Header />
-      <div className="app-content">
-        <Switch>
-          <Route path={ROUTES.FILTER_LIST}>
-            <FilterList />
-          </Route>
-          <Route path={ROUTES.STAT_LIST}>
-            <StatList/>
-          </Route>
-          <Route path={ROUTES.ABOUT}>
-            <About />
-          </Route>
-          <Route path={ROUTES.SETTINGS}>
-            <Settings/>
-          </Route>
-          <Route path={ROUTES.ITEM_LIST}>
-            <ItemList
-              isLoading={isLoading}
-              schema={schema}
-              items={items}
-              hiddenFields={hiddenFields}
-            />
-          </Route>
-        </Switch>
-      </div>
-      <Menu />
-    </>
+    isTabletOrMobile ? <MobileMode /> : <DesktopMode />
   );
 }
