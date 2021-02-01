@@ -16,22 +16,6 @@ Tested in latest Chrome, Firefox, Edge and Safari.
 ## Standalone application
 Application can be built using commands `npm run build` and `npm run build:production`. Output will show up in `dist` folder.
 
-## Building as a part of other application
-```javascript
-const path = require('path');
-const qbMovieList = require('qb-movie-list');
-
-qbMovieList({
-  buildFolder: path.resolve('./dist'),
-  isProduction: true
-})
-.then((webpackOutput) => console.log('done'))
-.catch((webpackError) => console.log(webpackError.message));
-```
-When using as a module, movie list accepts 2 params:
- - buildFolder, which defines where the output will show up,
- - isProduction, which specifies if the output should be minified.
-
 # Content
 
 ## Items
@@ -100,8 +84,3 @@ In addition, filters can have `stat` property. If it's set to true, stats for th
 ## Themes
 By default, application produces 2 themes, `themes/dark.css` and `themes/light.css`. Light theme is attached by default, but this can be changed in the produced html.
 Additional themes can be produced by cloning existing theme and replacing colors.
-
-## TODO
-1. React helmet.
-1. Icons used: https://icon-icons.com/pack/Phosphor-light/2716&page=1
-1. Desktop layout.
