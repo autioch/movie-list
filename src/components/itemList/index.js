@@ -26,7 +26,7 @@ export default class MacroList extends PureComponent {
   }
   componentDidUpdate() {
     this.resetCache();
-    this.list.current.recomputeRowHeights();
+    this.list.current?.recomputeRowHeights();
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.resetCache);
